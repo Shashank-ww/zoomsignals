@@ -1,0 +1,564 @@
+[
+  {
+    "signalId": "Sid-001",
+    "meta": {
+      "status": "EARLY",
+      "velocity": "Accelerating",
+      "confidence": "High",
+      "authorId": "authorId",
+      "approvalState": "Approved",
+      "firstSeenDate": "2026-01-17",
+      "lastUpdatedDate": "2026-02-01"
+    },
+    "platform": {
+      "primary": "Instagram-Reels",
+      "secondary": [
+        "Meta",
+        "Facebook",
+        "YTShorts"
+      ]
+    },
+    "creative": {
+      "formatName": "Silent Interior Reveal",
+      "openingPattern": "Door opens - cabin lights turn on",
+      "revealPattern": "Slow pan of dashboard + infotainment",
+      "narrative": "Silent"
+    },
+    "strategy": {
+      "vehicleType": "HEV",
+      "launchStage": "Pre Launch",
+      "repetitionCountObserved": 7
+    },
+    "insight": {
+      "whyThisMatters": "Interior-focused reels are outperforming exterior beauty shots; silence increases dwell time and avoids language barriers",
+      "whatToIgnore": "Lighting quality differences; some reels look premium but structure is identical"
+    },
+    "media": {
+      "imageUrl": "someimage.jpg",
+      "sourceLink": "https://www.instagram.com/p/DUAA1PBkVrw/"
+    }
+  },
+  {
+    "signalId": "Sid-002",
+    "meta": {
+      "status": "PEAKING",
+      "velocity": "Emerging",
+      "confidence": "Medium",
+      "authorId": "authorId",
+      "approvalState": "Pending",
+      "firstSeenDate": "2026-01-07",
+      "lastUpdatedDate": "2026-02-02"
+    },
+    "platform": {
+      "primary": "X-Shorts",
+      "secondary": [
+        "YouTube Shorts"
+      ]
+    },
+    "creative": {
+      "formatName": "Visual ad",
+      "openingPattern": "Car shot",
+      "revealPattern": "side shot of car with new year offering",
+      "narrative": "VO-Led"
+    },
+    "strategy": {
+      "vehicleType": "ICE",
+      "launchStage": "Pre Launch",
+      "repetitionCountObserved": 8
+    },
+    "insight": {
+      "whyThisMatters": "Lead the way forward, offering ad, pricing quoted",
+      "whatToIgnore": "Looks bland, though volvo branded"
+    },
+    "media": {
+      "imageUrl": null,
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-003",
+    "meta": {
+      "status": "SATURATED",
+      "velocity": "Stable",
+      "confidence": "Low",
+      "authorId": "authorId",
+      "approvalState": "Draft",
+      "firstSeenDate": "2025-12-30",
+      "lastUpdatedDate": "2026-02-01"
+    },
+    "platform": {
+      "primary": "Snapchat",
+      "secondary": [
+        "Meta",
+        "Facebook"
+      ]
+    },
+    "creative": {
+      "formatName": "City drive",
+      "openingPattern": "Exterior shots with interior features with 4 dividers on screen",
+      "revealPattern": "car driven on a bridge with sunshine at the backdrop",
+      "narrative": "Offer-Led"
+    },
+    "strategy": {
+      "vehicleType": "BEV",
+      "launchStage": "Pre Launch",
+      "repetitionCountObserved": 5
+    },
+    "insight": {
+      "whyThisMatters": "Shows exterior shots driven around the city.",
+      "whatToIgnore": "Looks engaging, premium and highly volvo"
+    },
+    "media": {
+      "imageUrl": null,
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-004",
+    "meta": {
+      "status": "PEAKING",
+      "velocity": "Declining",
+      "confidence": "Medium",
+      "authorId": "authorId",
+      "approvalState": "Rejected",
+      "firstSeenDate": "2025-10-30",
+      "lastUpdatedDate": "2026-02-01"
+    },
+    "platform": {
+      "primary": "Meta-Paid",
+      "secondary": [
+        "Meta",
+        "Facebook"
+      ]
+    },
+    "creative": {
+      "formatName": "VO interior showcase",
+      "openingPattern": "Dashbaord showcase with VO description",
+      "revealPattern": "Fast-paced interior description + extreme camera movements",
+      "narrative": "Text-Led"
+    },
+    "strategy": {
+      "vehicleType": "PHEV",
+      "launchStage": "Pre Launch",
+      "repetitionCountObserved": 12
+    },
+    "insight": {
+      "whyThisMatters": "Explains imperative details, more focussed on feature details",
+      "whatToIgnore": "lacks good quality camera movements"
+    },
+    "media": {
+      "imageUrl": null,
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-005",
+    "meta": {
+      "status": "EARLY",
+      "velocity": "Accelerating",
+      "confidence": "High",
+      "authorId": "authorId",
+      "approvalState": "Pending",
+      "firstSeenDate": "2026-01-26",
+      "lastUpdatedDate": "2026-02-01"
+    },
+    "platform": {
+      "primary": "YT-Shorts",
+      "secondary": [
+        "Insta reels"
+      ]
+    },
+    "creative": {
+      "formatName": "VO led exterior",
+      "openingPattern": "Talks about exterior colours and new style",
+      "revealPattern": "reveal engine shots",
+      "narrative": "Comparison"
+    },
+    "strategy": {
+      "vehicleType": "BEV",
+      "launchStage": "Pre Launch",
+      "repetitionCountObserved": 4
+    },
+    "insight": {
+      "whyThisMatters": "in line with customer expectation of engine cap",
+      "whatToIgnore": "just too much value of money"
+    },
+    "media": {
+      "imageUrl": null,
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-006",
+    "meta": {
+      "status": "EARLY",
+      "velocity": "Accelerating",
+      "confidence": "Medium",
+      "authorId": "authorId",
+      "approvalState": "Approved",
+      "firstSeenDate": "2026-01-21",
+      "lastUpdatedDate": "2026-02-02"
+    },
+    "platform": {
+      "primary": "Instagram-Reels",
+      "secondary": [
+        "Meta",
+        "Facebook"
+      ]
+    },
+    "creative": {
+      "formatName": "Ambient interior loop",
+      "openingPattern": "Soft ambient light turns on automatically",
+      "revealPattern": "Looped pan of seats + stitching",
+      "narrative": "Silent"
+    },
+    "strategy": {
+      "vehicleType": "BEV",
+      "launchStage": "Pre Launch",
+      "repetitionCountObserved": 6
+    },
+    "insight": {
+      "whyThisMatters": "Looped ambient visuals increase average watch time due to hypnotic repetition",
+      "whatToIgnore": "Music choice varies wildly and affects perception quality"
+    },
+    "media": {
+      "imageUrl": "ambient_interior.jpg",
+      "sourceLink": "https://www.instagram.com/p/DUXX1AAA/"
+    }
+  },
+  {
+    "signalId": "Sid-007",
+    "meta": {
+      "status": "PEAKING",
+      "velocity": "Stable",
+      "confidence": "High",
+      "authorId": "authorId",
+      "approvalState": "Approved",
+      "firstSeenDate": "2026-01-11",
+      "lastUpdatedDate": "2026-02-01"
+    },
+    "platform": {
+      "primary": "YT-Shorts",
+      "secondary": [
+        "Instagram Reels"
+      ]
+    },
+    "creative": {
+      "formatName": "Feature hook ad",
+      "openingPattern": "Quick feature flash in first second",
+      "revealPattern": "Feature-by-feature reveal with text overlays",
+      "narrative": "Text-Led"
+    },
+    "strategy": {
+      "vehicleType": "ICE",
+      "launchStage": "Launch",
+      "repetitionCountObserved": 14
+    },
+    "insight": {
+      "whyThisMatters": "Direct feature hooks work well for mid-funnel audiences seeking clarity",
+      "whatToIgnore": "Overuse of text reduces premium perception"
+    },
+    "media": {
+      "imageUrl": "feature_hook.jpg",
+      "sourceLink": "https://www.youtube.com/shorts/XYZ123"
+    }
+  },
+  {
+    "signalId": "Sid-008",
+    "meta": {
+      "status": "EARLY",
+      "velocity": "Emerging",
+      "confidence": "Medium",
+      "authorId": "authorId",
+      "approvalState": "Pending",
+      "firstSeenDate": "2026-01-24",
+      "lastUpdatedDate": "2026-02-01"
+    },
+    "platform": {
+      "primary": "Snapchat",
+      "secondary": [
+        "Instagram Reels"
+      ]
+    },
+    "creative": {
+      "formatName": "POV drive clip",
+      "openingPattern": "POV from driver seat starts engine",
+      "revealPattern": "Driving through city traffic POV",
+      "narrative": "Silent"
+    },
+    "strategy": {
+      "vehicleType": "PHEV",
+      "launchStage": "Pre Launch",
+      "repetitionCountObserved": 3
+    },
+    "insight": {
+      "whyThisMatters": "POV formats feel authentic and lower ad resistance",
+      "whatToIgnore": "Camera shake and exposure inconsistency"
+    },
+    "media": {
+      "imageUrl": "pov_drive.jpg",
+      "sourceLink": "https://www.snapchat.com/p/ABC456"
+    }
+  },
+  {
+    "signalId": "Sid-009",
+    "meta": {
+      "status": "SATURATED",
+      "velocity": "Stable",
+      "confidence": "Low",
+      "authorId": "authorId",
+      "approvalState": "Approved",
+      "firstSeenDate": "2025-12-14",
+      "lastUpdatedDate": "2026-01-31"
+    },
+    "platform": {
+      "primary": "Meta-Paid",
+      "secondary": [
+        "Facebook"
+      ]
+    },
+    "creative": {
+      "formatName": "Offer burst ad",
+      "openingPattern": "Offer text appears immediately",
+      "revealPattern": "Exterior + price overlay sequence",
+      "narrative": "Offer-Led"
+    },
+    "strategy": {
+      "vehicleType": "ICE",
+      "launchStage": "Launch",
+      "repetitionCountObserved": 20
+    },
+    "insight": {
+      "whyThisMatters": "Heavy offer-led creatives drive short-term CTR but fatigue quickly",
+      "whatToIgnore": "Visual sameness across brands"
+    },
+    "media": {
+      "imageUrl": "offer_burst.jpg",
+      "sourceLink": "https://www.facebook.com/ad/78910"
+    }
+  },
+  {
+    "signalId": "Sid-010",
+    "meta": {
+      "status": "PEAKING",
+      "velocity": "Accelerating",
+      "confidence": "High",
+      "authorId": "authorId",
+      "approvalState": "Approved",
+      "firstSeenDate": "2026-01-04",
+      "lastUpdatedDate": "2026-02-02"
+    },
+    "platform": {
+      "primary": "Instagram-Reels",
+      "secondary": [
+        "YT-Shorts"
+      ]
+    },
+    "creative": {
+      "formatName": "Interior tech demo",
+      "openingPattern": "Screen turns on with animation",
+      "revealPattern": "UI interactions demonstrated via hand gestures",
+      "narrative": "VO-Led"
+    },
+    "strategy": {
+      "vehicleType": "BEV",
+      "launchStage": "Pre Launch",
+      "repetitionCountObserved": 9
+    },
+    "insight": {
+      "whyThisMatters": "Tech-first interiors resonate strongly with younger, urban audiences",
+      "whatToIgnore": "Over-explaining basic UI actions"
+    },
+    "media": {
+      "imageUrl": "ui_demo.jpg",
+      "sourceLink": "https://www.instagram.com/p/DUUII222/"
+    }
+  },
+  {
+    "signalId": "Sid-011",
+    "meta": {
+      "status": "EARLY",
+      "velocity": "Emerging",
+      "confidence": "Low",
+      "authorId": "authorId",
+      "approvalState": "Draft",
+      "firstSeenDate": "2026-01-27",
+      "lastUpdatedDate": "2026-02-01"
+    },
+    "platform": {
+      "primary": "X-Shorts",
+      "secondary": [
+        "YouTube Shorts"
+      ]
+    },
+    "creative": {
+      "formatName": "Quick exterior spin",
+      "openingPattern": "Fast 360-degree exterior spin",
+      "revealPattern": "End frame shows logo only",
+      "narrative": "Silent"
+    },
+    "strategy": {
+      "vehicleType": "HEV",
+      "launchStage": "Pre Launch",
+      "repetitionCountObserved": 2
+    },
+    "insight": {
+      "whyThisMatters": "Simple spins attract initial views but lack narrative depth",
+      "whatToIgnore": "No clear differentiation"
+    },
+    "media": {
+      "imageUrl": "exterior_spin.jpg",
+      "sourceLink": "https://x.com/i/status/123456"
+    }
+  },
+  {
+    "signalId": "Sid-012",
+    "meta": {
+      "status": "PEAKING",
+      "velocity": "Stable",
+      "confidence": "Medium",
+      "authorId": "authorId",
+      "approvalState": "Approved",
+      "firstSeenDate": "2026-01-09",
+      "lastUpdatedDate": "2026-02-01"
+    },
+    "platform": {
+      "primary": "Instagram-Reels",
+      "secondary": [
+        "Meta",
+        "Facebook"
+      ]
+    },
+    "creative": {
+      "formatName": "Lifestyle integration",
+      "openingPattern": "Person enters car after work",
+      "revealPattern": "Drive + relaxed interior moments",
+      "narrative": "Narrative-Led"
+    },
+    "strategy": {
+      "vehicleType": "PHEV",
+      "launchStage": "Launch",
+      "repetitionCountObserved": 11
+    },
+    "insight": {
+      "whyThisMatters": "Human presence improves relatability and emotional connection",
+      "whatToIgnore": "Actors sometimes distract from product"
+    },
+    "media": {
+      "imageUrl": "lifestyle_drive.jpg",
+      "sourceLink": "https://www.instagram.com/p/DULIFE12/"
+    }
+  },
+  {
+    "signalId": "Sid-013",
+    "meta": {
+      "status": "SATURATED",
+      "velocity": "Declining",
+      "confidence": "Low",
+      "authorId": "authorId",
+      "approvalState": "Rejected",
+      "firstSeenDate": "2025-11-19",
+      "lastUpdatedDate": "2026-01-29"
+    },
+    "platform": {
+      "primary": "Meta-Paid",
+      "secondary": [
+        "Facebook"
+      ]
+    },
+    "creative": {
+      "formatName": "Multi-feature montage",
+      "openingPattern": "Rapid cut of all features",
+      "revealPattern": "Ends with offer card",
+      "narrative": "Text-Led"
+    },
+    "strategy": {
+      "vehicleType": "ICE",
+      "launchStage": "Launch",
+      "repetitionCountObserved": 18
+    },
+    "insight": {
+      "whyThisMatters": "Attempts to say everything lead to low retention",
+      "whatToIgnore": "No single hero message"
+    },
+    "media": {
+      "imageUrl": "montage.jpg",
+      "sourceLink": "https://www.facebook.com/ad/456789"
+    }
+  },
+  {
+    "signalId": "Sid-014",
+    "meta": {
+      "status": "EARLY",
+      "velocity": "Accelerating",
+      "confidence": "High",
+      "authorId": "authorId",
+      "approvalState": "Pending",
+      "firstSeenDate": "2026-01-28",
+      "lastUpdatedDate": "2026-02-02"
+    },
+    "platform": {
+      "primary": "YT-Shorts",
+      "secondary": [
+        "Instagram Reels"
+      ]
+    },
+    "creative": {
+      "formatName": "Sound-on engine moment",
+      "openingPattern": "Engine start sound hook",
+      "revealPattern": "Close-up of engine + badges",
+      "narrative": "VO-Led"
+    },
+    "strategy": {
+      "vehicleType": "BEV",
+      "launchStage": "Pre Launch",
+      "repetitionCountObserved": 5
+    },
+    "insight": {
+      "whyThisMatters": "Sound-based hooks create curiosity even in EV contexts",
+      "whatToIgnore": "Audio quality inconsistency"
+    },
+    "media": {
+      "imageUrl": "engine_sound.jpg",
+      "sourceLink": "https://www.youtube.com/shorts/ENG999"
+    }
+  },
+  {
+    "signalId": "Sid-015",
+    "meta": {
+      "status": "PEAKING",
+      "velocity": "Stable",
+      "confidence": "Medium",
+      "authorId": "authorId",
+      "approvalState": "Approved",
+      "firstSeenDate": "2026-01-01",
+      "lastUpdatedDate": "2026-02-01"
+    },
+    "platform": {
+      "primary": "Instagram-Reels",
+      "secondary": [
+        "Meta",
+        "Facebook"
+      ]
+    },
+    "creative": {
+      "formatName": "Before/after contrast",
+      "openingPattern": "Old model flashes briefly",
+      "revealPattern": "New model revealed dramatically",
+      "narrative": "Comparison"
+    },
+    "strategy": {
+      "vehicleType": "HEV",
+      "launchStage": "Post Launch",
+      "repetitionCountObserved": 10
+    },
+    "insight": {
+      "whyThisMatters": "Contrast storytelling makes upgrades feel tangible",
+      "whatToIgnore": "Older model shots sometimes reduce aspiration"
+    },
+    "media": {
+      "imageUrl": "contrast.jpg",
+      "sourceLink": "https://www.instagram.com/p/DUCOMP88/"
+    }
+  }
+]
