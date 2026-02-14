@@ -20,6 +20,7 @@ export default async function BlogPost({
       {frontmatter.title}
     </h1>
 
+
     <p className="mt-5 text-lg text-gray-600 max-w-2xl">
       {frontmatter.summary}
     </p>
@@ -27,12 +28,10 @@ export default async function BlogPost({
 
 <Link
   href="/blogs"
-  className="text-sm text-gray-500 hover:underline mb-8 inline-block"
+  className="text-sm text-gray-500 hover:underline mb-8 flex justify-end"
 >
   ← Back to Blogs
 </Link>
-
-
 <article
   className="
     prose prose-neutral
@@ -66,7 +65,6 @@ export default async function BlogPost({
     prose-blockquote:text-gray-600
   "
 >
-
 
         <MDXRemote
           source={content}

@@ -23,7 +23,7 @@ const VELOCITY_STYLES: Record<Signal["meta"]["velocity"], string> = {
 
 export default function SignalCard({ signal }: { signal: Signal }) {
   return (
-    <article className="border border-gray-300 rounded-xl bg-white overflow-hidden hover:shadow-md transition-shadow flex flex-col md:flex-row">
+    <article className="border border-gray-300 rounded-xl bg-white overflow-hidden hover:shadow-lg transition-shadow flex flex-col md:flex-row">
       {/* IMAGE */}
       <div className="md:w-64 w-full h-48 md:h-auto shrink-0">
         {signal.media.imageUrl ? (

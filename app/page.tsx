@@ -1,27 +1,37 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import SignalCard from "@/components/SignalCard";
 import signalsRaw from "@/data/signals.json";
 import type { Signal } from "@/data/signal.types";
+import SignalRadar from "./components/SignalRadar";
 
 /* ---------- CANONICAL DATA ---------- */
 const signals: Signal[] = Array.isArray(signalsRaw)
   ? (signalsRaw as unknown as Signal[])
   : [];
 
-const PAGE_SIZE = 12;
+const PAGE_SIZE = 7;
 
 export default function Home() {
   /* ---------- FILTER + SORT STATE ---------- */
   const [statusFilter, setStatusFilter] = useState("all");
   const [vehicleFilter, setVehicleFilter] = useState("all");
   const [velocityFilter, setVelocityFilter] = useState("all");
-  const [sortBy, setSortBy] = useState<"recent" | "confidence">("recent");
+
+  const [sortBy, setSortBy] = useState<
+    "recent" | "confidence" | "velocity" | "emerging"
+  >("recent");
+
   const [open, setOpen] = useState(false);
 
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
+
+  useEffect(() => {
+  setVisibleCount(PAGE_SIZE);
+}, [statusFilter, vehicleFilter, velocityFilter, sortBy]); // remove sorBy if you want the pagination to have all cards when filter applied
+
 
   /* ---------- FILTER OPTIONS ---------- */
   const statusOptions = useMemo(
@@ -60,89 +70,122 @@ export default function Home() {
     });
   }, [statusFilter, vehicleFilter, velocityFilter]);
 
-  /* ---------- SORTING ---------- */
-  const sortedSignals = useMemo(() => {
-    const data = [...filteredSignals];
+  /* ---------- SORTING LOGIC ---------- */
+const sortedSignals = useMemo(() => {
+  const data = [...filteredSignals];
 
-    if (sortBy === "recent") {
-      data.sort(
-        (a, b) =>
-          new Date(b.meta.lastUpdatedDate).getTime() -
-          new Date(a.meta.lastUpdatedDate).getTime()
-      );
-    }
+  if (sortBy === "recent") {
+    data.sort(
+      (a, b) =>
+        new Date(b.meta.lastUpdatedDate).getTime() -
+        new Date(a.meta.lastUpdatedDate).getTime()
+    );
+  }
 
-    if (sortBy === "confidence") {
-      const order: Record<string, number> = {
-        High: 3,
-        Medium: 2,
-        Low: 1,
-      };
-      data.sort(
-        (a, b) =>
-          (order[b.meta.confidence] ?? 0) -
-          (order[a.meta.confidence] ?? 0)
-      );
-    }
+  if (sortBy === "confidence") {
+    const order: Record<string, number> = {
+      High: 3,
+      Medium: 2,
+      Low: 1,
+    };
+    data.sort(
+      (a, b) =>
+        (order[b.meta.confidence] ?? 0) -
+        (order[a.meta.confidence] ?? 0)
+    );
+  }
 
-    return data;
-  }, [filteredSignals, sortBy]);
+  if (sortBy === "velocity") {
+    const velocityOrder: Record<string, number> = {
+      Accelerating: 4,
+      Emerging: 3,
+      Stable: 2,
+      Declining: 1,
+    };
+    data.sort(
+      (a, b) =>
+        (velocityOrder[b.meta.velocity] ?? 0) -
+        (velocityOrder[a.meta.velocity] ?? 0)
+    );
+  }
 
-    const visibleSignals = sortedSignals.slice(0, visibleCount);
-    const hasMore = visibleCount < sortedSignals.length;
+  if (sortBy === "emerging") {
+    data.sort((a, b) =>
+      a.meta.velocity === "Emerging" ? -1 : 1
+    );
+  }
 
-    const hasActiveFilters =
-      statusFilter !== "all" ||
-      vehicleFilter !== "all" ||
-      velocityFilter !== "all";
+  return data;
+}, [filteredSignals, sortBy]);
 
-    const resetPaginationDeps = `${statusFilter}-${vehicleFilter}-${velocityFilter}-${sortBy}`;
-    useMemo(() => {
-      setVisibleCount(PAGE_SIZE);
-    }, [resetPaginationDeps]);
+
+/* ---------- PAGINATION ---------- */
+const visibleSignals = useMemo(() => {
+  return sortedSignals.slice(0, visibleCount);
+}, [sortedSignals, visibleCount]);
+
+const hasMore = visibleCount < sortedSignals.length;
+
+const hasActiveFilters =
+  statusFilter !== "all" ||
+  vehicleFilter !== "all" ||
+  velocityFilter !== "all";
+
 
   /* ---------- UI ---------- */
   return (
     <main>
-      {/* HERO */}
-      <section className="h-[90vh] flex flex-col justify-center max-w-6xl mx-auto px-6">
-        <h1 className="lg:text-7xl text-3xl max-w-3xl font-extralight tracking-tight text-blue-500">
-          zoomsignals
-          <br />
-          <span className="text-gray-500">
-            spot signals for early lift
-          </span>
-        </h1>
+{/* HERO */}
+<section className="h-[90vh] flex items-center max-w-6xl mx-auto px-6">
 
-        <p className="text-gray-600 mt-4 max-w-lg">
-          A living index of emerging creative patterns showing early
-          performance lift across platforms.
-        </p>
+  <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-16">
 
-        <div className="mt-6 flex items-center gap-3">
+    {/* LEFT CONTENT */}
+    <div className="max-w-3xl">
+      <h1 className="lg:text-7xl text-3xl font-extralight tracking-tight text-blue-500">
+        zoomsignals
+        <br />
+        <span className="text-gray-500">
+          spot signals for early lift
+        </span>
+      </h1>
+
+      <p className="text-gray-600 mt-4 max-w-lg">
+        A living index of emerging creative patterns showing early
+        performance lift across platforms.
+      </p>
+
+      <div className="mt-6 flex items-center gap-3">
         <span className="relative flex h-2 w-2">
-        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
         </span>
 
-        <div>
         <div className="text-sm font-semibold text-gray-500">
-        {signals.length} <span>Signals Logged</span>
+          {signals.length} <span>Signals Logged</span>
         </div>
-        </div>
-        </div>
+      </div>
 
-        <button
-          className="mt-10 w-fit border px-4 py-2 text-sm hover:bg-blue-500 hover:text-white transition"
-          onClick={() =>
-            document
-              .getElementById("about-feed")
-              ?.scrollIntoView({ behavior: "smooth" })
-          }
-        >
-          View Trends
-        </button>
-      </section>
+      <button
+        className="mt-10 w-fit border px-4 py-2 text-sm hover:bg-blue-500 hover:text-white transition"
+        onClick={() =>
+          document
+            .getElementById("about-feed")
+            ?.scrollIntoView({ behavior: "smooth" })
+        }
+      >
+        View Trends
+      </button>
+    </div>
+
+    {/* RIGHT VISUAL */}
+    <div className="hidden lg:block">
+      <SignalRadar />
+    </div>
+
+  </div>
+</section>
+
 
       {/* ABOUT */}
       <section
@@ -256,48 +299,76 @@ export default function Home() {
                 ))}
               </select>
 
-              {/* SORT */}
-              <select
-                className="border w-full px-2 py-1"
-                value={sortBy}
-                onChange={(e) =>
-                  setSortBy(e.target.value as "recent" | "confidence")
-                }
-              >
-                <option value="recent">Most Recent</option>
-                <option value="confidence">Highest Confidence</option>
-              </select>
+              <div className="pt-6 border-t mt-6">
+
+  <b>Sort By</b>
+
+  <select
+    className="border w-full px-2 py-1 mt-3"
+    value={sortBy}
+    onChange={(e) =>
+      setSortBy(
+        e.target.value as
+          | "recent"
+          | "confidence"
+          | "velocity"
+          | "emerging"
+      )
+    }
+  >
+    <option value="recent">Most Recent</option>
+    <option value="confidence">Highest Confidence</option>
+    <option value="velocity">Highest Velocity</option>
+    <option value="emerging">Emerging First</option>
+  </select>
+</div>
             </div>
 
             {/* FILTER CHIPS */}
             {hasActiveFilters && (
-              <div className="mt-4 flex flex-wrap gap-2">
-                {statusFilter !== "all" && (
-                  <Chip
-                    label={`Status: ${statusFilter}`}
-                    onClear={() => setStatusFilter("all")}
-                  />
-                )}
-                {vehicleFilter !== "all" && (
-                  <Chip
-                    label={`Vehicle: ${vehicleFilter}`}
-                    onClear={() => setVehicleFilter("all")}
-                  />
-                )}
-                {velocityFilter !== "all" && (
-                  <Chip
-                    label={`Velocity: ${velocityFilter}`}
-                    onClear={() => setVelocityFilter("all")}
-                  />
-                )}
-              </div>
-            )}
+  <div className="mt-4 space-y-3">
+
+    <div className="flex flex-wrap gap-2">
+      {statusFilter !== "all" && (
+        <Chip
+          label={`Status: ${statusFilter}`}
+          onClear={() => setStatusFilter("all")}
+        />
+      )}
+      {vehicleFilter !== "all" && (
+        <Chip
+          label={`Vehicle: ${vehicleFilter}`}
+          onClear={() => setVehicleFilter("all")}
+        />
+      )}
+      {velocityFilter !== "all" && (
+        <Chip
+          label={`Velocity: ${velocityFilter}`}
+          onClear={() => setVelocityFilter("all")}
+        />
+      )}
+    </div>
+
+    <button
+      onClick={() => {
+        setStatusFilter("all");
+        setVehicleFilter("all");
+        setVelocityFilter("all");
+      }}
+      className="text-xs underline text-gray-500 hover:text-gray-800"
+    >
+      Clear all filters
+    </button>
+  </div>
+)}
+
           </div>
+          
         </aside>
 
         {/* FEED LIST */}
         <div className="col-span-1 md:col-span-3 space-y-8">
-          {sortedSignals.map((signal) => (
+          {visibleSignals.map((signal: any) => (
             <SignalCard key={signal.signalId} signal={signal} />
           ))}
 
@@ -357,7 +428,7 @@ function Chip({
 /* ---------- SKELETON ---------- */
 function SkeletonCard() {
   return (
-    <div className="border rounded p-4 animate-pulse space-y-3">
+    <div className="border border-gray-400 rounded p-4 animate-pulse space-y-3">
       <div className="h-40 bg-gray-200 rounded" />
       <div className="h-3 bg-gray-200 w-2/3 rounded" />
       <div className="h-3 bg-gray-100 w-1/2 rounded" />

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import rawSignals from "@/data/signals.json";
 import { computeTrending } from "@/lib/signals";
 import type { Signal } from "@/data/signal.types";
-import Link from "next/link";
+import SignalModal from "@/components/SignalModal";
 
 const signals = rawSignals as Signal[];
 
@@ -28,8 +28,9 @@ function velocityColor(velocity: string) {
   return "text-gray-600";
 }
 
-export default function TrendingSignals() {
+export default function TrendTicker() {
   const [trending, setTrending] = useState<any[]>([]);
+  const [activeSignal, setActiveSignal] = useState<Signal | null>(null);
   const duplicated = [...trending, ...trending];
 
   useEffect(() => {
@@ -43,12 +44,21 @@ export default function TrendingSignals() {
   from-white dark:from-neutral-950 
   to-transparent z-10" 
 />
-  <div className="pointer-events-none absolute right-0 top-0 h-full w-16 bg-linear-to-l from-white to-transparent z-10" />
+ <div className="pointer-events-none absolute right-0 top-0 h-full w-16 
+  bg-linear-to-l 
+  from-white dark:from-neutral-950 
+  to-transparent z-10" 
+/>
+
 
   <div className="flex items-center animate-marquee whitespace-nowrap py-2">
     {duplicated.map((signal, index) => (
-      <Link
-        href={`/signals/${signal.id}`}
+<button
+  onClick={() => {
+    const full = signals.find(s => s.signalId === signal.id);
+    if (full) setActiveSignal(full);
+  }}
+
         key={`${signal.id}-${index}`}
         className="flex items-center gap-2 mx-4 shrink-0 text-[13px] hover:opacity-80 transition"
       >
@@ -80,8 +90,15 @@ export default function TrendingSignals() {
         {index !== duplicated.length - 1 && (
           <span className="mx-4 text-gray-200">|</span>
         )}
-      </Link>
+      </button>
     ))}
+    {activeSignal && (
+  <SignalModal
+    signal={activeSignal}
+    onClose={() => setActiveSignal(null)}
+  />
+)}
+
   </div>
 </div>
   );

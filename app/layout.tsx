@@ -1,7 +1,7 @@
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import TrendingSignals from "./components/TrendingSignals";
+import TrendTicker from "./components/TrendTicker";
 
 export default function RootLayout({
   children,
@@ -10,16 +10,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className="antialiased">
         <Navbar />
         
-        {/* Sticky Ticker */}
-        <div className="sticky top-14 z-40 bg-white border-b border-gray-200 transition-shadow duration-300 data-[scrolled=true]:shadow-sm"
-             id="ticker-wrapper">
-          <TrendingSignals />
+        {/* Sticky Ticker - Using TrendTicker as requested */}
+        <div 
+          className="sticky top-14 z-40 bg-white border-b border-gray-200"
+          id="ticker-wrapper"
+        >
+          <TrendTicker />
         </div>
 
-        {children}
+        <main>{children}</main>
+        
         <Footer />
       </body>
     </html>

@@ -683,7 +683,7 @@
       "authorId": "authorId",
       "approvalState": "Approved",
       "firstSeenDate": "2026-01-17",
-      "lastUpdatedDate": "2026-02-04"
+      "lastUpdatedDate": "2026-02-14"
     },
     "platform": {
       "primary": "Meta-Paid",
@@ -720,7 +720,7 @@
       "authorId": "authorId",
       "approvalState": "Pending",
       "firstSeenDate": "2026-02-02",
-      "lastUpdatedDate": "2026-02-08"
+      "lastUpdatedDate": "2026-02-18"
     },
     "platform": {
       "primary": "Snapchat",
@@ -757,7 +757,7 @@
       "authorId": "authorId",
       "approvalState": "Approved",
       "firstSeenDate": "2026-01-13",
-      "lastUpdatedDate": "2026-02-03"
+      "lastUpdatedDate": "2026-02-13"
     },
     "platform": {
       "primary": "Instagram-Reels",
