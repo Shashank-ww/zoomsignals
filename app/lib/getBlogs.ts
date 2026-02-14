@@ -2,22 +2,41 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-const contentDirectory = path.join(process.cwd(), "app/blogs/content");
+const postsDirectory = path.join(
+  process.cwd(),
+  "app",
+  "blogs",
+  "content"
+);
 
-export function getAllBlogs() {
-  const files = fs.readdirSync(contentDirectory);
+export type BlogMeta = {
+  slug: string;
+  title: string;
+  summary: string;
+  publishedAt: string;
+};
 
-  return files.map((filename) => {
-    const slug = filename.replace(".mdx", "");
+export function getAllBlogs(): BlogMeta[] {
+  const files = fs.readdirSync(postsDirectory);
 
-    const filePath = path.join(contentDirectory, filename);
-    const fileContent = fs.readFileSync(filePath, "utf8");
+  return files
+    .map((file) => {
+      const slug = file.replace(".mdx", "");
+      const fullPath = path.join(postsDirectory, file);
+      const fileContents = fs.readFileSync(fullPath, "utf8");
 
-    const { data } = matter(fileContent);
+      const { data } = matter(fileContents);
 
-    return {
-      slug,
-      ...data,
-    };
-  });
+      return {
+        slug,
+        title: data.title,
+        summary: data.summary,
+        publishedAt: data.publishedAt,
+      };
+    })
+    .sort(
+      (a, b) =>
+        new Date(b.publishedAt).getTime() -
+        new Date(a.publishedAt).getTime()
+    );
 }
