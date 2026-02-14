@@ -46,14 +46,23 @@ export default function AdminSignalsPage() {
     setMode("review");
   }
 
-  function handleSave(updated: Signal) {
-    setSignals((prev) =>
-      prev.some((s) => s.signalId === updated.signalId)
-        ? prev.map((s) => (s.signalId === updated.signalId ? updated : s))
-        : [updated, ...prev]
-    );
-    setActiveSignal(null);
-  }
+async function handleSave(updated: Signal) {
+  const method = signals.some((s) => s.signalId === updated.signalId)
+    ? "PUT"
+    : "POST";
+
+  await fetch("/api/signals", {
+    method,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(updated),
+  });
+
+  const fresh = await fetch("/api/signals").then((r) => r.json());
+  setSignals(fresh);
+
+  setActiveSignal(null);
+}
+
 
   return (
     <main className="max-w-7xl mx-auto px-6 py-10 min-h-screen">

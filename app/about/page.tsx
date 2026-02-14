@@ -2,11 +2,11 @@ export default function About() {
   return (
     <main className="mx-auto max-w-3xl px-6 py-16">
       <h1 className="text-3xl font-semibold tracking-tight">
-        About ZoomSignals
+        About zoomsignals
       </h1>
 
       <p className="mt-6 text-lg text-gray-700">
-        ZoomSignals track early creative-format patterns across short-form
+        zoomsignals track early creative-format patterns across short-form
         platforms to help brand teams understand what trend is emerging, peaking, or
         saturating — before it becomes obvious. 
       </p><br/>

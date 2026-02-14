@@ -7,16 +7,23 @@ import type { Signal } from "@/data/signal.types";
 
 /* ---------- CANONICAL DATA ---------- */
 const signals: Signal[] = Array.isArray(signalsRaw)
-  ? (signalsRaw as Signal[])
+  ? (signalsRaw as unknown as Signal[])
   : [];
 
+const PAGE_SIZE = 12;
+
 export default function Home() {
-  /* ---------- FILTER STATE ---------- */
+  /* ---------- FILTER + SORT STATE ---------- */
   const [statusFilter, setStatusFilter] = useState("all");
   const [vehicleFilter, setVehicleFilter] = useState("all");
   const [velocityFilter, setVelocityFilter] = useState("all");
+  const [sortBy, setSortBy] = useState<"recent" | "confidence">("recent");
+  const [open, setOpen] = useState(false);
 
-  /* ---------- FILTER OPTIONS (FROM DATA) ---------- */
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+
+  /* ---------- FILTER OPTIONS ---------- */
   const statusOptions = useMemo(
     () =>
       Array.from(
@@ -45,25 +52,61 @@ export default function Home() {
   const filteredSignals = useMemo(() => {
     return signals.filter((s) => {
       return (
-        (statusFilter === "all" || s?.meta?.status === statusFilter) &&
+        (statusFilter === "all" || s.meta.status === statusFilter) &&
         (vehicleFilter === "all" ||
-          s?.strategy?.vehicleType === vehicleFilter) &&
-        (velocityFilter === "all" || s?.meta?.velocity === velocityFilter)
+          s.strategy.vehicleType === vehicleFilter) &&
+        (velocityFilter === "all" || s.meta.velocity === velocityFilter)
       );
     });
   }, [statusFilter, vehicleFilter, velocityFilter]);
 
-  const hasActiveFilters =
-    statusFilter !== "all" ||
-    vehicleFilter !== "all" ||
-    velocityFilter !== "all";
+  /* ---------- SORTING ---------- */
+  const sortedSignals = useMemo(() => {
+    const data = [...filteredSignals];
+
+    if (sortBy === "recent") {
+      data.sort(
+        (a, b) =>
+          new Date(b.meta.lastUpdatedDate).getTime() -
+          new Date(a.meta.lastUpdatedDate).getTime()
+      );
+    }
+
+    if (sortBy === "confidence") {
+      const order: Record<string, number> = {
+        High: 3,
+        Medium: 2,
+        Low: 1,
+      };
+      data.sort(
+        (a, b) =>
+          (order[b.meta.confidence] ?? 0) -
+          (order[a.meta.confidence] ?? 0)
+      );
+    }
+
+    return data;
+  }, [filteredSignals, sortBy]);
+
+    const visibleSignals = sortedSignals.slice(0, visibleCount);
+    const hasMore = visibleCount < sortedSignals.length;
+
+    const hasActiveFilters =
+      statusFilter !== "all" ||
+      vehicleFilter !== "all" ||
+      velocityFilter !== "all";
+
+    const resetPaginationDeps = `${statusFilter}-${vehicleFilter}-${velocityFilter}-${sortBy}`;
+    useMemo(() => {
+      setVisibleCount(PAGE_SIZE);
+    }, [resetPaginationDeps]);
 
   /* ---------- UI ---------- */
   return (
     <main>
       {/* HERO */}
       <section className="h-[90vh] flex flex-col justify-center max-w-6xl mx-auto px-6">
-        <h1 className="lg:text-7xl text-3xl font-extralight tracking-tight text-blue-500">
+        <h1 className="lg:text-7xl text-3xl max-w-3xl font-extralight tracking-tight text-blue-500">
           zoomsignals
           <br />
           <span className="text-gray-500">
@@ -72,11 +115,21 @@ export default function Home() {
         </h1>
 
         <p className="text-gray-600 mt-4 max-w-lg">
-          A living index of emerging creative patterns showing early performance lift across platforms.
+          A living index of emerging creative patterns showing early
+          performance lift across platforms.
         </p>
 
-        <div className="text-sm text-gray-500 mt-6">
-          Signals logged: {signals.length}
+        <div className="mt-6 flex items-center gap-3">
+        <span className="relative flex h-2 w-2">
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+        </span>
+
+        <div>
+        <div className="text-sm font-semibold text-gray-500">
+        {signals.length} <span>Signals Logged</span>
+        </div>
+        </div>
         </div>
 
         <button
@@ -91,21 +144,67 @@ export default function Home() {
         </button>
       </section>
 
-      {/* ABOUT THE FEED */}
-      <section 
-      id="about-feed"
-      className="max-w-6xl mx-auto px-6 py-10 border-t text-sm text-gray-600">
+      {/* ABOUT */}
+      <section
+        id="about-feed"
+        className="max-w-6xl mx-auto px-6 py-10 border-t text-sm text-gray-600"
+      >
         <h2 className="text-lg font-medium text-gray-800 mb-2">
           About the Feed
         </h2>
         <p className="max-w-3xl leading-relaxed">
-          This feed tracks **repeatable creative signals** observed across live
-          social ads — not one-off viral hits. Each signal represents a format,
-          structure, or execution pattern showing **early lift**, before it
-          becomes saturated. Signals are manually logged, reviewed, and updated
-          as patterns evolve.
+          This feed tracks <b>repeatable creative signals</b> observed across
+          live social ads — not one-off viral hits.
         </p>
+          <p className="max-w-3xl leading-relaxed"> <br/>
+          Each signal represents a <i>format, narrative, or execution pattern </i>that is beginning to show early performance lift, before it becomes widely copied or saturated.
+        </p>
+        <button>
+          <a
+        href="/about"
+        className="inline-flex items-center text-sm mt-4 font-medium text-gray-700 hover:text-blue-500 transition"
+          >
+        Learn more
+          </a>
+        </button>
       </section>
+      {/* COLLAPSIBLE EXPLAINER */}
+      <section className="border-t p-6 max-w-6xl mx-auto">
+        <button
+          onClick={() => setOpen(!open)}
+          className="text-sm font-medium underline text-gray-700 hover:text-gray-900"
+        >
+          {open ? "Hide explainer" : "How to read this feed?"}
+        </button>
+
+        {open && (
+          <div className="mt-6 space-y-6 text-sm text-gray-700">
+            <p>
+              This feed is natively created for brand managers, marketers, strategists, creative professionals: <br/>
+              <b> To optimize their visual ads for peak performance on social media.</b>
+            </p>
+
+            <div className="space-y-3">
+               <ul className="list-disc list-inside pl-5 space-y-3 text-gray-700">
+                <li><b>Velocity</b> shows how fast a creative pattern is spreading.</li>
+                <li><b>Confidence</b> reflects how consistently the pattern is performing across observations.</li>
+                <li><b>Repetition</b> indicates how often the pattern has appeared independently.</li>
+                <li><b>Status</b> represents where the signal sits in its lifecycle.</li>
+              </ul>
+            </div>
+
+            <p>
+              Use <span className="font-bold">zoomsignals</span> to prioritise what to test next, shape creative
+              briefs, and avoid chasing patterns that are already saturated.
+            </p>
+
+            <p className="italic text-gray-600">
+              This is not a playbook. It&apos;s an early-signal system for creative ad performance.
+            </p>
+          </div>
+        )}
+      </section>
+      
 
       {/* FEED */}
       <section
@@ -156,6 +255,18 @@ export default function Home() {
                   </option>
                 ))}
               </select>
+
+              {/* SORT */}
+              <select
+                className="border w-full px-2 py-1"
+                value={sortBy}
+                onChange={(e) =>
+                  setSortBy(e.target.value as "recent" | "confidence")
+                }
+              >
+                <option value="recent">Most Recent</option>
+                <option value="confidence">Highest Confidence</option>
+              </select>
             </div>
 
             {/* FILTER CHIPS */}
@@ -186,13 +297,37 @@ export default function Home() {
 
         {/* FEED LIST */}
         <div className="col-span-1 md:col-span-3 space-y-8">
-          {filteredSignals.map((signal) => (
+          {sortedSignals.map((signal) => (
             <SignalCard key={signal.signalId} signal={signal} />
           ))}
 
-          {filteredSignals.length === 0 && (
+          {/* SKELETON */}
+          {isLoadingMore &&
+            Array.from({ length: 3 }).map((_, i) => (
+              <SkeletonCard key={i} />
+            ))}
+
+          {sortedSignals.length === 0 && (
             <div className="text-sm text-gray-500">
               No signals match the selected filters.
+            </div>
+          )}
+
+          {/* LOAD MORE */}
+          {hasMore && (
+            <div className="pt-6 flex justify-center">
+              <button
+                onClick={() => {
+                  setIsLoadingMore(true);
+                  setTimeout(() => {
+                    setVisibleCount((c) => c + PAGE_SIZE);
+                    setIsLoadingMore(false);
+                  }, 400);
+                }}
+                className="text-sm border px-4 py-2 hover:bg-gray-200 transition"
+              >
+                Load more signals ({visibleCount}/{sortedSignals.length})
+              </button>
             </div>
           )}
         </div>
@@ -201,7 +336,7 @@ export default function Home() {
   );
 }
 
-/* ---------- CHIP COMPONENT ---------- */
+/* ---------- CHIP ---------- */
 function Chip({
   label,
   onClear,
@@ -216,5 +351,16 @@ function Chip({
     >
       {label} ✕
     </button>
+  );
+}
+
+/* ---------- SKELETON ---------- */
+function SkeletonCard() {
+  return (
+    <div className="border rounded p-4 animate-pulse space-y-3">
+      <div className="h-40 bg-gray-200 rounded" />
+      <div className="h-3 bg-gray-200 w-2/3 rounded" />
+      <div className="h-3 bg-gray-100 w-1/2 rounded" />
+    </div>
   );
 }

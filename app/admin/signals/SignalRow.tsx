@@ -12,6 +12,7 @@ export default function SignalRow({
   onEdit: (s: Signal) => void;
   onReview: (s: Signal) => void;
 }) {
+  
   return (
     <tr className="border-t">
       <td className="p-2">{signal.signalId}</td>

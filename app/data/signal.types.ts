@@ -56,7 +56,7 @@ export type Signal = {
     whatToIgnore: string;
   };
   media: {
-    imageUrl?: string;
-    sourceLink?: string;
+    imageUrl?: string | null;
+    sourceLink?: string | null;
   };
 };
