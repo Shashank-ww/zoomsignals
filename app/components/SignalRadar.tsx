@@ -1,18 +1,21 @@
+"use client"
+
 import { useState, useEffect } from "react";
 import { AiFillInstagram } from "react-icons/ai";
-import {FaInstagram, FaYoutube, FaRedditAlien, FaGoogle, FaFacebook, FaSnapchat } from "react-icons/fa";
+import { FaYoutube, FaRedditAlien, FaGoogle, FaFacebook} from "react-icons/fa";
+import { FaSquareXTwitter } from "react-icons/fa6";
 import { PiSnapchatLogoFill } from "react-icons/pi";
-import { SiX } from "react-icons/si";
+
 
 // Radar signal data with fixed positions
 const signalsData = [
-  { id: 1, angle: 45, radius: 0.8, icon: FaFacebook, color: "#1877F2" },   // Facebook
-  { id: 2, angle: 340, radius: 0.75, icon: SiX, color: "#000000" },     // X filled
+  { id: 1, angle: 20, radius: 0.8, icon: FaFacebook, color: "#1877F2" },   // Facebook
+  { id: 2, angle: 320, radius: 0.85, icon: FaSquareXTwitter, color: "#000000" },     // X filled
   { id: 3, angle: 135, radius: 0.6, icon: AiFillInstagram, color: "#C13584" }, // Instagram default pink
-  { id: 4, angle: 225, radius: 0.45, icon: FaYoutube, color: "#FF0000" },   // YouTube
+  { id: 4, angle: 270, radius: 0.45, icon: FaYoutube, color: "#FF0000" },   // YouTube
   { id: 5, angle: 180, radius: 0.85, icon: FaRedditAlien, color: "#FF4500" }, // Reddit
-  { id: 6, angle: 270, radius: 0.9, icon: FaGoogle, color: "#4285F4" },    // Google
-  { id: 7, angle: 95, radius: 0.9, icon: PiSnapchatLogoFill, color: "#FFCC00" }, // Snapchat
+  { id: 6, angle: 240, radius: 0.9, icon: FaGoogle, color: "#4285F4" },    // Google
+  { id: 7, angle: 65, radius: 0.70, icon: PiSnapchatLogoFill, color: "#FFCC00" }, // Snapchat
 ];
 
 export default function SignalRadar() {
@@ -55,7 +58,7 @@ export default function SignalRadar() {
       </div>
 
       {/* Radar core */}
-      <div className="absolute inset-24 rounded-full bg-blue-500/10 backdrop-blur-sm flex items-center justify-center border border-blue-400/20 transition-transform duration-300 hover:scale-110">
+      <div className="absolute inset-24 rounded-full bg-blue-500/10 backdrop-blur-sm flex items-center justify-center border border-blue-400/20 scale-90 transition-transform duration-300 hover:scale-110">
         <div className="w-4 h-4 bg-blue-500 rounded-full shadow-lg shadow-blue-500/40" />
       </div>
 
@@ -78,12 +81,12 @@ export default function SignalRadar() {
           >
             {/* Ping halo appears only when sweep is over */}
             {isActive && (
-              <span className="absolute w-6 h-6 rounded-full bg-emerald-400/30 animate-ping"></span>
+              <span className="absolute w-6 h-6 rounded-full bg-emerald-400/60 animate-ping"></span>
             )}
 
             {/* Icon */}
             <IconComponent
-              size={22}
+              size={24}
               className={`transition-all duration-300 transform ${
                 isActive ? "scale-125 filter-none opacity-100" : "scale-90 filter grayscale opacity-50"
               }`}

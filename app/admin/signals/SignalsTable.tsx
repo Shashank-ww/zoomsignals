@@ -1,4 +1,4 @@
-import { Signal } from "@/data/signals";
+import type { Signal } from "@/data/signal.types";
 import SignalRow from "./SignalRow";
 import { Role } from "@/lib/auth";
 
@@ -7,12 +7,22 @@ export default function SignalsTable({
   role,
   onEdit,
   onReview,
+  onDelete,
 }: {
   signals: Signal[];
   role: Role;
   onEdit: (s: Signal) => void;
   onReview: (s: Signal) => void;
+  onDelete: (id: string) => void;
 }) {
+  if (!signals.length) {
+    return (
+      <div className="p-6 text-center text-gray-500 border">
+        No signals yet.
+      </div>
+    );
+  }
+
   return (
     <table className="w-full border text-sm">
       <thead className="bg-gray-50">
@@ -26,6 +36,7 @@ export default function SignalsTable({
           <th className="p-2">Actions</th>
         </tr>
       </thead>
+
       <tbody>
         {signals.map((signal) => (
           <SignalRow
@@ -34,6 +45,7 @@ export default function SignalsTable({
             role={role}
             onEdit={onEdit}
             onReview={onReview}
+            onDelete={onDelete}
           />
         ))}
       </tbody>

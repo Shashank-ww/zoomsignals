@@ -1,0 +1,107 @@
+[
+  {
+    "signalId": "SIG-1771142303817",
+    "meta": {
+      "lifecycle": "Early",
+      "velocity": "Emerging",
+      "confidence": "Medium",
+      "authorId": "user_001",
+      "approvalState": "Approved",
+      "firstSeenDate": "2026-02-15T07:58:23.817Z",
+      "lastUpdatedDate": "2026-02-15T17:04:08.953Z"
+    },
+    "strategy": {
+      "vehicleType": "ICE",
+      "launchStage": "Pre Launch",
+      "repetitionCountObserved": 26
+    },
+    "platform": {
+      "primary": "Instagram-Reels",
+      "secondary": []
+    },
+    "creative": {
+      "formatName": "new conetnt",
+      "openingPattern": "",
+      "revealPattern": "",
+      "narrative": "Silent"
+    },
+    "insight": {
+      "whyThisMatters": "",
+      "whatToIgnore": ""
+    },
+    "media": {
+      "imageUrl": null,
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "SIG-1771136155539",
+    "meta": {
+      "status": "EARLY",
+      "velocity": "Emerging",
+      "confidence": "Low",
+      "authorId": "admin",
+      "approvalState": "Rejected",
+      "firstSeenDate": "2026-02-15T06:15:55.539Z",
+      "lastUpdatedDate": "2026-02-15T07:58:04.119Z"
+    },
+    "strategy": {
+      "vehicleType": "ICE",
+      "launchStage": "",
+      "repetitionCountObserved": 12
+    },
+    "platform": {
+      "primary": "",
+      "secondary": []
+    },
+    "creative": {
+      "formatName": "New name wala",
+      "openingPattern": "",
+      "revealPattern": "",
+      "narrative": ""
+    },
+    "insight": {
+      "whyThisMatters": "",
+      "whatToIgnore": ""
+    },
+    "media": {
+      "imageUrl": null,
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "SIG-1771136126974",
+    "meta": {
+      "status": "APPROVED",
+      "velocity": "Accelerating",
+      "confidence": "Medium",
+      "authorId": "admin",
+      "approvalState": "Approved",
+      "firstSeenDate": "2026-02-15T06:15:26.974Z",
+      "lastUpdatedDate": "2026-02-15T07:29:24.959Z"
+    },
+    "strategy": {
+      "vehicleType": "ICE",
+      "launchStage": "",
+      "repetitionCountObserved": 4
+    },
+    "platform": {
+      "primary": "",
+      "secondary": []
+    },
+    "creative": {
+      "formatName": "Another name",
+      "openingPattern": "",
+      "revealPattern": "",
+      "narrative": ""
+    },
+    "insight": {
+      "whyThisMatters": "",
+      "whatToIgnore": ""
+    },
+    "media": {
+      "imageUrl": null,
+      "sourceLink": null
+    }
+  }
+]

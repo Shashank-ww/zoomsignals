@@ -56,11 +56,11 @@ export default async function BlogsPage() {
             </span>
           </Link>
 
-          {/* Trending Signals */}
+          {/* Trending News */}
           {trendingItems.length > 0 && (
             <div className="mt-8">
               <h3 className="text-lg font-semibold mb-4">
-                Trending Signals & Insights
+                News and Media Trends
               </h3>
 
               <div className="flex overflow-x-auto gap-4 pb-2 -mx-4 sm:mx-0">
@@ -95,7 +95,7 @@ export default async function BlogsPage() {
                         {item.title}
                       </h4>
                       <span className="block text-xs text-gray-500 mt-2">
-                        {item.pubDate}
+                       Published on {item.pubDate}
                       </span>
                       <div className="text-xs text-gray-400 mt-1">
                         Feed from {item.source}

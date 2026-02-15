@@ -21,7 +21,7 @@ export default async function BlogPost({
     </h1>
 
 
-    <p className="mt-5 text-lg text-gray-600 max-w-2xl">
+    <p className="mt-5 text-md text-gray-600 max-w-2xl">
       {frontmatter.summary}
     </p>
   </header>

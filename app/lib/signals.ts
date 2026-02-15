@@ -1,21 +1,36 @@
-import type { Signal } from "@/data/signal.types";
+import type { Signal, SignalVelocity, SignalConfidence, ApprovalState } from "@/data/signal.types";
 
-const VELOCITY_RANK: Record<string, number> = {
+// Define ranking for velocity
+const VELOCITY_RANK: Record<SignalVelocity, number> = {
   Emerging: 4,
   Accelerating: 3,
   Stable: 2,
   Declining: 1,
 };
 
-export function computeTrending(signals: Signal[]) {
+export type TrendingSignal = {
+  id: string;
+  title: string;
+  status: ApprovalState;        // mapping signal.meta.approvalState
+  velocity: SignalVelocity;
+  velocityRank: number;
+  confidence: SignalConfidence;
+};
+
+export function computeTrending(signals: Signal[]): TrendingSignal[] {
   return signals
-    .map((signal) => ({
-      id: signal.signalId,
-      title: signal.creative.formatName,
-      status: signal.meta.status,
-      velocity: signal.meta.velocity,
-      velocityRank: VELOCITY_RANK[signal.meta.velocity] ?? 0,
-      confidence: signal.meta.confidence,
-    }))
+    .map((signal) => {
+      const velocity = signal.meta.velocity;
+      const velocityRank = VELOCITY_RANK[velocity];
+
+      return {
+        id: signal.signalId,
+        title: signal.creative.formatName,
+        status: signal.meta.approvalState, // fixed from 'status'
+        velocity,
+        velocityRank,
+        confidence: signal.meta.confidence,
+      };
+    })
     .sort((a, b) => b.velocityRank - a.velocityRank);
 }

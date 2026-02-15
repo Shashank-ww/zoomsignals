@@ -1,5 +1,5 @@
 type FormatRelativeDateProps = {
-  date?: string;
+  date?: string | null;
   label?: string; // "Updated", "First seen"
 };
 
@@ -11,9 +11,11 @@ export function FormatRelativeDate({
 }: FormatRelativeDateProps) {
   if (!date) return null;
 
+  const parsed = new Date(date);
+  if (isNaN(parsed.getTime())) return null;
+
   const now = Date.now();
-  const time = new Date(date).getTime();
-  const diffDays = Math.floor((now - time) / DAY);
+  const diffDays = Math.floor((now - parsed.getTime()) / DAY);
 
   let text = "";
 
@@ -35,7 +37,7 @@ export function FormatRelativeDate({
   }
 
   const isToday = diffDays <= 0;
-  const exactDate = new Date(date).toDateString();
+  const exactDate = parsed.toDateString();
 
   return (
     <span
@@ -44,10 +46,8 @@ export function FormatRelativeDate({
       }`}
     >
       {label && <span>{label}:</span>}
-
       <span>{text}</span>
 
-      {/* Tooltip */}
       <span className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-0.5 -translate-x-1/2 whitespace-nowrap rounded bg-black px-2 py-1 text-[10px] text-white opacity-0 transition group-hover:opacity-100">
         {exactDate}
       </span>

@@ -1,20 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Signal } from "@/data/signals";
+import type { Signal } from "@/data/signal.types";
 import SignalsTable from "./SignalsTable";
 import SignalEditorModal from "./SignalEditorModal";
 import { getCurrentUser } from "@/lib/auth";
 
 export default function AdminSignalsPage() {
   const user = getCurrentUser();
-
-{user?.role === "admin" && (
-  <a href="/admin/signals" className="hover:underline">
-    Admin
-  </a>
-)}
-
 
   const [signals, setSignals] = useState<Signal[]>([]);
   const [activeSignal, setActiveSignal] = useState<Signal | null>(null);
@@ -27,12 +20,50 @@ export default function AdminSignalsPage() {
   }, []);
 
   function openCreate() {
+    const now = new Date().toISOString();
+
     setActiveSignal({
       signalId: `SIG-${Date.now()}`,
-      status: "EARLY",
-      velocity: "Emerging",
-      confidenceLevel: "Medium",
-    } as Signal);
+
+      meta: {
+        lifecycle: "Early",              // ✅ ADDED
+        velocity: "Emerging",
+        confidence: "Medium",
+        authorId: user?.id ?? "admin",
+        approvalState: "Draft",
+        firstSeenDate: now,
+        lastUpdatedDate: now,
+      },
+
+      strategy: {
+        vehicleType: "ICE",
+        launchStage: "Pre Launch",
+        repetitionCountObserved: 0,
+      },
+
+      platform: {
+        primary: "Instagram-Reels",
+        secondary: [],
+      },
+
+      creative: {
+        formatName: "",
+        openingPattern: "",
+        revealPattern: "",
+        narrative: "Silent",
+      },
+
+      insight: {
+        whyThisMatters: "",
+        whatToIgnore: "",
+      },
+
+      media: {
+        imageUrl: null,
+        sourceLink: null,
+      },
+    });
+
     setMode("create");
   }
 
@@ -46,23 +77,31 @@ export default function AdminSignalsPage() {
     setMode("review");
   }
 
-async function handleSave(updated: Signal) {
-  const method = signals.some((s) => s.signalId === updated.signalId)
-    ? "PUT"
-    : "POST";
+  async function handleSave(updated: Signal) {
+    const method = signals.some((s) => s.signalId === updated.signalId)
+      ? "PUT"
+      : "POST";
 
-  await fetch("/api/signals", {
-    method,
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(updated),
-  });
+    await fetch("/api/signals", {
+      method,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updated),
+    });
 
-  const fresh = await fetch("/api/signals").then((r) => r.json());
-  setSignals(fresh);
+    const fresh = await fetch("/api/signals").then((r) => r.json());
+    setSignals(fresh);
+    setActiveSignal(null);
+  }
 
-  setActiveSignal(null);
-}
+  async function handleDelete(id: string) {
+    await fetch("/api/signals", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ signalId: id }),
+    });
 
+    setSignals((prev) => prev.filter((s) => s.signalId !== id));
+  }
 
   return (
     <main className="max-w-7xl mx-auto px-6 py-10 min-h-screen">
@@ -84,16 +123,17 @@ async function handleSave(updated: Signal) {
 
       <SignalsTable
         signals={signals}
-        role={user.role}
+        role={user?.role ?? "author"}
         onEdit={openEdit}
         onReview={openReview}
+        onDelete={handleDelete}
       />
 
       {activeSignal && (
         <SignalEditorModal
           signal={activeSignal}
           mode={mode}
-          role={user.role}
+          role={user?.role ?? "author"}
           onClose={() => setActiveSignal(null)}
           onSave={handleSave}
         />

@@ -1,6 +1,12 @@
 "use client";
 
-import { Signal } from "@/data/signals";
+import { useState } from "react";
+import type {
+  Signal,
+  SignalVelocity,
+  SignalConfidence,
+  ApprovalState,
+} from "@/data/signal.types";
 
 export default function SignalEditorModal({
   signal,
@@ -15,10 +21,80 @@ export default function SignalEditorModal({
   onClose: () => void;
   onSave: (s: Signal) => void;
 }) {
+  const [form, setForm] = useState<Signal>({ ...signal });
+
+  const isReviewMode = mode === "review";
+  const isAuthor = role === "author";
+  const isAdmin = role === "admin";
+
+  /* -----------------------------
+     Nested Update Helpers
+  ----------------------------- */
+
+  function updateMeta<K extends keyof Signal["meta"]>(
+    key: K,
+    value: Signal["meta"][K]
+  ) {
+    setForm((prev) => ({
+      ...prev,
+      meta: {
+        ...prev.meta,
+        [key]: value,
+      },
+    }));
+  }
+
+  function updateStrategy<K extends keyof Signal["strategy"]>(
+    key: K,
+    value: Signal["strategy"][K]
+  ) {
+    setForm((prev) => ({
+      ...prev,
+      strategy: {
+        ...prev.strategy,
+        [key]: value,
+      },
+    }));
+  }
+
+  function updateCreative<K extends keyof Signal["creative"]>(
+    key: K,
+    value: Signal["creative"][K]
+  ) {
+    setForm((prev) => ({
+      ...prev,
+      creative: {
+        ...prev.creative,
+        [key]: value,
+      },
+    }));
+  }
+
+  /* -----------------------------
+     Save Handler (Corrected)
+  ----------------------------- */
+
+  function handleSave(stateOverride?: ApprovalState) {
+    const updated: Signal = {
+      ...form,
+      meta: {
+        ...form.meta,
+        approvalState: stateOverride ?? form.meta.approvalState,
+        lastUpdatedDate: new Date().toISOString(),
+      },
+    };
+
+    onSave(updated);
+    onClose();
+  }
+
+  /* -----------------------------
+     UI
+  ----------------------------- */
+
   return (
     <div className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center">
       <div className="bg-white w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-xl p-6">
-
         {/* Header */}
         <div className="flex justify-between mb-6">
           <h2 className="text-xl font-semibold">
@@ -27,135 +103,151 @@ export default function SignalEditorModal({
           <button onClick={onClose}>✕</button>
         </div>
 
-        {/* === FORM START === */}
         <div className="grid grid-cols-2 gap-6">
+          {/* APPROVAL STATE */}
           <div>
-            <label>Status</label>
-            <select value={signal.status}>
-              <option>EARLY</option>
-              <option>PEAKING</option>
-              <option>SATURATED</option>
+            <label>Approval State</label>
+            <select
+              value={form.meta.approvalState}
+              onChange={(e) =>
+                updateMeta(
+                  "approvalState",
+                  e.target.value as ApprovalState
+                )
+              }
+              className="w-full border px-3 py-2"
+            >
+              <option value="Draft">Draft</option>
+              <option value="Review">Review</option>
+              <option value="Approved">Approved</option>
+              <option value="Rejected">Rejected</option>
             </select>
           </div>
 
+          {/* VELOCITY */}
           <div>
             <label>Velocity</label>
-            <select value={signal.velocity}>
-              <option>Emerging</option>
-              <option>Stable</option>
-              <option>Accelerating</option>
+            <select
+              value={form.meta.velocity}
+              onChange={(e) =>
+                updateMeta(
+                  "velocity",
+                  e.target.value as SignalVelocity
+                )
+              }
+              className="w-full border px-3 py-2"
+            >
+              <option value="Emerging">Emerging</option>
+              <option value="Stable">Stable</option>
+              <option value="Accelerating">Accelerating</option>
+              <option value="Declining">Declining</option>
             </select>
           </div>
 
+          {/* CONFIDENCE */}
           <div>
             <label>Confidence</label>
-            <select value={signal.confidenceLevel}>
-              <option>Low</option>
-              <option>Medium</option>
-              <option>High</option>
+            <select
+              value={form.meta.confidence}
+              onChange={(e) =>
+                updateMeta(
+                  "confidence",
+                  e.target.value as SignalConfidence
+                )
+              }
+              className="w-full border px-3 py-2"
+            >
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
             </select>
           </div>
 
+          {/* FORMAT NAME */}
           <div className="col-span-2">
             <label>Format Name (Internal)</label>
-            <input className="w-full border px-3 py-2" />
+            <input
+              className="w-full border px-3 py-2"
+              value={form.creative.formatName}
+              onChange={(e) =>
+                updateCreative("formatName", e.target.value)
+              }
+            />
           </div>
 
-          <div>
-            <label>Opening Pattern (0–2s)</label>
-            <textarea />
-          </div>
-
-          <div>
-            <label>Reveal Pattern</label>
-            <textarea />
-          </div>
-
-          <div>
-            <label>Narrative Type</label>
-            <select>
-              <option>Silent</option>
-              <option>VO-led</option>
-              <option>Shots-only</option>
-            </select>
-          </div>
-
-          <div>
-            <label>Vehicle Type</label>
-            <select>
-              <option>SUV</option>
-              <option>EV</option>
-            </select>
-          </div>
-
-          <div>
-            <label>Launch Stage</label>
-            <select>
-              <option>Pre-launch</option>
-              <option>Launched</option>
-            </select>
-          </div>
-
+          {/* REPETITION COUNT */}
           <div>
             <label>Repetition Count</label>
-            <input type="number" />
-          </div>
-
-          <div className="col-span-2">
-            <label>Why This Matters</label>
-            <textarea rows={3} />
-          </div>
-
-          <div className="col-span-2">
-            <label>What To Ignore</label>
-            <textarea rows={2} />
-          </div>
-
-          <div className="col-span-2">
-            <label>Image URL</label>
-            <input />
-
-            <img
-              className="mt-3 rounded-lg max-h-48 object-cover"
-              src={
-                signal.image ||
-                "https://placehold.co/600x400?text=Image+Missing"
+            <input
+              type="number"
+              className="w-full border px-3 py-2"
+              value={form.strategy.repetitionCountObserved}
+              onChange={(e) =>
+                updateStrategy(
+                  "repetitionCountObserved",
+                  Number(e.target.value)
+                )
               }
-              onError={(e) => {
-                e.currentTarget.src =
-                  "https://placehold.co/600x400?text=Image+Missing";
-              }}
             />
           </div>
         </div>
 
-        {/* FOOTER */}
+        {/* Footer */}
         <div className="mt-8 flex justify-between">
           <button onClick={onClose} className="border px-4 py-2">
             Cancel
           </button>
 
           <div className="space-x-2">
-            {role === "author" && (
+            {/* AUTHOR FLOW */}
+            {isAuthor && (
               <>
-                <button className="border px-4 py-2">Save Draft</button>
-                <button className="bg-black text-white px-4 py-2">
+                <button
+                  className="border px-4 py-2"
+                  onClick={() => handleSave("Draft")}
+                >
+                  Save Draft
+                </button>
+
+                <button
+                  className="bg-black text-white px-4 py-2"
+                  onClick={() => handleSave("Review")}
+                >
                   Submit for Review
                 </button>
               </>
             )}
 
-            {role === "admin" && mode === "review" && (
+            {/* ADMIN EDIT MODE */}
+            {isAdmin && !isReviewMode && (
+              <button
+                className="bg-black text-white px-4 py-2"
+                onClick={() => handleSave()}
+              >
+                Save Changes
+              </button>
+            )}
+
+            {/* ADMIN REVIEW MODE */}
+            {isAdmin && isReviewMode && (
               <>
-                <button className="border px-4 py-2">Reject</button>
-                <button className="bg-black text-white px-4 py-2">
+                <button
+                  className="border px-4 py-2"
+                  onClick={() => handleSave("Rejected")}
+                >
+                  Reject
+                </button>
+
+                <button
+                  className="bg-black text-white px-4 py-2"
+                  onClick={() => handleSave("Approved")}
+                >
                   Approve
                 </button>
               </>
             )}
           </div>
         </div>
-
       </div>
     </div>
   );

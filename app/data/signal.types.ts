@@ -1,11 +1,16 @@
-// app/data/signal.types.ts
+/* ================================
+   ENUM / CONTROLLED VALUE ARRAYS
+================================ */
 
-export const SIGNAL_STATUS = [
-  "EARLY",
-  "PEAKING",
-  "SATURATED",
+// Lifecycle (Signal Maturity)
+export const SIGNAL_LIFECYCLE = [
+  "Early",
+  "Peaking",
+  "Saturated",
+  "Declining",
 ] as const;
 
+// Velocity
 export const SIGNAL_VELOCITY = [
   "Accelerating",
   "Stable",
@@ -13,50 +18,122 @@ export const SIGNAL_VELOCITY = [
   "Emerging",
 ] as const;
 
+// Confidence Levels
+export const SIGNAL_CONFIDENCE = [
+  "Low",
+  "Medium",
+  "High",
+] as const;
+
+// Approval States
+export const APPROVAL_STATE = [
+  "Draft",
+  "Review",
+  "Approved",
+  "Rejected",
+] as const;
+
+// Primary Platforms
+export const PRIMARY_PLATFORM = [
+  "Instagram-Reels",
+  "YouTube-Shorts",
+  "Twitter-X",
+  "Facebook",
+  "LinkedIn",
+  "TikTok",
+] as const;
+
+// Narrative Types
+export const NARRATIVE_TYPE = [
+  "Silent",
+  "Voiceover",
+  "Text-Led",
+  "Music-Led",
+  "Visuals-Only",
+  "UGC",
+] as const;
+
+// Launch Stage
+export const LAUNCH_STAGE = [
+  "Pre Launch",
+  "Launch",
+  "Post Launch",
+  "Sustenance",
+] as const;
+
+// Vehicle Type
 export const VEHICLE_TYPE = [
   "ICE",
   "HEV",
   "BEV",
   "PHEV",
-  "SUV",
 ] as const;
 
-export type SignalStatus = typeof SIGNAL_STATUS[number];
+// Sort Options
+export const SIGNAL_SORT_OPTIONS = [
+  "Newest",
+  "Oldest",
+  "Lifecycle",
+  "Velocity",
+  "Confidence",
+] as const;
+
+/* ================================
+   TYPE EXTRACTIONS
+================================ */
+
+export type SignalLifecycle = typeof SIGNAL_LIFECYCLE[number];
 export type SignalVelocity = typeof SIGNAL_VELOCITY[number];
+export type SignalConfidence = typeof SIGNAL_CONFIDENCE[number];
+export type ApprovalState = typeof APPROVAL_STATE[number];
+export type PrimaryPlatform = typeof PRIMARY_PLATFORM[number];
+export type NarrativeType = typeof NARRATIVE_TYPE[number];
+export type LaunchStage = typeof LAUNCH_STAGE[number];
 export type VehicleType = typeof VEHICLE_TYPE[number];
+export type SignalSortOption = typeof SIGNAL_SORT_OPTIONS[number];
+
+/* ================================
+   MAIN SIGNAL TYPE
+================================ */
 
 export type Signal = {
   signalId: string;
+
   meta: {
-    status: SignalStatus;
+    lifecycle: SignalLifecycle;
     velocity: SignalVelocity;
-    confidence: string;
+    confidence: SignalConfidence;
     authorId: string;
-    approvalState: string;
-    firstSeenDate: string;
-    lastUpdatedDate: string;
+    approvalState: ApprovalState;
+    firstSeenDate: string | null;
+    lastUpdatedDate: string | null;
   };
-  strategy: {
-    vehicleType: VehicleType;
-    launchStage: string;
-    repetitionCountObserved: number;
-  };
+
   platform: {
-    primary: string;
+    primary: PrimaryPlatform;
     secondary: string[];
   };
+
   creative: {
     formatName: string;
     openingPattern: string;
     revealPattern: string;
-    narrative: string;
+    narrative: NarrativeType;
   };
+
+  strategy: {
+    vehicleType: VehicleType;
+    launchStage: LaunchStage;
+    repetitionCountObserved: number;
+  };
+
   insight: {
     whyThisMatters: string;
     whatToIgnore: string;
   };
+
   media: {
-    imageUrl?: string | null;
-    sourceLink?: string | null;
+    imageUrl: string | null;
+    sourceLink: string | null;
   };
 };
