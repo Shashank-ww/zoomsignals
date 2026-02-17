@@ -1,5 +1,5 @@
 import React from "react";
-import { Signal } from "@/data/signal.types";
+import { Signal } from "data/signal.types";
 import { FormatRelativeDate } from "@/components/FormatRelativeDate";
 
 /* -------------------- STYLE MAPS -------------------- */

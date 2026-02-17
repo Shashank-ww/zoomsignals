@@ -1,4 +1,4 @@
-import type { Signal, SignalVelocity, SignalConfidence, ApprovalState } from "@/data/signal.types";
+import type { Signal, SignalVelocity, SignalConfidence, ApprovalState } from "data/signal.types";
 
 // Define ranking for velocity
 const VELOCITY_RANK: Record<SignalVelocity, number> = {

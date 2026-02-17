@@ -1,6 +1,6 @@
 "use client";
 
-import type { Signal } from "@/data/signal.types";
+import type { Signal } from "data/signal.types";
 import { Role } from "@/lib/auth";
 
 export default function SignalRow({

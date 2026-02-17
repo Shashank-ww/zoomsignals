@@ -2,18 +2,16 @@
 
 import { useEffect, useMemo, useState } from "react";
 import SignalCard from "@/components/SignalCard";
-import signalsRaw from "@/data/signals.json";
-import type { Signal } from "@/data/signal.types";
-import SignalRadar from "./components/SignalRadar";
-
-/* ---------- CANONICAL DATA ---------- */
-const signals: Signal[] = Array.isArray(signalsRaw)
-  ? (signalsRaw as unknown as Signal[])
-  : [];
+import type { Signal } from "../data/signal.types";
+import HeroSection from "@/components/HeroSection";
 
 const PAGE_SIZE = 7;
 
 export default function Home() {
+  /* ---------- SIGNAL STATE (NEW) ---------- */
+  const [signals, setSignals] = useState<Signal[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   /* ---------- FILTER + SORT STATE ---------- */
   const [lifecycleFilter, setLifecycleFilter] = useState("all");
   const [vehicleFilter, setVehicleFilter] = useState("all");
@@ -23,10 +21,27 @@ export default function Home() {
     "recent" | "confidence" | "velocity" | "emerging"
   >("recent");
 
-  const [open, setOpen] = useState(false);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
+  /* ---------- FETCH SIGNALS FROM API (NEW) ---------- */
+  useEffect(() => {
+    async function loadSignals() {
+      try {
+        const res = await fetch("/api/signals");
+        const data = await res.json();
+        setSignals(data);
+      } catch (err) {
+        console.error("Failed to load signals", err);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    loadSignals();
+  }, []);
+
+  /* Reset pagination when filters change */
   useEffect(() => {
     setVisibleCount(PAGE_SIZE);
   }, [lifecycleFilter, vehicleFilter, velocityFilter, sortBy]);
@@ -36,7 +51,7 @@ export default function Home() {
     return signals.filter(
       (s) => s.meta.approvalState === "Approved"
     );
-  }, []);
+  }, [signals]);
 
   /* ---------- FILTER OPTIONS ---------- */
   const lifecycleOptions = useMemo(
@@ -99,18 +114,18 @@ export default function Home() {
     const data = [...filteredSignals];
 
     if (sortBy === "recent") {
-  data.sort((a, b) => {
-    const dateA = a.meta.lastUpdatedDate
-      ? new Date(a.meta.lastUpdatedDate).getTime()
-      : 0;
+      data.sort((a, b) => {
+        const dateA = a.meta.lastUpdatedDate
+          ? new Date(a.meta.lastUpdatedDate).getTime()
+          : 0;
 
-    const dateB = b.meta.lastUpdatedDate
-      ? new Date(b.meta.lastUpdatedDate).getTime()
-      : 0;
+        const dateB = b.meta.lastUpdatedDate
+          ? new Date(b.meta.lastUpdatedDate).getTime()
+          : 0;
 
-    return dateB - dateA;
-  });
-}
+        return dateB - dateA;
+      });
+    }
 
     if (sortBy === "confidence") {
       const order: Record<string, number> = {
@@ -170,39 +185,23 @@ export default function Home() {
     vehicleFilter !== "all" ||
     velocityFilter !== "all";
 
+  /* ---------- LOADING UI (NEW) ---------- */
+  if (isLoading) {
+    return (
+      <main className="min-h-screen flex items-center justify-center text-sm text-gray-500">
+        Loading signals...
+      </main>
+    );
+  }
+
   /* ---------- UI ---------- */
   return (
     <main>
-      {/* HERO */}
-      <section className="h-[90vh] flex items-center max-w-6xl mx-auto px-6">
-        <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-16">
-          <div className="max-w-3xl">
-            <h1 className="lg:text-7xl text-3xl font-extralight tracking-tight text-blue-500">
-              zoomsignals
-              <br />
-              <span className="text-gray-500">
-                spot signals for early lift
-              </span>
-            </h1>
+      <HeroSection
+        approvedSignalsCount={approvedSignals.length}
+        totalSignalsCount={signals.length}
+      />
 
-            <p className="text-gray-600 mt-4 max-w-lg">
-              A live feed of emerging creative patterns showing early
-              performance lift across social media platforms.
-              Observed by Real People, not AI.
-            </p>
-
-            <div className="mt-6 text-sm font-semibold text-gray-500">
-              {approvedSignals.length} Signals Logged
-            </div>
-          </div>
-
-          <div className="hidden lg:block">
-            <SignalRadar />
-          </div>
-        </div>
-      </section>
-
-      {/* FEED */}
       <section className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-10">
         {/* SIDEBAR */}
         <aside className="col-span-1 text-sm flex flex-col gap-6 md:sticky md:top-20 self-start">
@@ -271,9 +270,15 @@ export default function Home() {
                   }
                 >
                   <option value="recent">Most Recent</option>
-                  <option value="confidence">Highest Confidence</option>
-                  <option value="velocity">Highest Velocity</option>
-                  <option value="emerging">Emerging First</option>
+                  <option value="confidence">
+                    Highest Confidence
+                  </option>
+                  <option value="velocity">
+                    Highest Velocity
+                  </option>
+                  <option value="emerging">
+                    Emerging First
+                  </option>
                 </select>
               </div>
             </div>
@@ -349,8 +354,9 @@ export default function Home() {
                 }}
                 className="text-sm border px-4 py-2 hover:bg-gray-200 transition"
               >
-                Load more signals ({visibleCount}/
-                {sortedSignals.length})
+                {isLoadingMore
+                  ? "Loading..."
+                  : `Load more signals (${visibleCount}/${sortedSignals.length})`}
               </button>
             </div>
           )}

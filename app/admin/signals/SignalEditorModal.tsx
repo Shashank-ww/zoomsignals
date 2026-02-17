@@ -6,7 +6,7 @@ import type {
   SignalVelocity,
   SignalConfidence,
   ApprovalState,
-} from "@/data/signal.types";
+} from "data/signal.types";
 
 export default function SignalEditorModal({
   signal,

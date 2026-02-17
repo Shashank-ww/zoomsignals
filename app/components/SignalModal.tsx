@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
-import type { Signal } from "@/data/signal.types";
+import type { Signal } from "data/signal.types";
 import SignalCard from "@/components/SignalCard";
 
 export default function SignalModal({

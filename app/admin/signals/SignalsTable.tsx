@@ -1,4 +1,4 @@
-import type { Signal } from "@/data/signal.types";
+import type { Signal } from "data/signal.types";
 import SignalRow from "./SignalRow";
 import { Role } from "@/lib/auth";
 

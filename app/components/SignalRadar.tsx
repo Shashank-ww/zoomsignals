@@ -64,8 +64,15 @@ export default function SignalRadar() {
 
       {/* Social media icons */}
       {signalsData.map((signal) => {
-        const x = 50 + signal.radius * 50 * Math.cos((signal.angle * Math.PI) / 180);
-        const y = 50 + signal.radius * 50 * Math.sin((signal.angle * Math.PI) / 180);
+        const rawX =
+          50 + signal.radius * 50 * Math.cos((signal.angle * Math.PI) / 180);
+
+        const rawY =
+          50 + signal.radius * 50 * Math.sin((signal.angle * Math.PI) / 180);
+
+        const x = Number(rawX.toFixed(2));
+        const y = Number(rawY.toFixed(2));
+
         const isActive = activeSignals.includes(signal.id);
         const IconComponent = signal.icon;
 

@@ -1,33 +1,819 @@
 [
   {
-    "signalId": "SIG-1771142303817",
+    "signalId": "Sid-020",
+    "meta": {
+      "lifecycle": "Early",
+      "velocity": "Accelerating",
+      "confidence": "Medium",
+      "authorId": "authorId",
+      "approvalState": "Review",
+      "firstSeenDate": "2026-02-03",
+      "lastUpdatedDate": "2026-02-09"
+    },
+    "platform": {
+      "primary": "TikTok",
+      "secondary": [
+        "Instagram Reels"
+      ]
+    },
+    "creative": {
+      "formatName": "Raw POV test drive",
+      "openingPattern": "Hand on steering POV",
+      "revealPattern": "City traffic drive",
+      "narrative": "Silent"
+    },
+    "strategy": {
+      "vehicleType": "BEV",
+      "launchStage": "Pre Launch",
+      "repetitionCountObserved": 5
+    },
+    "insight": {
+      "whyThisMatters": "POV reduces ad-feel and increases authenticity",
+      "whatToIgnore": "Unstable camera motion"
+    },
+    "media": {
+      "imageUrl": "https://drive.google.com/thumbnail?id=14QrMtCFVH0VkhIzyPjXcuc8AKwyaJ2KP&sz=w1200",
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-024",
     "meta": {
       "lifecycle": "Early",
       "velocity": "Emerging",
       "confidence": "Medium",
-      "authorId": "user_001",
+      "authorId": "authorId",
+      "approvalState": "Review",
+      "firstSeenDate": "2026-02-04",
+      "lastUpdatedDate": "2026-02-09"
+    },
+    "platform": {
+      "primary": "Instagram-Reels",
+      "secondary": [
+        "Meta",
+        "Facebook"
+      ]
+    },
+    "creative": {
+      "formatName": "Hand interaction close-up",
+      "openingPattern": "Hand taps feature",
+      "revealPattern": "Immediate response shown",
+      "narrative": "Silent"
+    },
+    "strategy": {
+      "vehicleType": "PHEV",
+      "launchStage": "Pre Launch",
+      "repetitionCountObserved": 3
+    },
+    "insight": {
+      "whyThisMatters": "Tactile interaction signals ease-of-use quickly",
+      "whatToIgnore": "Camera focus misses detail"
+    },
+    "media": {
+      "imageUrl": "https://drive.google.com/thumbnail?id=1NGn7naVyxNbhDgZNF0RgTVZaGXxVCgby&sz=w1200",
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-026",
+    "meta": {
+      "lifecycle": "Early",
+      "velocity": "Accelerating",
+      "confidence": "Medium",
+      "authorId": "authorId",
+      "approvalState": "Review",
+      "firstSeenDate": "2026-02-05",
+      "lastUpdatedDate": "2026-02-09"
+    },
+    "platform": {
+      "primary": "Instagram-Reels",
+      "secondary": [
+        "YT-Shorts"
+      ]
+    },
+    "creative": {
+      "formatName": "Regional context cue",
+      "openingPattern": "Local street visual",
+      "revealPattern": "Interior cutaway",
+      "narrative": "Silent"
+    },
+    "strategy": {
+      "vehicleType": "BEV",
+      "launchStage": "Pre Launch",
+      "repetitionCountObserved": 4
+    },
+    "insight": {
+      "whyThisMatters": "Localized context improves relevance without language reliance",
+      "whatToIgnore": "Overt localisation reduces scalability"
+    },
+    "media": {
+      "imageUrl": "https://drive.google.com/thumbnail?id=10hdFV6d1AxgLpw7zI8G4qSp7V_8P8Oa3&sz=w1200",
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-028",
+    "meta": {
+      "lifecycle": "Early",
+      "velocity": "Emerging",
+      "confidence": "Low",
+      "authorId": "authorId",
+      "approvalState": "Draft",
+      "firstSeenDate": "2026-02-06",
+      "lastUpdatedDate": "2026-02-09"
+    },
+    "platform": {
+      "primary": "Twitter-X",
+      "secondary": [
+        "YouTube Shorts"
+      ]
+    },
+    "creative": {
+      "formatName": "Minimal logo end-card",
+      "openingPattern": "Logo only end-frame",
+      "revealPattern": "No narration",
+      "narrative": "Silent"
+    },
+    "strategy": {
+      "vehicleType": "HEV",
+      "launchStage": "Pre Launch",
+      "repetitionCountObserved": 2
+    },
+    "insight": {
+      "whyThisMatters": "Minimalism signals confidence but needs strong prior hook",
+      "whatToIgnore": "Lacks memorability"
+    },
+    "media": {
+      "imageUrl": "https://drive.google.com/thumbnail?id=16Q6j3SwuqwKg56jalnM61reeLrr4lFo3&sz=w1200",
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-030",
+    "meta": {
+      "lifecycle": "Early",
+      "velocity": "Emerging",
+      "confidence": "Medium",
+      "authorId": "authorId",
+      "approvalState": "Review",
+      "firstSeenDate": "2026-02-07",
+      "lastUpdatedDate": "2026-02-09"
+    },
+    "platform": {
+      "primary": "YouTube-Shorts",
+      "secondary": [
+        "Instagram Reels"
+      ]
+    },
+    "creative": {
+      "formatName": "UI gesture demo",
+      "openingPattern": "Swipe gesture shown",
+      "revealPattern": "UI reacts instantly",
+      "narrative": "Voiceover"
+    },
+    "strategy": {
+      "vehicleType": "BEV",
+      "launchStage": "Pre Launch",
+      "repetitionCountObserved": 3
+    },
+    "insight": {
+      "whyThisMatters": "Gesture-led UI demos feel intuitive and modern",
+      "whatToIgnore": "Over-explaining basics"
+    },
+    "media": {
+      "imageUrl": null,
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-032",
+    "meta": {
+      "lifecycle": "Early",
+      "velocity": "Emerging",
+      "confidence": "Low",
+      "authorId": "authorId",
+      "approvalState": "Draft",
+      "firstSeenDate": "2026-02-08",
+      "lastUpdatedDate": "2026-02-09"
+    },
+    "platform": {
+      "primary": "Instagram-Reels",
+      "secondary": [
+        "Meta",
+        "Facebook"
+      ]
+    },
+    "creative": {
+      "formatName": "Static frame hook",
+      "openingPattern": "First frame static",
+      "revealPattern": "Motion starts after 1s",
+      "narrative": "Silent"
+    },
+    "strategy": {
+      "vehicleType": "BEV",
+      "launchStage": "Pre Launch",
+      "repetitionCountObserved": 2
+    },
+    "insight": {
+      "whyThisMatters": "Static disruption increases thumb-stopping effect",
+      "whatToIgnore": "Misread as frozen frame"
+    },
+    "media": {
+      "imageUrl": null,
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-011",
+    "meta": {
+      "lifecycle": "Early",
+      "velocity": "Emerging",
+      "confidence": "Low",
+      "authorId": "authorId",
+      "approvalState": "Draft",
+      "firstSeenDate": "2026-01-28",
+      "lastUpdatedDate": "2026-02-08"
+    },
+    "platform": {
+      "primary": "Twitter-X",
+      "secondary": [
+        "YouTube Shorts"
+      ]
+    },
+    "creative": {
+      "formatName": "Quick exterior spin",
+      "openingPattern": "Fast 360-degree exterior spin",
+      "revealPattern": "End frame shows logo only",
+      "narrative": "Silent"
+    },
+    "strategy": {
+      "vehicleType": "HEV",
+      "launchStage": "Pre Launch",
+      "repetitionCountObserved": 2
+    },
+    "insight": {
+      "whyThisMatters": "Simple spins attract initial views but lack narrative depth",
+      "whatToIgnore": "No clear differentiation"
+    },
+    "media": {
+      "imageUrl": "https://drive.google.com/thumbnail?id=1ghyDyHfd4cC2sQD5hRXS3_pXtKa1d8ia&sz=w1200",
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-018",
+    "meta": {
+      "lifecycle": "Early",
+      "velocity": "Emerging",
+      "confidence": "Medium",
+      "authorId": "authorId",
+      "approvalState": "Review",
+      "firstSeenDate": "2026-02-01",
+      "lastUpdatedDate": "2026-02-08"
+    },
+    "platform": {
+      "primary": "Instagram-Reels",
+      "secondary": [
+        "Meta",
+        "Facebook"
+      ]
+    },
+    "creative": {
+      "formatName": "One-feature hero loop",
+      "openingPattern": "Single feature shown repeatedly",
+      "revealPattern": "Looped 5s clip",
+      "narrative": "Silent"
+    },
+    "strategy": {
+      "vehicleType": "ICE",
+      "launchStage": "Launch",
+      "repetitionCountObserved": 4
+    },
+    "insight": {
+      "whyThisMatters": "Single-feature repetition increases recall vs feature overload",
+      "whatToIgnore": "Lack of context for broader value"
+    },
+    "media": {
+      "imageUrl": "https://drive.google.com/thumbnail?id=1YREfrBS-QNfl9GDdDcTf40tTDYjBt8d_&sz=w1200",
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-022",
+    "meta": {
+      "lifecycle": "Early",
+      "velocity": "Emerging",
+      "confidence": "Low",
+      "authorId": "authorId",
+      "approvalState": "Draft",
+      "firstSeenDate": "2026-02-02",
+      "lastUpdatedDate": "2026-02-08"
+    },
+    "platform": {
+      "primary": "Twitter-X",
+      "secondary": [
+        "YouTube Shorts"
+      ]
+    },
+    "creative": {
+      "formatName": "Brand-less aesthetic reel",
+      "openingPattern": "No logo till end",
+      "revealPattern": "Mood visuals only",
+      "narrative": "Silent"
+    },
+    "strategy": {
+      "vehicleType": "BEV",
+      "launchStage": "Pre Launch",
+      "repetitionCountObserved": 2
+    },
+    "insight": {
+      "whyThisMatters": "Brand delay increases watch time via curiosity",
+      "whatToIgnore": "Brand recall suffers if end-frame is weak"
+    },
+    "media": {
+      "imageUrl": "https://drive.google.com/thumbnail?id=1tTJtBKrdNieWXHctc2_gsbXwHxCS-ZRG&sz=w1200",
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-012",
+    "meta": {
+      "lifecycle": "Peaking",
+      "velocity": "Stable",
+      "confidence": "Medium",
+      "authorId": "authorId",
       "approvalState": "Approved",
-      "firstSeenDate": "2026-02-15T07:58:23.817Z",
-      "lastUpdatedDate": "2026-02-15T17:04:08.953Z"
+      "firstSeenDate": "2026-01-10",
+      "lastUpdatedDate": "2026-02-07"
+    },
+    "platform": {
+      "primary": "Instagram-Reels",
+      "secondary": [
+        "Meta",
+        "Facebook"
+      ]
+    },
+    "creative": {
+      "formatName": "Lifestyle integration",
+      "openingPattern": "Person enters car after work",
+      "revealPattern": "Drive + relaxed interior moments",
+      "narrative": "Text-Led"
+    },
+    "strategy": {
+      "vehicleType": "PHEV",
+      "launchStage": "Launch",
+      "repetitionCountObserved": 11
+    },
+    "insight": {
+      "whyThisMatters": "Human presence improves relatability and emotional connection",
+      "whatToIgnore": "Actors sometimes distract from product"
+    },
+    "media": {
+      "imageUrl": "https://drive.google.com/thumbnail?id=1VNPRZbs0JJhH60TQaRd8KCrkybmIltvM&sz=w1200",
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-016",
+    "meta": {
+      "lifecycle": "Early",
+      "velocity": "Emerging",
+      "confidence": "Medium",
+      "authorId": "authorId",
+      "approvalState": "Review",
+      "firstSeenDate": "2026-01-30",
+      "lastUpdatedDate": "2026-02-07"
+    },
+    "platform": {
+      "primary": "Instagram-Reels",
+      "secondary": [
+        "Meta",
+        "Facebook"
+      ]
+    },
+    "creative": {
+      "formatName": "UI wake-up moment",
+      "openingPattern": "Screen lights up on touch",
+      "revealPattern": "Close-up UI animation only",
+      "narrative": "Silent"
+    },
+    "strategy": {
+      "vehicleType": "BEV",
+      "launchStage": "Pre Launch",
+      "repetitionCountObserved": 3
+    },
+    "insight": {
+      "whyThisMatters": "UI-first hooks stop scroll by triggering curiosity before brand reveal",
+      "whatToIgnore": "Low brightness recordings reduce clarity"
+    },
+    "media": {
+      "imageUrl": "https://drive.google.com/thumbnail?id=1a1Xky1yaN6HrO5RGJYSiPCt0yQrFfdSH&sz=w1200",
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-017",
+    "meta": {
+      "lifecycle": "Peaking",
+      "velocity": "Accelerating",
+      "confidence": "High",
+      "authorId": "authorId",
+      "approvalState": "Approved",
+      "firstSeenDate": "2026-01-22",
+      "lastUpdatedDate": "2026-02-06"
+    },
+    "platform": {
+      "primary": "YouTube-Shorts",
+      "secondary": [
+        "YouTube Shorts"
+      ]
+    },
+    "creative": {
+      "formatName": "Night interior glow",
+      "openingPattern": "Door opens at night",
+      "revealPattern": "Ambient lights + city bokeh",
+      "narrative": "Silent"
+    },
+    "strategy": {
+      "vehicleType": "PHEV",
+      "launchStage": "Pre Launch",
+      "repetitionCountObserved": 8
+    },
+    "insight": {
+      "whyThisMatters": "Night-time interiors feel premium and cinematic without heavy production",
+      "whatToIgnore": "Noise in low-light footage"
+    },
+    "media": {
+      "imageUrl": "https://drive.google.com/thumbnail?id=17KGWnqxKVl8MOiVallNPrT2Vr0o29O7A&sz=w1200",
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-019",
+    "meta": {
+      "lifecycle": "Peaking",
+      "velocity": "Stable",
+      "confidence": "High",
+      "authorId": "authorId",
+      "approvalState": "Approved",
+      "firstSeenDate": "2026-01-18",
+      "lastUpdatedDate": "2026-02-05"
+    },
+    "platform": {
+      "primary": "Facebook",
+      "secondary": [
+        "Facebook"
+      ]
+    },
+    "creative": {
+      "formatName": "Caption-first reel",
+      "openingPattern": "Text hook before visuals",
+      "revealPattern": "Visual reveals after 1s",
+      "narrative": "Silent"
+    },
+    "strategy": {
+      "vehicleType": "HEV",
+      "launchStage": "Launch",
+      "repetitionCountObserved": 10
+    },
+    "insight": {
+      "whyThisMatters": "Text-led hooks help silent scrollers self-select interest",
+      "whatToIgnore": "Poor typography kills impact"
+    },
+    "media": {
+      "imageUrl": "https://drive.google.com/thumbnail?id=1XCuR49ljRxBHumICxtq791q6LkKDZx-i&sz=w1200",
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-023",
+    "meta": {
+      "lifecycle": "Peaking",
+      "velocity": "Accelerating",
+      "confidence": "High",
+      "authorId": "authorId",
+      "approvalState": "Approved",
+      "firstSeenDate": "2026-01-11",
+      "lastUpdatedDate": "2026-02-05"
+    },
+    "platform": {
+      "primary": "YouTube-Shorts",
+      "secondary": [
+        "Instagram Reels"
+      ]
+    },
+    "creative": {
+      "formatName": "Micro comparison cut",
+      "openingPattern": "Split screen moment",
+      "revealPattern": "Old vs new feature",
+      "narrative": "UGC"
+    },
+    "strategy": {
+      "vehicleType": "HEV",
+      "launchStage": "Launch",
+      "repetitionCountObserved": 13
+    },
+    "insight": {
+      "whyThisMatters": "Micro comparisons make upgrades instantly legible",
+      "whatToIgnore": "Older model visuals reduce aspiration"
+    },
+    "media": {
+      "imageUrl": "https://drive.google.com/thumbnail?id=1s39NywI54AuL-UNKP780xN8rkZaMlKRw&sz=w1200",
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-021",
+    "meta": {
+      "lifecycle": "Peaking",
+      "velocity": "Stable",
+      "confidence": "Medium",
+      "authorId": "authorId",
+      "approvalState": "Approved",
+      "firstSeenDate": "2026-01-14",
+      "lastUpdatedDate": "2026-02-04"
+    },
+    "platform": {
+      "primary": "Instagram-Reels",
+      "secondary": [
+        "Meta",
+        "Facebook"
+      ]
+    },
+    "creative": {
+      "formatName": "Soft price anchor",
+      "openingPattern": "Price appears subtly",
+      "revealPattern": "End frame brand lockup",
+      "narrative": "Visuals-Only"
+    },
+    "strategy": {
+      "vehicleType": "ICE",
+      "launchStage": "Launch",
+      "repetitionCountObserved": 9
+    },
+    "insight": {
+      "whyThisMatters": "Soft anchoring avoids deal fatigue while conveying value",
+      "whatToIgnore": "Weak CTA clarity"
+    },
+    "media": {
+      "imageUrl": "https://drive.google.com/thumbnail?id=13AttX7wIFw3mCAczs5e7fh_vbt3z1WpB&sz=w1200",
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-027",
+    "meta": {
+      "lifecycle": "Peaking",
+      "velocity": "Stable",
+      "confidence": "Medium",
+      "authorId": "authorId",
+      "approvalState": "Approved",
+      "firstSeenDate": "2026-01-16",
+      "lastUpdatedDate": "2026-02-04"
+    },
+    "platform": {
+      "primary": "TikTok",
+      "secondary": [
+        "Instagram Reels"
+      ]
+    },
+    "creative": {
+      "formatName": "Quick benefits list",
+      "openingPattern": "3 text flashes",
+      "revealPattern": "End frame interior",
+      "narrative": "Text-Led"
+    },
+    "strategy": {
+      "vehicleType": "ICE",
+      "launchStage": "Launch",
+      "repetitionCountObserved": 12
+    },
+    "insight": {
+      "whyThisMatters": "Concise benefit stacks outperform long VO",
+      "whatToIgnore": "Text density risks clutter"
+    },
+    "media": {
+      "imageUrl": "https://drive.google.com/thumbnail?id=1z5No4KqosX2f6JDizxd6E47JcJeF4Ksq&sz=w1200",
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-002",
+    "meta": {
+      "lifecycle": "Peaking",
+      "velocity": "Emerging",
+      "confidence": "Medium",
+      "authorId": "authorId",
+      "approvalState": "Review",
+      "firstSeenDate": "2026-01-08",
+      "lastUpdatedDate": "2026-02-03"
+    },
+    "platform": {
+      "primary": "Twitter-X",
+      "secondary": [
+        "YouTube Shorts"
+      ]
+    },
+    "creative": {
+      "formatName": "Striking visual ad",
+      "openingPattern": "Car shot",
+      "revealPattern": "side shot of car with new year offering",
+      "narrative": "Voiceover"
     },
     "strategy": {
       "vehicleType": "ICE",
       "launchStage": "Pre Launch",
-      "repetitionCountObserved": 26
+      "repetitionCountObserved": 8
+    },
+    "insight": {
+      "whyThisMatters": "Lead the way forward, offering ad, pricing quoted",
+      "whatToIgnore": "Looks bland, though volvo branded"
+    },
+    "media": {
+      "imageUrl": "https://drive.google.com/thumbnail?id=1Y1i8XAZA2pu_Ke4sLZ5b6stD7B_Sw8jq&sz=w1200",
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-006",
+    "meta": {
+      "lifecycle": "Early",
+      "velocity": "Accelerating",
+      "confidence": "Medium",
+      "authorId": "authorId",
+      "approvalState": "Approved",
+      "firstSeenDate": "2026-01-22",
+      "lastUpdatedDate": "2026-02-03"
     },
     "platform": {
       "primary": "Instagram-Reels",
-      "secondary": []
+      "secondary": [
+        "Meta",
+        "Facebook"
+      ]
     },
     "creative": {
-      "formatName": "new conetnt",
-      "openingPattern": "",
-      "revealPattern": "",
+      "formatName": "Ambient interior loop",
+      "openingPattern": "Soft ambient light turns on automatically",
+      "revealPattern": "Looped pan of seats + stitching",
       "narrative": "Silent"
     },
+    "strategy": {
+      "vehicleType": "BEV",
+      "launchStage": "Pre Launch",
+      "repetitionCountObserved": 6
+    },
     "insight": {
-      "whyThisMatters": "",
-      "whatToIgnore": ""
+      "whyThisMatters": "Looped ambient visuals increase average watch time due to hypnotic repetition",
+      "whatToIgnore": "Music choice varies wildly and affects perception quality"
+    },
+    "media": {
+      "imageUrl": "https://drive.google.com/thumbnail?id=1SsUoix0d8_G-LXEfXT-O851G8qiqrMEW&sz=w1200",
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-010",
+    "meta": {
+      "lifecycle": "Peaking",
+      "velocity": "Accelerating",
+      "confidence": "High",
+      "authorId": "authorId",
+      "approvalState": "Approved",
+      "firstSeenDate": "2026-01-05",
+      "lastUpdatedDate": "2026-02-03"
+    },
+    "platform": {
+      "primary": "Instagram-Reels",
+      "secondary": [
+        "YT-Shorts"
+      ]
+    },
+    "creative": {
+      "formatName": "Interior tech demo",
+      "openingPattern": "Screen turns on with animation",
+      "revealPattern": "UI interactions demonstrated via hand gestures",
+      "narrative": "Silent"
+    },
+    "strategy": {
+      "vehicleType": "BEV",
+      "launchStage": "Pre Launch",
+      "repetitionCountObserved": 9
+    },
+    "insight": {
+      "whyThisMatters": "Tech-first interiors resonate strongly with younger, urban audiences",
+      "whatToIgnore": "Over-explaining basic UI actions"
+    },
+    "media": {
+      "imageUrl": "https://drive.google.com/thumbnail?id=1F15nY4adG1918AG6cxJoL8K7XGVM6Oz7&sz=w1200",
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-014",
+    "meta": {
+      "lifecycle": "Early",
+      "velocity": "Accelerating",
+      "confidence": "High",
+      "authorId": "authorId",
+      "approvalState": "Review",
+      "firstSeenDate": "2026-01-29",
+      "lastUpdatedDate": "2026-02-03"
+    },
+    "platform": {
+      "primary": "YouTube-Shorts",
+      "secondary": [
+        "Instagram Reels"
+      ]
+    },
+    "creative": {
+      "formatName": "Sound-on engine moment",
+      "openingPattern": "Engine start sound hook",
+      "revealPattern": "Close-up of engine + badges",
+      "narrative": "Music-Led"
+    },
+    "strategy": {
+      "vehicleType": "BEV",
+      "launchStage": "Pre Launch",
+      "repetitionCountObserved": 5
+    },
+    "insight": {
+      "whyThisMatters": "Sound-based hooks create curiosity even in EV contexts",
+      "whatToIgnore": "Audio quality inconsistency"
+    },
+    "media": {
+      "imageUrl": "https://drive.google.com/thumbnail?id=1ljlyV2Vyn3rnZCGPpfUkn1L9T9qBwlPP&sz=w1200",
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-025",
+    "meta": {
+      "lifecycle": "Peaking",
+      "velocity": "Stable",
+      "confidence": "High",
+      "authorId": "authorId",
+      "approvalState": "Approved",
+      "firstSeenDate": "2026-01-09",
+      "lastUpdatedDate": "2026-02-03"
+    },
+    "platform": {
+      "primary": "Facebook",
+      "secondary": [
+        "Facebook"
+      ]
+    },
+    "creative": {
+      "formatName": "Sound cue hook",
+      "openingPattern": "Non-music sound start",
+      "revealPattern": "Cut to interior",
+      "narrative": "Voiceover"
+    },
+    "strategy": {
+      "vehicleType": "ICE",
+      "launchStage": "Launch",
+      "repetitionCountObserved": 11
+    },
+    "insight": {
+      "whyThisMatters": "Unexpected sound cues interrupt scroll patterns",
+      "whatToIgnore": "Inconsistent audio levels"
+    },
+    "media": {
+      "imageUrl": "https://drive.google.com/thumbnail?id=1by66GAaZHKqEsY3EmTaMHrQERK4LSSo4&sz=w1200",
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-031",
+    "meta": {
+      "lifecycle": "Peaking",
+      "velocity": "Stable",
+      "confidence": "Medium",
+      "authorId": "authorId",
+      "approvalState": "Approved",
+      "firstSeenDate": "2026-01-13",
+      "lastUpdatedDate": "2026-02-03"
+    },
+    "platform": {
+      "primary": "Facebook",
+      "secondary": [
+        "Facebook"
+      ]
+    },
+    "creative": {
+      "formatName": "Feature countdown",
+      "openingPattern": "3–2–1 overlay",
+      "revealPattern": "Final hero shot",
+      "narrative": "Text-Led"
+    },
+    "strategy": {
+      "vehicleType": "ICE",
+      "launchStage": "Launch",
+      "repetitionCountObserved": 10
+    },
+    "insight": {
+      "whyThisMatters": "Countdowns create anticipation in short formats",
+      "whatToIgnore": "Feels gimmicky if repeated"
     },
     "media": {
       "imageUrl": null,
@@ -35,34 +821,301 @@
     }
   },
   {
-    "signalId": "SIG-1771136155539",
+    "signalId": "Sid-001",
     "meta": {
-      "status": "EARLY",
-      "velocity": "Emerging",
+      "lifecycle": "Early",
+      "velocity": "Accelerating",
+      "confidence": "High",
+      "authorId": "authorId",
+      "approvalState": "Approved",
+      "firstSeenDate": "2026-01-18",
+      "lastUpdatedDate": "2026-02-02"
+    },
+    "platform": {
+      "primary": "Instagram-Reels",
+      "secondary": [
+        "Meta",
+        "Facebook",
+        "YTShorts"
+      ]
+    },
+    "creative": {
+      "formatName": "Silent Interior Reveal",
+      "openingPattern": "Door opens - cabin lights turn on",
+      "revealPattern": "Slow pan of dashboard + infotainment",
+      "narrative": "Silent"
+    },
+    "strategy": {
+      "vehicleType": "HEV",
+      "launchStage": "Pre Launch",
+      "repetitionCountObserved": 7
+    },
+    "insight": {
+      "whyThisMatters": "Interior-focused reels are outperforming exterior beauty shots; silence increases dwell time and avoids language barriers",
+      "whatToIgnore": "Lighting quality differences; some reels look premium but structure is identical"
+    },
+    "media": {
+      "imageUrl": "https://drive.google.com/thumbnail?id=1IpGONOKnWqTHj22zWBqgJDGYTbyttPwR&sz=w1200",
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-003",
+    "meta": {
+      "lifecycle": "Saturated",
+      "velocity": "Stable",
       "confidence": "Low",
-      "authorId": "admin",
-      "approvalState": "Rejected",
-      "firstSeenDate": "2026-02-15T06:15:55.539Z",
-      "lastUpdatedDate": "2026-02-15T07:58:04.119Z"
+      "authorId": "authorId",
+      "approvalState": "Draft",
+      "firstSeenDate": "2025-12-31",
+      "lastUpdatedDate": "2026-02-16"
+    },
+    "platform": {
+      "primary": "TikTok",
+      "secondary": [
+        "Meta",
+        "Facebook"
+      ]
+    },
+    "creative": {
+      "formatName": "City drive scope",
+      "openingPattern": "Exterior shots with interior features with 4 dividers on screen",
+      "revealPattern": "car driven on a bridge with sunshine at the backdrop",
+      "narrative": "Visuals-Only"
+    },
+    "strategy": {
+      "vehicleType": "BEV",
+      "launchStage": "Pre Launch",
+      "repetitionCountObserved": 5
+    },
+    "insight": {
+      "whyThisMatters": "Shows exterior shots driven around the city.",
+      "whatToIgnore": "Looks engaging, premium and highly volvo"
+    },
+    "media": {
+      "imageUrl": "https://drive.google.com/thumbnail?id=1eOjl-UsTydoa9Jt7X6dBVBNo4TIX7xDV&sz=w1200",
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-004",
+    "meta": {
+      "lifecycle": "Peaking",
+      "velocity": "Declining",
+      "confidence": "Medium",
+      "authorId": "authorId",
+      "approvalState": "Approved",
+      "firstSeenDate": "2025-10-31",
+      "lastUpdatedDate": "2026-02-15"
+    },
+    "platform": {
+      "primary": "Facebook",
+      "secondary": [
+        "Meta",
+        "Facebook"
+      ]
+    },
+    "creative": {
+      "formatName": "VO interior showcase",
+      "openingPattern": "Dashbaord showcase with VO description",
+      "revealPattern": "Fast-paced interior description + extreme camera movements",
+      "narrative": "Visuals-Only"
     },
     "strategy": {
       "vehicleType": "ICE",
-      "launchStage": "",
+      "launchStage": "Pre Launch",
       "repetitionCountObserved": 12
     },
+    "insight": {
+      "whyThisMatters": "Explains imperative details, more focussed on feature details",
+      "whatToIgnore": "lacks good quality camera movements"
+    },
+    "media": {
+      "imageUrl": "https://drive.google.com/thumbnail?id=1bghQwHCwybN-1YrD4DEcWBTKwZuJ0OCh&sz=w1200",
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-005",
+    "meta": {
+      "lifecycle": "Early",
+      "velocity": "Accelerating",
+      "confidence": "High",
+      "authorId": "authorId",
+      "approvalState": "Review",
+      "firstSeenDate": "2026-01-27",
+      "lastUpdatedDate": "2026-02-28"
+    },
     "platform": {
-      "primary": "",
-      "secondary": []
+      "primary": "YouTube-Shorts",
+      "secondary": [
+        "Insta reels"
+      ]
     },
     "creative": {
-      "formatName": "New name wala",
-      "openingPattern": "",
-      "revealPattern": "",
-      "narrative": ""
+      "formatName": "Walksround exterior",
+      "openingPattern": "Talks about exterior colours and new style",
+      "revealPattern": "reveal engine shots",
+      "narrative": "UGC"
+    },
+    "strategy": {
+      "vehicleType": "BEV",
+      "launchStage": "Pre Launch",
+      "repetitionCountObserved": 4
     },
     "insight": {
-      "whyThisMatters": "",
-      "whatToIgnore": ""
+      "whyThisMatters": "in line with customer expectation of engine cap",
+      "whatToIgnore": "just too much value of money"
+    },
+    "media": {
+      "imageUrl": "https://drive.google.com/thumbnail?id=1E7zyHJ2L-1IfHdutkWEQzAU_s3-GfciT&sz=w1200",
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-007",
+    "meta": {
+      "lifecycle": "Peaking",
+      "velocity": "Stable",
+      "confidence": "High",
+      "authorId": "authorId",
+      "approvalState": "Approved",
+      "firstSeenDate": "2026-01-12",
+      "lastUpdatedDate": "2026-02-02"
+    },
+    "platform": {
+      "primary": "YouTube-Shorts",
+      "secondary": [
+        "Instagram Reels"
+      ]
+    },
+    "creative": {
+      "formatName": "Feature hook ad",
+      "openingPattern": "Quick feature flash in first second",
+      "revealPattern": "Feature-by-feature reveal with text overlays",
+      "narrative": "Text-Led"
+    },
+    "strategy": {
+      "vehicleType": "ICE",
+      "launchStage": "Launch",
+      "repetitionCountObserved": 14
+    },
+    "insight": {
+      "whyThisMatters": "Direct feature hooks work well for mid-funnel audiences seeking clarity",
+      "whatToIgnore": "Overuse of text reduces premium perception"
+    },
+    "media": {
+      "imageUrl": "https://drive.google.com/thumbnail?id=1OaJEz9-XGMiW0_i1TEn4-6seHLcsn1qM&sz=w1200",
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-008",
+    "meta": {
+      "lifecycle": "Early",
+      "velocity": "Emerging",
+      "confidence": "Medium",
+      "authorId": "authorId",
+      "approvalState": "Review",
+      "firstSeenDate": "2026-01-25",
+      "lastUpdatedDate": "2026-02-02"
+    },
+    "platform": {
+      "primary": "TikTok",
+      "secondary": [
+        "Instagram Reels"
+      ]
+    },
+    "creative": {
+      "formatName": "Self-POV drive clip",
+      "openingPattern": "POV from driver seat starts engine",
+      "revealPattern": "Driving through city traffic POV",
+      "narrative": "Silent"
+    },
+    "strategy": {
+      "vehicleType": "PHEV",
+      "launchStage": "Pre Launch",
+      "repetitionCountObserved": 3
+    },
+    "insight": {
+      "whyThisMatters": "POV formats feel authentic and lower ad resistance",
+      "whatToIgnore": "Camera shake and exposure inconsistency"
+    },
+    "media": {
+      "imageUrl": "https://drive.google.com/thumbnail?id=1aBuWTN4-yExYN0uzst8qwE1B-kptup6u&sz=w1200",
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-015",
+    "meta": {
+      "lifecycle": "Peaking",
+      "velocity": "Stable",
+      "confidence": "Medium",
+      "authorId": "authorId",
+      "approvalState": "Approved",
+      "firstSeenDate": "2026-01-02",
+      "lastUpdatedDate": "2026-02-02"
+    },
+    "platform": {
+      "primary": "Instagram-Reels",
+      "secondary": [
+        "Meta",
+        "Facebook"
+      ]
+    },
+    "creative": {
+      "formatName": "Before/after contrast models",
+      "openingPattern": "Old model flashes briefly",
+      "revealPattern": "New model revealed dramatically",
+      "narrative": "UGC"
+    },
+    "strategy": {
+      "vehicleType": "HEV",
+      "launchStage": "Post Launch",
+      "repetitionCountObserved": 10
+    },
+    "insight": {
+      "whyThisMatters": "Contrast storytelling makes upgrades feel tangible",
+      "whatToIgnore": "Older model shots sometimes reduce aspiration"
+    },
+    "media": {
+      "imageUrl": "https://drive.google.com/thumbnail?id=1Z_agxdfltO4h0P8ZF1TYF6NfFIOe9ks0&sz=w1200",
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-029",
+    "meta": {
+      "lifecycle": "Peaking",
+      "velocity": "Accelerating",
+      "confidence": "High",
+      "authorId": "authorId",
+      "approvalState": "Approved",
+      "firstSeenDate": "2026-01-07",
+      "lastUpdatedDate": "2026-02-02"
+    },
+    "platform": {
+      "primary": "Instagram-Reels",
+      "secondary": [
+        "Meta",
+        "Facebook"
+      ]
+    },
+    "creative": {
+      "formatName": "Interior-to-exterior reveal",
+      "openingPattern": "Start inside cabin",
+      "revealPattern": "Door opens to city",
+      "narrative": "Voiceover"
+    },
+    "strategy": {
+      "vehicleType": "PHEV",
+      "launchStage": "Launch",
+      "repetitionCountObserved": 14
+    },
+    "insight": {
+      "whyThisMatters": "Inside-out reveals feel immersive and cinematic",
+      "whatToIgnore": "Weak exterior payoff"
     },
     "media": {
       "imageUrl": null,
@@ -70,34 +1123,147 @@
     }
   },
   {
-    "signalId": "SIG-1771136126974",
+    "signalId": "Sid-009",
     "meta": {
-      "status": "APPROVED",
-      "velocity": "Accelerating",
-      "confidence": "Medium",
-      "authorId": "admin",
+      "lifecycle": "Saturated",
+      "velocity": "Stable",
+      "confidence": "Low",
+      "authorId": "authorId",
       "approvalState": "Approved",
-      "firstSeenDate": "2026-02-15T06:15:26.974Z",
-      "lastUpdatedDate": "2026-02-15T07:29:24.959Z"
+      "firstSeenDate": "2025-12-15",
+      "lastUpdatedDate": "2026-02-01"
+    },
+    "platform": {
+      "primary": "Facebook",
+      "secondary": [
+        "Facebook"
+      ]
+    },
+    "creative": {
+      "formatName": "Offer burst ad",
+      "openingPattern": "Offer text appears immediately",
+      "revealPattern": "Exterior + price overlay sequence",
+      "narrative": "Visuals-Only"
     },
     "strategy": {
       "vehicleType": "ICE",
-      "launchStage": "",
-      "repetitionCountObserved": 4
-    },
-    "platform": {
-      "primary": "",
-      "secondary": []
-    },
-    "creative": {
-      "formatName": "Another name",
-      "openingPattern": "",
-      "revealPattern": "",
-      "narrative": ""
+      "launchStage": "Launch",
+      "repetitionCountObserved": 20
     },
     "insight": {
-      "whyThisMatters": "",
-      "whatToIgnore": ""
+      "whyThisMatters": "Heavy offer-led creatives drive short-term CTR but fatigue quickly",
+      "whatToIgnore": "Visual sameness across brands"
+    },
+    "media": {
+      "imageUrl": "https://drive.google.com/thumbnail?id=1lRA7db8N_gm2il0iyqLutSF19jJlXbOD&sz=w1200",
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-033",
+    "meta": {
+      "lifecycle": "Peaking",
+      "velocity": "Accelerating",
+      "confidence": "High",
+      "authorId": "authorId",
+      "approvalState": "Approved",
+      "firstSeenDate": "2026-01-06",
+      "lastUpdatedDate": "2026-02-01"
+    },
+    "platform": {
+      "primary": "YouTube-Shorts",
+      "secondary": [
+        "Instagram Reels"
+      ]
+    },
+    "creative": {
+      "formatName": "Interior sound isolation",
+      "openingPattern": "Outside noise cuts off",
+      "revealPattern": "Door close moment",
+      "narrative": "Silent"
+    },
+    "strategy": {
+      "vehicleType": "HEV",
+      "launchStage": "Launch",
+      "repetitionCountObserved": 15
+    },
+    "insight": {
+      "whyThisMatters": "Silence-as-feature communicates luxury instantly",
+      "whatToIgnore": "Requires clean audio capture"
+    },
+    "media": {
+      "imageUrl": null,
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-013",
+    "meta": {
+      "lifecycle": "Saturated",
+      "velocity": "Declining",
+      "confidence": "Low",
+      "authorId": "authorId",
+      "approvalState": "Rejected",
+      "firstSeenDate": "2025-11-20",
+      "lastUpdatedDate": "2026-01-30"
+    },
+    "platform": {
+      "primary": "Facebook",
+      "secondary": [
+        "Facebook"
+      ]
+    },
+    "creative": {
+      "formatName": "Multi-feature montage",
+      "openingPattern": "Rapid cut of all features",
+      "revealPattern": "Ends with offer card",
+      "narrative": "Visuals-Only"
+    },
+    "strategy": {
+      "vehicleType": "ICE",
+      "launchStage": "Launch",
+      "repetitionCountObserved": 18
+    },
+    "insight": {
+      "whyThisMatters": "Attempts to say everything lead to low retention",
+      "whatToIgnore": "No single hero message"
+    },
+    "media": {
+      "imageUrl": "https://drive.google.com/thumbnail?id=1CnLbzclB15xAojNkxg8lLSEgO9Jz0uIE&sz=w1200",
+      "sourceLink": null
+    }
+  },
+  {
+    "signalId": "Sid-034",
+    "meta": {
+      "lifecycle": "Saturated",
+      "velocity": "Declining",
+      "confidence": "Low",
+      "authorId": "authorId",
+      "approvalState": "Rejected",
+      "firstSeenDate": "2025-11-25",
+      "lastUpdatedDate": "2026-01-28"
+    },
+    "platform": {
+      "primary": "Facebook",
+      "secondary": [
+        "Facebook"
+      ]
+    },
+    "creative": {
+      "formatName": "All-features reel",
+      "openingPattern": "Rapid montage",
+      "revealPattern": "End offer card",
+      "narrative": "Text-Led"
+    },
+    "strategy": {
+      "vehicleType": "ICE",
+      "launchStage": "Launch",
+      "repetitionCountObserved": 19
+    },
+    "insight": {
+      "whyThisMatters": "Feature overload causes cognitive fatigue",
+      "whatToIgnore": "No single takeaway"
     },
     "media": {
       "imageUrl": null,

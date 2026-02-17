@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { Signal } from "@/data/signal.types";
+import type { Signal } from "data/signal.types";
 import SignalsTable from "./SignalsTable";
 import SignalEditorModal from "./SignalEditorModal";
 import { getCurrentUser } from "@/lib/auth";
@@ -13,20 +13,32 @@ export default function AdminSignalsPage() {
   const [activeSignal, setActiveSignal] = useState<Signal | null>(null);
   const [mode, setMode] = useState<"create" | "edit" | "review">("edit");
 
+  /* =========================
+     LOAD SIGNALS (ONLY HERE)
+  ========================== */
+
   useEffect(() => {
-    fetch("/api/signals")
-      .then((r) => r.json())
-      .then(setSignals);
+    async function loadSignals() {
+      const res = await fetch("/api/signals");
+      const data = await res.json();
+      setSignals(data);
+    }
+
+    loadSignals();
   }, []);
+
+  /* =========================
+     CREATE
+  ========================== */
 
   function openCreate() {
     const now = new Date().toISOString();
 
     setActiveSignal({
-      signalId: `SIG-${Date.now()}`,
+      signalId: "NEW", // Let API generate final ID
 
       meta: {
-        lifecycle: "Early",              // ✅ ADDED
+        lifecycle: "Early",
         velocity: "Emerging",
         confidence: "Medium",
         authorId: user?.id ?? "admin",
@@ -77,10 +89,16 @@ export default function AdminSignalsPage() {
     setMode("review");
   }
 
+  /* =========================
+     SAVE
+  ========================== */
+
   async function handleSave(updated: Signal) {
-    const method = signals.some((s) => s.signalId === updated.signalId)
-      ? "PUT"
-      : "POST";
+    const method =
+      updated.signalId === "NEW" ||
+      !signals.some((s) => s.signalId === updated.signalId)
+        ? "POST"
+        : "PUT";
 
     await fetch("/api/signals", {
       method,
@@ -93,6 +111,10 @@ export default function AdminSignalsPage() {
     setActiveSignal(null);
   }
 
+  /* =========================
+     DELETE
+  ========================== */
+
   async function handleDelete(id: string) {
     await fetch("/api/signals", {
       method: "DELETE",
@@ -100,8 +122,13 @@ export default function AdminSignalsPage() {
       body: JSON.stringify({ signalId: id }),
     });
 
-    setSignals((prev) => prev.filter((s) => s.signalId !== id));
+    const fresh = await fetch("/api/signals").then((r) => r.json());
+    setSignals(fresh);
   }
+
+  /* =========================
+     RENDER
+  ========================== */
 
   return (
     <main className="max-w-7xl mx-auto px-6 py-10 min-h-screen">

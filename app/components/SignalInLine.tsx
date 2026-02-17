@@ -1,14 +1,26 @@
 "use client";
 
-import { useState } from "react";
-import rawSignals from "@/data/signals.json";
-import type { Signal } from "@/data/signal.types";
+import { useEffect, useState } from "react";
+import type { Signal } from "data/signal.types";
 import SignalModal from "@/components/SignalModal";
 
-const signals = rawSignals as Signal[];
-
 export default function SignalInline({ id }: { id: string }) {
+  const [signals, setSignals] = useState<Signal[]>([]);
   const [active, setActive] = useState<Signal | null>(null);
+
+  useEffect(() => {
+    async function loadSignals() {
+      try {
+        const res = await fetch("/api/signals");
+        const data = await res.json();
+        setSignals(data);
+      } catch (err) {
+        console.error("Failed to load signals", err);
+      }
+    }
+
+    loadSignals();
+  }, []);
 
   const signal = signals.find((s) => s.signalId === id);
   if (!signal) return null;
