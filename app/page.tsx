@@ -2,17 +2,17 @@
 
 import { useEffect, useMemo, useState } from "react";
 import SignalCard from "@/components/SignalCard";
-import type { Signal } from "../data/signal.types";
 import HeroSection from "@/components/HeroSection";
+import type { Signal } from "data/signal.types";
 
 const PAGE_SIZE = 7;
 
 export default function Home() {
-  /* ---------- SIGNAL STATE (NEW) ---------- */
+  /* ---------------- DATA ---------------- */
   const [signals, setSignals] = useState<Signal[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  /* ---------- FILTER + SORT STATE ---------- */
+  /* ---------------- FILTER STATE ---------------- */
   const [lifecycleFilter, setLifecycleFilter] = useState("all");
   const [vehicleFilter, setVehicleFilter] = useState("all");
   const [velocityFilter, setVelocityFilter] = useState("all");
@@ -24,7 +24,7 @@ export default function Home() {
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
-  /* ---------- FETCH SIGNALS FROM API (NEW) ---------- */
+  /* ---------------- FETCH FROM API ---------------- */
   useEffect(() => {
     async function loadSignals() {
       try {
@@ -41,56 +41,50 @@ export default function Home() {
     loadSignals();
   }, []);
 
-  /* Reset pagination when filters change */
+  /* Reset pagination on filter change */
   useEffect(() => {
     setVisibleCount(PAGE_SIZE);
   }, [lifecycleFilter, vehicleFilter, velocityFilter, sortBy]);
 
-  /* ---------- APPROVED ONLY ---------- */
+  /* ---------------- APPROVED ONLY FOR FEED ---------------- */
   const approvedSignals = useMemo(() => {
     return signals.filter(
       (s) => s.meta.approvalState === "Approved"
     );
   }, [signals]);
 
-  /* ---------- FILTER OPTIONS ---------- */
+  /* ---------------- FILTER OPTIONS (FROM FULL DATASET) ---------------- */
   const lifecycleOptions = useMemo(
     () =>
       Array.from(
         new Set(
-          approvedSignals
-            .map((s) => s.meta.lifecycle)
-            .filter(Boolean)
+          signals.map((s) => s.meta.lifecycle).filter(Boolean)
         )
       ),
-    [approvedSignals]
+    [signals]
   );
 
   const vehicleOptions = useMemo(
     () =>
       Array.from(
         new Set(
-          approvedSignals
-            .map((s) => s.strategy.vehicleType)
-            .filter(Boolean)
+          signals.map((s) => s.strategy.vehicleType).filter(Boolean)
         )
       ),
-    [approvedSignals]
+    [signals]
   );
 
   const velocityOptions = useMemo(
     () =>
       Array.from(
         new Set(
-          approvedSignals
-            .map((s) => s.meta.velocity)
-            .filter(Boolean)
+          signals.map((s) => s.meta.velocity).filter(Boolean)
         )
       ),
-    [approvedSignals]
+    [signals]
   );
 
-  /* ---------- FILTERING ---------- */
+  /* ---------------- FILTERING ---------------- */
   const filteredSignals = useMemo(() => {
     return approvedSignals.filter((s) => {
       return (
@@ -109,21 +103,19 @@ export default function Home() {
     velocityFilter,
   ]);
 
-  /* ---------- SORTING ---------- */
+  /* ---------------- SORTING ---------------- */
   const sortedSignals = useMemo(() => {
     const data = [...filteredSignals];
 
     if (sortBy === "recent") {
       data.sort((a, b) => {
-        const dateA = a.meta.lastUpdatedDate
+        const aDate = a.meta.lastUpdatedDate
           ? new Date(a.meta.lastUpdatedDate).getTime()
           : 0;
-
-        const dateB = b.meta.lastUpdatedDate
+        const bDate = b.meta.lastUpdatedDate
           ? new Date(b.meta.lastUpdatedDate).getTime()
           : 0;
-
-        return dateB - dateA;
+        return bDate - aDate;
       });
     }
 
@@ -173,11 +165,8 @@ export default function Home() {
     return data;
   }, [filteredSignals, sortBy]);
 
-  /* ---------- PAGINATION ---------- */
-  const visibleSignals = useMemo(() => {
-    return sortedSignals.slice(0, visibleCount);
-  }, [sortedSignals, visibleCount]);
-
+  /* ---------------- PAGINATION ---------------- */
+  const visibleSignals = sortedSignals.slice(0, visibleCount);
   const hasMore = visibleCount < sortedSignals.length;
 
   const hasActiveFilters =
@@ -185,16 +174,7 @@ export default function Home() {
     vehicleFilter !== "all" ||
     velocityFilter !== "all";
 
-  /* ---------- LOADING UI (NEW) ---------- */
-  if (isLoading) {
-    return (
-      <main className="min-h-screen flex items-center justify-center text-sm text-gray-500">
-        Loading signals...
-      </main>
-    );
-  }
-
-  /* ---------- UI ---------- */
+  /* ---------------- UI ---------------- */
   return (
     <main>
       <HeroSection
@@ -203,7 +183,7 @@ export default function Home() {
       />
 
       <section className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-10">
-        {/* SIDEBAR */}
+        {/* ---------------- SIDEBAR ---------------- */}
         <aside className="col-span-1 text-sm flex flex-col gap-6 md:sticky md:top-20 self-start">
           <div>
             <b>Filters</b>
@@ -327,46 +307,64 @@ export default function Home() {
           </div>
         </aside>
 
-        {/* FEED LIST */}
-        <div className="col-span-1 md:col-span-3 space-y-8">
-          {visibleSignals.map((signal) => (
-            <SignalCard
-              key={signal.signalId}
-              signal={signal}
-            />
-          ))}
+{/* ---------------- FEED ---------------- */}
+<div className="col-span-1 md:col-span-3">
 
-          {filteredSignals.length === 0 && (
-            <div className="text-sm text-gray-500">
-              No signals match the selected filters.
-            </div>
-          )}
+  {isLoading ? (
+    <div className="flex flex-col items-center justify-center py-28 text-center space-y-4">
+      {/* Subtle Spinner */}
+      <div className="h-8 w-8 rounded-full border border-gray-300 border-t-black animate-spin" />
 
-          {hasMore && (
-            <div className="pt-6 flex justify-center">
-              <button
-                onClick={() => {
-                  setIsLoadingMore(true);
-                  setTimeout(() => {
-                    setVisibleCount((c) => c + PAGE_SIZE);
-                    setIsLoadingMore(false);
-                  }, 400);
-                }}
-                className="text-sm border px-4 py-2 hover:bg-gray-200 transition"
-              >
-                {isLoadingMore
-                  ? "Loading..."
-                  : `Load more signals (${visibleCount}/${sortedSignals.length})`}
-              </button>
-            </div>
-          )}
+      <p className="text-xs tracking-widest uppercase text-gray-400">
+        Loading Signals
+      </p>
+    </div>
+  ) : (
+    <div className="space-y-8 animate-fadeIn">
+      
+      {visibleSignals.map((signal) => (
+        <SignalCard
+          key={signal.signalId}
+          signal={signal}
+        />
+      ))}
+
+      {filteredSignals.length === 0 && (
+        <div className="text-sm text-gray-500">
+          No signals match the selected filters.
         </div>
+      )}
+
+      {hasMore && (
+        <div className="pt-6 flex justify-center">
+          <button
+            onClick={() => {
+              setIsLoadingMore(true);
+              setTimeout(() => {
+                setVisibleCount((c) => c + PAGE_SIZE);
+                setIsLoadingMore(false);
+              }, 400);
+            }}
+            className="text-sm border px-4 py-2 hover:bg-gray-200 transition"
+          >
+            {isLoadingMore
+              ? "Loading..."
+              : `Load more signals (${visibleCount}/${sortedSignals.length})`}
+          </button>
+        </div>
+      )}
+
+    </div>
+  )}
+
+</div>
+
       </section>
     </main>
   );
 }
 
-/* ---------- CHIP ---------- */
+/* ---------------- CHIP ---------------- */
 function Chip({
   label,
   onClear,

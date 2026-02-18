@@ -2,6 +2,7 @@
 
     import { useState } from "react";
     import SignalRadar from "@/components/SignalRadar";
+    import HeroHeadline from "./HeroHeadline";
 
     interface HeroSectionProps {
     approvedSignalsCount: number;
@@ -17,27 +18,22 @@
     return (
         <>
         {/* ================= HERO ================= */}
-        <section className="min-h-[90vh] flex items-center max-w-6xl mx-auto px-6">
+        <section className="min-h-[80vh] flex items-center max-w-6xl mx-auto px-6">
             <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-16">
             
             {/* LEFT CONTENT */}
-            <div className="max-w-3xl">
+            <div className="max-w-screen">
 
                 {/* Headline */}
-                <h1 className="lg:text-7xl text-3xl font-extralight tracking-tight text-blue-500">
+                <HeroHeadline/>
+                
+                {/* <h1 className="lg:text-7xl text-3xl font-extralight tracking-tight text-blue-500">
                 zoomsignals
                 <br />
                 <span className="text-gray-500">
                     spot signals for early lift
                 </span>
-                </h1>
-
-                {/* Description */}
-                <p className="text-gray-600 mt-6 max-w-lg leading-relaxed">
-                A live feed of emerging creative patterns showing early
-                performance lift across social platforms.
-                Observed by real operators — not automated scraping.
-                </p>
+                </h1> */}
 
                 {/* 
                 Signals Count
@@ -53,22 +49,29 @@
 
                 {/* Toggle */}
                 <button
-                onClick={() => setShowExplainer(!showExplainer)}
-                className="mt-6 text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
-                >
-                {showExplainer ? "Hide explainer below" : "How to read this feed?"}
-                </button>
+                    onClick={() => setShowExplainer(!showExplainer)}
+                    className="
+                      mt-10 
+                      text-sm 
+                      font-medium 
+                      text-blue-600 
+                      hover:text-blue-800 
+                      transition-colors
+                    "
+                  >
+                    {showExplainer ? "Hide explainer below" : "How to read this feed?"}
+                  </button>
             </div>
 
             {/* RIGHT RADAR */}
-            <div className="hidden lg:block">
+            <div className="hidden lg:flex justify-end">
                 <SignalRadar />
             </div>
             </div>
         </section>
 
         {/* ================= EXPLAINER SECTION ================= */}
-        <section className="border-t border-gray-200 bg-gray-50">
+        <section id="explainer" className="border-t border-gray-200 bg-gray-50">
             <div
             className={`max-w-6xl mx-auto px-6 transition-all duration-500 overflow-hidden ${
                 showExplainer ? "max-h-200 py-20 opacity-100" : "max-h-0 opacity-0"
@@ -89,7 +92,7 @@
 
                 <p>
                     Signals are manually reviewed, structured, and approved
-                    before appearing in the live feed.
+                    before they appear in the live feed.
                 </p>
                 </div>
 
@@ -106,7 +109,7 @@
                 </ul>
 
                 <p>
-                    This is early detection — not trend reporting.
+                    This is early detection of what works and doesn&rsquo;t.
                 </p>
                 </div>
 
@@ -116,11 +119,14 @@
 
 
 {/* ================= LIVE FEED HEADER ================= */}
-<section className="max-w-6xl mx-auto px-6 pt-16">
-  <LiveFeedHeader
-    approvedCount={approvedSignalsCount}
-    totalCount={totalSignalsCount}
-  />
+<section id="feed-header" className="max-w-6xl mx-auto px-6 mt-12">
+  <div className="rounded-3xl px-10 py-10 bg-linear-to-br from-[#EFF6FF] via-[#F8FAFC] to-[#F1F5F9] 
+border border-[#DBEAFE]">
+    <LiveFeedHeader
+      approvedCount={approvedSignalsCount}
+      totalCount={totalSignalsCount}
+    />
+  </div>
 </section>
 
         </>
@@ -137,42 +143,44 @@ function LiveFeedHeader({
   const isLive = approvedCount > 0;
 
   return (
-    <div className="flex items-center justify-between border-b border-gray-200 pt-16 pb-10">
+    <div className="flex items-stretch justify-between">
 
-      {/* LEFT SIDE */}
-      <div className="flex items-center gap-6">
+      {/* LEFT — Section Identity */}
+      <div>
+        <p className="text-xs uppercase tracking-widest text-blue-600/80 mb-4">
+          Live Intelligence
+        </p>
 
-        {/* LIVE Corner Badge */}
-        <div className="relative inline-flex items-center px-4 py-1 text-xs font-bold tracking-widest uppercase text-black">
-
-          {/* Corner Lines */}
-          <span className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-black"></span>
-          <span className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-black"></span>
-          <span className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-black"></span>
-          <span className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-black"></span>
-
-          <span className="relative z-10 flex items-center gap-2">
-            {isLive && (
-                <span className="h-2 w-2 rounded-full bg-red-600 animate-pulse"></span>
-            )}
-            ACTIVE
-          </span>
-        </div>
-
-        {/* Title */}
-        <h2 className="text-2xl font-light tracking-wide text-gray-900">
+        <h2 className="text-2xl font-semibold text-gray-900">
           Signal Stream
         </h2>
+
+        <p className="text-sm text-gray-600 max-w-md mt-2">
+          Real-time creative patterns and campaign lifecycle across platforms.
+        </p>
       </div>
 
-      {/* RIGHT SIDE */}
-      <div className="text-sm font-medium tracking-wide text-gray-700">
-        <span className="text-gray-900">
-          {approvedCount} / {totalCount}
-        </span>
-        <span className="ml-2 text-gray-500">
-          active signals
-        </span>
+      {/* RIGHT — Status Block */}
+      <div className="hidden sm:flex flex-col justify-end items-end text-right">
+
+        <p className="text-sm text-gray-600">
+          <span className="text-gray-900 font-semibold">
+            {approvedCount}
+          </span>{" "}
+          of {totalCount} signals
+        </p>
+
+        {isLive && (
+          <span className="flex items-center gap-2 mt-2">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-40 animate-ping"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
+            </span>
+            <span className="text-xs uppercase tracking-wide text-blue-600/80">
+              Active
+            </span>
+          </span>
+        )}
       </div>
     </div>
   );

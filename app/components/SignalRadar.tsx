@@ -3,19 +3,14 @@
 import { useState, useEffect } from "react";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaYoutube, FaRedditAlien, FaGoogle, FaFacebook} from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
-import { PiSnapchatLogoFill } from "react-icons/pi";
-
 
 // Radar signal data with fixed positions
 const signalsData = [
   { id: 1, angle: 20, radius: 0.8, icon: FaFacebook, color: "#1877F2" },   // Facebook
-  { id: 2, angle: 320, radius: 0.85, icon: FaSquareXTwitter, color: "#000000" },     // X filled
-  { id: 3, angle: 135, radius: 0.6, icon: AiFillInstagram, color: "#C13584" }, // Instagram default pink
-  { id: 4, angle: 270, radius: 0.45, icon: FaYoutube, color: "#FF0000" },   // YouTube
-  { id: 5, angle: 180, radius: 0.85, icon: FaRedditAlien, color: "#FF4500" }, // Reddit
-  { id: 6, angle: 240, radius: 0.9, icon: FaGoogle, color: "#4285F4" },    // Google
-  { id: 7, angle: 65, radius: 0.70, icon: PiSnapchatLogoFill, color: "#FFCC00" }, // Snapchat
+  { id: 2, angle: 135, radius: 0.6, icon: AiFillInstagram, color: "#C13584" }, // Instagram
+  { id: 3, angle: 230, radius: 0.65, icon: FaYoutube, color: "#FF0000" },   // YouTube
+  { id: 4, angle: 180, radius: 0.85, icon: FaRedditAlien, color: "#FF4500" }, // Reddit
+  { id: 5, angle: 310, radius: 0.9, icon: FaGoogle, color: "#4285F4" },    // Google
 ];
 
 export default function SignalRadar() {

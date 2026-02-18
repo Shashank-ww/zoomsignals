@@ -18,7 +18,7 @@ export default function Navbar() {
         </a>
 
         {/* Nav links */}
-        <div className="flex gap-6 text-sm">
+        <div className="flex gap-6 text-sm dark:text-gray-800">
           <a href="/about" className="hover:underline">
             About
           </a>

@@ -136,4 +136,9 @@ export type Signal = {
     imageUrl: string | null;
     sourceLink: string | null;
   };
+
+    validation?: {
+    relevant: number;
+    notRelevant: number;
+  };
 };

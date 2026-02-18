@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import { Signal } from "data/signal.types";
 import { FormatRelativeDate } from "@/components/FormatRelativeDate";
 
@@ -31,9 +31,74 @@ const APPROVAL_STYLES: Record<Signal["meta"]["approvalState"], string> = {
   Rejected: "bg-red-100 text-red-700",
 };
 
+const CONFIDENCE_WEIGHT: Record<
+  Signal["meta"]["confidence"],
+  number
+> = {
+  High: 1.3,
+  Medium: 1.0,
+  Low: 0.7,
+};
+
+const VELOCITY_WEIGHT: Record<
+  Signal["meta"]["velocity"],
+  number
+> = {
+  Emerging: 1.2,
+  Accelerating: 1.1,
+  Stable: 1.0,
+  Declining: 0.8,
+};
+
 /* ==================================================== */
 
 export default function SignalCard({ signal }: { signal: Signal }) {
+
+    const [validation, setValidation] = useState(
+    signal.validation ?? {
+      relevant: 0,
+      notRelevant: 0,
+    }
+  );
+
+  const resonanceScore = useMemo(() => {
+  const base =
+    validation.relevant - validation.notRelevant;
+
+  const confidenceWeight =
+    CONFIDENCE_WEIGHT[signal.meta.confidence];
+
+  const velocityWeight =
+    VELOCITY_WEIGHT[signal.meta.velocity];
+
+  return Math.round(
+    base * confidenceWeight * velocityWeight
+  );
+}, [validation, signal.meta.confidence, signal.meta.velocity]);
+
+const handleFeedback = async (
+  type: "relevant" | "notRelevant"
+) => {
+  try {
+    const res = await fetch(
+      `/api/signals/${signal.signalId}/feedback`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type }),
+      }
+    );
+
+    if (!res.ok) return;
+
+    const data = await res.json();
+    setValidation(data.validation);
+  } catch (err) {
+    console.error("Feedback failed", err);
+  }
+};
+
+
   return (
     <article className="border border-gray-300 rounded-xl bg-white overflow-hidden hover:shadow-lg transition-shadow flex flex-col md:flex-row">
       
@@ -141,6 +206,39 @@ export default function SignalCard({ signal }: { signal: Signal }) {
           />
         </div>
 
+        {/* RESONANCE LAYER */}
+<div className="pt-4 border-t space-y-3">
+
+  <div className="flex items-center justify-between text-xs">
+    <span className="uppercase tracking-wide text-gray-400">
+      Resonance Score
+    </span>
+
+    <span className="font-semibold text-sm">
+      {resonanceScore}
+    </span>
+  </div>
+
+  <div className="flex gap-6 text-xs">
+<button
+  onClick={() => handleFeedback("relevant")}
+  className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition transform"
+>
+  Validate ({validation.relevant})
+</button>
+
+<button
+  onClick={() => handleFeedback("notRelevant")}
+  className="px-3 py-1 rounded-full bg-red-100 text-red-700 hover:bg-red-200 transition transform"
+>
+  Challenge ({validation.notRelevant})
+</button>
+
+  </div>
+
+</div>
+
+
         {/* META + SOURCE */}
         <div className="flex justify-between items-center text-xs text-gray-500 flex-wrap gap-2">
           <span className="flex flex-wrap items-center gap-1">
@@ -207,3 +305,5 @@ function Metric({
     </div>
   );
 }
+
+
