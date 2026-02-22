@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { Signal } from "data/signal.types";
+import type { Signal } from "@/types/signal.types";
 import SignalModal from "@/components/SignalModal";
 
 export default function SignalInline({ id }: { id: string }) {
@@ -13,7 +13,14 @@ export default function SignalInline({ id }: { id: string }) {
       try {
         const res = await fetch("/api/signals");
         const data = await res.json();
-        setSignals(data);
+
+        const normalized = data.map((s: any) => ({
+          ...s,
+          createdAt: new Date(s.createdAt),
+          updatedAt: new Date(s.updatedAt),
+        }));
+
+        setSignals(normalized);
       } catch (err) {
         console.error("Failed to load signals", err);
       }
@@ -22,7 +29,7 @@ export default function SignalInline({ id }: { id: string }) {
     loadSignals();
   }, []);
 
-  const signal = signals.find((s) => s.signalId === id);
+  const signal = signals.find((s) => s.id === id);
   if (!signal) return null;
 
   return (

@@ -120,7 +120,7 @@
 
 {/* ================= LIVE FEED HEADER ================= */}
 <section id="feed-header" className="max-w-6xl mx-auto px-6 mt-12">
-  <div className="rounded-3xl px-10 py-10 bg-linear-to-br from-[#EFF6FF] via-[#F8FAFC] to-[#F1F5F9] 
+  <div className="rounded-2xl px-10 py-10 bg-linear-to-br from-[#EFF6FF] via-[#F8FAFC] to-[#F1F5F9] 
 border border-[#DBEAFE]">
     <LiveFeedHeader
       approvedCount={approvedSignalsCount}
@@ -147,11 +147,14 @@ function LiveFeedHeader({
 
       {/* LEFT — Section Identity */}
       <div>
-        <p className="text-xs uppercase tracking-widest text-blue-600/80 mb-4">
-          Live Intelligence
-        </p>
+        <div className="mb-2 inline-block">
+          <p className="text-xs uppercase tracking-widest text-blue-600/80">
+            Live Intelligence
+          </p>
+          <span className="block w-6 h-2 border-b-[1.5px] border-blue-600 mt-1"></span>
+        </div>
 
-        <h2 className="text-2xl font-semibold text-gray-900">
+        <h2 className="text-2xl font-bold text-gray-900">
           Signal Stream
         </h2>
 

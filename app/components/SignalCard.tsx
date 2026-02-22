@@ -1,309 +1,289 @@
-import React, { useMemo, useState } from "react";
-import { Signal } from "data/signal.types";
+import React, { useState, useEffect } from "react";
 import { FormatRelativeDate } from "@/components/FormatRelativeDate";
 
-/* -------------------- STYLE MAPS -------------------- */
 
-const CONFIDENCE_STYLES: Record<Signal["meta"]["confidence"], string> = {
-  High: "bg-green-100 text-green-700",
-  Medium: "bg-yellow-100 text-yellow-700",
-  Low: "bg-red-100 text-red-700",
+import type { Signal } from "@/types/signal.types";
+import ResonanceScore from "./ResonanceScore";
+
+/* ---------- Semantic Color Maps ---------- */
+
+const STATE_COLORS = {
+  positive: "text-emerald-600",
+  negative: "text-red-600",
+  neutral: "text-gray-500",
 };
 
-const VELOCITY_STYLES: Record<Signal["meta"]["velocity"], string> = {
-  Emerging: "bg-green-100 text-green-700",
-  Accelerating: "bg-blue-100 text-blue-700",
-  Stable: "bg-yellow-100 text-yellow-700",
-  Declining: "bg-red-100 text-red-700",
+const HEAT_COLORS: Record<string, string> = {
+  EMERGING: "bg-green-400",
+  ACCELERATING: "bg-blue-500",
+  STABLE: "bg-yellow-400",
+  DECLINING: "bg-red-400",
 };
 
-const LIFECYCLE_STYLES: Record<Signal["meta"]["lifecycle"], string> = {
-  Early: "bg-blue-100 text-blue-700",
-  Peaking: "bg-yellow-100 text-yellow-700",
-  Saturated: "bg-orange-100 text-orange-700",
-  Declining: "bg-red-100 text-red-700",
-};
+const METRIC_STYLES: Record<string, string> = {
+  // Confidence
+  HIGH: "bg-emerald-100 text-emerald-700",
+  MEDIUM: "bg-amber-100 text-amber-700",
+  LOW: "bg-red-100 text-red-700",
 
-const APPROVAL_STYLES: Record<Signal["meta"]["approvalState"], string> = {
-  Draft: "bg-gray-100 text-gray-700",
-  Review: "bg-blue-100 text-blue-700",
-  Approved: "bg-green-100 text-green-700",
-  Rejected: "bg-red-100 text-red-700",
-};
+  // Velocity
+  EMERGING: "bg-green-100 text-green-700",
+  ACCELERATING: "bg-blue-100 text-blue-700",
+  STABLE: "bg-yellow-100 text-yellow-800",
+  DECLINING: "bg-red-100 text-red-700",
 
-const CONFIDENCE_WEIGHT: Record<
-  Signal["meta"]["confidence"],
-  number
-> = {
-  High: 1.3,
-  Medium: 1.0,
-  Low: 0.7,
-};
-
-const VELOCITY_WEIGHT: Record<
-  Signal["meta"]["velocity"],
-  number
-> = {
-  Emerging: 1.2,
-  Accelerating: 1.1,
-  Stable: 1.0,
-  Declining: 0.8,
+  // Lifecycle
+  EARLY: "bg-indigo-100 text-indigo-700",
+  PEAKING: "bg-orange-100 text-orange-700",
+  SATURATED: "bg-gray-200 text-gray-700",
 };
 
 /* ==================================================== */
 
 export default function SignalCard({ signal }: { signal: Signal }) {
+  const [votes, setVotes] = useState(signal.votes ?? []);
+  const [isVoting, setIsVoting] = useState(false);
 
-    const [validation, setValidation] = useState(
-    signal.validation ?? {
-      relevant: 0,
-      notRelevant: 0,
-    }
-  );
+  useEffect(() => {
+    setVotes(signal.votes ?? []);
+  }, [signal.votes]);
 
-  const resonanceScore = useMemo(() => {
-  const base =
-    validation.relevant - validation.notRelevant;
+  const relevant = votes.filter((v) => v.type === "RELEVANT").length;
+  const notRelevant = votes.filter((v) => v.type === "NOT_RELEVANT").length;
 
-  const confidenceWeight =
-    CONFIDENCE_WEIGHT[signal.meta.confidence];
 
-  const velocityWeight =
-    VELOCITY_WEIGHT[signal.meta.velocity];
+  const handleFeedback = async (
+    type: "RELEVANT" | "NOT_RELEVANT"
+  ) => {
+    if (isVoting) return;
+    setIsVoting(true);
 
-  return Math.round(
-    base * confidenceWeight * velocityWeight
-  );
-}, [validation, signal.meta.confidence, signal.meta.velocity]);
-
-const handleFeedback = async (
-  type: "relevant" | "notRelevant"
-) => {
-  try {
-    const res = await fetch(
-      `/api/signals/${signal.signalId}/feedback`,
-      {
+    try {
+      const res = await fetch(`/api/vote`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type }),
-      }
-    );
+        body: JSON.stringify({
+          signalId: signal.id,
+          type,
+          voterHash:
+          typeof crypto !== "undefined" && crypto.randomUUID
+            ? crypto.randomUUID()
+            : `${Date.now()}-${Math.random().toString(36).slice(2)}`,
+        }),
+      });
 
-    if (!res.ok) return;
+      if (!res.ok) return;
 
-    const data = await res.json();
-    setValidation(data.validation);
-  } catch (err) {
-    console.error("Feedback failed", err);
-  }
-};
-
+      setVotes((prev) => [...prev, { type } as any]);
+    } finally {
+      setIsVoting(false);
+    }
+  };
 
   return (
-    <article className="border border-gray-300 rounded-xl bg-white overflow-hidden hover:shadow-lg transition-shadow flex flex-col md:flex-row">
-      
-      {/* IMAGE */}
-      <div className="md:w-64 w-full h-48 md:h-auto shrink-0">
-        {signal.media.imageUrl ? (
-          <img
-            src={signal.media.imageUrl}
-            alt={signal.creative.formatName}
-            className="h-full w-full object-cover"
-          />
-        ) : (
-          <div className="h-full w-full bg-gray-100 flex items-center justify-center text-xs text-gray-400">
-            No image
+    <article
+      className="border rounded-2xl bg-white overflow-hidden hover:shadow-xl transition-all duration-300">
+      <div className="flex flex-col md:flex-row">
+
+        {/* IMAGE */}
+          <div className="md:w-64 w-full h-48 md:h-auto shrink-0 relative overflow-hidden bg-gray-100">
+            {signal.imageUrl ? (
+              <img
+                src={signal.imageUrl}
+                alt={signal.formatName}
+                className="w-full h-full object-cover object-center"
+                loading="lazy"
+                decoding="async"
+                style={{ maxWidth: '100%', maxHeight: '100%' }}
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center text-xs text-gray-400">
+                No image
+              </div>
+            )}
+
+
+
+            {/* HEAT DOT VELOCITY BADGE */}
+            <div className="absolute bottom-3 left-3 z-10 cursor-help">
+                <div className={`
+                    h-4 w-4
+                    flex items-center justify-center
+                    text-[8px] font-bold
+                    rounded-full
+                    text-white
+                    border border-white/60
+                    shadow-md
+                    ${HEAT_COLORS[signal.velocity]}
+                    ${signal.velocity === "ACCELERATING" ? "animate-pulse" : ""}
+                  `}
+                  title={`Velocity: ${signal.velocity}`}>
+                </div>
+              </div>
           </div>
-        )}
-      </div>
 
-      {/* CONTENT */}
-      <div className="flex-1 p-4 space-y-3">
+        {/* CONTENT */}
+        <div className="flex-1 p-6 space-y-5">
 
-        {/* HEADER */}
-        <div className="flex justify-between items-center text-xs text-gray-500">
-          <span className="font-mono text-gray-400">
-            {signal.signalId}
-          </span>
+          {/* HEADER */}
+          <div className="flex justify-between items-start">
+            <div>
+              <h3 className="text-xl font-bold">
+                {signal.formatName}
+              </h3>
 
-          <div className="flex gap-2 items-center">
-            {/* Approval */}
-            {/* <span
-              className={`px-2 py-0.5 rounded-full font-medium ${
-                APPROVAL_STYLES[signal.meta.approvalState]
-              }`}
-            >
-              {signal.meta.approvalState}
-            </span> */}
+              <div className="flex flex-wrap gap-2 mt-2 text-xs">
+                {signal.primaryPlatforms?.map((p) => (
+                  <span
+                    key={p}
+                    className="px-2 py-0.5 border rounded-full bg-gray-50"
+                  >
+                    {p}
+                  </span>
+                ))}
+              </div>
+            </div>
 
-            {/* Lifecycle */}
-            <span
-              className={`px-2 py-0.5 rounded-full font-medium ${
-                LIFECYCLE_STYLES[signal.meta.lifecycle]
-              }`}
-            >
-              {signal.meta.lifecycle}
-            </span>
+            {/* RESONANCE SCORE */}
+            <ResonanceScore
+              signal={signal}
+              relevant={relevant}
+              notRelevant={notRelevant}/>
           </div>
-        </div>
 
-        {/* TITLE */}
-        <h3 className="text-xl font-bold">
-          {signal.creative.formatName}
-        </h3>
-
-        {/* PLATFORMS */}
-        <div className="flex flex-wrap gap-2 text-xs text-gray-600">
-          <span className="px-2 py-0.5 border rounded-full">
-            {signal.platform.primary}
-          </span>
-
-          {signal.platform.secondary?.map((p) => (
-            <span key={p} className="px-2 py-0.5 border rounded-full">
-              {p}
-            </span>
-          ))}
-        </div>
-
-        {/* NARRATIVE */}
-        <div className="text-sm text-gray-700">
-          <p className="md:hidden line-clamp-2 italic text-gray-600">
-            {signal.creative.narrative}
+          {/* NARRATIVE */}
+          <p className="text-sm text-gray-600">
+            {signal.narrative}
           </p>
 
-          <div className="hidden md:block border-l-2 border-gray-200 pl-3 text-gray-600">
-            <span className="block text-[11px] uppercase tracking-wide text-gray-400 mb-1">
-              Narrative
-            </span>
-            {signal.creative.narrative}
+          {/* INSIGHT */}
+          <p className="text-sm text-gray-600 line-clamp-3">
+            <b>Insight: </b>
+            {signal.insight}
+          </p>
+
+          
+          {/* BENTO GRID */}
+          <div className="grid grid-cols-2 md:grid-cols-4 rounded-xl overflow-hidden border border-gray-200 text-[11px] font-medium">
+            <Metric
+              label="Confidence"
+              value={signal.confidence}
+              style={METRIC_STYLES[signal.confidence]}
+            />
+            <Metric
+              label="Velocity"
+              value={signal.velocity}
+              style={METRIC_STYLES[signal.velocity]}
+            />
+            <Metric
+              label="Lifecycle"
+              value={signal.lifecycle}
+              style={METRIC_STYLES[signal.lifecycle]}
+            />
+            <Metric
+              label="Repetition"
+              value={`${signal.repetitionCount}x`}
+              style="bg-gray-100 text-gray-700"
+            />
           </div>
-        </div>
 
-        {/* INSIGHT */}
-        <p className="text-sm">
-          <b>Insight:</b> {signal.insight.whyThisMatters}
-        </p>
+          {/* FOOTER */}
+<div className="flex justify-between items-center mt-2 pt-3 md:pt-4 border-t text-xs">
 
-        {/* BENTO METRICS */}
-        <div className="grid grid-cols-2 md:grid-cols-4 border border-gray-200 rounded-md overflow-hidden">
-          <Metric
-            label="Confidence"
-            value={signal.meta.confidence}
-            className={CONFIDENCE_STYLES[signal.meta.confidence]}
-          />
-          <Metric
-            label="Velocity"
-            value={signal.meta.velocity}
-            className={VELOCITY_STYLES[signal.meta.velocity]}
-          />
-          <Metric
-            label="Launch Stage"
-            value={signal.strategy.launchStage}
-          />
-          <Metric
-            label="Repetition"
-            value={`${signal.strategy.repetitionCountObserved}x`}
-          />
-        </div>
-
-        {/* RESONANCE LAYER */}
-<div className="pt-4 border-t space-y-3">
-
-  <div className="flex items-center justify-between text-xs">
-    <span className="uppercase tracking-wide text-gray-400">
-      Resonance Score
-    </span>
-
-    <span className="font-semibold text-sm">
-      {resonanceScore}
-    </span>
+  {/* DATES (LEFT) */}
+  <div className="text-gray-400 flex gap-3">
+    <FormatRelativeDate
+      label="Spotted"
+      date={signal.createdAt}
+    />
+    <FormatRelativeDate
+      label="Updated"
+      date={signal.updatedAt}
+    />
   </div>
 
-  <div className="flex gap-6 text-xs">
-<button
-  onClick={() => handleFeedback("relevant")}
-  className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition transform"
->
-  Validate ({validation.relevant})
-</button>
+  {/* VOTING (RIGHT) */}
+  <div className="flex gap-3 md:gap-1.5">
 
-<button
-  onClick={() => handleFeedback("notRelevant")}
-  className="px-3 py-1 rounded-full bg-red-100 text-red-700 hover:bg-red-200 transition transform"
->
-  Challenge ({validation.notRelevant})
-</button>
+    <button
+      disabled={isVoting}
+      onClick={() => handleFeedback("NOT_RELEVANT")}
+      className="
+        h-6 px-2
+        flex items-center gap-1
+        rounded
+        text-red-600
+        border border-red-200/70
+        bg-red-50/60
+        hover:bg-red-100/70
+        hover:border-red-300
+        active:scale-95
+        transition-all duration-150
+        disabled:opacity-40
+        text-[11px] font-medium
+      "
+      title="Challenge signal"
+    >
+      <span className="leading-none">✕</span>
+      <span className="text-[10px] opacity-80">
+        {notRelevant}
+      </span>
+    </button>
+
+    <button
+      disabled={isVoting}
+      onClick={() => handleFeedback("RELEVANT")}
+      className="
+        h-6 px-2
+        flex items-center gap-1
+        rounded
+        text-emerald-600
+        border border-emerald-200/70
+        bg-emerald-50/60
+        hover:bg-emerald-100/70
+        hover:border-emerald-300
+        active:scale-95
+        transition-all duration-150
+        disabled:opacity-40
+        text-[11px] font-medium
+      "
+      title="Validate signal"
+    >
+      <span className="leading-none">✓</span>
+      <span className="text-[10px] opacity-80">
+        {relevant}
+      </span>
+    </button>
 
   </div>
-
 </div>
-
-
-        {/* META + SOURCE */}
-        <div className="flex justify-between items-center text-xs text-gray-500 flex-wrap gap-2">
-          <span className="flex flex-wrap items-center gap-1">
-            <FormatRelativeDate
-              label="First seen"
-              date={signal.meta.firstSeenDate}
-            />
-
-            <span>·</span>
-
-            <FormatRelativeDate
-              label="Updated"
-              date={signal.meta.lastUpdatedDate}
-            />
-
-            {signal.meta.authorId && (
-              <>
-                <span>·</span>
-                <span>Author: {signal.meta.authorId}</span>
-              </>
-            )}
-          </span>
-
-          {signal.media?.sourceLink && (
-            <a
-              href={signal.media.sourceLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline hover:text-gray-700"
-            >
-              View source
-            </a>
-          )}
-        </div>
+      </div>
       </div>
     </article>
   );
 }
 
-/* -------------------- Metric -------------------- */
+/* -------- Metric Cell -------- */
 
 function Metric({
   label,
   value,
-  className,
+  style,
 }: {
   label: string;
   value: string;
-  className?: string;
+  style: string;
 }) {
   return (
     <div
-      className={`p-2 text-center text-[11px] border-r border-b border-gray-200 
-      hover:brightness-95 transition-colors duration-200 ${
-        className ?? "bg-gray-100 text-gray-900"
-      }`}
+      className={`p-3 border-r border-b border-gray-200 text-center hover:bg-black/10 cursor-default ${style}`}
     >
-      <div className="uppercase tracking-wide opacity-70">
+      <div className="uppercase tracking-wide opacity-80 text-xs">
         {label}
       </div>
-      <div className="text-xs font-medium mt-0.5">
+      <div className="mt-1 text-[10px]">
         {value}
       </div>
     </div>
   );
 }
-
-

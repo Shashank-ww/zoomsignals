@@ -1,0 +1,105 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Signal {
+  id               String   @id @default(uuid())
+  formatName       String
+  narrative        String
+  insight          String
+
+  lifecycle        Lifecycle
+  velocity         Velocity
+  confidence       Confidence
+  approvalStatus   ApprovalStatus
+
+  primaryPlatforms String[]
+  repetitionCount  Int
+  author           String?
+
+  imageUrl         String?
+  sourceLink       String?
+
+  votes            Vote[]
+
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Vote {
+  id        String   @id @default(uuid())
+  signalId  String
+  type      VoteType
+  voterHash String
+  createdAt DateTime @default(now())
+
+  signal Signal @relation(fields: [signalId], references: [id], onDelete: Cascade)
+
+  @@unique([signalId, voterHash])
+}
+
+enum Lifecycle {
+  EARLY
+  PEAKING
+  SATURATED
+}
+
+enum Velocity {
+  EMERGING
+  ACCELERATING
+  STABLE
+  DECLINING
+}
+
+enum Confidence {
+  HIGH
+  MEDIUM
+  LOW
+}
+
+enum ApprovalStatus {
+  DRAFT
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum Platform {
+  INSTAGRAM
+  FACEBOOK
+  META_PAID
+  TWITTER
+  GOOGLE_YT
+}
+
+enum Narrative {
+  SILENT
+  TACTICAL
+  TEXT_ONLY
+  VO_ONLY
+  VISUAL_ONLY
+  BG_MUSIC_ONLY
+  COMPARATIVE
+}
+
+enum VoteType {
+  RELEVANT
+  NOT_RELEVANT
+}
+
+model subscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}

@@ -1,5 +1,5 @@
 type FormatRelativeDateProps = {
-  date?: string | null;
+  date?: Date | null;
   label?: string; // "Updated", "First seen"
 };
 
