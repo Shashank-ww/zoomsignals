@@ -5,10 +5,10 @@ export const dynamic = "force-dynamic";
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params;
+    const { id } = await context.params;
 
     await prisma.signal.delete({
       where: { id },
