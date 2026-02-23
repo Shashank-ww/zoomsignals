@@ -1,17 +1,11 @@
-import React, { useState, useEffect } from "react";
+"use client";
+
+import React, { useState } from "react";
 import { FormatRelativeDate } from "@/components/FormatRelativeDate";
-
-
 import type { Signal } from "@/types/signal.types";
 import ResonanceScore from "./ResonanceScore";
 
 /* ---------- Semantic Color Maps ---------- */
-
-const STATE_COLORS = {
-  positive: "text-emerald-600",
-  negative: "text-red-600",
-  neutral: "text-gray-500",
-};
 
 const HEAT_COLORS: Record<string, string> = {
   EMERGING: "bg-green-400",
@@ -21,18 +15,15 @@ const HEAT_COLORS: Record<string, string> = {
 };
 
 const METRIC_STYLES: Record<string, string> = {
-  // Confidence
   HIGH: "bg-emerald-100 text-emerald-700",
   MEDIUM: "bg-amber-100 text-amber-700",
   LOW: "bg-red-100 text-red-700",
 
-  // Velocity
   EMERGING: "bg-green-100 text-green-700",
   ACCELERATING: "bg-blue-100 text-blue-700",
   STABLE: "bg-yellow-100 text-yellow-800",
   DECLINING: "bg-red-100 text-red-700",
 
-  // Lifecycle
   EARLY: "bg-indigo-100 text-indigo-700",
   PEAKING: "bg-orange-100 text-orange-700",
   SATURATED: "bg-gray-200 text-gray-700",
@@ -41,45 +32,39 @@ const METRIC_STYLES: Record<string, string> = {
 /* ==================================================== */
 
 export default function SignalCard({ signal }: { signal: Signal }) {
-  const [votes, setVotes] = useState(signal.votes ?? []);
-  const [isVoting, setIsVoting] = useState(false);
 
-  useEffect(() => {
-    setVotes(signal.votes ?? []);
-  }, [signal.votes]);
+  // ✅ SOURCE OF TRUTH = COUNTS
+  const [relevantCount, setRelevantCount] = useState(
+    signal.votes?.filter(v => v.type === "RELEVANT").length ?? 0
+  );
 
-  const relevant = votes.filter((v) => v.type === "RELEVANT").length;
-  const notRelevant = votes.filter((v) => v.type === "NOT_RELEVANT").length;
+  const [notRelevantCount, setNotRelevantCount] = useState(
+    signal.votes?.filter(v => v.type === "NOT_RELEVANT").length ?? 0
+  );
 
+  // ✅ OPTIMISTIC, NON-BLOCKING
+  const handleFeedback = (type: "RELEVANT" | "NOT_RELEVANT") => {
 
-  const handleFeedback = async (
-    type: "RELEVANT" | "NOT_RELEVANT"
-  ) => {
-    if (isVoting) return;
-    setIsVoting(true);
+    if (type === "RELEVANT") {
+      setRelevantCount(prev => prev + 1);
+    } else {
+      setNotRelevantCount(prev => prev + 1);
+    }
 
-    try {
-      const res = await fetch(`/api/vote`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          signalId: signal.id,
-          type,
-          voterHash:
+    fetch("/api/vote", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        signalId: signal.id,
+        type,
+        voterHash:
           typeof crypto !== "undefined" && crypto.randomUUID
             ? crypto.randomUUID()
             : `${Date.now()}-${Math.random().toString(36).slice(2)}`,
-        }),
-      });
-
-      if (!res.ok) return;
-
-      setVotes((prev) => [...prev, { type } as any]);
-    } finally {
-      setIsVoting(false);
-    }
+      }),
+    });
   };
-
+  
   return (
     <article
       className="border rounded-2xl bg-white overflow-hidden hover:shadow-xl transition-all duration-300">
@@ -107,7 +92,7 @@ export default function SignalCard({ signal }: { signal: Signal }) {
             {/* HEAT DOT VELOCITY BADGE */}
             <div className="absolute bottom-3 left-3 z-10 cursor-help">
                 <div className={`
-                    h-4 w-4
+                    h-2.5 w-2.5
                     flex items-center justify-center
                     text-[8px] font-bold
                     rounded-full
@@ -147,8 +132,8 @@ export default function SignalCard({ signal }: { signal: Signal }) {
             {/* RESONANCE SCORE */}
             <ResonanceScore
               signal={signal}
-              relevant={relevant}
-              notRelevant={notRelevant}/>
+              relevant={relevantCount}
+              notRelevant={notRelevantCount}/>
           </div>
 
           {/* NARRATIVE */}
@@ -187,75 +172,99 @@ export default function SignalCard({ signal }: { signal: Signal }) {
             />
           </div>
 
-          {/* FOOTER */}
-<div className="flex justify-between items-center mt-2 pt-3 md:pt-4 border-t text-xs">
 
-  {/* DATES (LEFT) */}
-  <div className="text-gray-400 flex gap-3">
-    <FormatRelativeDate
-      label="Spotted"
-      date={signal.createdAt}
-    />
-    <FormatRelativeDate
-      label="Updated"
-      date={signal.updatedAt}
-    />
+{/* FOOTER */}
+<div className="mt-4 border-t">
+
+  {/* ROW 1 — Voting */}
+  <div className="flex justify-end items-center pt-4 pb-3">
+    <div className="flex gap-2">
+
+      <button
+        onClick={() => handleFeedback("NOT_RELEVANT")}
+        className="
+          h-7 px-3
+          flex items-center gap-1
+          rounded-md
+          text-red-600
+          border border-red-200/70
+          bg-red-50/60
+          hover:bg-red-100/70
+          hover:border-red-300
+          active:scale-95
+          transition-all duration-150
+          text-[11px] font-medium
+        "
+        title="Challenge signal"
+      >
+        <span className="leading-none">✕</span>
+        <span className="text-[10px] opacity-80">
+          {notRelevantCount}
+        </span>
+      </button>
+
+      <button
+        onClick={() => handleFeedback("RELEVANT")}
+        className="
+          h-7 px-3
+          flex items-center gap-1
+          rounded-md
+          text-emerald-600
+          border border-emerald-200/70
+          bg-emerald-50/60
+          hover:bg-emerald-100/70
+          hover:border-emerald-300
+          active:scale-95
+          transition-all duration-150
+          text-[11px] font-medium
+        "
+        title="Validate signal"
+      >
+        <span className="leading-none">✓</span>
+        <span className="text-[10px] opacity-80">
+          {relevantCount}
+        </span>
+      </button>
+
+    </div>
   </div>
 
-  {/* VOTING (RIGHT) */}
-  <div className="flex gap-3 md:gap-1.5">
+  {/* ROW 2 — Intelligence Band */}
+  <div className="flex justify-between items-center text-[10px]">
 
-    <button
-      disabled={isVoting}
-      onClick={() => handleFeedback("NOT_RELEVANT")}
-      className="
-        h-6 px-2
-        flex items-center gap-1
-        rounded
-        text-red-600
-        border border-red-200/70
-        bg-red-50/60
-        hover:bg-red-100/70
-        hover:border-red-300
-        active:scale-95
-        transition-all duration-150
-        disabled:opacity-40
-        text-[11px] font-medium
-      "
-      title="Challenge signal"
-    >
-      <span className="leading-none">✕</span>
-      <span className="text-[10px] opacity-80">
-        {notRelevant}
+    {/* Dates */}
+    <div className="flex items-center gap-2">
+      <span className="flex items-center ">
+        <FormatRelativeDate
+          label="Spotted"
+          date={signal.createdAt}
+        />
       </span>
-    </button>
 
-    <button
-      disabled={isVoting}
-      onClick={() => handleFeedback("RELEVANT")}
-      className="
-        h-6 px-2
-        flex items-center gap-1
-        rounded
-        text-emerald-600
-        border border-emerald-200/70
-        bg-emerald-50/60
-        hover:bg-emerald-100/70
-        hover:border-emerald-300
-        active:scale-95
-        transition-all duration-150
-        disabled:opacity-40
-        text-[11px] font-medium
-      "
-      title="Validate signal"
-    >
-      <span className="leading-none">✓</span>
-      <span className="text-[10px] opacity-80">
-        {relevant}
+      <span className="w-1 h-1 bg-gray-400 rounded-full" />
+
+      <span className="flex items-center ">
+        <FormatRelativeDate
+          label="Updated"
+          date={signal.updatedAt}
+        />
       </span>
-    </button>
+    </div>
+
+    {/* View Source */}
+    {signal.sourceLink && (
+      <a
+        href={signal.sourceLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hover:text-black transition-colors text-gray-500"
+      >
+        View Source →
+      </a>
+    )}
 
   </div>
+
 </div>
       </div>
       </div>

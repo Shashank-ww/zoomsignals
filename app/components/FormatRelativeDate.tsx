@@ -41,7 +41,7 @@ export function FormatRelativeDate({
 
   return (
     <span
-      className={`relative group inline-flex items-center cursor-default gap-1 text-xs ${
+      className={`relative group inline-flex items-center cursor-default gap-1 ${
         isToday ? "text-orange-400 font-medium" : "text-gray-500"
       }`}
     >

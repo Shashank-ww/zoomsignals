@@ -35,7 +35,7 @@ export default function AdminSignalsTable({ signals }: Props) {
 
 async function hardDelete(id: string) {
   const confirmDelete = window.confirm(
-    "This will permanently delete this signal. This cannot be undone. Continue?"
+    "This will permanently delete this signal. It cannot be undone. Continue?"
   );
 
   if (!confirmDelete) return;

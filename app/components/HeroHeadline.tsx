@@ -6,7 +6,7 @@ const headlines = [
   "Media buying intelligence. Not social trends.",
   "Spot early-lift before scaling your ad spends.",
   "Performance patterns, real brand lift.",
-  "When performance moves creativity.",
+  "Social media signals that lifts creativity.",
   "Creative ads that help you gain early traction.",
   // "If it&s not blowing minds, it&aposs blowing your budget.",
 ];

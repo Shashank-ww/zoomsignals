@@ -3,16 +3,17 @@
 export default function Navbar() {
 
   return (
-    <nav className="sticky top-0 z-40 bg-white border-b border-gray-100">
-      <div className="mx-auto px-6 h-14 flex items-center justify-between">
+    <nav className="sticky top-0 z-40 bg-linear-to-l from-[#EFF6FF] via-[#F8FAFC] to-[#F1F5F9] 
+border border-[#DBEAFE]">
+      <div className="mx-auto px-6 h-14 flex items-center justify-between underline-offset-4">
 
         {/* Brand → Home */}
         <a
           href="/"
           aria-label="Go to home"
-          className="font-bold text-blue-500 select-none"
+          className="font-bold text-gray-900 select-none"
         >
-          <span className="flex items-center leading-none text-base">
+          <span className="flex items-center leading-none text-base hover:text-blue-500 pl-2 border-l-2 hover:border-l-6">
           ZOOMSIGNALS
           </span>
         </a>

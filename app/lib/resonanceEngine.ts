@@ -1,4 +1,4 @@
-import type { Signal } from "@prisma/client";
+import type { Signal } from "@/types/signal.types";
 
 export type ResonanceResult = {
   score: number;
@@ -27,19 +27,29 @@ export function calculateResonance({
   confidenceWeight: Record<Signal["confidence"], number>;
 }): ResonanceResult {
 
-  const voteDelta = relevant - notRelevant;
+const voteDelta = (relevant ?? 0) - (notRelevant ?? 0);
 
-  const raw =
-    voteDelta *
-    lifecycleWeight[lifecycle] *
-    velocityWeight[velocity] *
-    confidenceWeight[confidence];
+const base =
+  Math.sign(voteDelta) *
+  Math.log1p(Math.abs(voteDelta));
 
-  // ✅ Cap without rounding first
-  const cappedRaw = Math.max(-999, Math.min(999, raw));
+const lifecycleW = lifecycleWeight[lifecycle] ?? 1;
+const velocityW = velocityWeight[velocity] ?? 1;
+const confidenceW = confidenceWeight[confidence] ?? 1;
 
-  // ✅ Keep 2 decimal precision
-  const capped = Number(cappedRaw.toFixed(1));
+const raw = base * lifecycleW * velocityW * confidenceW * 12;
+
+if (!Number.isFinite(raw)) {
+  return {
+    score: 0,
+    cappedScore: 0,
+    polarity: "neutral",
+    intensity: "low",
+  };
+}
+
+const cappedRaw = Math.max(-999, Math.min(999, raw));
+const capped = Number(cappedRaw.toFixed(1));
 
   const polarity =
     capped > 0

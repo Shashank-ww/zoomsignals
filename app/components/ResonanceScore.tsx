@@ -49,7 +49,7 @@ export default function ResonanceScore({
               result.polarity === "positive"
                 ? "left-1/2 bg-emerald-500"
                 : "right-1/2 bg-red-500"
-            } transition-all duration-500`}
+            } transition-[width] duration-500 ease-out`}
             style={{ width: `${stripWidth}%` }}
           />
         )}
@@ -73,7 +73,7 @@ export default function ResonanceScore({
             : "text-gray-500"
         }`}
       >
-        {result.cappedScore}
+        {Number.isFinite(result.cappedScore) ? result.cappedScore : 0}
       </div>
 
       {Math.abs(result.cappedScore) > 800 && (

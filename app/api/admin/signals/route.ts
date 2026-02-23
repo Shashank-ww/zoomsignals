@@ -54,15 +54,37 @@ export async function POST(req: Request) {
 }
 
 export async function PATCH(req: Request) {
-  const body = await req.json();
+  try {
+    const body = await req.json();
 
-  const updated = await prisma.signal.update({
-    where: { id: body.id },
-    data: {
-      approvalStatus: body.approvalStatus,
-    },
-  });
+    if (!body.id) {
+      return NextResponse.json(
+        { error: "Signal ID required or signal not selected." },
+        { status: 400 }
+      );
+    }
 
-  return NextResponse.json(updated);
+    const { id, ...rest } = body;
+
+    const updateData = Object.fromEntries(
+      Object.entries(rest).filter(([_, value]) => value !== undefined)
+    );
+
+    if (updateData.repetitionCount !== undefined) {
+      updateData.repetitionCount = Number(updateData.repetitionCount);
+    }
+
+    const updated = await prisma.signal.update({
+      where: { id },
+      data: updateData,
+    });
+
+    return NextResponse.json(updated);
+  } catch (error) {
+    console.error("PATCH error:", error);
+    return NextResponse.json(
+      { error: "Failed to update signal" },
+      { status: 500 }
+    );
+  }
 }
-

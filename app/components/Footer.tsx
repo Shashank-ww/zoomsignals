@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { HiOutlineSearch } from "react-icons/hi";
 
 export default function Footer() {
   return (
-    <footer className="border-t mt-20 bg-white dark:bg-neutral-950">
-      <div className="max-w-6xl mx-auto p-6 text-sm text-gray-500 dark:text-gray-400">
+    <footer className="border-t mt-20 shadow-inner-lg bg-linear-to-t from-[#F8FAFC] to-[#F1F5F9] 
+border border-[#DBEAFE] dark:bg-neutral-950">
+      <div className="max-w-6xl mx-auto p-6 text-sm text-gray-500 dark:text-gray-400 mt-6">
         
         {/* Top Row */}
         <div className="flex flex-col md:flex-row justify-between gap-6">
@@ -24,12 +26,22 @@ export default function Footer() {
               Observational market signals. Structured insight. 
               No financial advice. Not predictive.
             </p>
+
+
+            <p className="flex mt-12 font-light items-end">
+            <HiOutlineSearch className="text-[16px]"/>
+              <span className="px-2 items-end justify-end">
+                www.zoomsignals.com
+              </span>
+            </p>
+
           </div>
+
 
           {/* Product Links */}
           <div className="flex gap-10">
             <div>
-              <h6 className="font-medium text-gray-800 dark:text-gray-200 mb-3">
+              <h6 className="font-medium text-gray-800 dark:text-gray-200 mb-3 pb-1 border-b">
                 Product
               </h6>
               <ul className="space-y-2 text-xs">
@@ -53,7 +65,7 @@ export default function Footer() {
 
             {/* Legal */}
             <div>
-              <h6 className="font-medium text-gray-800 dark:text-gray-200 mb-3">
+              <h6 className="font-medium text-gray-800 dark:text-gray-200 mb-3 pb-1 border-b">
                 Legal
               </h6>
               <ul className="space-y-2 text-xs">
