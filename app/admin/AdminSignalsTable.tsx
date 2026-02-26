@@ -47,6 +47,24 @@ async function hardDelete(id: string) {
   setRows((prev) => prev.filter((s) => s.id !== id));
 }
 
+const [statusSort, setStatusSort] = useState<"asc" | "desc" | null>(null);
+
+function sortByStatus(direction: "asc" | "desc") {
+  const order = ["DRAFT", "PENDING", "APPROVED", "REJECTED"];
+
+  const sorted = [...rows].sort((a, b) => {
+    const aIndex = order.indexOf(a.approvalStatus);
+    const bIndex = order.indexOf(b.approvalStatus);
+
+    return direction === "asc"
+      ? aIndex - bIndex
+      : bIndex - aIndex;
+  });
+
+  setRows(sorted);
+  setStatusSort(direction);
+}
+
   return (
     <div className="space-y-6">
       {/* Header + Create */}
@@ -65,19 +83,26 @@ async function hardDelete(id: string) {
             setEditingSignal(null);
             setIsOpen(true);
           }}
-          className="px-4 py-2 bg-black text-white text-sm rounded-lg hover:bg-zinc-800 transition"
+          className="px-4 py-2 bg-black dark:bg-gray-500 text-white text-sm rounded-lg hover:bg-zinc-600 transition cursor-pointer"
         >
           + Create Signal
         </button>
       </div>
 
-      {/* Table */}
+      {/* Table */} 
       <div className="overflow-x-auto border rounded-xl">
         <table className="w-full text-sm border-collapse">
-          <thead className="bg-zinc-50 text-xs text-zinc-500 uppercase tracking-wide">
+          <thead className="bg-blue-100/40 text-xs text-zinc-500 uppercase tracking-wide">
             <tr>
               <th className="px-4 py-3 text-left">Signal</th>
-              <th className="px-4 py-3 text-left">Status</th>
+              <th
+                className="px-4 py-3 text-left cursor-pointer select-none"
+                onClick={() =>
+                  sortByStatus(statusSort === "asc" ? "desc" : "asc")
+                }
+              >
+                Status {statusSort === "asc" ? "↑" : statusSort === "desc" ? "↓" : ""}
+              </th> 
               <th className="px-4 py-3 text-right">Actions</th>
             </tr>
           </thead>
@@ -97,7 +122,7 @@ async function hardDelete(id: string) {
             {rows.map((signal) => (
               <tr
                 key={signal.id}
-                className="border-t hover:bg-zinc-50 transition"
+                className="border-t hover:bg-zinc-400/10 transition"
               >
                 {/* Main Signal Info */}
                 <td className="px-4 py-4">
@@ -137,18 +162,36 @@ async function hardDelete(id: string) {
 
                 {/* Approval Dropdown */}
                 <td className="px-4 py-4 align-top">
-                  <select
-                    value={signal.approvalStatus}
-                    onChange={(e) =>
-                      updateStatus(signal.id, e.target.value)
-                    }
-                    className="text-xs border rounded-md px-2 py-1 bg-white"
-                  >
-                    <option value="DRAFT">DRAFT</option>
-                    <option value="PENDING">PENDING</option>
-                    <option value="APPROVED">APPROVED</option>
-                    <option value="REJECTED">REJECTED</option>
-                  </select>
+                  <div className="space-y-3">
+
+                    <select
+                      value={signal.approvalStatus}
+                      onChange={(e) =>
+                        updateStatus(signal.id, e.target.value)
+                      }
+                      className="text-xs border rounded-md px-2 py-1 bg-white w-full"
+                    >
+                      <option value="DRAFT">DRAFT</option>
+                      <option value="PENDING">PENDING</option>
+                      <option value="APPROVED">APPROVED</option>
+                      <option value="REJECTED">REJECTED</option>
+                    </select>
+
+                    <div className="text-[10px] text-zinc-400 border-t pt-2 space-y-1">
+                      <div>
+                        Author: {signal.author ?? "—"}
+                      </div>
+                      <div>
+                        Created on:{" "}
+                        {new Date(signal.createdAt).toLocaleString()}
+                      </div>
+                      <div>
+                        Last updated:{" "}
+                        {new Date(signal.updatedAt).toLocaleString()}
+                      </div>
+                    </div>
+
+                  </div>
                 </td>
 
                 {/* Actions */}

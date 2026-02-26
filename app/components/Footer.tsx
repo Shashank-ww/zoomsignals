@@ -5,8 +5,7 @@ import { HiOutlineSearch } from "react-icons/hi";
 
 export default function Footer() {
   return (
-    <footer className="border-t mt-20 shadow-inner-lg bg-linear-to-t from-[#F8FAFC] to-[#F1F5F9] 
-border border-[#DBEAFE] dark:bg-neutral-950">
+    <footer className="border-t mt-20 shadow-inner-lg bg-linear-to-t from-[#F8FAFC] to-[#F1F5F9] border border-[#DBEAFE] dark:bg-neutral-950">
       <div className="max-w-6xl mx-auto p-6 text-sm text-gray-500 dark:text-gray-400 mt-6">
         
         {/* Top Row */}
@@ -22,14 +21,14 @@ border border-[#DBEAFE] dark:bg-neutral-950">
               </span>
             </Link>
 
-            <p className="mt-3 text-xs leading-relaxed">
+            <p className="mt-4 text-xs leading-relaxed text-gray-800">
               Observational market signals. Structured insight. 
               No financial advice. Not predictive.
             </p>
 
 
-            <p className="flex mt-12 font-light items-end">
-            <HiOutlineSearch className="text-[16px]"/>
+            <p className="flex mt-4 py-6 border-t font-light items-end">
+            <HiOutlineSearch className="text-lg"/>
               <span className="px-2 items-end justify-end">
                 www.zoomsignals.com
               </span>
@@ -39,25 +38,25 @@ border border-[#DBEAFE] dark:bg-neutral-950">
 
 
           {/* Product Links */}
-          <div className="flex gap-10">
+          <div className="flex gap-10 text-gray-800">
             <div>
-              <h6 className="font-medium text-gray-800 dark:text-gray-200 mb-3 pb-1 border-b">
+              <h6 className="font-medium mb-3 pb-1 border-b">
                 Product
               </h6>
               <ul className="space-y-2 text-xs">
-                <li>
-                  <Link href="/signals" className="hover:underline">
-                    Signals
-                  </Link>
-                </li>
                 <li>
                   <Link href="/explore" className="hover:underline">
                     Explore
                   </Link>
                 </li>
                 <li>
-                  <Link href="/pricing" className="hover:underline">
-                    Pricing
+                  <Link href="/about-signals" className="hover:underline">
+                    Signals
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/blogs" className="hover:underline">
+                    Blogs
                   </Link>
                 </li>
               </ul>
@@ -65,7 +64,7 @@ border border-[#DBEAFE] dark:bg-neutral-950">
 
             {/* Legal */}
             <div>
-              <h6 className="font-medium text-gray-800 dark:text-gray-200 mb-3 pb-1 border-b">
+              <h6 className="font-medium text-gray-800 mb-3 pb-1 border-b">
                 Legal
               </h6>
               <ul className="space-y-2 text-xs">

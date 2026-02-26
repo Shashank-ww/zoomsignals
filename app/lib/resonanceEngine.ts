@@ -37,7 +37,7 @@ const lifecycleW = lifecycleWeight[lifecycle] ?? 1;
 const velocityW = velocityWeight[velocity] ?? 1;
 const confidenceW = confidenceWeight[confidence] ?? 1;
 
-const raw = base * lifecycleW * velocityW * confidenceW * 12;
+const raw = base * lifecycleW * velocityW * confidenceW * 70;
 
 if (!Number.isFinite(raw)) {
   return {

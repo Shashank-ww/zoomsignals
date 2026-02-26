@@ -71,7 +71,7 @@ export default function SignalCard({ signal }: { signal: Signal }) {
       <div className="flex flex-col md:flex-row">
 
         {/* IMAGE */}
-          <div className="md:w-64 w-full h-48 md:h-auto shrink-0 relative overflow-hidden bg-gray-100">
+          <div className="w-full aspect-4/5 bg-gray-100 overflow-hidden md:w-64 h-48 md:h-auto shrink-0 relative">
             {signal.imageUrl ? (
               <img
                 src={signal.imageUrl}
@@ -83,7 +83,7 @@ export default function SignalCard({ signal }: { signal: Signal }) {
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center text-xs text-gray-400">
-                No image
+                No Ad Visual
               </div>
             )}
 
@@ -108,16 +108,16 @@ export default function SignalCard({ signal }: { signal: Signal }) {
           </div>
 
         {/* CONTENT */}
-        <div className="flex-1 p-6 space-y-5">
+        <div className="flex-1 p-4 space-y-5 cursor-default">
 
           {/* HEADER */}
           <div className="flex justify-between items-start">
             <div>
-              <h3 className="text-xl font-bold">
+              <h3 className="text-xl font-bold dark:text-gray-800">
                 {signal.formatName}
               </h3>
 
-              <div className="flex flex-wrap gap-2 mt-2 text-xs">
+              <div className="flex flex-wrap gap-2 mt-2 text-xs text-gray-800">
                 {signal.primaryPlatforms?.map((p) => (
                   <span
                     key={p}
@@ -174,11 +174,49 @@ export default function SignalCard({ signal }: { signal: Signal }) {
 
 
 {/* FOOTER */}
-<div className="mt-4 border-t">
+<div className="mt-4 border-t border-gray-300 pt-3 space-y-3">
 
-  {/* ROW 1 — Voting */}
-  <div className="flex justify-end items-center pt-4 pb-3">
-    <div className="flex gap-2">
+  {/* Row 1 — Metadata */}
+  <div className="flex justify-between items-center text-[11px] text-gray-500">
+<div className="
+    flex flex-col gap-2
+    sm:flex-row sm:items-center sm:justify-between
+  ">
+
+    {/* Dates */}
+    <div className="
+      flex flex-col text-gray-500
+      sm:flex-row sm:items-center sm:gap-2
+    ">
+      <FormatRelativeDate
+        label="Spotted"
+        date={signal.createdAt}
+      />
+
+      <span className="hidden sm:block w-1 h-1 bg-gray-400 rounded-full" />
+
+      <FormatRelativeDate
+        label="Updated"
+        date={signal.updatedAt}
+      />
+    </div>
+
+
+    {signal.sourceLink && (
+      <a
+        href={signal.sourceLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hover:text-black transition-colors"
+      >
+        View Source →
+      </a>
+    )}
+  </div>
+
+  {/* (Voting (Isolated) */}
+  <div className="flex justify-end">
+    <div className="flex gap-2 self-end sm:self-auto">
 
       <button
         onClick={() => handleFeedback("NOT_RELEVANT")}
@@ -194,6 +232,7 @@ export default function SignalCard({ signal }: { signal: Signal }) {
           active:scale-95
           transition-all duration-150
           text-[11px] font-medium
+          cursor-pointer
         "
         title="Challenge signal"
       >
@@ -217,6 +256,7 @@ export default function SignalCard({ signal }: { signal: Signal }) {
           active:scale-95
           transition-all duration-150
           text-[11px] font-medium
+          cursor-pointer
         "
         title="Validate signal"
       >
@@ -228,41 +268,6 @@ export default function SignalCard({ signal }: { signal: Signal }) {
 
     </div>
   </div>
-
-  {/* ROW 2 — Intelligence Band */}
-  <div className="flex justify-between items-center text-[10px]">
-
-    {/* Dates */}
-    <div className="flex items-center gap-2">
-      <span className="flex items-center ">
-        <FormatRelativeDate
-          label="Spotted"
-          date={signal.createdAt}
-        />
-      </span>
-
-      <span className="w-1 h-1 bg-gray-400 rounded-full" />
-
-      <span className="flex items-center ">
-        <FormatRelativeDate
-          label="Updated"
-          date={signal.updatedAt}
-        />
-      </span>
-    </div>
-
-    {/* View Source */}
-    {signal.sourceLink && (
-      <a
-        href={signal.sourceLink}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="hover:text-black transition-colors text-gray-500"
-      >
-        View Source →
-      </a>
-    )}
-
   </div>
 
 </div>

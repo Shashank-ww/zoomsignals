@@ -53,6 +53,10 @@ export async function POST(req: Request) {
   }
 }
 
+/* ---------------------- */
+/* PATCH SIGNAL */
+/* ---------------------- */
+
 export async function PATCH(req: Request) {
   try {
     const body = await req.json();

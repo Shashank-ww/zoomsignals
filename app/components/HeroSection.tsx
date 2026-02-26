@@ -120,8 +120,7 @@
 
 {/* ================= LIVE FEED HEADER ================= */}
 <section id="feed-header" className="max-w-6xl mx-auto px-6 mt-12">
-  <div className="rounded-2xl px-10 py-10 bg-linear-to-br from-[#EFF6FF] via-[#F8FAFC] to-[#F1F5F9] 
-border border-[#DBEAFE]">
+  <div className="rounded-2xl px-10 py-10 bg-linear-to-br from-[#EFF6FF] via-[#F8FAFC] to-[#F1F5F9] border border-[#DBEAFE]">
     <LiveFeedHeader
       approvedCount={approvedSignalsCount}
       totalCount={totalSignalsCount}

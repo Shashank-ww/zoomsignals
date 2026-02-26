@@ -244,11 +244,12 @@ const filteredSignals = useMemo<Signal[]>(() => {
   className="
     order-1
     lg:order-0
-    w-full lg:w-72
-    lg:col-span-1
-    lg:sticky
-    lg:top-24
-    space-y-6
+    w-full
+    lg:w-60
+    lg:min-w-[18rem]
+    lg:max-w-[18rem]
+    lg:shrink-0
+    space-y-4
   "
 >
   <div className="sticky top-20 space-y-4">
@@ -377,7 +378,7 @@ const filteredSignals = useMemo<Signal[]>(() => {
     lg:order-0
     lg:col-span-3
   ">
-  <div className="space-y-8">
+  <div className="space-y-6">
 
     {/* ACTIVE FILTER CHIPS */}
 <div className="flex flex-wrap gap-2">

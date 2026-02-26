@@ -6,8 +6,8 @@ const headlines = [
   "Media buying intelligence. Not social trends.",
   "Spot early-lift before scaling your ad spends.",
   "Performance patterns, real brand lift.",
-  "Social media signals that lifts creativity.",
-  "Creative ads that help you gain early traction.",
+  "Time creative shift before your CPMs spike.",
+  "Social ads that help you stand out, first.",
   // "If it&s not blowing minds, it&aposs blowing your budget.",
 ];
 
@@ -23,7 +23,7 @@ export default function HeroHeadline() {
   if (!selected) return null;
 
   return (
-    <div className="space-y-6 dark:text-gray-800">
+    <div className="space-y-6 dark:text-gray-300">
       <h1 className="
         max-w-2xl
         lg:text-6xl
@@ -35,8 +35,7 @@ export default function HeroHeadline() {
       </h1>
 
       <p className="text-gray-600 max-w-lg leading-relaxed text-base">
-        Live feed of creative patterns that creates measurable lift across active advertiser accounts.
-        With real-time monitoring and not surface trends.
+        Insights on live ad formats showing early performance lift for brands active on social media. Currently monitoring <span className="underline underline-offset-4">automobiles category.</span> 
       </p>
 
       <div>
