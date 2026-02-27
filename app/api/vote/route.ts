@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 export async function POST(req: Request) {
   const body = await req.json();
   const { signalId, type, voterHash } = body;
+  console.log("Vote written");
 
   try {
     await prisma.vote.create({

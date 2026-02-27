@@ -31,7 +31,15 @@ const METRIC_STYLES: Record<string, string> = {
 
 /* ==================================================== */
 
-export default function SignalCard({ signal }: { signal: Signal }) {
+export default function SignalCard({
+  signal,
+  onVote,
+}: {
+  signal: Signal;
+  onVote: (signalId: string, type: "RELEVANT" | "NOT_RELEVANT") => void;
+})
+
+{
 
   // ✅ SOURCE OF TRUTH = COUNTS
   const [relevantCount, setRelevantCount] = useState(
@@ -44,6 +52,7 @@ export default function SignalCard({ signal }: { signal: Signal }) {
 
   // ✅ OPTIMISTIC, NON-BLOCKING
   const handleFeedback = (type: "RELEVANT" | "NOT_RELEVANT") => {
+    console.log("Vote received", signal, type);
 
     if (type === "RELEVANT") {
       setRelevantCount(prev => prev + 1);

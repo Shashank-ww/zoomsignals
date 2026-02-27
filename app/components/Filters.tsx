@@ -1,14 +1,12 @@
 "use client";
 
+import { useState } from "react";
+
 export type SortOption =
   | "recent"
   | "platforms"
   | "confidence"
-  | "velocity"
-  | "emerging"
-  | "accelerating"
-  | "stable"
-  | "declining";
+  | "velocity";
 
 interface FiltersProps {
   confidenceFilter: string;
@@ -42,6 +40,8 @@ export default function Filters({
   setSortBy,
   clearAll,
 }: FiltersProps) {
+  const [isOpen, setIsOpen] = useState(false);
+
   const hasActiveFilters =
     confidenceFilter !== "all" ||
     velocityFilter !== "all" ||
@@ -51,79 +51,102 @@ export default function Filters({
 
   return (
     <div className="space-y-6">
-
-      <h3 className="text-sm font-semibold tracking-wide uppercase text-gray-600">
-        Filters
-      </h3>
-
-      <FilterGroup
-        label="Confidence"
-        options={["HIGH", "MEDIUM", "LOW"]}
-        activeValue={confidenceFilter}
-        setValue={setConfidenceFilter}
-      />
-
-      <FilterGroup
-        label="Velocity"
-        options={["EMERGING", "ACCELERATING", "STABLE", "DECLINING"]}
-        activeValue={velocityFilter}
-        setValue={setVelocityFilter}
-      />
-
-      <FilterGroup
-        label="Lifecycle"
-        options={lifecycleOptions}
-        activeValue={lifecycleFilter}
-        setValue={setLifecycleFilter}
-      />
-
-      <FilterGroup
-        label="Resonance"
-        options={["high", "medium", "low"]}
-        activeValue={resonanceFilter}
-        setValue={setResonanceFilter}
-        formatLabel={(v) =>
-          v === "high"
-            ? "High (70+)"
-            : v === "medium"
-            ? "Medium (40–69)"
-            : "Low (<40)"
-        }
-      />
-
-      {/* SORT */}
-      <div>
-        <label className="block text-xs mb-2 uppercase text-gray-500">
-          Sort By
-        </label>
-
-        <select
-          value={sortBy}
-          onChange={(e) => setSortBy(e.target.value as SortOption)}
-          className="w-full border rounded-lg px-3 py-2 text-sm bg-white"
+      {/* HEADER */}
+      <div className="flex items-center justify-between">
+        <button
+          onClick={() => setIsOpen((prev) => !prev)}
+          className="text-sm font-semibold uppercase tracking-wide"
         >
-          <option value="recent">Most Recent</option>
-          <option value="confidence">Highest Confidence</option>
-          <option value="velocity">Highest Velocity</option>
-          <option value="platforms">Most Platforms</option>
-        </select>
+          {isOpen ? "Hide Filters" : "Show Filters"}
+        </button>
+
+        {hasActiveFilters && (
+          <button
+            onClick={clearAll}
+            className="text-xs text-gray-400 hover:text-black transition"
+          >
+            Reset
+          </button>
+        )}
       </div>
 
-      {hasActiveFilters && (
-        <button
-          onClick={clearAll}
-          className="w-full text-xs px-3 py-2 border rounded-lg hover:bg-gray-100 transition"
-        >
-          Clear All
-        </button>
+      {/* FILTER CONTENT */}
+      {isOpen && (
+        <>
+          {/* SORT */}
+          <div className="space-y-2">
+            <p className="text-xs text-gray-400 uppercase tracking-wide">
+              Sort
+            </p>
+
+            <select
+              value={sortBy}
+              onChange={(e) =>
+                setSortBy(e.target.value as SortOption)
+              }
+              className="w-full text-sm bg-transparent border-b border-gray-200 py-1 focus:outline-none focus:border-black transition"
+            >
+              <option value="recent">Most Recent</option>
+              <option value="confidence">
+                Highest Confidence
+              </option>
+              <option value="velocity">
+                Highest Velocity
+              </option>
+              <option value="platforms">
+                Most Platforms
+              </option>
+            </select>
+          </div>
+
+          <CompactFilter
+            label="Confidence"
+            options={["HIGH", "MEDIUM", "LOW"]}
+            activeValue={confidenceFilter}
+            setValue={setConfidenceFilter}
+          />
+
+          <CompactFilter
+            label="Velocity"
+            options={[
+              "EMERGING",
+              "ACCELERATING",
+              "STABLE",
+              "DECLINING",
+            ]}
+            activeValue={velocityFilter}
+            setValue={setVelocityFilter}
+          />
+
+          <CompactFilter
+            label="Lifecycle"
+            options={lifecycleOptions}
+            activeValue={lifecycleFilter}
+            setValue={setLifecycleFilter}
+          />
+
+          <CompactFilter
+            label="Resonance"
+            options={["high", "medium", "low"]}
+            activeValue={resonanceFilter}
+            setValue={setResonanceFilter}
+            formatLabel={(v) =>
+              v === "high"
+                ? "High"
+                : v === "medium"
+                ? "Medium"
+                : "Low"
+            }
+          />
+        </>
       )}
     </div>
   );
 }
 
-/* ---------------- FilterGroup ---------------- */
+/* ---------------- Compact Filter ---------------- */
 
-function FilterGroup({
+function CompactFilter({
   label,
   options,
   activeValue,
@@ -137,10 +160,10 @@ function FilterGroup({
   formatLabel?: (v: string) => string;
 }) {
   return (
-    <div>
-      <label className="block text-xs mb-2 uppercase text-gray-500">
+    <div className="space-y-2">
+      <p className="text-xs text-gray-400 uppercase tracking-wide underline underline-offset-2">
         {label}
-      </label>
+      </p>
 
       <div className="flex flex-wrap gap-2">
         {options.map((option) => {
@@ -149,17 +172,21 @@ function FilterGroup({
           return (
             <button
               key={option}
-              onClick={() => setValue(active ? "all" : option)}
+              onClick={() =>
+                setValue(active ? "all" : option)
+              }
               className={`
-                text-xs px-3 py-1 rounded-full border transition
+                text-xs px-2.5 py-1 rounded-full transition
                 ${
                   active
-                    ? "bg-black text-white border-black"
-                    : "bg-white hover:bg-gray-100"
+                    ? "bg-black text-white"
+                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                 }
               `}
             >
-              {formatLabel ? formatLabel(option) : option}
+              {formatLabel
+                ? formatLabel(option)
+                : option}
             </button>
           );
         })}

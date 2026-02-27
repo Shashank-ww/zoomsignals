@@ -45,7 +45,7 @@ export default function HeroHeadline() {
             inline-flex
             items-center
             gap-2
-            px-7
+            px-6
             py-3
             text-sm
             font-medium

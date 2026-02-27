@@ -10,6 +10,7 @@ import {
   confidenceWeight,
 } from "@/lib/resonance";
 import MailingList from "@/components/MailingList";
+import Filters from "./Filters";
 
 interface FeedProps {
   initialSignals: Signal[];
@@ -29,18 +30,42 @@ export default function Feed({ initialSignals }: FeedProps) {
  
 
   /* ---------------- SORT STATE ---------------- */
-  const [sortBy, setSortBy] = useState<
-    | "recent"
-    | "platforms"
-    | "confidence"
-    | "velocity"
-    | "emerging"
-    | "accelerating"
-    | "stable"
-    | "declining"
-  >("recent");
+const [sortBy, setSortBy] = useState<"recent" | "platforms" | "confidence" | "velocity">("recent");
 
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+
+  const handleVote = async (
+  signalId: string,
+  type: "RELEVANT" | "NOT_RELEVANT"
+) => {
+  const res = await fetch("/api/vote", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      signalId,
+      type,
+      voterHash: crypto.randomUUID(),
+    }),
+  });
+
+  if (!res.ok) return;
+
+  const data = await res.json();
+
+  setSignals(prev =>
+    prev.map(s =>
+      s.id === signalId
+        ? {
+            ...s,
+            votes: [
+              ...(s.votes ?? []),
+              { type } as any, // lightweight update
+            ],
+          }
+        : s
+    )
+  );
+};
 
   /* ---------------- FETCH ---------------- */
 // Fetching now happens on Home page and then passed on here, Home page is Server, This Feed page is use client
@@ -69,11 +94,7 @@ const approvedSignals = useMemo<Signal[]>(() => {
 }, [signals]);
 
   /* ---------------- FILTER OPTIONS ---------------- */
-const confidenceOptions = useMemo<string[]>(() => {
-  return Array.from(
-    new Set(approvedSignals.map((s: Signal) => s.confidence))
-  );
-}, [approvedSignals]);
+
 
 const lifecycleOptions = useMemo<string[]>(() => {
   return Array.from(
@@ -81,11 +102,7 @@ const lifecycleOptions = useMemo<string[]>(() => {
   );
 }, [approvedSignals]);
 
-const velocityOptions = useMemo<string[]>(() => {
-  return Array.from(
-    new Set(approvedSignals.map((s: Signal) => s.velocity))
-  );
-}, [approvedSignals]);
+
 
   /* ---------------- FILTERING ---------------- */
 const filteredSignals = useMemo<Signal[]>(() => {
@@ -180,37 +197,10 @@ const filteredSignals = useMemo<Signal[]>(() => {
           velocityRank[a.velocity]
       );
     }
-
-    if (sortBy === "emerging") {
-    data.sort((a, b) =>
-        (b.velocity === "EMERGING" ? 1 : 0) -
-        (a.velocity === "EMERGING" ? 1 : 0)
-    );
-    }
-
-    if (sortBy === "accelerating") {
-      data.sort((a, b) =>
-        (b.velocity === "ACCELERATING" ? 1 : 0) -
-        (a.velocity === "ACCELERATING" ? 1 : 0)
-      );
-    }
-
-    if (sortBy === "stable") {
-      data.sort((a, b) =>
-        (b.velocity === "STABLE" ? 1 : 0) -
-        (a.velocity === "STABLE" ? 1 : 0)
-      );
-    }
-
-    if (sortBy === "declining") {
-      data.sort((a, b) =>
-        (b.velocity === "DECLINING" ? 1 : 0) -
-        (a.velocity === "DECLINING" ? 1 : 0)
-      );
-    }
-
-    return data;
+    
+  return data;
   }, [filteredSignals, sortBy]);
+
 
   /* ---------------- RESET PAGINATION ---------------- */
   useEffect(() => {
@@ -245,104 +235,28 @@ const filteredSignals = useMemo<Signal[]>(() => {
     order-1
     lg:order-0
     w-full
-    lg:w-60
-    lg:min-w-[18rem]
-    lg:max-w-[18rem]
-    lg:shrink-0
+    lg:w-72
+    lg:flex-none
     space-y-4
   "
 >
   <div className="sticky top-20 space-y-4">
 
     {/* FILTERS */}
-    <div className="space-y-4">
-      <h3 className="text-sm font-semibold">Filter by</h3>
-
-      <div className="space-y-3">
-
-        <div>
-          <label className="block text-xs mb-1 uppercase">Confidence</label>
-          <select
-            value={confidenceFilter}
-            onChange={(e) => setConfidenceFilter(e.target.value)}
-            className="w-full border px-3 py-2 text-sm"
-          >
-            <option value="all">All</option>
-            {confidenceOptions.map((c) => (
-              <option key={c}>{c}</option>
-            ))}
-          </select>
-        </div>
-
-        <div>
-          <label className="block text-xs mb-1 uppercase">Velocity</label>
-          <select
-            value={velocityFilter}
-            onChange={(e) => setVelocityFilter(e.target.value)}
-            className="w-full border px-3 py-2 text-sm"
-          >
-            <option value="all">All</option>
-            {velocityOptions.map((v) => (
-              <option key={v}>{v}</option>
-            ))}
-          </select>
-        </div>
-
-        <div>
-          <label className="block text-xs mb-1 uppercase">Lifecycle</label>
-          <select
-            value={lifecycleFilter}
-            onChange={(e) => setLifecycleFilter(e.target.value)}
-            className="w-full border px-3 py-2 text-sm"
-          >
-            <option value="all">All</option>
-            {lifecycleOptions.map((l) => (
-              <option key={l}>{l}</option>
-            ))}
-          </select>
-        </div>
-
-        <div>
-          <label className="block text-xs mb-1 uppercase">Resonance</label>
-          <select
-            value={resonanceFilter}
-            onChange={(e) => setResonanceFilter(e.target.value)}
-            className="w-full border px-3 py-2 text-sm"
-          >
-            <option value="all">All</option>
-            <option value="high">High (70+)</option>
-            <option value="medium">Medium (40–69)</option>
-            <option value="low">Low (&lt;40)</option>
-          </select>
-        </div>
-
-        <div>
-          <label className="block text-xs mb-1 uppercase">Sort By</label>
-          <select
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value as any)}
-            className="w-full border px-3 py-2 text-sm"
-          >
-            <option value="recent">Most Recent</option>
-            <option value="platforms">Platforms</option>
-            <option value="confidence">Highest Confidence</option>
-            <option value="velocity">Highest Velocity</option>
-            <option value="emerging">Emerging</option>
-            <option value="accelerating">Accelerating</option>
-            <option value="stable">Stable</option>
-            <option value="declining">Declining</option>
-          </select>
-        </div>
-
-        <button
-          onClick={clearAll}
-          className="w-full text-xs px-3 py-2 border rounded-lg hover:bg-gray-100"
-        >
-          Clear All
-        </button>
-
-      </div>
-    </div>
+    <Filters
+  confidenceFilter={confidenceFilter}
+  velocityFilter={velocityFilter}
+  lifecycleFilter={lifecycleFilter}
+  resonanceFilter={resonanceFilter}
+  sortBy={sortBy}
+  lifecycleOptions={lifecycleOptions}
+  setConfidenceFilter={setConfidenceFilter}
+  setVelocityFilter={setVelocityFilter}
+  setLifecycleFilter={setLifecycleFilter}
+  setResonanceFilter={setResonanceFilter}
+  setSortBy={setSortBy}
+  clearAll={clearAll}
+/>
     <div className="border-t pt-4"></div>
 
     {/* TERMS BLOCK */}
@@ -373,15 +287,12 @@ const filteredSignals = useMemo<Signal[]>(() => {
 
         {/* FEED */}
 {/* MAIN CONTENT */}
-<div className="
-    order-3
-    lg:order-0
-    lg:col-span-3
-  ">
-  <div className="space-y-6">
+<div className="order-3 lg:order-0 flex-1 min-w-0">
+  <div className="space-y-8">
 
     {/* ACTIVE FILTER CHIPS */}
-<div className="flex flex-wrap gap-2">
+<div className="grid grid-cols-2 gap-2">
+
   {confidenceFilter !== "all" && (
     <Chip
       label={`Confidence: ${confidenceFilter}`}
@@ -425,7 +336,11 @@ const filteredSignals = useMemo<Signal[]>(() => {
         ) : (
           <>
             {visibleSignals.map((signal) => (
-              <SignalCard key={signal.id} signal={signal} />
+              <SignalCard
+                key={signal.id}
+                signal={signal}
+                onVote={handleVote}
+              />
             ))}
 
             {hasMore && (

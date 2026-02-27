@@ -1,6 +1,6 @@
 // app/types/signal.types.ts
 
-import {
+import type {
   Lifecycle,
   Velocity,
   Confidence,
