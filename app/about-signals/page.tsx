@@ -49,13 +49,13 @@ export default function AboutSignals() {
         </h1>
 
         <p className="text-lg text-gray-700">
-          ZoomSignals documents repeatable creative mechanics forming across
+          Zoomsignals keep records of repeatable creative patterns forming across
           short-form ecosystems. A signal emerges when independent brands
-          begin solving attention in structurally similar ways.
+          begin solving attention in structurally similar ways on social media platforms.
         </p>
 
         <p className="text-gray-600">
-          It is not a meme. Not a niche topic. Not a viral spike.
+          It is not a meme. Not a niche topic. Not one-off viral content.
           It is a repeatable format gaining measurable momentum.
         </p>
       </section>
@@ -76,14 +76,14 @@ export default function AboutSignals() {
 
             <div className="p-8 border rounded-2xl bg-gray-50">
               <p className="text-gray-800 text-lg leading-relaxed">
-                A signal is a documented structural format that appears
-                independently across brands, demonstrates velocity,
+                A signal is a recorded structural format that appears
+                independently across brands, shows velocity,
                 and carries strategic implications.
               </p>
 
               <p className="mt-4 text-gray-600 text-sm">
                 It is not a content theme. Not an aesthetic trend.
-                It is a repeatable attention mechanic under acceleration.
+                It is a repeatable attention pattern under acceleration.
               </p>
             </div>
           </div>
@@ -105,7 +105,7 @@ export default function AboutSignals() {
                     onClick={() => setActiveLayer(i)}
                     className={`p-5 rounded-2xl border text-left transition ${
                       isActive
-                        ? "bg-black text-white border-black"
+                        ? "bg-gray-700 text-white border-white"
                         : "hover:border-black"
                     }`}
                   >
@@ -119,6 +119,10 @@ export default function AboutSignals() {
             </div>
 
             <div className="p-8 border rounded-2xl bg-gray-50">
+              <p className="text-gray-900 font-semibold text-base mb-2">
+                {layers[activeLayer].title}
+              </p>
+
               <p className="text-gray-700 text-base leading-relaxed">
                 {layers[activeLayer].description}
               </p>
@@ -156,7 +160,7 @@ export default function AboutSignals() {
           <div>
             <div className="text-5xl font-semibold mb-4">01</div>
             <p className="text-gray-700 text-base leading-relaxed">
-              Diagnose structural fit. Assess whether the mechanic aligns
+              Identify structural fit. Assess whether the pattern aligns
               with category dynamics, audience maturity, and internal
               creative capability.
             </p>

@@ -22,8 +22,8 @@ export default function Footer() {
             </Link>
 
             <p className="mt-4 text-xs leading-relaxed text-gray-800">
-              Observational market signals. Structured insight. 
-              No financial advice. Not predictive.
+              Observational market signals. Structured insight.
+              Not predictive.
             </p>
 
 

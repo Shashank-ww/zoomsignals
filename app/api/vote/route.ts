@@ -34,11 +34,11 @@ export async function POST(req: Request) {
   }
 
   const relevant = signal.votes.filter(
-    v => v.type === "RELEVANT"
+    (    v: { type: string; }) => v.type === "RELEVANT"
   ).length;
 
   const notRelevant = signal.votes.filter(
-    v => v.type === "NOT_RELEVANT"
+    (    v: { type: string; }) => v.type === "NOT_RELEVANT"
   ).length;
 
   return NextResponse.json({

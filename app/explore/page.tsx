@@ -8,10 +8,10 @@ export default function Explore() {
 
       <section className="space-y-6">
         <h1 className="text-4xl md:text-5xl font-semibold tracking-tight">
-          Why Zoomsignals exists
+          Why Zoomsignals exist
         </h1>
 
-        <p className="text-lg text-gray-700 leading-relaxed">
+        <p className="text-gray-700 leading-relaxed">
           After more than a decade inside advertising industry, one pattern became clear:
           winning formats don&apos;t explode, they converge. Like gold rush or NFT art, once someone strikes it as valuable, crowd gathers. 
         </p>
@@ -28,14 +28,15 @@ export default function Explore() {
 
       <section className="space-y-6">
         <p className="text-gray-700 leading-relaxed">
-          From large excel sheets and heavy powerpoint presentations that looked like guardbooks, and just stayed in organisation&apos;s common win-mac folder. We created Zoomsignals as a progression-output of multi-format ads and is built to document that early convergence,
+          From large excel sheets and heavy powerpoint decks, that just stayed in organisation&apos;s common win-mac folder. 
+          We created Zoomsignals as a progression-output of multi-format ads that is built to record early convergence,
           while it is still forming. We believed in leveraging early-mover advantage.
         </p>
 
         <p className="text-gray-700 leading-relaxed">
           Not to chase virality. Not to guarantee performance.
           But to give performance teams and creative leaders
-          structural awareness before scale distorts the signal. Just so you can utilise the format without banging your head on what works and what does not on that marketing brief!
+          structural awareness before scale distorts the signal.
         </p>
 
         <p className="text-gray-700 leading-relaxed">
@@ -51,7 +52,7 @@ export default function Explore() {
 
       <section className="space-y-4">
         <p className="text-gray-600">
-          ZoomSignals is manually curated and intentionally opinionated.
+          Zoomsignals is manually curated and intentionally opinionated.
           It values timing over noise.
         </p>
       </section>

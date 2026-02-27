@@ -183,11 +183,11 @@ function sortByStatus(direction: "asc" | "desc") {
                       </div>
                       <div>
                         Created on:{" "}
-                        {new Date(signal.createdAt).toLocaleString()}
+                        {new Date(signal.createdAt).toISOString()}
                       </div>
                       <div>
                         Last updated:{" "}
-                        {new Date(signal.updatedAt).toLocaleString()}
+                        {new Date(signal.updatedAt).toISOString()}
                       </div>
                     </div>
 
