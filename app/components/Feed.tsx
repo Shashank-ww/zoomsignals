@@ -10,7 +10,7 @@ import {
   confidenceWeight,
 } from "@/lib/resonance";
 import MailingList from "@/components/MailingList";
-import Filters from "./Filters";
+import Filters from "@/components/Filters";
 
 interface FeedProps {
   initialSignals: Signal[];
@@ -34,6 +34,7 @@ const [sortBy, setSortBy] = useState<"recent" | "platforms" | "confidence" | "ve
 
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
+    /* ---------
   const handleVote = async (
   signalId: string,
   type: "RELEVANT" | "NOT_RELEVANT"
@@ -66,6 +67,7 @@ const [sortBy, setSortBy] = useState<"recent" | "platforms" | "confidence" | "ve
     )
   );
 };
+------- */
 
   /* ---------------- FETCH ---------------- */
 // Fetching now happens on Home page and then passed on here, Home page is Server, This Feed page is use client
@@ -288,7 +290,7 @@ const filteredSignals = useMemo<Signal[]>(() => {
         {/* FEED */}
 {/* MAIN CONTENT */}
 <div className="order-3 lg:order-0 flex-1 min-w-0">
-  <div className="space-y-8">
+  <div className="space-y-6">
 
     {/* ACTIVE FILTER CHIPS */}
 <div className="grid grid-cols-2 gap-2">
@@ -339,7 +341,6 @@ const filteredSignals = useMemo<Signal[]>(() => {
               <SignalCard
                 key={signal.id}
                 signal={signal}
-                onVote={handleVote}
               />
             ))}
 

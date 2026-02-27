@@ -33,10 +33,8 @@ const METRIC_STYLES: Record<string, string> = {
 
 export default function SignalCard({
   signal,
-  onVote,
 }: {
   signal: Signal;
-  onVote: (signalId: string, type: "RELEVANT" | "NOT_RELEVANT") => void;
 })
 
 {
