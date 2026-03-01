@@ -115,8 +115,8 @@ useEffect(() => {
     "w-full bg-zinc-50 border border-zinc-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-black/20";
 
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50">
-      <div className="bg-white w-full max-w-5xl rounded-2xl shadow-2xl p-8 space-y-8 max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 text-black">
+      <div className="bg-white w-full max-w-5xl rounded-2xl shadow-2xl p-8 space-y-8 max-h-[90vh] overflow-y-auto ">
         
         {/* Header */}
         <div className="flex justify-between items-center">
@@ -157,7 +157,7 @@ useEffect(() => {
               Insight
             </label>
             <textarea
-              className={`${inputClass} min-h-fit`}
+              className={`${inputClass} min-h-fit dark:text-black`}
               placeholder="Describe the signal insight..."
               value={form.insight}
               onChange={(e) =>

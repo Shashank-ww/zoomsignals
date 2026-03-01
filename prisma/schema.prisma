@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,27 +8,24 @@ datasource db {
 }
 
 model Signal {
-  id               String   @id @default(uuid())
-  formatName       String
-  narrative        String
+  id               String         @id @default(uuid())
+  formatName       String         @unique
+  narrative        Narrative
   insight          String
-
   lifecycle        Lifecycle
   velocity         Velocity
   confidence       Confidence
   approvalStatus   ApprovalStatus
-
-  primaryPlatforms String[]
+  primaryPlatforms Platform[]
   repetitionCount  Int
   author           String?
-
   imageUrl         String?
   sourceLink       String?
-
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+  notRelevantCount Int            @default(0)
+  relevantCount    Int            @default(0)
   votes            Vote[]
-
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
 }
 
 model Vote {
@@ -43,10 +34,23 @@ model Vote {
   type      VoteType
   voterHash String
   createdAt DateTime @default(now())
+  signal    Signal   @relation(fields: [signalId], references: [id], onDelete: Cascade)
+}
 
-  signal Signal @relation(fields: [signalId], references: [id], onDelete: Cascade)
+model subscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
 
-  @@unique([signalId, voterHash])
+model ImportLog {
+  id         String   @id @default(cuid())
+  fileName   String
+  mode       String
+  inserted   Int
+  updated    Int
+  failed     Int
+  createdAt  DateTime @default(now())
 }
 
 enum Lifecycle {
@@ -96,10 +100,4 @@ enum Narrative {
 enum VoteType {
   RELEVANT
   NOT_RELEVANT
-}
-
-model subscriber {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  createdAt DateTime @default(now())
 }

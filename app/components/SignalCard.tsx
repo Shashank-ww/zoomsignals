@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FormatRelativeDate } from "@/components/FormatRelativeDate";
 import type { Signal } from "@/types/signal.types";
 import ResonanceScore from "./ResonanceScore";
@@ -35,42 +35,68 @@ export default function SignalCard({
   signal,
 }: {
   signal: Signal;
-})
+}) {
+  
+  // 🔥 SOURCE OF TRUTH = DB COUNTERS (NOT votes array anymore)
+const [relevantCount, setRelevantCount] = useState<number>(
+  Number(signal?.relevantCount ?? 0)
+);
 
-{
+const [notRelevantCount, setNotRelevantCount] = useState<number>(
+  Number(signal?.notRelevantCount ?? 0)
+);
 
-  // ✅ SOURCE OF TRUTH = COUNTS
-  const [relevantCount, setRelevantCount] = useState(
-    signal.votes?.filter(v => v.type === "RELEVANT").length ?? 0
-  );
+  // 🔐 Persist voter identity (very important)
+  const [voterHash, setVoterHash] = useState<string | null>(null);
 
-  const [notRelevantCount, setNotRelevantCount] = useState(
-    signal.votes?.filter(v => v.type === "NOT_RELEVANT").length ?? 0
-  );
+  useEffect(() => {
+  setRelevantCount(Number(signal?.relevantCount ?? 0));
+  setNotRelevantCount(Number(signal?.notRelevantCount ?? 0));
+}, [signal.relevantCount, signal.notRelevantCount]);
 
-  // ✅ OPTIMISTIC, NON-BLOCKING
-  const handleFeedback = (type: "RELEVANT" | "NOT_RELEVANT") => {
-    console.log("Vote received", signal, type);
+  useEffect(() => {
+    let existing = localStorage.getItem("voterHash");
 
-    if (type === "RELEVANT") {
-      setRelevantCount(prev => prev + 1);
-    } else {
-      setNotRelevantCount(prev => prev + 1);
+    if (!existing) {
+      existing = crypto.randomUUID();
+      localStorage.setItem("voterHash", existing);
     }
 
-    fetch("/api/vote", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        signalId: signal.id,
-        type,
-        voterHash:
-          typeof crypto !== "undefined" && crypto.randomUUID
-            ? crypto.randomUUID()
-            : `${Date.now()}-${Math.random().toString(36).slice(2)}`,
-      }),
-    });
-  };
+    setVoterHash(existing);
+  }, []);
+
+  // ✅ OPTIMISTIC + RECONCILIATION
+const handleFeedback = async (type: "RELEVANT" | "NOT_RELEVANT") => {
+  if (!voterHash) return;
+
+  if (type === "RELEVANT") {
+    setRelevantCount(prev => prev + 1);
+  } else {
+    setNotRelevantCount(prev => prev + 1);
+  }
+
+  try {
+    const res = await fetch("/api/vote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          signalId: signal.id,
+          type,
+          voterHash,
+        }),
+      });
+
+
+const data = await res.json();
+console.log("API response:", data);
+
+    setRelevantCount(Number(data.relevantCount));
+    setNotRelevantCount(Number(data.notRelevantCount));
+  } catch (err) {
+    console.error("Vote failed", err);
+  }
+};
+
   
   return (
     <article
@@ -125,7 +151,7 @@ export default function SignalCard({
               </h3>
 
               <div className="flex flex-wrap gap-2 mt-2 text-xs text-gray-800">
-                {signal.primaryPlatforms?.map((p) => (
+                {signal.primaryPlatforms?.map((p: string) => (
                   <span
                     key={p}
                     className="px-2 py-0.5 border rounded-full bg-gray-50"
@@ -243,7 +269,7 @@ export default function SignalCard({
         "
         title="Challenge signal"
       >
-        <span className="leading-none">✕</span>
+        <span className="leading-none">👎</span>
         <span className="text-[10px] opacity-80">
           {notRelevantCount}
         </span>
@@ -267,7 +293,7 @@ export default function SignalCard({
         "
         title="Validate signal"
       >
-        <span className="leading-none">✓</span>
+        <span className="leading-none">👍</span>
         <span className="text-[10px] opacity-80">
           {relevantCount}
         </span>

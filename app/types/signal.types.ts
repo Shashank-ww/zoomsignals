@@ -1,11 +1,11 @@
-// app/types/signal.types.ts
-
 import type {
   Lifecycle,
   Velocity,
   Confidence,
   ApprovalStatus,
   VoteType,
+  Narrative,
+  Platform,
 } from "@prisma/client";
 
 /* ================================
@@ -21,14 +21,14 @@ export type Vote = {
 };
 
 /* ================================
-   Signal (DB Aligned)
+   Signal (DB Strict Aligned)
 ================================ */
 
 export type Signal = {
   id: string;
 
   formatName: string;
-  narrative: string;
+  narrative: Narrative;
   insight: string;
 
   lifecycle: Lifecycle;
@@ -36,12 +36,15 @@ export type Signal = {
   confidence: Confidence;
   approvalStatus: ApprovalStatus;
 
-  primaryPlatforms: string[]; 
+  primaryPlatforms: Platform[];
   repetitionCount: number;
   author: string | null;
 
   imageUrl?: string | null;
   sourceLink?: string | null;
+
+  relevantCount: number;
+  notRelevantCount: number;
 
   votes?: Vote[];
 

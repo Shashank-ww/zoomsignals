@@ -55,7 +55,7 @@ export default function Filters({
       <div className="flex items-center justify-between">
         <button
           onClick={() => setIsOpen((prev) => !prev)}
-          className="text-sm font-semibold uppercase tracking-wide"
+          className="text-sm font-semibold uppercase tracking-wide" 
         >
           {isOpen ? "Hide Filters" : "Show Filters"}
         </button>
@@ -63,7 +63,7 @@ export default function Filters({
         {hasActiveFilters && (
           <button
             onClick={clearAll}
-            className="text-xs text-gray-400 hover:text-black transition"
+            className="text-xs text-gray-400 hover:text-black transition-all"
           >
             Reset
           </button>

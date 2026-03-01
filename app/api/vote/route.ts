@@ -2,48 +2,63 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 export async function POST(req: Request) {
-  const body = await req.json();
-  const { signalId, type, voterHash } = body;
-  console.log("Vote written");
-
   try {
-    await prisma.vote.create({
-      data: {
-        signalId,
-        type,
-        voterHash,
-      },
+    const { signalId, type, voterHash } = await req.json();
+
+    if (!signalId || !type || !voterHash) {
+      return NextResponse.json(
+        { error: "Missing fields" },
+        { status: 400 }
+      );
+    }
+
+    // 🔥 Use transaction for atomic safety
+    const result = await prisma.$transaction(async (tx) => {
+      
+      // 1️⃣ Create vote (will fail if already exists due to unique constraint)
+      await tx.vote.create({
+        data: {
+          signalId,
+          type,
+          voterHash,
+        },
+      });
+
+      // 2️⃣ Atomic increment on Signal
+const updatedSignal = await tx.signal.update({
+  where: { id: signalId },
+  data: {
+    ...(type === "RELEVANT" && {
+      relevantCount: { increment: 1 },
+    }),
+    ...(type === "NOT_RELEVANT" && {
+      notRelevantCount: { increment: 1 },
+    }),
+  },
+});
+
+      return updatedSignal;
     });
-  } catch {
+
+return NextResponse.json({
+  relevantCount: result.relevantCount ?? 0,
+  notRelevantCount: result.notRelevantCount ?? 0,
+});
+
+  } catch (error: any) {
+    // Unique constraint error = already voted
+    if (error.code === "P2002") {
+      return NextResponse.json(
+        { error: "Already voted" },
+        { status: 400 }
+      );
+    }
+
+    console.error("Vote error:", error);
+
     return NextResponse.json(
-      { error: "Already voted" },
-      { status: 400 }
+      { error: "Server error" },
+      { status: 500 }
     );
   }
-
-  // Only return fresh counts
-  const signal = await prisma.signal.findUnique({
-    where: { id: signalId },
-    include: { votes: true },
-  });
-
-  if (!signal) {
-    return NextResponse.json(
-      { error: "Signal not found" },
-      { status: 404 }
-    );
-  }
-
-  const relevant = signal.votes.filter(
-    (    v: { type: string; }) => v.type === "RELEVANT"
-  ).length;
-
-  const notRelevant = signal.votes.filter(
-    (    v: { type: string; }) => v.type === "NOT_RELEVANT"
-  ).length;
-
-  return NextResponse.json({
-    relevant,
-    notRelevant,
-  });
 }

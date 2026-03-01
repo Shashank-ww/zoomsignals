@@ -36,6 +36,8 @@ CREATE TABLE "Signal" (
     "sourceLink" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "notRelevantCount" INTEGER NOT NULL DEFAULT 0,
+    "relevantCount" INTEGER NOT NULL DEFAULT 0,
 
     CONSTRAINT "Signal_pkey" PRIMARY KEY ("id")
 );
@@ -51,8 +53,20 @@ CREATE TABLE "Vote" (
     CONSTRAINT "Vote_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "subscriber" (
+    "id" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "subscriber_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
-CREATE UNIQUE INDEX "Vote_signalId_voterHash_key" ON "Vote"("signalId", "voterHash");
+CREATE UNIQUE INDEX "Signal_formatName_key" ON "Signal"("formatName");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "subscriber_email_key" ON "subscriber"("email");
 
 -- AddForeignKey
 ALTER TABLE "Vote" ADD CONSTRAINT "Vote_signalId_fkey" FOREIGN KEY ("signalId") REFERENCES "Signal"("id") ON DELETE CASCADE ON UPDATE CASCADE;

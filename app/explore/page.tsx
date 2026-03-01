@@ -11,39 +11,39 @@ export default function Explore() {
           Why Zoomsignals exist
         </h1>
 
-        <p className="text-gray-700 leading-relaxed">
+        <p className="text-gray-700 leading-relaxed dark:text-gray-300">
           After more than a decade inside advertising industry, one pattern became clear:
           winning formats don&apos;t explode, they converge. Like gold rush or NFT art, once someone strikes it as valuable, crowd gathers. 
         </p>
 
-        <p className="text-gray-700 leading-relaxed">
+        <p className="text-gray-700 leading-relaxed dark:text-gray-300">
           A hook structure appears in one category. Then another.
           Different brands. Same mechanic.
         </p>
 
-        <p className="text-gray-700 leading-relaxed">
+        <p className="text-gray-700 leading-relaxed dark:text-gray-300">
           By the time the industry labels it a “trend,” it&apos;s already saturated. Dead.
         </p>
       </section>
 
       <section className="space-y-6">
-        <p className="text-gray-700 leading-relaxed">
+        <p className="text-gray-700 leading-relaxed dark:text-gray-300">
           From large excel sheets and heavy powerpoint decks, that just stayed in organisation&apos;s common win-mac folder. 
           We created Zoomsignals as a progression-output of multi-format ads that is built to record early convergence,
           while it is still forming. We believed in leveraging early-mover advantage.
         </p>
 
-        <p className="text-gray-700 leading-relaxed">
+        <p className="text-gray-700 leading-relaxed dark:text-gray-300">
           Not to chase virality. Not to guarantee performance.
           But to give performance teams and creative leaders
           structural awareness before scale distorts the signal.
         </p>
 
-        <p className="text-gray-700 leading-relaxed">
+        <p className="text-gray-700 leading-relaxed dark:text-gray-300">
           Just so you can utilise the format without banging your head on what works and what does not, on that marketing brief!
         </p>
 
-        <p className="text-gray-700 leading-relaxed">
+        <p className="text-gray-700 leading-relaxed dark:text-gray-300">
           In competitive categories like automotive, timing is leverage.
           Structural awareness reduces waste, prevents saturation,
           and informs experimentation with discipline. That works always.

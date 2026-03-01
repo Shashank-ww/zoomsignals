@@ -12,7 +12,7 @@ export default function About() {
           About ZOOMSIGNALS
         </h1>
 
-        <p className="text-lg text-gray-700 leading-relaxed">
+        <p className="text-lg text-gray-600 leading-relaxed dark:text-gray-300">
           Zoomsignals tracks early structural and creative patterns across short-form social media ecosystems —
           helping performance teams understand what is emerging, accelerating, peaking,
           or saturating before it becomes obvious, for competition to take over. 
@@ -29,32 +29,32 @@ export default function About() {
           What We Do
         </h2>
 
-        <p className="text-gray-700 leading-relaxed">
+        <p className="text-gray-700 leading-relaxed dark:text-gray-300">
           We monitor recurring creative structures across <span className="font-bold">Meta, Instagram Reels, YouTube Shorts, and paid social media libraries.</span> Yes, we have real people doing this every other day. Often times, owner does the research himself. 
         </p>
 
-        <p className="text-gray-700 leading-relaxed">
+        <p className="text-gray-700 leading-relaxed dark:text-gray-300">
           When a format appears independently across multiple brands, it is logged,
           timestamped, tracked for velocity, and marked by lifecycle stage. This happens throughout the year, mostly it is seasonal. 
         </p>
 
-        <p className="text-gray-600">
+        <p className="text-gray-600 dark:text-gray-300">
           We track structural convergence — unlike other sites showing just trends.
         </p>
       </section>
 
 {/* HOW IT WORKS */}
 <section className="space-y-10">
-  <h2 className="text-sm font-bold tracking-wide uppercase">
+  <h2 className="text-sm font-bold tracking-wide uppercase ">
     How It Works
   </h2>
 
-  <div className="grid gap-12 sm:grid-cols-2">
+  <div className="grid gap-12 sm:grid-cols-2 dark:text-gray-200">
 
     {/* STEP 01 */}
-    <div className="space-y-4">
-      <div className="text-6xl font-bold text-black">01</div>
-      <p className="text-gray-800 text-base leading-relaxed">
+    <div className="space-y-4 dark:text-gray-200">
+      <div className="text-6xl font-bold text-black dark:text-gray-200">01</div>
+      <p className="text-gray-800 text-base leading-relaxed dark:text-gray-300">
         Ad formats are observed across selected brand and social media platforms
         where structural convergence usually start to rise. Simply put, algorithm brings it up. We notice.
       </p>
@@ -62,8 +62,8 @@ export default function About() {
 
     {/* STEP 02 */}
     <div className="space-y-4">
-      <div className="text-6xl font-bold text-black">02</div>
-      <p className="text-gray-800 text-base leading-relaxed">
+      <div className="text-6xl font-bold text-black dark:text-gray-200">02</div>
+      <p className="text-gray-800 text-base leading-relaxed dark:text-gray-300">
         Repeated ads appearing independently across brands
         are logged as structural signals. With their performance matrix. 
       </p>
@@ -71,8 +71,8 @@ export default function About() {
 
     {/* STEP 03 */}
     <div className="space-y-4">
-      <div className="text-6xl font-bold text-black">03</div>
-      <p className="text-gray-800 text-base leading-relaxed">
+      <div className="text-6xl font-bold text-black dark:text-gray-200">03</div>
+      <p className="text-gray-800 text-base leading-relaxed dark:text-gray-300">
         Signals are then tracked for velocity and mapped to lifecycle
         stage that is, Emerging, Accelerating, Peaking, or Saturated. This happens over a period of time until the impact dies.
       </p>
@@ -80,8 +80,8 @@ export default function About() {
 
     {/* STEP 04 */}
     <div className="space-y-4">
-      <div className="text-6xl font-bold text-black">04</div>
-      <p className="text-gray-800 text-base leading-relaxed">
+      <div className="text-6xl font-bold text-black dark:text-gray-200">04</div>
+      <p className="text-gray-800 text-base leading-relaxed dark:text-gray-300">
         Strategic implications are defined needing to clarify whether or not to
         experiment, differentiate, or to just avoid that ad format. 
       </p>

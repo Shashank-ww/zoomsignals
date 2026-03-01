@@ -48,7 +48,7 @@ export default function AboutSignals() {
           Signals Are Structural Shifts — Not Trends
         </h1>
 
-        <p className="text-lg text-gray-700">
+        <p className="text-lg text-gray-700 dark:text-gray-300">
           Zoomsignals keep records of repeatable creative patterns forming across
           short-form ecosystems. A signal emerges when independent brands
           begin solving attention in structurally similar ways on social media platforms.
