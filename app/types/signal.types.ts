@@ -25,6 +25,7 @@ export type Vote = {
 ================================ */
 
 export type Signal = {
+  resonanceScore: number;
   id: string;
 
   formatName: string;

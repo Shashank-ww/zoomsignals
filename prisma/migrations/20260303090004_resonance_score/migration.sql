@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Signal" ADD COLUMN     "resonanceScore" DOUBLE PRECISION NOT NULL DEFAULT 0;

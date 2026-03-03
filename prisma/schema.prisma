@@ -25,6 +25,7 @@ model Signal {
   updatedAt        DateTime       @updatedAt
   notRelevantCount Int            @default(0)
   relevantCount    Int            @default(0)
+  resonanceScore   Float          @default(0)
   votes            Vote[]
 }
 

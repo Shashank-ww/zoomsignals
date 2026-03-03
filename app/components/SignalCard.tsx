@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { FormatRelativeDate } from "@/components/FormatRelativeDate";
 import type { Signal } from "@/types/signal.types";
 import ResonanceScore from "./ResonanceScore";
+import { useRouter } from "next/navigation";
 
 /* ---------- Semantic Color Maps ---------- */
 
@@ -38,32 +39,74 @@ export default function SignalCard({
 }) {
   
   // 🔥 SOURCE OF TRUTH = DB COUNTERS (NOT votes array anymore)
-const [relevantCount, setRelevantCount] = useState<number>(
+const [relevantCount, setRelevantCount] = useState(() =>
   Number(signal?.relevantCount ?? 0)
 );
 
-const [notRelevantCount, setNotRelevantCount] = useState<number>(
+const [notRelevantCount, setNotRelevantCount] = useState(() =>
   Number(signal?.notRelevantCount ?? 0)
+);
+
+const [resonanceScore, setResonanceScore] = useState<number>(
+  Number(signal?.resonanceScore ?? 0)
 );
 
   // 🔐 Persist voter identity (very important)
   const [voterHash, setVoterHash] = useState<string | null>(null);
 
-  useEffect(() => {
+useEffect(() => {
   setRelevantCount(Number(signal?.relevantCount ?? 0));
   setNotRelevantCount(Number(signal?.notRelevantCount ?? 0));
-}, [signal.relevantCount, signal.notRelevantCount]);
+}, [
+  signal.relevantCount,
+  signal.notRelevantCount,
+]);
+console.log("PROP resonance:", signal.resonanceScore);
 
-  useEffect(() => {
-    let existing = localStorage.getItem("voterHash");
 
-    if (!existing) {
-      existing = crypto.randomUUID();
-      localStorage.setItem("voterHash", existing);
+  // useEffect(() => {
+  //   let existing = localStorage.getItem("voterHash");
+
+    useEffect(() => {
+  const generateUUID = () => {
+    // Modern browsers
+    if (typeof crypto !== "undefined" && crypto.randomUUID) {
+      return crypto.randomUUID();
     }
 
-    setVoterHash(existing);
-  }, []);
+    // Fallback for Safari / older browsers
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+      /[xy]/g,
+      function (c) {
+        const r = (Math.random() * 16) | 0;
+        const v = c === "x" ? r : (r & 0x3) | 0x8;
+        return v.toString(16);
+      }
+    );
+  };
+
+  let existing = localStorage.getItem("voterHash");
+
+  if (!existing) {
+    existing = generateUUID();
+    localStorage.setItem("voterHash", existing);
+  }
+
+  setVoterHash(existing);
+}, []);
+
+    // Might as well keep below, only updating because of the SAFARI Browser
+  //   if (!existing) {
+  //     existing = crypto.randomUUID();
+  //     localStorage.setItem("voterHash", existing);
+  //   }
+
+  //   setVoterHash(existing);
+  // }, []);
+
+  useEffect(() => {
+  setResonanceScore(Number(signal?.resonanceScore ?? 0));
+}, [signal.resonanceScore]);
 
   // ✅ OPTIMISTIC + RECONCILIATION
 const handleFeedback = async (type: "RELEVANT" | "NOT_RELEVANT") => {
@@ -87,11 +130,36 @@ const handleFeedback = async (type: "RELEVANT" | "NOT_RELEVANT") => {
       });
 
 
-const data = await res.json();
-console.log("API response:", data);
+if (!res.ok) {
+  if (type === "RELEVANT") {
+    setRelevantCount(prev => prev - 1);
+  } else {
+    setNotRelevantCount(prev => prev - 1);
+  }
+  console.error("Vote failed:", await res.text());
+  return;
+}
 
-    setRelevantCount(Number(data.relevantCount));
-    setNotRelevantCount(Number(data.notRelevantCount));
+const data = await res.json();
+
+setRelevantCount(data.relevantCount);
+setNotRelevantCount(data.notRelevantCount);
+setResonanceScore(data.resonanceScore);
+
+// setRelevantCount(
+//   Number.isFinite(data.relevantCount)
+//     ? data.relevantCount
+//     : 0
+// );
+
+// setNotRelevantCount(
+//   Number.isFinite(data.notRelevantCount)
+//     ? data.notRelevantCount
+//     : 0
+// );
+
+
+
   } catch (err) {
     console.error("Vote failed", err);
   }
@@ -164,9 +232,8 @@ console.log("API response:", data);
 
             {/* RESONANCE SCORE */}
             <ResonanceScore
-              signal={signal}
-              relevant={relevantCount}
-              notRelevant={notRelevantCount}/>
+              signal={{ ...signal, resonanceScore }}
+            />
           </div>
 
           {/* NARRATIVE */}

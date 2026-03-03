@@ -27,49 +27,52 @@ export function calculateResonance({
   confidenceWeight: Record<Signal["confidence"], number>;
 }): ResonanceResult {
 
-const voteDelta = (relevant ?? 0) - (notRelevant ?? 0);
+  const total = relevant + notRelevant;
 
-const base =
-  Math.sign(voteDelta) *
-  Math.log1p(Math.abs(voteDelta));
+  if (total === 0) {
+    return {
+      score: 0,
+      cappedScore: 0,
+      polarity: "neutral",
+      intensity: "low",
+    };
+  }
 
-const lifecycleW = lifecycleWeight[lifecycle] ?? 1;
-const velocityW = velocityWeight[velocity] ?? 1;
-const confidenceW = confidenceWeight[confidence] ?? 1;
+  // 🔥 CORE: approval ratio
+  const approvalRatio = relevant / total; // 0 → 1
 
-const raw = base * lifecycleW * velocityW * confidenceW * 70;
+  // Convert to centered score (-50 to +50)
+  const centered = (approvalRatio - 0.5) * 100;
 
-if (!Number.isFinite(raw)) {
-  return {
-    score: 0,
-    cappedScore: 0,
-    polarity: "neutral",
-    intensity: "low",
-  };
-}
+  // Weight multiplier
+  const lifecycleW = lifecycleWeight[lifecycle] ?? 1;
+  const velocityW = velocityWeight[velocity] ?? 1;
+  const confidenceW = confidenceWeight[confidence] ?? 1;
 
-const cappedRaw = Math.max(-999, Math.min(999, raw));
-const capped = Number(cappedRaw.toFixed(1));
+  const weighted = centered * lifecycleW * velocityW * confidenceW;
+
+  // Clamp to -100 → 100
+  const capped = Math.max(-100, Math.min(100, weighted));
 
   const polarity =
-    capped > 0
+    capped > 5
       ? "positive"
-      : capped < 0
+      : capped < -5
       ? "negative"
       : "neutral";
 
   const magnitude = Math.abs(capped);
 
   const intensity =
-    magnitude > 600
+    magnitude > 70
       ? "high"
-      : magnitude > 250
+      : magnitude > 30
       ? "medium"
       : "low";
 
   return {
-    score: raw,          // full precision internal
-    cappedScore: capped, // 2 decimal precision display
+    score: weighted,
+    cappedScore: Number(capped.toFixed(1)),
     polarity,
     intensity,
   };

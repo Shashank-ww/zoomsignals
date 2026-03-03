@@ -57,6 +57,8 @@
                       text-blue-600 
                       hover:text-blue-800 
                       transition-colors
+                      cursor-pointer
+                      hover:underline
                     "
                   >
                     {showExplainer ? "Hide explainer below" : "How to read this feed?"}
@@ -71,9 +73,9 @@
         </section>
 
         {/* ================= EXPLAINER SECTION ================= */}
-        <section id="explainer" className="border-t border-gray-200 bg-gray-50">
+        <section id="explainer" className="border-t border-gray-200 bg-gray-50 cursor-pointer">
             <div
-            className={`max-w-6xl mx-auto px-6 transition-all duration-500 overflow-hidden ${
+            className={`max-w-6xl mx-auto px-6 transition-all duration-500 overflow-hidden cursor-pointer ${
                 showExplainer ? "max-h-200 py-20 opacity-100" : "max-h-0 opacity-0"
             }`}
             >
