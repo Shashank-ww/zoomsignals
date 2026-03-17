@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 const headlines = [
   "Media buying intelligence. Not social trends.",
   "Spot early-lift before scaling your ad spends.",
-  "Performance patterns, real brand lift.",
-  "Time creative shift before your CPMs spike.",
+  "Performance patterns, that is real brand lift.",
+  "Time your creative shift before CPMs spike.",
   "Social ads that help you stand out, first.",
   // "If it&s not blowing minds, it&aposs blowing your budget.",
 ];
@@ -35,7 +35,7 @@ export default function HeroHeadline() {
       </h1>
 
       <p className="text-gray-500 max-w-lg leading-relaxed text-base dark:text-gray-300">
-        Insights on live ad formats showing early performance lift for brands active on social media. Currently monitoring <span className="underline underline-offset-4">automobiles category.</span> 
+        Insights on live ad formats showing early performance for brands active on social media. Currently monitoring <span className="underline underline-offset-4">automobiles category.</span> 
       </p>
 
       <div>
@@ -60,7 +60,7 @@ export default function HeroHeadline() {
             duration-200
           "
         >
-          View Signal Stream
+          View Signals
         </a>
       </div>
     </div>

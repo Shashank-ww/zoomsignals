@@ -45,7 +45,7 @@ export default function AboutSignals() {
       {/* HERO */}
       <section className="space-y-6 max-w-3xl">
         <h1 className="text-4xl md:text-5xl font-semibold tracking-tight">
-          Signals Are Structural Shifts — Not Trends
+          Signals as structural shift
         </h1>
 
         <p className="text-lg text-gray-700 dark:text-gray-300">

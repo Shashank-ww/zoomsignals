@@ -95,7 +95,7 @@ console.log("PROP resonance:", signal.resonanceScore);
   setVoterHash(existing);
 }, []);
 
-    // Might as well keep below, only updating because of the SAFARI Browser
+    // Might as well keep below, only updating because of the SAFARI Browser along with above useeffect comment just before
   //   if (!existing) {
   //     existing = crypto.randomUUID();
   //     localStorage.setItem("voterHash", existing);
@@ -188,68 +188,106 @@ setResonanceScore(data.resonanceScore);
               </div>
             )}
 
+{/* 🔥 NARRATIVE OVERLAY */}
+{signal.narrative && (
+  <div className="
+    absolute bottom-0 left-0 w-full
+    bg-linear-to-t from-black/70 via-black/50 to-transparent
+    text-white
+    p-3
+    hidden md:block
+  ">
+    <p className="text-xs md:text-sm font-medium leading-snug line-clamp-2">
+      {signal.narrative}
+    </p>
+  </div>
+)}
 
-
-            {/* HEAT DOT VELOCITY BADGE */}
-            <div className="absolute bottom-3 left-3 z-10 cursor-help">
-                <div className={`
-                    h-2.5 w-2.5
-                    flex items-center justify-center
-                    text-[8px] font-bold
-                    rounded-full
-                    text-white
-                    border border-white/60
-                    shadow-md
-                    ${HEAT_COLORS[signal.velocity]}
-                    ${signal.velocity === "ACCELERATING" ? "animate-pulse" : ""}
-                  `}
-                  title={`Velocity: ${signal.velocity}`}>
-                </div>
-              </div>
           </div>
 
         {/* CONTENT */}
-        <div className="flex-1 p-4 space-y-5 cursor-default">
+        <div className="flex-1 p-4 space-y-3 cursor-default">
 
-          {/* HEADER */}
-          <div className="flex justify-between items-start">
-            <div>
-              <h3 className="text-xl font-bold dark:text-gray-800">
-                {signal.formatName}
-              </h3>
+{/* 🔥 TOP BAND — Format + Resonance */}
+<div className="
+  -mt-10 md:mt-0
+  relative z-10
+  bg-white/80 md:bg-linear-to-r md:from-gray-50 md:to-white
+  backdrop-blur-md
+  border border-gray-200
+  md:rounded-xl
+  rounded-lg
+  p-4
+  flex justify-between items-center gap-4
+  shadow-sm
+  group
+">
 
-              <div className="flex flex-wrap gap-2 mt-2 text-xs text-gray-800">
-                {signal.primaryPlatforms?.map((p: string) => (
-                  <span
-                    key={p}
-                    className="px-2 py-0.5 border rounded-full bg-gray-50"
-                  >
-                    {p}
-                  </span>
-                ))}
-              </div>
-            </div>
+  {/* 🔥 Format Name with Heat Border */}
+<div className="flex items-center gap-2">
 
-            {/* RESONANCE SCORE */}
-            <ResonanceScore
-              signal={{ ...signal, resonanceScore }}
-            />
-          </div>
+<span
+  className={`
+    h-4 w-0.75 rounded-sm
+    transition-all duration-200 ease-in-out
+    group-hover:w-1.5
+    ${HEAT_COLORS[signal.velocity]}
+    ${signal.velocity === "ACCELERATING" ? "animate-pulse" : ""}
+  `}
+/>
 
-          {/* NARRATIVE */}
-          <p className="text-sm text-gray-600">
-            {signal.narrative}
-          </p>
+    <h3 className="text-sm md:text-base font-bold text-gray-800">
+      {signal.formatName}
+    </h3>
 
-          {/* INSIGHT */}
-          <p className="text-sm text-gray-600 line-clamp-3">
-            <b>Insight: </b>
-            {signal.insight}
-          </p>
+  </div>
+
+  {/* Resonance Score */}
+  <div className="shrink-0">
+    <ResonanceScore
+      signal={{ ...signal, resonanceScore }}
+    />
+  </div>
+
+</div>
+
+{/* 🔥 COMPACT META BLOCK */}
+<div className="space-y-1.5">
+
+  {/* Insight */}
+  <div className="flex items-start gap-2">
+    <span className="text-[10px] uppercase tracking-wide text-gray-400 mt-1">
+      Insight
+    </span>
+
+    <p className="text-sm text-gray-700 leading-snug line-clamp-2 md:line-clamp-3">
+      {signal.insight}
+    </p>
+  </div>
+
+  {/* Platforms */}
+  <div className="flex items-center gap-2 flex-wrap">
+    <span className="text-[10px] uppercase tracking-wide text-gray-400">
+      Seen on
+    </span>
+
+    {signal.primaryPlatforms?.map((p: string) => (
+      <span
+        key={p}
+        className="px-1.5 py-0.5 text-[10px] rounded bg-black/10 text-gray-700"
+      >
+        {p}
+      </span>
+    ))}
+
+</div>
+
+
+</div>
 
           
           {/* BENTO GRID */}
-          <div className="grid grid-cols-2 md:grid-cols-4 rounded-xl overflow-hidden border border-gray-200 text-[11px] font-medium">
+          <div className="grid grid-cols-2 md:grid-cols-4 rounded-xl overflow-hidden border border-gray-200 font-medium">
             <Metric
               label="Confidence"
               value={signal.confidence}
@@ -390,14 +428,18 @@ function Metric({
 }) {
   return (
     <div
-      className={`p-3 border-r border-b border-gray-200 text-center hover:bg-black/10 cursor-default ${style}`}
+      className={`flex flex-col items-center justify-center gap-y-0.5 p-2 text-center hover:bg-gray-50 cursor-default ${style}`}
     >
-      <div className="uppercase tracking-wide opacity-80 text-xs">
+      <span className="text-[10px] uppercase tracking-wide text-gray-500">
         {label}
-      </div>
-      <div className="mt-1 text-[10px]">
+      </span>
+
+      {/* small separator */}
+      <span className="w-3 h-[0.5px] bg-gray-400"></span>
+
+      <span className="text-[11px] font-semibold tracking-tight">
         {value}
-      </div>
+      </span>
     </div>
   );
 }

@@ -37,13 +37,27 @@ export default function Navbar() {
     >
       <div className="mx-auto px-6 h-14 flex items-center justify-between">
 
-        {/* Brand */}
-        <a href="/" className="font-bold text-gray-900 select-none">
-          <span className="flex items-center leading-none text-base hover:text-blue-500 pl-2 border-l-2 hover:border-l-6 transition-all">
-            ZOOMSIGNALS
-          </span>
-        </a>
+       {/* Brand */}
+<a href="/" className="font-bold text-gray-900 select-none group">
+  <span className="flex items-center gap-2 leading-none text-base">
 
+    {/* Heat Block */}
+    <span
+      className="
+        h-4 w-0.75 rounded-full shadow-sm
+        bg-blue-500
+        transition-all duration-200 ease-in-out
+        group-hover:w-1.5 group-hover:h-4
+      "
+    />
+
+    {/* Brand Text */}
+    <span className="transition-colors duration-200 group-hover:text-blue-600">
+      ZOOMSIGNALS
+    </span>
+
+  </span>
+</a>
         {/* Desktop */}
         <div className="hidden md:flex gap-6 text-sm text-gray-800">
           <a href="/about" className={linkStyle("/about")}>About</a>

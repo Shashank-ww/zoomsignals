@@ -61,7 +61,7 @@
                       hover:underline
                     "
                   >
-                    {showExplainer ? "Hide explainer below" : "How to read this feed?"}
+                    {showExplainer ? "Hide explainer" : "How to read Signals?"}
                   </button>
             </div>
 
@@ -79,7 +79,7 @@
                 showExplainer ? "max-h-200 py-20 opacity-100" : "max-h-0 opacity-0"
             }`}
             >
-            <div className="grid md:grid-cols-2 gap-16 text-sm text-gray-600 leading-relaxed">
+            <div className="grid md:grid-cols-2 gap-12 text-sm text-gray-600 leading-relaxed">
 
                 <div className="space-y-5">
                 <h2 className="text-xl font-light text-gray-800">
@@ -107,13 +107,17 @@
                     <li><b>Velocity</b> → Adoption speed across accounts</li>
                     <li><b>Confidence</b> → Repeat validation strength</li>
                     <li><b>Lifecycle</b> → Emerging, Stable, Declining</li>
-                    <li><b>Vehicle</b> → Creative format structure</li>
+                    <li><b>Repetition</b> → No. of times creative format is repeated</li>
                 </ul>
 
                 <p>
                     This is early detection of what works and doesn&rsquo;t.
                 </p>
                 </div>
+
+                <p>
+                  No Logins, No Forms, Just Data with meaning!
+                </p>
 
             </div>
             </div>
@@ -156,11 +160,11 @@ function LiveFeedHeader({
         </div>
 
         <h2 className="text-2xl font-bold text-gray-900">
-          Signal Stream
+          Signal Feed
         </h2>
 
         <p className="text-sm text-gray-600 max-w-md mt-2">
-          Real-time creative patterns and campaign lifecycle across platforms.
+          Real-time creative patterns and campaign lifecycle across social media platforms.
         </p>
       </div>
 

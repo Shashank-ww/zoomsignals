@@ -13,13 +13,12 @@ export default function About() {
         </h1>
 
         <p className="text-lg text-gray-600 leading-relaxed dark:text-gray-300">
-          Zoomsignals tracks early structural and creative patterns across short-form social media ecosystems —
-          helping performance teams understand what is emerging, accelerating, peaking,
-          or saturating before it becomes obvious, for competition to take over. 
+          At Zoomsignals we track early structural and creative patterns across short-form social media ecosystems —
+          that help performance teams understand what is emerging, accelerating, peaking, or saturating before it becomes obvious for competition to take over. 
         </p>
 
         <p className="text-gray-600">
-          So you can act before everyone else does.
+          And that is when you can act on your media brief before anyone else.
         </p>
       </section>
 
@@ -30,16 +29,16 @@ export default function About() {
         </h2>
 
         <p className="text-gray-700 leading-relaxed dark:text-gray-300">
-          We monitor recurring creative structures across <span className="font-bold">Meta, Instagram Reels, YouTube Shorts, and paid social media libraries.</span> Yes, we have real people doing this every other day. Often times, owner does the research himself. 
+          We monitor recurring creative structures across <span className="font-bold">Meta, Instagram Reels, YouTube Shorts, and paid social media libraries.</span>
         </p>
 
         <p className="text-gray-700 leading-relaxed dark:text-gray-300">
-          When a format appears independently across multiple brands, it is logged,
-          timestamped, tracked for velocity, and marked by lifecycle stage. This happens throughout the year, mostly it is seasonal. 
+          When a format appears independently that is rising or declining across multiple brands, it is logged,
+          timestamped, tracked for confidence, velocity, and marked by lifecycle stage. This happens throughout the year, mostly seasonal. 
         </p>
 
         <p className="text-gray-600 dark:text-gray-300">
-          We track structural convergence — unlike other sites showing just trends.
+          We track stories that rise and fall, unlike other sites that just shows analytical trends. 
         </p>
       </section>
 
@@ -56,7 +55,7 @@ export default function About() {
       <div className="text-6xl font-bold text-black dark:text-gray-200">01</div>
       <p className="text-gray-800 text-base leading-relaxed dark:text-gray-300">
         Ad formats are observed across selected brand and social media platforms
-        where structural convergence usually start to rise. Simply put, algorithm brings it up. We notice.
+        where ads usually start to rise. Simply put, when algorithm brings it up. We notice.
       </p>
     </div>
 
@@ -65,7 +64,7 @@ export default function About() {
       <div className="text-6xl font-bold text-black dark:text-gray-200">02</div>
       <p className="text-gray-800 text-base leading-relaxed dark:text-gray-300">
         Repeated ads appearing independently across brands
-        are logged as structural signals. With their performance matrix. 
+        are logged as signals. With their performance matrix. 
       </p>
     </div>
 
@@ -73,8 +72,8 @@ export default function About() {
     <div className="space-y-4">
       <div className="text-6xl font-bold text-black dark:text-gray-200">03</div>
       <p className="text-gray-800 text-base leading-relaxed dark:text-gray-300">
-        Signals are then tracked for velocity and mapped to lifecycle
-        stage that is, Emerging, Accelerating, Peaking, or Saturated. This happens over a period of time until the impact dies.
+        Signals are then tracked for confidence, velocity and mapped to lifecycle
+        stage. This happens over a period of time until the impact dies.
       </p>
     </div>
 
@@ -82,7 +81,7 @@ export default function About() {
     <div className="space-y-4">
       <div className="text-6xl font-bold text-black dark:text-gray-200">04</div>
       <p className="text-gray-800 text-base leading-relaxed dark:text-gray-300">
-        Strategic implications are defined needing to clarify whether or not to
+        Strategic implications can be then defined to clarify whether or not to
         experiment, differentiate, or to just avoid that ad format. 
       </p>
     </div>
@@ -99,14 +98,14 @@ export default function About() {
 <ul className="text-gray-700 leading-relaxed space-y-4">
 
     <li className="list-disc list-inside">
-    This is not a performance optimization tool or anything like that. It does not predict outcomes or guarantee results. 
+    This is not a performance optimization or any magical tool. It does not predict outcomes or guarantee results. 
   </li>
       <li className="list-disc list-inside">
-    ZoomSignals is a curated signals&apos; log designed to improve ad awareness,
-          timing, and decision-making. Technically, what works and what does not.
+    It is a curated signals&apos; log designed to improve ad awareness,
+          timing, and decision-making. Technically, when ads trend and when they do not.
   </li>
       <li className="list-disc list-inside">
-    If you are here reading this, then you maybe the first person to make a decision on obvious factors before anyone else.
+    If you are here reading this, then you are the first person to make a decision on obvious factors before anyone else.
   </li>
       <li className="">
     <span className="font-semibold">Please note: </span>Signals reflect observed structural and creative patterns. We do not endorse any brand or ad format, or even platform.

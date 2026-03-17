@@ -3,12 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import SignalCard from "@/components/SignalCard";
 import type { Signal } from "@/types/signal.types";
-import { calculateResonance } from "@/lib/resonanceEngine";
-import {
-  lifecycleWeight,
-  velocityWeight,
-  confidenceWeight,
-} from "@/lib/resonance";
+
 import MailingList from "@/components/MailingList";
 import Filters from "@/components/Filters";
 
@@ -115,18 +110,7 @@ const filteredSignals = useMemo<Signal[]>(() => {
     const notRelevant =
       s.votes?.filter((v) => v.type === "NOT_RELEVANT").length ?? 0;
 
-    const resonance = calculateResonance({
-      relevant,
-      notRelevant,
-      lifecycle: s.lifecycle,
-      velocity: s.velocity,
-      confidence: s.confidence,
-      lifecycleWeight,
-      velocityWeight,
-      confidenceWeight,
-    });
-
-    const resonanceScore = resonance.cappedScore;
+const resonanceScore = s.resonanceScore ?? 0;
 
     return (
       (confidenceFilter === "all" ||
@@ -262,15 +246,19 @@ const filteredSignals = useMemo<Signal[]>(() => {
     <div className="border-t pt-4"></div>
 
     {/* TERMS BLOCK */}
-    <div className="border rounded-xl p-4 text-xs space-y-2">
-      <h4 className="font-semibold">Terms</h4>
+    <div className="border rounded-xl p-4 space-y-2 text-xs">
+      <h4 className="font-semibold">Disclaimer</h4>
       <p>
-        By using this feed, you agree to interact responsibly and
-        acknowledge that signal data reflects community input.
+        By using this site, you agree to interact responsibly and
+        acknowledge that signals reflect community input.
+      </p>
+      <p>
+        Signals are subject to change based on lifecycle shifts,
+        velocity updates, and resonance recalculations.
       </p>
     </div>
 
-    {/* CONDITIONS BLOCK */}
+    {/* CONDITIONS BLOCK 
     <div className="border rounded-xl p-4 text-xs space-y-2">
       <h4 className="font-semibold">Conditions</h4>
       <p>
@@ -278,6 +266,7 @@ const filteredSignals = useMemo<Signal[]>(() => {
         velocity updates, and resonance recalculations.
       </p>
     </div>
+    */}
 
     {/* MAILING LIST */}
 
