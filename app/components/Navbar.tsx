@@ -52,7 +52,7 @@ export default function Navbar() {
     />
 
     {/* Brand Text */}
-    <span className="transition-colors duration-200 group-hover:text-blue-600">
+    <span className="transition-colors duration-200 group-hover:text-blue-500">
       ZOOMSIGNALS
     </span>
 

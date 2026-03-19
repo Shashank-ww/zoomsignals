@@ -337,7 +337,22 @@ const resonanceScore = s.resonanceScore ?? 0;
               <div className="text-center">
                 <button
                   onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
-                  className="border px-6 py-2 text-sm rounded-lg hover:bg-gray-50"
+                  className="inline-flex
+            items-center
+            gap-2
+            px-6
+            py-3
+            text-sm
+            font-medium
+            hover:text-white
+            border
+            border-gray-600
+            rounded-full
+            shadow-sm
+            hover:bg-gray-500
+            transition-all
+            duration-200
+            cursor-pointer"
                 >
                   Load More
                 </button>

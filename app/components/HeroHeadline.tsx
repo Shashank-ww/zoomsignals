@@ -5,9 +5,9 @@ import { useEffect, useState } from "react";
 const headlines = [
   "Media buying intelligence. Not social trends.",
   "Spot early-lift before scaling your ad spends.",
-  "Performance patterns, that is real brand lift.",
-  "Time your creative shift before CPMs spike.",
-  "Social ads that help you stand out, first.",
+  "Performance patterns, that gives real brand lift.",
+  "Shift your creatives before spends spike.",
+  "Ad formats that help you stand out, first.",
   // "If it&s not blowing minds, it&aposs blowing your budget.",
 ];
 
@@ -23,12 +23,13 @@ export default function HeroHeadline() {
   if (!selected) return null;
 
   return (
-    <div className="space-y-6 dark:text-gray-300">
+    <div className="space-y-6 dark:text-gray-300 h-full">
       <h1 className="
         max-w-2xl
+        py-1
         lg:text-6xl
         text-3xl
-        font-extralight
+        md:text-5xl bg-linear-to-tr from-blue-600 to-sky-400 bg-clip-text text-transparent
         tracking-[-0.02em]
         leading-[1.05]">
         {selected}
@@ -50,7 +51,7 @@ export default function HeroHeadline() {
             text-sm
             font-medium
             text-white
-            bg-blue-500
+            bg-gray-800
             border
             border-blue-600
             rounded-full

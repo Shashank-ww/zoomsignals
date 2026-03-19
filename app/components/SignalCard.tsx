@@ -38,7 +38,7 @@ export default function SignalCard({
   signal: Signal;
 }) {
   
-  // 🔥 SOURCE OF TRUTH = DB COUNTERS (NOT votes array anymore)
+  //  SOURCE OF TRUTH = DB COUNTERS (NOT votes array anymore)
 const [relevantCount, setRelevantCount] = useState(() =>
   Number(signal?.relevantCount ?? 0)
 );
@@ -168,7 +168,7 @@ setResonanceScore(data.resonanceScore);
   
   return (
     <article
-      className="border rounded-2xl bg-white overflow-hidden hover:shadow-xl transition-all duration-300">
+      className="border rounded-2xl bg-white overflow-hidden hover:shadow-xl transition-all duration-300 h-full">
       <div className="flex flex-col md:flex-row">
 
         {/* IMAGE */}
@@ -188,16 +188,16 @@ setResonanceScore(data.resonanceScore);
               </div>
             )}
 
-{/* 🔥 NARRATIVE OVERLAY */}
+{/*  NARRATIVE OVERLAY */}
 {signal.narrative && (
   <div className="
     absolute bottom-0 left-0 w-full
     bg-linear-to-t from-black/70 via-black/50 to-transparent
     text-white
-    p-3
+    p-2
     hidden md:block
   ">
-    <p className="text-xs md:text-sm font-medium leading-snug line-clamp-2">
+    <p className="flex items-center justify-center text-xs md:text-sm font-medium leading-snug line-clamp-2">
       {signal.narrative}
     </p>
   </div>
@@ -206,11 +206,14 @@ setResonanceScore(data.resonanceScore);
           </div>
 
         {/* CONTENT */}
-        <div className="flex-1 p-4 space-y-3 cursor-default">
 
-{/* 🔥 TOP BAND — Format + Resonance */}
+<div className="flex-1 p-4 flex flex-col justify-between">
+
+<div className="space-y-3">
+
+{/*  TOP BAND — Format + Resonance */}
 <div className="
-  -mt-10 md:mt-0
+  -mt-9 md:mt-0
   relative z-10
   bg-white/80 md:bg-linear-to-r md:from-gray-50 md:to-white
   backdrop-blur-md
@@ -223,7 +226,7 @@ setResonanceScore(data.resonanceScore);
   group
 ">
 
-  {/* 🔥 Format Name with Heat Border */}
+  {/*  Format Name with Heat Border */}
 <div className="flex items-center gap-2">
 
 <span
@@ -251,35 +254,40 @@ setResonanceScore(data.resonanceScore);
 
 </div>
 
-{/* 🔥 COMPACT META BLOCK */}
-<div className="space-y-1.5">
+{/*  COMPACT META BLOCK */}
+<div className="space-y-1.5 cursor-default">
 
-  {/* Insight */}
-  <div className="flex items-start gap-2">
-    <span className="text-[10px] uppercase tracking-wide text-gray-400 mt-1">
-      Insight
-    </span>
+{/* Narrative */}
+<div className="flex items-center gap-1 text-[11px] text-gray-500 md:hidden">
+  <span className="uppercase tracking-wide text-gray-400">
+    Ad Narrative:
+  </span>
 
-    <p className="text-sm text-gray-700 leading-snug line-clamp-2 md:line-clamp-3">
-      {signal.insight}
-    </p>
-  </div>
+  <p className="italic line-clamp-1">
+    {signal.narrative}
+  </p>
+</div>
 
-  {/* Platforms */}
-  <div className="flex items-center gap-2 flex-wrap">
-    <span className="text-[10px] uppercase tracking-wide text-gray-400">
-      Seen on
-    </span>
+{/* Insight */}
+<div className="items-baseline gap-2">
+  <span className="text-[11px] uppercase tracking-wide text-gray-400">
+    What&apos;s working?
+  </span>
 
-    {signal.primaryPlatforms?.map((p: string) => (
-      <span
-        key={p}
-        className="px-1.5 py-0.5 text-[10px] rounded bg-black/10 text-gray-700"
-      >
-        {p}
-      </span>
-    ))}
+  <p className="italic text-sm text-gray-800 leading-snug md:line-clamp-2">
+    {signal.insight}
+  </p>
+</div>
 
+{/* Platforms */}
+<div className="flex items-center gap-1 text-[11px] text-gray-500 flex-wrap">
+  <span className="uppercase tracking-wide text-gray-400">
+    Seen on:
+  </span>
+
+<span className="text-gray-500">
+  {signal.primaryPlatforms?.join(", ")}
+</span>
 </div>
 
 
@@ -309,6 +317,8 @@ setResonanceScore(data.resonanceScore);
               style="bg-gray-100 text-gray-700"
             />
           </div>
+
+</div>
 
 
 {/* FOOTER */}

@@ -3,6 +3,7 @@
     import { useState } from "react";
     import SignalRadar from "@/components/SignalRadar";
     import HeroHeadline from "./HeroHeadline";
+import PoweredStrip from "./PoweredStrip";
 
     interface HeroSectionProps {
     approvedSignalsCount: number;
@@ -160,11 +161,11 @@ function LiveFeedHeader({
         </div>
 
         <h2 className="text-2xl font-bold text-gray-900">
-          Signal Feed
+          See what's working right now
         </h2>
 
         <p className="text-sm text-gray-600 max-w-md mt-2">
-          Real-time creative patterns and campaign lifecycle across social media platforms.
+          Discover real-time ad formats, creative patterns and campaign lifecycle across social media platforms. 
         </p>
       </div>
 

@@ -4,11 +4,19 @@ import Link from "next/link";
 
 export default function About() {
   return (
-    <main className="mx-auto max-w-4xl px-6 py-24 space-y-16">
+    <main className="mx-auto max-w-6xl px-6 py-24 space-y-16">
 
       {/* HERO */}
       <section className="space-y-6">
-        <h1 className="text-4xl md:text-5xl font-semibold tracking-tight">
+        <h1 className="
+        max-w-2xl
+        py-1
+        lg:text-6xl
+        text-3xl
+        md:text-5xl bg-linear-to-tr from-blue-600 to-sky-400 bg-clip-text text-transparent
+        tracking-[-0.02em]
+        leading-[1.05]
+        ">
           About ZOOMSIGNALS
         </h1>
 
@@ -117,17 +125,47 @@ export default function About() {
       {/* CTA */}
       <section className="pt-8 flex gap-6">
         <Link
-          href="/signals"
-          className="px-6 py-3 bg-black text-white rounded-xl text-sm font-semibold"
+          href="/#explainer"
+          className="inline-flex
+            items-center
+            gap-2
+            px-6
+            py-3
+            text-sm
+            font-medium
+            text-white
+            bg-blue-500
+            border
+            border-blue-600
+            rounded-full
+            shadow-sm
+            hover:bg-blue-600
+            transition-all
+            duration-200"
         >
           View Signals
         </Link>
 
         <Link
           href="/explore"
-          className="px-6 py-3 border rounded-xl text-sm font-semibold hover:border-black"
+          className="inline-flex
+            items-center
+            gap-2
+            px-6
+            py-3
+            text-sm
+            font-medium
+            text-white
+            bg-gray-800
+            border
+            border-blue-600
+            rounded-full
+            shadow-sm
+            hover:bg-blue-600
+            transition-all
+            duration-200"
         >
-          Explore Why This Exists
+          Explore Why We Exist
         </Link>
       </section>
 
