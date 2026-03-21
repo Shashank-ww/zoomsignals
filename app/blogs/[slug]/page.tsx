@@ -13,15 +13,20 @@ export default async function BlogPost({
   const { frontmatter, content } = getBlogBySlug(slug);
 
   return (
-<main className="mx-auto max-w-3xl px-6 py-24">
+<main className="mx-auto max-w-6xl px-6 py-24">
 
   <header className="border-b border-gray-200 pb-10 mb-16">
-    <h1 className="text-4xl font-semibold tracking-tight leading-tight">
+    <h1 className="py-1
+        lg:text-4xl
+        text-2xl
+        md:text-3xl bg-linear-to-tr from-blue-600 to-sky-400 bg-clip-text text-transparent
+        tracking-[-0.02em]
+        leading-[1.05]">
       {frontmatter.title}
     </h1>
 
 
-    <p className="mt-5 text-md text-gray-600 max-w-2xl">
+    <p className="mt-5 text-md text-gray-600">
       {frontmatter.summary}
     </p>
   </header>
@@ -73,6 +78,47 @@ export default async function BlogPost({
           }}
         />
       </article>
+
+      {/* CTA */}
+      <div className="flex items-center justify-center text-lg mt-24 mx-auto">***</div>
+        <section className="text-center space-y-6 pt-12">
+
+          <h2 className="text-2xl font-semibold">
+            Start a conversation
+          </h2>
+
+          <p className="text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
+            If you are exploring a campaign idea, category shift, or creative
+            territory and want early signal awareness, reach out.
+          </p>
+
+          <p className="text-sm text-gray-500">
+            No forms. No sales pitch. Just a conversation.
+          </p>
+
+          <a
+            href="mailto:hello@zoomsignals.com?subject=ZoomSignals Inquiry"
+            className="inline-flex
+            items-center
+            gap-2
+            px-6
+            py-3
+            text-sm
+            font-medium
+            text-white
+            bg-gray-800
+            border
+            border-blue-600
+            rounded-full
+            shadow-sm
+            hover:bg-blue-600
+            transition-all
+            duration-200"
+          >
+            Email Now
+          </a>
+
+        </section>
     </main>
   );
 }

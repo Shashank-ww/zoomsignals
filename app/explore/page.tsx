@@ -102,30 +102,30 @@ export default function Explore() {
       <section className="space-y-8">
         <h2 className="text-2xl font-semibold">Who are we here for</h2>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto cursor-default">
 
-          <div className="border rounded-xl p-6 space-y-3">
+          <div className="border rounded-xl p-6 space-y-3 hover:border-amber-500/60 hover:bg-amber-50/40 hover:shadow-md hover:text-blue-500 dark:hover:bg-amber-900/10 transition-all">
             <h3 className="font-semibold">Marketing Teams</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400">
               Discover emerging advertising formats before they become saturated.
             </p>
           </div>
 
-          <div className="border rounded-xl p-6 space-y-3">
+          <div className="border rounded-xl p-6 space-y-3 hover:border-amber-500/60 hover:bg-amber-50/40 hover:shadow-md hover:text-blue-500 dark:hover:bg-amber-900/10 transition-all">
             <h3 className="font-semibold">Creative Teams</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              Explore new narrative mechanics and creative structures.
+              Explore new design mechanics and creative structures.
             </p>
           </div>
 
-          <div className="border rounded-xl p-6 space-y-3">
+          <div className="border rounded-xl p-6 space-y-3 hover:border-amber-500/60 hover:bg-amber-50/40 hover:shadow-md hover:text-blue-500 dark:hover:bg-amber-900/10 transition-all">
             <h3 className="font-semibold">Strategists & Planners</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400">
               Track format convergence across categories and platforms.
             </p>
           </div>
 
-          <div className="border rounded-xl p-6 space-y-3">
+          <div className="border rounded-xl p-6 space-y-3 hover:border-amber-500/60 hover:bg-amber-50/40 hover:shadow-md hover:text-blue-500 dark:hover:bg-amber-900/10 transition-all">
             <h3 className="font-semibold">Agencies</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400">
               Bring signal-backed creative thinking into pitches and campaigns.
@@ -176,7 +176,7 @@ export default function Explore() {
           </h2>
 
           <p className="text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
-            If you're exploring a campaign idea, category shift, or creative
+            If you are exploring a campaign idea, category shift, or creative
             territory and want early signal awareness, reach out.
           </p>
 

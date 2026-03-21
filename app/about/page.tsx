@@ -9,7 +9,6 @@ export default function About() {
       {/* HERO */}
       <section className="space-y-6">
         <h1 className="
-        max-w-2xl
         py-1
         lg:text-6xl
         text-3xl
@@ -60,7 +59,7 @@ export default function About() {
 
     {/* STEP 01 */}
     <div className="space-y-4 dark:text-gray-200">
-      <div className="text-6xl font-bold text-black dark:text-gray-200">01</div>
+      <div className="text-6xl font-bold text-gray-800 dark:text-gray-200">01</div>
       <p className="text-gray-800 text-base leading-relaxed dark:text-gray-300">
         Ad formats are observed across selected brand and social media platforms
         where ads usually start to rise. Simply put, when algorithm brings it up. We notice.
@@ -69,7 +68,7 @@ export default function About() {
 
     {/* STEP 02 */}
     <div className="space-y-4">
-      <div className="text-6xl font-bold text-black dark:text-gray-200">02</div>
+      <div className="text-6xl font-bold text-gray-800 dark:text-gray-200">02</div>
       <p className="text-gray-800 text-base leading-relaxed dark:text-gray-300">
         Repeated ads appearing independently across brands
         are logged as signals. With their performance matrix. 
@@ -78,7 +77,7 @@ export default function About() {
 
     {/* STEP 03 */}
     <div className="space-y-4">
-      <div className="text-6xl font-bold text-black dark:text-gray-200">03</div>
+      <div className="text-6xl font-bold text-gray-800 dark:text-gray-200">03</div>
       <p className="text-gray-800 text-base leading-relaxed dark:text-gray-300">
         Signals are then tracked for confidence, velocity and mapped to lifecycle
         stage. This happens over a period of time until the impact dies.
@@ -87,7 +86,7 @@ export default function About() {
 
     {/* STEP 04 */}
     <div className="space-y-4">
-      <div className="text-6xl font-bold text-black dark:text-gray-200">04</div>
+      <div className="text-6xl font-bold text-gray-800 dark:text-gray-200">04</div>
       <p className="text-gray-800 text-base leading-relaxed dark:text-gray-300">
         Strategic implications can be then defined to clarify whether or not to
         experiment, differentiate, or to just avoid that ad format. 
@@ -103,7 +102,7 @@ export default function About() {
           What This Is — And Isn&apos;t
         </h2>
 
-<ul className="text-gray-700 leading-relaxed space-y-4">
+<ul className="text-gray-700 leading-relaxed space-y-4 dark:text-gray-200">
 
     <li className="list-disc list-inside">
     This is not a performance optimization or any magical tool. It does not predict outcomes or guarantee results. 
@@ -123,7 +122,7 @@ export default function About() {
       </section>
 
       {/* CTA */}
-      <section className="pt-8 flex gap-6">
+      <section className="pt-8 flex flex-col sm:flex-row mx-auto gap-6 items-center sm:items-start">
         <Link
           href="/#explainer"
           className="inline-flex

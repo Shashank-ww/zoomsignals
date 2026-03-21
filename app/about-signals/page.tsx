@@ -73,7 +73,7 @@ export default function AboutSignals() {
     <main className="max-w-6xl mx-auto px-6 py-24 space-y-32">
 
       {/* HERO */}
-      <section className="space-y-6 max-w-3xl">
+      <section className="space-y-6">
         <h1 className="
         py-1
         lg:text-6xl
@@ -140,13 +140,19 @@ export default function AboutSignals() {
                   <button
                     key={i}
                     onClick={() => setActiveLayer(i)}
-                    className={`p-5 rounded-2xl border text-left transition ${
-                      isActive
-                        ? "bg-gray-700 text-white border-white"
-                        : "hover:border-black"
-                    }`}
+                    className={`p-6 rounded-xl border text-left space-y-3 transition-all duration-200
+                      ${
+                        isActive
+                          ? "bg-gray-800 text-white border-white shadow-md"
+                          : "hover:border-amber-500/60 hover:bg-amber-50/40 hover:shadow-md hover:text-blue-500 dark:hover:bg-amber-900/10"
+                      }`}
                   >
-                    <Icon className="w-5 h-5 mb-3" />
+                    <Icon
+                      className={`w-5 h-5 transition-colors duration-200 ${
+                        isActive ? "text-white" : "text-gray-600 group-hover:text-blue-500"
+                      }`}
+                    />
+
                     <h4 className="text-sm font-semibold">
                       {layer.title}
                     </h4>

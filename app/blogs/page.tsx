@@ -29,7 +29,12 @@ export default async function BlogsPage() {
     <div className="max-w-6xl mx-auto px-6 py-16 sm:py-20">
       {/* Header */}
       <header className="mb-14 sm:mb-16">
-        <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight">
+        <h1 className="py-1
+        lg:text-6xl
+        text-3xl
+        md:text-5xl bg-linear-to-tr from-blue-600 to-sky-400 bg-clip-text text-transparent
+        tracking-[-0.02em]
+        leading-[1.05]">
           Signals&rsquo; Intelligence Archive
         </h1>
         <p className="mt-4 text-neutral-600 dark:text-neutral-400 max-w-2xl">
@@ -43,7 +48,7 @@ export default async function BlogsPage() {
           {/* Featured Article */}
           <Link
             href={`/blogs/${featured.slug}`}
-            className="group block pb-12 border-b border-neutral-200 dark:border-neutral-800 hover:bg-amber-50 p-4 rounded-lg transition"
+            className="group block pb-12 border-b border-neutral-200 dark:border-neutral-800 border rounded-xl p-6 space-y-3 hover:border-amber-500/60 hover:bg-amber-50/40 hover:shadow-md hover:text-blue-500 dark:hover:bg-amber-900/10 transition-all"
           >
             <h2 className="text-xl sm:text-2xl font-semibold leading-tight group-hover:underline">
               {featured.title}

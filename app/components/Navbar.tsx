@@ -38,7 +38,7 @@ export default function Navbar() {
       <div className="mx-auto px-6 h-14 flex items-center justify-between">
 
        {/* Brand */}
-<a href="/" className="font-bold text-gray-900 select-none group">
+<a href="/" className="font-bold text-gray-800 select-none group">
   <span className="flex items-center gap-2 leading-none text-base">
 
     {/* Heat Block */}

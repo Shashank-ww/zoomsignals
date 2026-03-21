@@ -211,6 +211,8 @@ const resonanceScore = s.resonanceScore ?? 0;
     setSortBy("recent");
   };
 
+   const [showDisclaimer, setShowDisclaimer] = useState(false);
+
   return (
 <main className="max-w-6xl mx-auto px-6 py-12">
     <div className="flex flex-col lg:flex-row gap-12">
@@ -218,63 +220,66 @@ const resonanceScore = s.resonanceScore ?? 0;
        {/* ASIDE */}
 <aside
   className="
-    order-1
-    lg:order-0
-    w-full
-    lg:w-72
-    lg:flex-none
-    space-y-4
+    order-1 lg:order-0
+    w-full lg:w-72 lg:flex-none
+    pt-6
   "
 >
-  <div className="sticky top-20 space-y-4">
+  <div className="sticky top-20 space-y-6">
+
+    {/* DISCLAIMER */}
+    <div className="border rounded-xl p-3 text-xs">
+      <button
+        onClick={() => setShowDisclaimer(!showDisclaimer)}
+        className="flex items-center justify-between w-full font-medium text-left"
+      >
+        <span>Read Disclaimer</span>
+        <span className="text-gray-400">
+          {showDisclaimer ? "Hide" : "See"}
+        </span>
+      </button>
+
+      {showDisclaimer && (
+        <div className="mt-2 space-y-2 text-gray-600">
+          <p>
+            By using this site, you agree to interact responsibly and
+            acknowledge that signals reflect community input.
+          </p>
+          <p>
+            Signals evolve based on lifecycle shifts, velocity updates,
+            and resonance recalculations.
+          </p>
+        </div>
+      )}
+    </div>
 
     {/* FILTERS */}
     <Filters
-  confidenceFilter={confidenceFilter}
-  velocityFilter={velocityFilter}
-  lifecycleFilter={lifecycleFilter}
-  resonanceFilter={resonanceFilter}
-  sortBy={sortBy}
-  lifecycleOptions={lifecycleOptions}
-  setConfidenceFilter={setConfidenceFilter}
-  setVelocityFilter={setVelocityFilter}
-  setLifecycleFilter={setLifecycleFilter}
-  setResonanceFilter={setResonanceFilter}
-  setSortBy={setSortBy}
-  clearAll={clearAll}
-/>
+      confidenceFilter={confidenceFilter}
+      velocityFilter={velocityFilter}
+      lifecycleFilter={lifecycleFilter}
+      resonanceFilter={resonanceFilter}
+      sortBy={sortBy}
+      lifecycleOptions={lifecycleOptions}
+      setConfidenceFilter={setConfidenceFilter}
+      setVelocityFilter={setVelocityFilter}
+      setLifecycleFilter={setLifecycleFilter}
+      setResonanceFilter={setResonanceFilter}
+      setSortBy={setSortBy}
+      clearAll={clearAll}
+    />
+
+    {/* SOFT DIVIDER */}
     <div className="border-t pt-4"></div>
 
-    {/* TERMS BLOCK */}
-    <div className="border rounded-xl p-4 space-y-2 text-xs">
-      <h4 className="font-semibold">Disclaimer</h4>
-      <p>
-        By using this site, you agree to interact responsibly and
-        acknowledge that signals reflect community input.
-      </p>
-      <p>
-        Signals are subject to change based on lifecycle shifts,
-        velocity updates, and resonance recalculations.
-      </p>
-    </div>
+    {/* MAILING LIST (VISUALLY DISTINCT CTA) */}
 
-    {/* CONDITIONS BLOCK 
-    <div className="border rounded-xl p-4 text-xs space-y-2">
-      <h4 className="font-semibold">Conditions</h4>
-      <p>
-        Signals are subject to change based on lifecycle shifts,
-        velocity updates, and resonance recalculations.
-      </p>
-    </div>
-    */}
-
-    {/* MAILING LIST */}
-
-<MailingList/>
+      <MailingList />
 
 
   </div>
 </aside>
+
 
         {/* FEED */}
 {/* MAIN CONTENT */}
