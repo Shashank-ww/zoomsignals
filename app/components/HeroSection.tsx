@@ -160,8 +160,8 @@ function LiveFeedHeader({
           <span className="block w-6 h-2 border-b-[1.5px] border-blue-600 mt-1"></span>
         </div>
 
-        <h2 className="text-2xl font-bold text-gray-900">
-          See what's working right now
+        <h2 className="text-2xl font-bold text-gray-900 tracking-tight">
+          See what&apos;s working right now
         </h2>
 
         <p className="text-sm text-gray-600 max-w-md mt-2">
