@@ -350,16 +350,20 @@ setResonanceScore(data.resonanceScore);
     </div>
 
 
-    {signal.sourceLink && (
-      <a
-        href={signal.sourceLink}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="hover:text-black transition-colors"
-      >
-        View Source →
-      </a>
-    )}
+ {signal.sourceLink && (
+  <a
+    href={
+      signal.sourceLink.startsWith("http")
+        ? signal.sourceLink
+        : `https://${signal.sourceLink}`
+    }
+    target="_blank"
+    rel="noopener noreferrer"
+    className="hover:text-black transition-colors"
+  >
+    View Source →
+  </a>
+)}
   </div>
 
   {/* (Voting (Isolated) */}

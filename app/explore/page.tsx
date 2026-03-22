@@ -112,7 +112,7 @@ export default function Explore() {
           </div>
 
           <div className="border rounded-xl p-6 space-y-3 hover:border-amber-500/60 hover:bg-amber-50/40 hover:shadow-md hover:text-blue-500 dark:hover:bg-amber-900/10 transition-all">
-            <h3 className="font-semibold">Creative Teams</h3>
+            <h3 className="font-semibold">Creative Professionals</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400">
               Explore new design mechanics and creative structures.
             </p>

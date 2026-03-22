@@ -36,7 +36,7 @@ export default function HeroHeadline() {
       </h1>
 
       <p className="text-gray-500 max-w-lg leading-relaxed text-base dark:text-gray-300">
-        Insights on live ad formats showing early performance for brands active on social media. Currently monitoring <span className="underline underline-offset-4">automobiles category.</span> 
+        Insights on live ad formats showing early performance for brands active on social media. Exclusively monitoring <span className="underline underline-offset-4">auto category.</span> 
       </p>
 
       <div>

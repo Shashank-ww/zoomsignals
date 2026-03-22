@@ -5,7 +5,7 @@ import { HiOutlineSearch } from "react-icons/hi";
 
 export default function Footer() {
   return (
-    <footer className="border-t mt-20 shadow-inner-lg bg-linear-to-t from-[#F8FAFC] to-[#F1F5F9] border border-[#DBEAFE] dark:bg-neutral-950">
+    <footer className="border-t mt-20 shadow-inner bg-linear-to-t from-[#F8FAFC] to-[#F1F5F9] border border-[#DBEAFE] dark:bg-neutral-950">
       <div className="max-w-6xl mx-auto p-6 text-sm text-gray-500 dark:text-gray-400 mt-6">
         
         {/* Top Row */}
@@ -69,33 +69,26 @@ export default function Footer() {
               </h6>
               <ul className="space-y-2 text-xs">
                 <li>
-                  <Link href="/terms" className="hover:underline">
-                    Terms
-                  </Link>
+                <a href="/legal#terms" className="hover:underline">Terms</a>
                 </li>
                 <li>
-                  <Link href="/privacy" className="hover:underline">
-                    Privacy
-                  </Link>
+                <a href="/legal#privacy" className="hover:underline">Privacy</a>
                 </li>
                 <li>
-                  <Link href="/disclaimer" className="hover:underline">
-                    Disclaimer
-                  </Link>
+                <a href="/legal#disclaimer" className="hover:underline">Disclaimer</a>
                 </li>
               </ul>
             </div>
           </div>
         </div>
-
+      </div>
         {/* Bottom Row */}
-        <div className="border-t mt-8 pt-4 text-xs text-center text-gray-400">
+        <div className="border-t my-4 py-4 text-xs text-center text-gray-400">
           <p>
             © {new Date().getFullYear()} ZOOMSIGNALS. 
             All rights reserved.
           </p>
         </div>
-      </div>
     </footer>
   );
 }
