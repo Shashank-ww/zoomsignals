@@ -3,11 +3,10 @@
 import { useEffect, useState } from "react";
 
 const headlines = [
-  "Media buying intelligence. Not social trends.",
-  "Spot early-lift before scaling your ad spends.",
-  "Performance patterns, that gives real brand lift.",
-  "Shift your creatives before spends spike.",
   "Ad formats that help you stand out, first.",
+  "Media buying intelligence, not random trends. ",
+  "Shift your creatives before your CPMs spike.",
+  "Performance patterns that give real brand lift.",
   // "If it&s not blowing minds, it&aposs blowing your budget.",
 ];
 

@@ -88,14 +88,11 @@ import PoweredStrip from "./PoweredStrip";
                 </h2>
 
                 <p>
-                    Each signal represents a repeatable creative pattern
-                    observed generating early performance lift across
-                    multiple advertiser accounts.
+                    This is where we dive deeper. Each signal represents a repeatable creative pattern, generating early performance lift across multiple advertiser accounts.
                 </p>
 
                 <p>
-                    Signals are manually reviewed, structured, and approved
-                    before they appear in the live feed.
+                   These signals are then manually reviewed, structured, and approved before they appear in the live feed. It carries strategic implications to improve decision making.
                 </p>
                 </div>
 
@@ -105,14 +102,14 @@ import PoweredStrip from "./PoweredStrip";
                 </h2>
 
                 <ul className="space-y-2 list-disc ml-5">
-                    <li><b>Velocity</b> → Adoption speed across accounts</li>
+                    <li><b>Velocity</b> → Adoption speed across accounts and platforms</li>
                     <li><b>Confidence</b> → Repeat validation strength</li>
                     <li><b>Lifecycle</b> → Emerging, Stable, Declining</li>
                     <li><b>Repetition</b> → No. of times creative format is repeated</li>
                 </ul>
 
                 <p>
-                    This is early detection of what works and doesn&rsquo;t.
+                    We discover patterns early, making it easy for the planners and marketeers to improve decision making. These are updated frequently. 
                 </p>
                 </div>
 
@@ -165,7 +162,7 @@ function LiveFeedHeader({
         </h2>
 
         <p className="text-sm text-gray-600 max-w-md mt-2">
-          Discover real-time ad formats, creative patterns and campaign lifecycle across social media platforms. 
+          Discover real-time ad formats, creative patterns, campaign lifecycle across brands and social media platforms.
         </p>
       </div>
 

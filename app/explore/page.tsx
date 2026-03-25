@@ -14,20 +14,19 @@ export default function Explore() {
         tracking-[-0.02em]
         leading-[1.05]
         ">
-          Spot Ad Formats Before The Crowd
+          Look beyond patterns, peak into performance
         </h1>
 
         <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-          Winning ads don&apos;t explode. They converge into one.
+          Winning ads don't explode. They converge into one working pattern.
         </p>
         
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          Imagine a car ad you see on reels, shorts, social media platforms.
+          Imagine a car ad you see on any short media platform.
         </p>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          You see a hook appears in one category. Then another. Different brands. Same mechanics.
-          By the time the industry calls it a “trend”, everyone is already doing it.
+          You notice a hook appears in one category. Then another. Different brands. Same messaging. By the time the industry calls it a “trend”, everyone is already doing it.
         </p>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -45,12 +44,12 @@ export default function Explore() {
         </p>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          They have case studies that explains what already worked.
-          Trend decks summarizes what already spread.
+         Case studies that explain what already worked. 
+         Trend decks summarizes what already spread.
         </p>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          But only niche expertise help marketers see a format while it is still forming.
+          Hence, only niche expertise and analytical observation can help spot early patterns.
         </p>
       </section>
 
@@ -59,18 +58,16 @@ export default function Explore() {
         <h2 className="text-2xl font-semibold">What it does</h2>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          ZoomSignals tracks ad formats as they begin repeating across brands.
+          Zoomsignals tracks ad formats as they begin repeating across brand and platforms.
         </p>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          Instead of data-heavy Excel trackers and jargonned PPTs,
-          we built a live signal intelligence that documents emerging ad mechanics
-          across categories and platforms.
+          Instead of data-heavy Excel trackers and jargonned PPTs, that require extensive research and cumbersome tasks. 
+          We built a live signal intelligence that shows emerging ad mechanics across categories and platforms. Updated as and when observed. 
         </p>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          The goal is simple:
-          identify format that convergence early, before saturating markets.
+          Our goal is simple: identify formats that converge early, before markets saturate them.
         </p>
       </section>
 
@@ -80,21 +77,19 @@ export default function Explore() {
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
           In competitive industries like automotive, technology, and finance,
-          timing is leverage. Marketing sits on it for days.
+          timing is leverage. Marketing sits on it.
         </p>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          Hence, format awareness helps teams reduce wasted experimentation, avoid saturation, 
-          and build campaigns with stronger strategic direction. That which works!
+          A clear format awareness helps teams reduce wasted experimentation, avoid saturation, and help build campaigns with an early strategic direction. That which works!
         </p>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          ZoomSignals doesn&apos;t promise virality.
-          It gives marketers something far more useful:
+          Zoomsignals doesn&apos;t promise virality. It gives marketers something far more useful:
         </p>
 
         <p className="font-medium text-gray-600 uppercase text-sm">
-          Context before market scale distorts the signal.
+          Context before scale distorts the signal.
         </p>
       </section>
 
@@ -107,7 +102,7 @@ export default function Explore() {
           <div className="border rounded-xl p-6 space-y-3 hover:border-amber-500/60 hover:bg-amber-50/40 hover:shadow-md hover:text-blue-500 dark:hover:bg-amber-900/10 transition-all">
             <h3 className="font-semibold">Marketing Teams</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              Discover emerging advertising formats before they become saturated.
+              Discover emerging ad formats before they saturate.
             </p>
           </div>
 
@@ -154,13 +149,11 @@ export default function Explore() {
         </h2>
 
         <p className="text-center text-gray-600 dark:text-gray-400 max-w-2xl">
-          ZoomSignals is created after more than a decade working inside
-          advertising, marketing, and campaign execution.
+          Zoomsignals was created after more than a decade working inside advertising, marketing, and campaign execution.
         </p>
 
         <p className="text-center text-gray-600 dark:text-gray-400 max-w-2xl">
-          This platform is to help marketing teams see structural
-          advertising patterns earlier than traditional reporting with lose facts.
+         <span className="font-bold">It exists to solve a simple gap: </span>Helping teams see structural shifts in advertising, earlier than traditional reporting ever could.
         </p>
       <p>
         ***

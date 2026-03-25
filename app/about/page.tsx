@@ -16,16 +16,16 @@ export default function About() {
         tracking-[-0.02em]
         leading-[1.05]
         ">
-          About ZOOMSIGNALS
+          We help you make decision on ads
         </h1>
 
         <p className="text-lg text-gray-600 leading-relaxed dark:text-gray-300">
-          At Zoomsignals we track early structural and creative patterns across short-form social media ecosystems —
-          that help performance teams understand what is emerging, accelerating, peaking, or saturating before it becomes obvious for competition to take over. 
+          For over a decade, we kept seeing media teams chasing a trend that gets overly saturated by the time it is spotted and put into strategic decks. 
+          At Zoomsignals we track early structural and creative patterns across short-form social media platforms.  
         </p>
 
         <p className="text-gray-600">
-          And that is when you can act on your media brief before anyone else.
+          This helps performance teams understand what is emerging, accelerating, peaking, or saturating before it becomes obvious for the industry to call it a trend.
         </p>
       </section>
 
@@ -36,17 +36,14 @@ export default function About() {
         </h2>
 
         <p className="text-gray-700 leading-relaxed dark:text-gray-300">
-          We monitor recurring creative structures across <span className="font-bold">Meta, Instagram Reels, YouTube Shorts, and paid social media libraries.</span>
+          We monitor recurring creative patterns across <span className="font-bold">Meta, Instagram Reels, YouTube Shorts, and paid social media libraries.</span>
         </p>
 
         <p className="text-gray-700 leading-relaxed dark:text-gray-300">
-          When a format appears independently that is rising or declining across multiple brands, it is logged,
-          timestamped, tracked for confidence, velocity, and marked by lifecycle stage. This happens throughout the year, mostly seasonal. 
+          When a format appears independently and keeps rising or declining across multiple brands (shows actionable insight), it is logged, timestamped, tracked for confidence, velocity, and marked by lifecycle stage. 
+          This happens frequently, or until the campaigns&apos; significance dies.
         </p>
 
-        <p className="text-gray-600 dark:text-gray-300">
-          We track stories that rise and fall, unlike other sites that just shows analytical trends. 
-        </p>
       </section>
 
 {/* HOW IT WORKS */}
@@ -61,8 +58,8 @@ export default function About() {
     <div className="space-y-4 dark:text-gray-200">
       <div className="text-6xl font-bold text-gray-800 dark:text-gray-200">01</div>
       <p className="text-gray-800 text-base leading-relaxed dark:text-gray-300">
-        Ad formats are observed across selected brand and social media platforms
-        where ads usually start to rise. Simply put, when algorithm brings it up. We notice.
+        We monitor ad formats closely across selected brands and social media platforms where it appears to show traction. 
+        Simply put, when an algorithm brings it up. We notice.
       </p>
     </div>
 
@@ -70,8 +67,8 @@ export default function About() {
     <div className="space-y-4">
       <div className="text-6xl font-bold text-gray-800 dark:text-gray-200">02</div>
       <p className="text-gray-800 text-base leading-relaxed dark:text-gray-300">
-        Repeated ads appearing independently across brands
-        are logged as signals. With their performance matrix. 
+        Ads that appear to repeat independently across brands are then logged as signals. 
+        With their peak performance metrics carrying strategic implications.
       </p>
     </div>
 
@@ -79,8 +76,8 @@ export default function About() {
     <div className="space-y-4">
       <div className="text-6xl font-bold text-gray-800 dark:text-gray-200">03</div>
       <p className="text-gray-800 text-base leading-relaxed dark:text-gray-300">
-        Signals are then tracked for confidence, velocity and mapped to lifecycle
-        stage. This happens over a period of time until the impact dies.
+        Signals are then tracked for confidence, velocity and mapped over a period of time, until the impact dies. 
+        We refresh ads every week.
       </p>
     </div>
 
@@ -88,12 +85,48 @@ export default function About() {
     <div className="space-y-4">
       <div className="text-6xl font-bold text-gray-800 dark:text-gray-200">04</div>
       <p className="text-gray-800 text-base leading-relaxed dark:text-gray-300">
-        Strategic implications can be then defined to clarify whether or not to
-        experiment, differentiate, or to just avoid that ad format. 
+        Strategic implications are defined to clarify whether or not to experiment, differentiate, or to just avoid that ad format.
       </p>
     </div>
-
   </div>
+</section>
+
+<section className="space-y-4">
+  <h2 className="text-sm font-bold tracking-wide uppercase">
+          Who we are
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed dark:text-gray-300">
+          Zoomsignals is built by someone from the industry with decade long experience and passion for behavioural insights.
+        </p>
+
+        <p className="text-gray-700 leading-relaxed dark:text-gray-300">
+         We manage $100K+ campaigns, execute creatives daily, and track audience data. 
+         We sit in performance reviews, build strategic decks, and see firsthand how marketing decisions are actually made.
+        </p>
+
+        <p className="text-gray-700 leading-relaxed dark:text-gray-300">
+         Working across brands like global streaming platforms, automotive giants, gaming companies, and consumer tech. 
+         <br/>
+         One pattern kept repeating: 
+         <span className="font-bold"> Every time we intend to do something, the market has already accomplished it somewhere.
+        </span>
+        </p>
+
+                <p className="text-gray-700 leading-relaxed dark:text-gray-300">
+        By the time something is called a “winning format,” it&apos;s already been overused, over-optimized, and stripped of its advantage. 
+        Teams do not fail because they lack ideas. They fail because they are responding to signals that have already peaked over time.
+        <br/>
+        <span className="font-bold">
+          Zoomsignals come to fill that gap.
+        </span>
+        </p>
+
+                <p className="text-gray-700 leading-relaxed dark:text-gray-300">
+         This is not a trend platform or SaaS tool. It is a measurable layer to how ad decisions are made.
+         Because better outcomes come from seeing the right patterns, earlier. Not data. Not statistics.
+        </p>
+
 </section>
 
       {/* WHAT THIS IS */}
@@ -105,14 +138,14 @@ export default function About() {
 <ul className="text-gray-700 leading-relaxed space-y-4 dark:text-gray-200">
 
     <li className="list-disc list-inside">
-    This is not a performance optimization or any magical tool. It does not predict outcomes or guarantee results. 
+    We are not a performance optimization agency or SaaS tool. This platform does not predict outcomes or guarantee results.
   </li>
       <li className="list-disc list-inside">
-    It is a curated signals&apos; log designed to improve ad awareness,
-          timing, and decision-making. Technically, when ads trend and when they do not.
+    It is a curated signals' log designed to improve ad awareness, timing, and decision-making. Technically, when ads trend and we go all out to look for “Why” it is working. 
+    And if that pattern repeats across brands, platforms. It is evidently made use of.
   </li>
       <li className="list-disc list-inside">
-    If you are here reading this, then you are the first person to make a decision on obvious factors before anyone else.
+    If you are exploring this, chances are that you could formulate strategies around the best of the performance marketing campaign. 
   </li>
       <li className="">
     <span className="font-semibold">Please note: </span>Signals reflect observed structural and creative patterns. We do not endorse any brand or ad format, or even platform.

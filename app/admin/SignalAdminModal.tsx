@@ -17,7 +17,7 @@ export default function SignalAdminModal({
     lifecycle: "EARLY",
     velocity: "EMERGING",
     confidence: "HIGH",
-    approvalStatus: "APPROVED",
+    approvalStatus: "DRAFT",
     primaryPlatforms: ["INSTAGRAM"],
     repetitionCount: 1,
     narrative: "VISUAL_ONLY",
@@ -71,6 +71,7 @@ useEffect(() => {
       body: JSON.stringify({
         id: signal?.id,
         ...form,
+        approvalStatus: "DRAFT",
       }),
     });
 
