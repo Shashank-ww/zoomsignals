@@ -153,7 +153,7 @@ export default function Explore() {
         </p>
 
         <p className="text-center text-gray-600 dark:text-gray-400 max-w-2xl">
-         <span className="font-bold">It exists to solve a simple gap: </span>Helping teams see structural shifts in advertising, earlier than traditional reporting ever could.
+         <span className="font-bold">It exists to solve a simple gap: </span>Helping teams see structural shifts in advertising, earlier than traditional reporting goes cold.
         </p>
       <p>
         ***
@@ -169,8 +169,8 @@ export default function Explore() {
           </h2>
 
           <p className="text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
-            If you are exploring a campaign idea, category shift, or creative
-            territory and want early signal awareness, reach out.
+            Exploring a campaign idea, category shift, or creative
+            patterns and want early insights, reach out to us.
           </p>
 
           <p className="text-sm text-gray-500">

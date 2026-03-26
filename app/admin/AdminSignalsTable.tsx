@@ -22,6 +22,8 @@ export default function AdminSignalsTable({ signals }: Props) {
   const [showPasswordText, setShowPasswordText] = useState(false);
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [queueFilter, setQueueFilter] = useState<"PENDING" | "DRAFT">("PENDING");
+  const [authLoading, setAuthLoading] = useState(false);
+  const [authStatus, setAuthStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   /* ============================
      Refresh
@@ -131,6 +133,56 @@ async function deleteSelected(ids: string[]) {
      Approval Handler
   ============================ */
 
+const handleLogin = async () => {
+  if (!adminPassword) {
+    alert("Enter password");
+    return;
+  }
+
+  if (authStatus === "loading") return; // prevent spam clicks
+
+  try {
+    setAuthStatus("loading");
+
+    const res = await fetch("/api/admin-auth", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ password: adminPassword }),
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      setAuthStatus("success");
+      setIsAuthorized(true);
+
+      setTimeout(() => {
+        setShowPassword(false);
+        setAdminPassword("");
+        setAuthStatus("idle");
+      }, 3000);
+
+    } else {
+      setAuthStatus("error");
+
+      setTimeout(() => {
+        setAuthStatus("idle");
+      }, 2000); 
+    }
+  } catch (err) {
+    console.error("Login error:", err);
+
+    setAuthStatus("error");
+
+    setTimeout(() => {
+      setAuthStatus("idle");
+    }, 2000);
+  }
+};
+
+
   async function handleApproval(id: string, action: "APPROVE" | "REJECT") {
 if (!isAuthorized) {
   setShowPassword(true);
@@ -141,13 +193,12 @@ if (!isAuthorized) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "x-admin-secret": adminPassword,
     },
     body: JSON.stringify({ id, action }),
   });
 
   if (!res.ok) {
-    alert("Unauthorized or failed access debarred!");
+    alert("Unauthorized or failed access!");
     return;
   }
 
@@ -158,32 +209,32 @@ if (!isAuthorized) {
   );
 }
 
-async function verifyAccess() {
-  if (!adminPassword) {
-    alert("Enter password");
-    return;
-  }
+// async function verifyAccess() {
+//   if (!adminPassword) {
+//     alert("Enter password");
+//     return;
+//   }
 
-  const res = await fetch("/api/admin/signals/approve", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "x-admin-secret": adminPassword,
-    },
-    body: JSON.stringify({
-      id: rows[0]?.id || "test", // dummy safe call
-      action: "APPROVE",
-    }),
-  });
+//   const res = await fetch("/api/admin/signals/approve", {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//       "x-admin-secret": adminPassword,
+//     },
+//     body: JSON.stringify({
+//       id: rows[0]?.id || "test", // dummy safe call
+//       action: "APPROVE",
+//     }),
+//   });
 
-  if (!res.ok) {
-    alert("Incorrect password");
-    return;
-  }
+//   if (!res.ok) {
+//     alert("Incorrect password");
+//     return;
+//   }
 
-  setIsAuthorized(true);
-  setShowPassword(false);
-}
+//   setIsAuthorized(true);
+//   setShowPassword(false);
+// }
 
 const filteredQueue = rows.filter(s => s.approvalStatus === queueFilter);
 
@@ -314,8 +365,13 @@ const filteredQueue = rows.filter(s => s.approvalStatus === queueFilter);
 
 
 {/* PASSWORD GATE */}
-{showPassword && !isAuthorized && (
-  <div className="border-t pt-4 mt-3 max-w-md">
+
+<div
+  className={`overflow-hidden transition-all duration-500 ease-in-out
+    ${showPassword ? "max-h-72 opacity-100 mt-4" : "max-h-0 opacity-0 mt-0"}
+  `}
+>
+  <div className="border-t pt-4 p-1 max-w-md">
 
     {/* INPUT */}
     <div className="relative">
@@ -323,10 +379,11 @@ const filteredQueue = rows.filter(s => s.approvalStatus === queueFilter);
         type={showPasswordText ? "text" : "password"}
         placeholder="Enter admin password"
         value={adminPassword}
+        disabled={authStatus === "success"}
         onChange={(e) => setAdminPassword(e.target.value)}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
-            verifyAccess();
+            handleLogin();
           }
         }}
         className="border px-3 py-2 pr-10 rounded-md w-full text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500/30"
@@ -349,14 +406,31 @@ const filteredQueue = rows.filter(s => s.approvalStatus === queueFilter);
     {/* CTA + HELPER (TIGHT + NATURAL) */}
     <div className="mt-2 flex items-center gap-3">
 
-      <button
-        onClick={() => {
-          verifyAccess();
-        }}
-        className="px-4 py-1.5 text-xs bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
-      >
-        Verify Access
-      </button>
+        <button
+            onClick={handleLogin}
+            disabled={authStatus === "loading"}
+            className={`px-4 py-1.5 text-xs rounded-md transition flex items-center gap-2 text-white
+              ${authStatus === "error" ? "animate-shake" : ""}
+              ${
+                authStatus === "loading"
+                  ? "bg-blue-400"
+                  : authStatus === "success"
+                  ? "bg-emerald-500"
+                  : authStatus === "error"
+                  ? "bg-red-500"
+                  : "bg-blue-500 hover:bg-blue-600"
+              }
+            `}
+          >
+            {authStatus === "loading" && (
+              <span className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin" />
+            )}
+
+            {authStatus === "loading" && "Verifying..."}
+            {authStatus === "success" && "Successful"}
+            {authStatus === "error" && "Access Denied"}
+            {authStatus === "idle" && "Verify Access"}
+          </button>
 
       <span className="text-[11px] text-zinc-400">
         {adminPassword
@@ -367,7 +441,8 @@ const filteredQueue = rows.filter(s => s.approvalStatus === queueFilter);
     </div>
 
   </div>
-)}
+
+</div>
 
 {/* STATUS GRID */}
 

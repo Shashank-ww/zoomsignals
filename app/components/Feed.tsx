@@ -246,8 +246,8 @@ const resonanceScore = s.resonanceScore ?? 0;
             acknowledge that signals reflect community input.
           </p>
           <p>
-            Signals evolve based on lifecycle shifts, velocity updates,
-            and resonance recalculations.
+            Signals patterns evolve based on ad lifecycle, spread velocity,
+            and usability recalculations.
           </p>
         </div>
       )}

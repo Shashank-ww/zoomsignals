@@ -47,7 +47,7 @@ export default function Navbar() {
         h-4 w-0.75 rounded-full shadow-sm
         bg-blue-500
         transition-all duration-200 ease-in-out
-        group-hover:w-1.5 group-hover:h-4
+        group-hover:w-3 group-hover:h-3
       "
     />
 

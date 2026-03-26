@@ -16,16 +16,16 @@ export default function About() {
         tracking-[-0.02em]
         leading-[1.05]
         ">
-          We help you make decision on ads
+          Make early decision on ads
         </h1>
 
         <p className="text-lg text-gray-600 leading-relaxed dark:text-gray-300">
-          For over a decade, we kept seeing media teams chasing a trend that gets overly saturated by the time it is spotted and put into strategic decks. 
-          At Zoomsignals we track early structural and creative patterns across short-form social media platforms.  
+          There is a pattern in everything, we kept seeing media teams chasing a trend that gets overly saturated by the time it is spotted and put into strategic decks. 
+          We realise if we can track early structural and creative patterns across short-form social media platforms. It will help performance and marketing teams achieve better conversion before it saturates click-to-action.
         </p>
 
         <p className="text-gray-600">
-          This helps performance teams understand what is emerging, accelerating, peaking, or saturating before it becomes obvious for the industry to call it a trend.
+          That is how we help you understand what is emerging, accelerating, peaking, or saturating before it becomes obvious for the industry to call it a trend.
         </p>
       </section>
 
@@ -76,7 +76,7 @@ export default function About() {
     <div className="space-y-4">
       <div className="text-6xl font-bold text-gray-800 dark:text-gray-200">03</div>
       <p className="text-gray-800 text-base leading-relaxed dark:text-gray-300">
-        Signals are then tracked for confidence, velocity and mapped over a period of time, until the impact dies. 
+        Signal patterns are then tracked for confidence, velocity and mapped over a period of time, until the impact dies. 
         We refresh ads every week.
       </p>
     </div>
@@ -97,24 +97,24 @@ export default function About() {
         </h2>
 
         <p className="text-gray-700 leading-relaxed dark:text-gray-300">
-          Zoomsignals is built by someone from the industry with decade long experience and passion for behavioural insights.
+          Zoomsignals is built with decade long experience and passion for behavioural insights.
         </p>
 
         <p className="text-gray-700 leading-relaxed dark:text-gray-300">
-         We manage $100K+ campaigns, execute creatives daily, and track audience data. 
-         We sit in performance reviews, build strategic decks, and see firsthand how marketing decisions are actually made.
+         We managed $100K+ campaigns, executed creatives daily, and tracked audience data. 
+         We sat in performance reviews, built strategic decks, and saw firsthand how marketing decisions are actually made.
         </p>
 
         <p className="text-gray-700 leading-relaxed dark:text-gray-300">
          Working across brands like global streaming platforms, automotive giants, gaming companies, and consumer tech. 
          <br/>
-         One pattern kept repeating: 
-         <span className="font-bold"> Every time we intend to do something, the market has already accomplished it somewhere.
+         We realised that ad patterns kept repeating: 
+         <span className="font-bold"> Every time we intend to do something, the market has already accomplished.
         </span>
         </p>
 
                 <p className="text-gray-700 leading-relaxed dark:text-gray-300">
-        By the time something is called a “winning format,” it&apos;s already been overused, over-optimized, and stripped of its advantage. 
+        By the time something is called a “winning ad,” it&apos;s already been overused, over-optimized, and stripped of its advantage. 
         Teams do not fail because they lack ideas. They fail because they are responding to signals that have already peaked over time.
         <br/>
         <span className="font-bold">
