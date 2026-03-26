@@ -49,7 +49,7 @@ export default function MailingList() {
 
       <input
         type="email"
-        placeholder="ranvir@dhurandhar.com"
+        placeholder="alisha@marketing.com"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         disabled={status === "submitting" || status === "success"}

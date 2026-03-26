@@ -27,6 +27,7 @@ const signals: Signal[] = rawSignals as Signal[];
       <HeroSection
         approvedSignalsCount={approvedSignalsCount}
         totalSignalsCount={totalSignalsCount}
+        signals={signals}
       />
       <Feed initialSignals={signals} />
     </main>

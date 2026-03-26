@@ -4,15 +4,19 @@
     import SignalRadar from "@/components/SignalRadar";
     import HeroHeadline from "./HeroHeadline";
 import PoweredStrip from "./PoweredStrip";
+import type { Signal } from "@/types/signal.types";
+import SignalPreviewPhone from "./SignalPreview";
 
     interface HeroSectionProps {
     approvedSignalsCount: number;
     totalSignalsCount: number;
+    signals?: Signal[];
     }
 
     export default function HeroSection({
     approvedSignalsCount,
     totalSignalsCount,
+    signals = [],
     }: HeroSectionProps) {
     const [showExplainer, setShowExplainer] = useState(false);
 
@@ -68,8 +72,16 @@ import PoweredStrip from "./PoweredStrip";
 
             {/* RIGHT RADAR */}
             <div className="hidden lg:flex justify-end">
-                <SignalRadar />
-            </div>
+              <div className="hidden lg:flex justify-end">
+  {signals?.length > 0 ? (
+    <SignalPreviewPhone signals={signals} />
+  ) : (
+    <div className="w-65 h-130 rounded-[36px] border flex items-center justify-center text-xs text-gray-400">
+      Loading signals...
+    </div>
+  )}
+</div>
+</div>
             </div>
         </section>
 
