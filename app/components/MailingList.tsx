@@ -44,12 +44,12 @@ export default function MailingList() {
   };
 
   return (
-    <div className="border rounded-xl p-3 text-xs space-y-2">
+    <div className="border border-gray-300 bg-gray-100/40 rounded-xl p-3 text-xs space-y-2">
       <h4 className="font-semibold">Join Mailing List</h4>
 
       <input
         type="email"
-        placeholder="email@domain.com"
+        placeholder="ranvir@dhurandhar.com"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         disabled={status === "submitting" || status === "success"}

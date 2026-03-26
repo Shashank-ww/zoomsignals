@@ -21,6 +21,7 @@ export default function AdminSignalsTable({ signals }: Props) {
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordText, setShowPasswordText] = useState(false);
   const [isAuthorized, setIsAuthorized] = useState(false);
+  const [queueFilter, setQueueFilter] = useState<"PENDING" | "DRAFT">("PENDING");
 
   /* ============================
      Refresh
@@ -157,12 +158,41 @@ if (!isAuthorized) {
   );
 }
 
+async function verifyAccess() {
+  if (!adminPassword) {
+    alert("Enter password");
+    return;
+  }
+
+  const res = await fetch("/api/admin/signals/approve", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-admin-secret": adminPassword,
+    },
+    body: JSON.stringify({
+      id: rows[0]?.id || "test", // dummy safe call
+      action: "APPROVE",
+    }),
+  });
+
+  if (!res.ok) {
+    alert("Incorrect password");
+    return;
+  }
+
+  setIsAuthorized(true);
+  setShowPassword(false);
+}
+
+const filteredQueue = rows.filter(s => s.approvalStatus === queueFilter);
+
   /* ============================
      UI
   ============================ */
 
   return (
-    <div className="space-y-6 max-w-6xl mx-auto">
+    <div className="space-y-8 max-w-6xl mx-auto">
 
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
@@ -210,13 +240,16 @@ if (!isAuthorized) {
 
       {/* AUTH CONTROL PANEL */}
 <div
-  className={`border rounded-xl p-5 space-y-5 transition-all duration-300
-    ${isAuthorized ? "bg-emerald-50 border-emerald-100" : "bg-yellow-50 border-yellow-200"}
+  className={`border rounded-xl p-6 space-y-4 transition-all duration-300 shadow-lg
+    ${isAuthorized ? 
+      "bg-linear-to-br from-[#EFF6FF] via-[#F8FAFC] to-[#F1F5F9] border border-[#dbe4fe]" 
+      : 
+      "bg-linear-to-br from-[#ffefef] via-[#fcfcf8] to-[#f9f1f1] border border-[#fedbdb]"}
   `}
 >
 
   {/* HEADER */}
-  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 text-gray-800">
 
     {/* LEFT */}
     <div>
@@ -230,7 +263,7 @@ if (!isAuthorized) {
 
     {/* RIGHT: STATUS BADGE */}
     <div
-      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition
+      className={`flex items-center justify-between gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition
         ${isAuthorized
           ? "bg-emerald-200 text-emerald-800"
           : "bg-red-100 text-red-600"
@@ -251,157 +284,269 @@ if (!isAuthorized) {
   </div>
 
   {/* CONTROL ROW */}
-  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+<div className="flex items-center justify-between">
 
-    {/* LEFT: CONTEXT */}
-    <p className="text-xs text-zinc-500">
-      {isAuthorized
-        ? "You can now approve or reject signals."
-        : "Authorization required to perform approval actions."}
-    </p>
+  <p className="text-xs text-gray-600 uppercase">
+    {isAuthorized
+      ? "Approval controls unlocked"
+      : "Authorization required to access controls"}
+  </p>
 
-    {/* RIGHT: ACTION */}
-    {!isAuthorized ? (
+  {!isAuthorized ? (
+    <button
+      onClick={() => setShowPassword(true)}
+      className="text-xs px-4 py-1.5 rounded-md bg-gray-700 text-white hover:bg-gray-600 transition"
+    >
+      Activate Access
+    </button>
+  ) : (
+    <button
+      onClick={() => {
+        setIsAuthorized(false);
+        setAdminPassword("");
+      }}
+      className="text-xs px-3 py-1 rounded-md border border-red-200 text-red-600 hover:bg-red-50 transition"
+    >
+      Lock
+    </button>
+  )}
+</div>
+
+
+{/* PASSWORD GATE */}
+{showPassword && !isAuthorized && (
+  <div className="border-t pt-4 mt-3 max-w-md">
+
+    {/* INPUT */}
+    <div className="relative">
+      <input
+        type={showPasswordText ? "text" : "password"}
+        placeholder="Enter admin password"
+        value={adminPassword}
+        onChange={(e) => setAdminPassword(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            verifyAccess();
+          }
+        }}
+        className="border px-3 py-2 pr-10 rounded-md w-full text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500/30"
+      />
+
+      {/* SHOW / HIDE */}
       <button
-        onClick={() => setShowPassword(true)}
-        className="text-xs px-4 py-1.5 rounded-md bg-gray-500 text-white hover:bg-gray-600 transition-all"
+        type="button"
+        onClick={() => setShowPasswordText(prev => !prev)}
+        className="absolute right-2 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-black"
       >
-        Activate Access
+        {showPasswordText ? (
+          <EyeOff className="w-4 h-4" />
+        ) : (
+          <Eye className="w-4 h-4" />
+        )}
       </button>
-    ) : (
+    </div>
+
+    {/* CTA + HELPER (TIGHT + NATURAL) */}
+    <div className="mt-2 flex items-center gap-3">
+
       <button
         onClick={() => {
-          setIsAuthorized(false);
-          setAdminPassword("");
+          verifyAccess();
         }}
-        className="text-xs px-4 py-1.5 rounded-md border border-red-200 text-red-600 hover:bg-red-50 transition-all"
+        className="px-4 py-1.5 text-xs bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
       >
-        Lock Panel
+        Verify Access
       </button>
-    )}
+
+      <span className="text-[11px] text-zinc-400">
+        {adminPassword
+          ? "Press Enter or click Verify Access"
+          : "Secure access required for admin actions"}
+      </span>
+
+    </div>
+
   </div>
-
-  {/* PASSWORD GATE */}
-  {showPassword && !isAuthorized && (
-<div className="flex flex-wrap gap-2 w-full sm:w-auto pt-2 border-t">
-
-  {/* INPUT WITH ICON */}
-  <div className="relative w-full">
-    <input
-      type={showPasswordText ? "text" : "password"}
-      placeholder="Enter Admin Password"
-      value={adminPassword}
-      onChange={(e) => setAdminPassword(e.target.value)}
-      onKeyDown={(e) => {
-        if (e.key === "Enter") {
-          if (!adminPassword) {
-            alert("Enter password");
-            return;
-          }
-
-          setIsAuthorized(true);
-          setShowPassword(false);
-        }
-      }}
-      className="border px-3 py-2 pr-10 rounded-md w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/30"
-    />
-
-    <button
-      type="button"
-      onClick={() => setShowPasswordText(prev => !prev)}
-      className="absolute right-2 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-black"
-    >
-      {showPasswordText ? (
-        <EyeOff className="w-4 h-4" />
-      ) : (
-        <Eye className="w-4 h-4" />
-      )}
-    </button>
-  </div>
-
-  {/* VERIFY BUTTON */}
-  <button
-    onClick={() => {
-      if (!adminPassword) {
-        alert("Enter password");
-        return;
-      }
-
-      setIsAuthorized(true);
-      setShowPassword(false);
-    }}
-    className="px-6 py-2 w-full sm:w-auto text-xs bg-blue-500 text-white rounded-md hover:bg-blue-600 transition whitespace-nowrap"
-  >
-    Verify Access
-  </button>
-  {!isAuthorized && (
-  <p className="text-[11px] text-zinc-400">
-    Actions prompt secure authorization
-  </p>
 )}
 
+{/* STATUS GRID */}
+
+<div className="pt-4 border-t space-y-3">
+
+  {/* STATUS PILLS */}
+  <div className="flex flex-wrap gap-2 text-xs">
+
+    <span className="px-2.5 py-1 rounded-full bg-zinc-800 text-white font-medium">
+      Total: {rows.length}
+    </span>
+
+    <span className="px-2.5 py-1 rounded-full bg-yellow-100 text-yellow-800">
+      Draft: {rows.filter(s => s.approvalStatus === "DRAFT").length}
+    </span>
+
+    <span className="px-2.5 py-1 rounded-full bg-blue-100 text-blue-700">
+      Pending: {rows.filter(s => s.approvalStatus === "PENDING").length}
+    </span>
+
+    <span className="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700">
+      Approved: {rows.filter(s => s.approvalStatus === "APPROVED").length}
+    </span>
+
+    <span className="px-2.5 py-1 rounded-full bg-red-100 text-red-600">
+      Rejected: {rows.filter(s => s.approvalStatus === "REJECTED").length}
+    </span>
+
+  </div>
+
+  {/* PROGRESS BAR */}
+  <div className="w-full h-2 rounded-full bg-zinc-200 overflow-hidden flex">
+
+    {(() => {
+      const total = rows.length || 1;
+
+      const draft = rows.filter(s => s.approvalStatus === "DRAFT").length;
+      const pending = rows.filter(s => s.approvalStatus === "PENDING").length;
+      const approved = rows.filter(s => s.approvalStatus === "APPROVED").length;
+      const rejected = rows.filter(s => s.approvalStatus === "REJECTED").length;
+
+      return (
+        <>
+          <div
+            className="bg-yellow-400"
+            style={{ width: `${(draft / total) * 100}%` }}
+          />
+          <div
+            className="bg-blue-500"
+            style={{ width: `${(pending / total) * 100}%` }}
+          />
+          <div
+            className="bg-emerald-500"
+            style={{ width: `${(approved / total) * 100}%` }}
+          />
+          <div
+            className="bg-red-400"
+            style={{ width: `${(rejected / total) * 100}%` }}
+          />
+        </>
+      );
+    })()}
+
+  </div>
+
+  {/* OPTIONAL LABEL ROW (SUBTLE) */}
+  <div className="flex justify-between text-[10px] text-zinc-400 px-1">
+    <span>Draft</span>
+    <span>Pending</span>
+    <span>Approved</span>
+    <span>Rejected</span>
+  </div>
+
 </div>
+
+  {/* QUEUE */}
+<div className="border-t pt-4 space-y-3 text-gray-800">
+
+  {/* HEADER */}
+  <div className="flex items-center justify-between">
+
+    <p className="text-xs font-medium">
+      {queueFilter === "PENDING" ? "Pending Queue" : "Draft Queue"} ({filteredQueue.length})
+    </p>
+
+    {/* SEGMENTED CONTROL */}
+    <div className="flex bg-zinc-100 rounded-md p-1 text-xs">
+
+      <button
+        onClick={() => setQueueFilter("PENDING")}
+        className={`px-3 py-1 rounded-md transition
+          ${queueFilter === "PENDING"
+            ? "bg-white shadow text-blue-600 font-medium"
+            : "text-zinc-500"
+          }`}
+      >
+        Pending
+      </button>
+
+      <button
+        onClick={() => setQueueFilter("DRAFT")}
+        className={`px-3 py-1 rounded-md transition
+          ${queueFilter === "DRAFT"
+            ? "bg-white shadow text-blue-600 font-medium"
+            : "text-zinc-500"
+          }`}
+      >
+        Draft
+      </button>
+
+    </div>
+
+  </div>
+
+  {/* EMPTY STATE */}
+  {filteredQueue.length === 0 && (
+    <p className="text-xs text-zinc-500">
+      No {queueFilter.toLowerCase()} signals
+    </p>
   )}
 
-<div className="grid grid-cols-2 sm:flex gap-3 text-xs sm:text-sm">
-  <span className="font-bold">Total: {rows.length}</span>
-  <span>Draft: {rows.filter(s => s.approvalStatus === "DRAFT").length}</span>
-  <span>Pending: {rows.filter(s => s.approvalStatus === "PENDING").length}</span>
-  <span>Approved: {rows.filter(s => s.approvalStatus === "APPROVED").length}</span>
-  <span>Rejected: {rows.filter(s => s.approvalStatus === "REJECTED").length}</span>
+  {/* LIST */}
+  {filteredQueue.slice(0, 5).map(s => (
+    <div
+      key={s.id}
+      className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-sm border p-3 rounded-md bg-white"
+    >
+      <span className="truncate max-w-[60%]">{s.formatName}</span>
+
+      {/* ACTIONS */}
+      <div className="flex flex-wrap gap-2 justify-end sm:justify-start">
+
+        {queueFilter === "PENDING" && (
+          <>
+            <button
+              onClick={() => {
+                setShowPassword(true);
+                handleApproval(s.id, "APPROVE");
+              }}
+              disabled={!isAuthorized}
+              className="px-3 py-1 text-xs rounded-md bg-emerald-100 text-emerald-800 disabled:opacity-40"
+            >
+              Approve
+            </button>
+
+            <button
+              onClick={() => {
+                setShowPassword(true);
+                handleApproval(s.id, "REJECT");
+              }}
+              disabled={!isAuthorized}
+              className="px-3 py-1 text-xs rounded-md bg-red-100 text-red-800 disabled:opacity-40"
+            >
+              Reject
+            </button>
+          </>
+        )}
+
+        {queueFilter === "DRAFT" && (
+          <button
+            onClick={() => updateStatus(s.id, "PENDING")}
+            className="px-3 py-1 text-xs rounded-md border hover:bg-zinc-100"
+          >
+            Send for Approval
+          </button>
+        )}
+
+      </div>
+    </div>
+  ))}
+
 </div>
-
-  {/* 🔥 Pending Queue */}
-  <div className="border-t pt-3 space-y-2">
-    <p className="text-xs font-medium">
-  Pending Queue ({rows.filter(s => s.approvalStatus === "PENDING").length})
-</p>
-
-    {rows.filter(s => s.approvalStatus === "PENDING").length === 0 && (
-      <p className="text-xs text-gray-500">No pending approvals</p>
-    )}
-
-    {rows
-      .filter(s => s.approvalStatus === "PENDING")
-      .slice(0, 5)
-      .map(s => (
-        <div key={s.id} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-sm border p-3 rounded-md bg-white">
-          <span className="truncate max-w-[60%]">{s.formatName}</span>
-
-<div className="flex flex-wrap gap-2 justify-end sm:justify-start">
-  <button
-    onClick={() => {
-      setShowPassword(true);
-      handleApproval(s.id, "APPROVE");
-    }}
-    disabled={!isAuthorized}
-    className="px-3 py-1 text-xs rounded-md bg-emerald-100 text-emerald-800 disabled:opacity-40"
-  >
-    Approve
-  </button>
-
-  <button
-    onClick={() => {
-      setShowPassword(true);
-      handleApproval(s.id, "REJECT");
-    }}
-    disabled={!isAuthorized}
-    className="px-3 py-1 text-xs rounded-md bg-red-100 text-red-800 disabled:opacity-40"
-  >
-    Reject
-  </button>
-</div>
-
-        </div>
-      ))}
-  </div>
 </div>
 
 
       {/* Table */}
       <div className="overflow-x-auto border rounded-xl text-black dark:text-gray-600">
         <table className="w-full text-sm border-collapse">
-          <thead className="bg-blue-100/40 text-xs text-zinc-500 uppercase tracking-wide">
+          <thead className="bg-blue-100/40 text-xs text-zinc-400 uppercase tracking-wide">
             <tr>
               <th className="px-4 py-3">
                 <input

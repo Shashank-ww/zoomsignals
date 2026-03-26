@@ -39,7 +39,7 @@ export default function ResonanceScore({
       
       {/* Label */}
       <div className="text-[7px] md:text-[8px] uppercase tracking-widest text-gray-400/70 md:text-gray-400">
-        Validation Strength
+        Utility Strength
       </div>
       
       {/* Strip */}

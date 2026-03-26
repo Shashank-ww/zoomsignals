@@ -62,7 +62,7 @@ import PoweredStrip from "./PoweredStrip";
                       hover:underline
                     "
                   >
-                    {showExplainer ? "Hide explainer" : "How to read Signals?"}
+                    {showExplainer ? "Hide explainer" : "How to read Signal Patterns?"}
                   </button>
             </div>
 
@@ -98,7 +98,7 @@ import PoweredStrip from "./PoweredStrip";
 
                 <div className="space-y-5">
                 <h2 className="text-xl font-light text-gray-800">
-                    Signal Markers
+                    Singal Pattern Markers
                 </h2>
 
                 <ul className="space-y-2 list-disc ml-5">
@@ -152,7 +152,7 @@ function LiveFeedHeader({
       <div>
         <div className="mb-2 inline-block">
           <p className="text-xs uppercase tracking-widest text-blue-600/80">
-            Live Intelligence
+            Live Library
           </p>
           <span className="block w-6 h-2 border-b-[1.5px] border-blue-600 mt-1"></span>
         </div>

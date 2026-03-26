@@ -168,7 +168,7 @@ setResonanceScore(data.resonanceScore);
   
   return (
     <article
-      className="border rounded-2xl bg-white overflow-hidden hover:shadow-xl transition-all duration-300 h-full">
+      className="rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 h-full bg-linear-to-br from-[#EFF6FF] via-[#F8FAFC] to-[#f9f9f1] border border-[#dbfee2]">
       <div className="flex flex-col md:flex-row">
 
         {/* IMAGE */}
@@ -376,7 +376,7 @@ setResonanceScore(data.resonanceScore);
           h-7 px-3
           flex items-center gap-1
           rounded-md
-          text-red-600
+          text-red-500
           border border-red-200/70
           bg-red-50/60
           hover:bg-red-100/70
@@ -388,7 +388,7 @@ setResonanceScore(data.resonanceScore);
         "
         title="Challenge signal"
       >
-        <span className="leading-none">👎</span>
+        <span className="leading-none">Not useful</span>
         <span className="text-[10px] opacity-80">
           {notRelevantCount}
         </span>
@@ -412,7 +412,7 @@ setResonanceScore(data.resonanceScore);
         "
         title="Validate signal"
       >
-        <span className="leading-none">👍</span>
+        <span className="leading-none">Useful</span>
         <span className="text-[10px] opacity-80">
           {relevantCount}
         </span>
