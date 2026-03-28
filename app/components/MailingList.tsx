@@ -75,7 +75,7 @@ export default function MailingList() {
         <p
           className={`text-xs ${
             status === "error"
-              ? "text-red-500"
+              ? "text-amber-500"
               : "text-emerald-600"
           }`}
         >

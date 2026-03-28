@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { FormatRelativeDate } from "@/components/FormatRelativeDate";
 import type { Signal } from "@/types/signal.types";
 import ResonanceScore from "./ResonanceScore";
-import { useRouter } from "next/navigation";
 
 /* ---------- Semantic Color Maps ---------- */
 
@@ -339,6 +338,7 @@ setResonanceScore(data.resonanceScore);
       <FormatRelativeDate
         label="Spotted"
         date={signal.createdAt}
+        showTooltip={true}
       />
 
       <span className="hidden sm:block w-1 h-1 bg-gray-400 rounded-full" />
@@ -346,6 +346,7 @@ setResonanceScore(data.resonanceScore);
       <FormatRelativeDate
         label="Updated"
         date={signal.updatedAt}
+        showTooltip={true}
       />
     </div>
 

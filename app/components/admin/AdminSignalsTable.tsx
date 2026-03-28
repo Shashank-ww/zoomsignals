@@ -1,0 +1,397 @@
+"use client";
+
+import { useState } from "react";
+import type { Signal } from "@/types/signal.types";
+import SignalAdminModal from "@/components/admin/SignalAdminModal";
+import { DiamondPlus } from "lucide-react";
+
+type Props = {
+  rows: Signal[];
+  setRows: React.Dispatch<React.SetStateAction<Signal[]>>;
+  isAuthorized: boolean;
+  setShowPassword: (v: boolean) => void;
+  adminPassword: string;
+};
+
+export default function AdminSignalsTable({
+  rows,
+  setRows,
+  isAuthorized,
+  setShowPassword,
+  adminPassword, 
+}: Props) {
+
+  /* ============================
+     LOCAL STATE
+  ============================ */
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [editingSignal, setEditingSignal] = useState<Signal | null>(null);
+  const [statusSort, setStatusSort] = useState<"asc" | "desc" | null>(null);
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const [loadingBulk, setLoadingBulk] = useState(false);
+
+  /* ============================
+     REFRESH
+  ============================ */
+
+  async function refresh() {
+    const res = await fetch("/api/admin/signals");
+    const data = await res.json();
+    setRows(data);
+    setSelectedIds([]);
+  }
+
+  /* ============================
+     STATUS UPDATE
+  ============================ */
+
+async function updateStatus(id: string, status: string) {
+  const res = await fetch("/api/admin/signals", {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      "x-admin-secret": adminPassword,
+    },
+    body: JSON.stringify({ id, approvalStatus: status }),
+  });
+
+  if (!res.ok) return;
+
+  setRows(prev =>
+    prev.map((s: Signal) =>
+      s.id === id ? { ...s, approvalStatus: status as any } : s
+    )
+  );
+}
+
+  /* ============================
+     DELETE
+  ============================ */
+
+  async function deleteSelected(ids: string[]) {
+    if (!isAuthorized) {
+      setShowPassword(true);
+      alert("Authorization required");
+      return;
+    }
+
+    if (ids.length === 0) return;
+
+    const confirmDelete = window.confirm(
+      `Delete ${ids.length} selected signals?`
+    );
+    if (!confirmDelete) return;
+
+    setLoadingBulk(true);
+
+    await fetch("/api/admin/signals/delete", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-admin-secret": adminPassword,
+      },
+      body: JSON.stringify({ mode: "selected", ids }),
+    });
+
+    setRows((prev) => prev.filter((s) => !ids.includes(s.id)));
+    setSelectedIds([]);
+    setLoadingBulk(false);
+  }
+
+  /* ============================
+     SORT
+  ============================ */
+
+  function sortByStatus(direction: "asc" | "desc") {
+    const order = ["DRAFT", "PENDING", "APPROVED", "REJECTED"];
+
+    const sorted = [...rows].sort((a, b) => {
+      const aIndex = order.indexOf(a.approvalStatus);
+      const bIndex = order.indexOf(b.approvalStatus);
+
+      return direction === "asc"
+        ? aIndex - bIndex
+        : bIndex - aIndex;
+    });
+
+    setRows(sorted);
+    setStatusSort(direction);
+  }
+
+  /* ============================
+     SELECT
+  ============================ */
+
+  function toggleSelect(id: string) {
+    setSelectedIds((prev) =>
+      prev.includes(id)
+        ? prev.filter((sid) => sid !== id)
+        : [...prev, id]
+    );
+  }
+
+  function toggleSelectAll() {
+    if (selectedIds.length === rows.length) {
+      setSelectedIds([]);
+    } else {
+      setSelectedIds(rows.map((s) => s.id));
+    }
+  }
+
+  /* ============================
+     APPROVAL
+  ============================ */
+
+async function handleApproval(id: string, action: "APPROVE" | "REJECT") {
+  if (!isAuthorized) {
+    setShowPassword(true);
+    return;
+  }
+
+  const res = await fetch("/api/admin/signals/approve", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-admin-secret": adminPassword,
+    },
+    body: JSON.stringify({ id, action }),
+  });
+
+  if (!res.ok) {
+    alert("Unauthorized or failed");
+    return;
+  }
+
+  const updated = await res.json();
+
+  setRows(prev =>
+    prev.map((s: Signal) =>
+      s.id === id ? updated : s
+    )
+  );
+}
+
+  /* ============================
+     UI
+  ============================ */
+
+  return (
+    <div className="space-y-8">
+
+      <div className="overflow-x-auto border rounded-xl">
+  <table className="w-full text-xs md:text-sm">
+    
+    {/* HEADER */}
+    <thead className="bg-zinc-100 text-[10px] md:text-xs uppercase">
+      <tr>
+        <th className="px-2 md:px-4 py-2 md:py-3">
+          <input
+            type="checkbox"
+            checked={selectedIds.length === rows.length && rows.length > 0}
+            onChange={toggleSelectAll}
+          />
+        </th>
+
+        <th className="px-2 md:px-4 py-2 md:py-3 text-left">
+          Signal
+        </th>
+
+        <th
+          className="px-2 md:px-4 py-2 md:py-3 text-left cursor-pointer"
+          onClick={() =>
+            sortByStatus(statusSort === "asc" ? "desc" : "asc")
+          }
+        >
+          Status {statusSort === "asc" ? "↑" : statusSort === "desc" ? "↓" : ""}
+        </th>
+
+        <th className="px-2 md:px-4 py-2 md:py-3 text-right">
+          Actions
+        </th>
+      </tr>
+    </thead>
+
+    {/* BODY */}
+    <tbody>
+      {rows.map((signal) => (
+        <tr key={signal.id} className="border-t align-top">
+
+          {/* SELECT */}
+          <td className="px-2 md:px-4 py-3 md:py-4">
+            <input
+              type="checkbox"
+              checked={selectedIds.includes(signal.id)}
+              onChange={() => toggleSelect(signal.id)}
+            />
+          </td>
+
+          {/* SIGNAL INFO */}
+          <td className="px-2 md:px-4 py-3 md:py-4 space-y-1.5">
+
+            {/* TITLE */}
+            <div className="font-medium text-[12px] md:text-sm leading-snug">
+              {signal.formatName}
+            </div>
+
+            {/* INSIGHT */}
+            <div className="text-[10px] md:text-xs text-zinc-500 line-clamp-2">
+              {signal.insight}
+            </div>
+
+            {/* TAGS */}
+            <div className="flex flex-wrap gap-1">
+              {signal.primaryPlatforms.slice(0, 2).map((p) => (
+                <span
+                  key={p}
+                  className="text-[9px] md:text-[10px] px-1.5 py-0.5 bg-zinc-200 rounded"
+                >
+                  {p}
+                </span>
+              ))}
+            </div>
+
+            {/* META */}
+            <div className="text-[9px] md:text-[10px] text-zinc-400 flex flex-wrap gap-2">
+              <span>{signal.lifecycle}</span>
+              <span>{signal.velocity}</span>
+              <span>{signal.confidence}</span>
+              <span>Rep: {signal.repetitionCount}</span>
+            </div>
+
+          </td>
+
+          {/* STATUS */}
+          <td className="px-2 md:px-4 py-3 md:py-4 space-y-2">
+
+            {(signal.approvalStatus === "DRAFT" ||
+              signal.approvalStatus === "PENDING") ? (
+              <select
+                value={signal.approvalStatus}
+                onChange={(e) =>
+                  updateStatus(signal.id, e.target.value)
+                }
+                className="text-[10px] md:text-xs border rounded px-2 py-1 w-full md:w-auto"
+              >
+                <option value="DRAFT">DRAFT</option>
+                <option value="PENDING">PENDING</option>
+              </select>
+            ) : (
+              <span
+                className={`inline-block text-[10px] md:text-xs px-2 py-1 rounded-full font-medium
+                  ${
+                    signal.approvalStatus === "APPROVED"
+                      ? "bg-emerald-200/80 text-emerald-800 border border-emerald-500"
+                      : "bg-red-100 text-red-600"
+                  }
+                `}
+              >
+                {signal.approvalStatus}
+              </span>
+            )}
+
+            {/* META DATES — STACKED */}
+            <div className="text-[9px] text-zinc-400 space-y-0.5">
+              <div>Author: {signal.author ?? "—"}</div>
+              <div className="hidden md:block">
+                Created: {new Date(signal.createdAt).toISOString()}
+              </div>
+              <div className="">
+                Updated: {new Date(signal.updatedAt).toISOString()}
+              </div>
+            </div>
+
+          </td>
+
+          {/* ACTIONS */}
+          <td className="px-2 md:px-4 py-3 md:py-4 text-right">
+
+          <div className="flex flex-col items-end gap-1.5">
+
+            {/* PRIMARY ACTIONS */}
+            <div className="flex flex-wrap justify-end gap-1.5">
+              
+              <button
+                onClick={async (e) => {
+                  e.stopPropagation();
+                  await updateStatus(signal.id, "DRAFT");
+                  setEditingSignal(signal);
+                  setIsOpen(true);
+                }}
+                className="text-[10px] md:text-xs px-2.5 py-1 border rounded hover:bg-zinc-50"
+              >
+                Edit
+              </button>
+
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  deleteSelected([signal.id]);
+                }}
+                className="text-[10px] md:text-xs px-2.5 py-1 border text-red-600 rounded hover:bg-red-50"
+              >
+                Delete
+              </button>
+
+            </div>
+
+            {/* SECONDARY ACTIONS */}
+            {signal.approvalStatus === "DRAFT" && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  updateStatus(signal.id, "PENDING");
+                }}
+                className="w-full md:w-auto text-[10px] md:text-xs px-3 py-1 border rounded hover:bg-zinc-50"
+              >
+                Send for Approval
+              </button>
+            )}
+
+            {signal.approvalStatus === "PENDING" && (
+              <div className="flex flex-wrap justify-end gap-1.5 w-full md:w-auto">
+
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleApproval(signal.id, "APPROVE");
+                  }}
+                  className="flex-1 md:flex-none text-[10px] md:text-xs px-3 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200"
+                >
+                  Approve
+                </button>
+
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleApproval(signal.id, "REJECT");
+                  }}
+                  className="flex-1 md:flex-none text-[10px] md:text-xs px-3 py-1 bg-red-100 text-red-600 rounded hover:bg-red-200"
+                >
+                  Reject
+                </button>
+
+              </div>
+            )}
+
+          </div>
+        </td>
+
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+      </div>
+
+      {/* MODAL */}
+      {isOpen && (
+        <SignalAdminModal
+          onClose={() => setIsOpen(false)}
+          signal={editingSignal}
+          onSaved={refresh}
+        />
+      )}
+    </div>
+  );
+}

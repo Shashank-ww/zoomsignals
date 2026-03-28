@@ -1,6 +1,7 @@
 type FormatRelativeDateProps = {
   date?: Date | null;
-  label?: string; // "Updated", "First seen"
+  label?: string; 
+  showTooltip?: boolean; 
 };
 
 const DAY = 1000 * 60 * 60 * 24;
@@ -8,6 +9,7 @@ const DAY = 1000 * 60 * 60 * 24;
 export function FormatRelativeDate({
   date,
   label,
+  showTooltip = true,
 }: FormatRelativeDateProps) {
   if (!date) return null;
 
@@ -41,16 +43,18 @@ export function FormatRelativeDate({
 
   return (
     <span
-      className={`relative group inline-flex items-center cursor-default gap-1 ${
-        isToday ? "text-blue-400 font-medium" : "text-gray-400"
-      }`}
+      className={`relative inline-flex items-center gap-1 ${
+        showTooltip ? "group cursor-default" : ""
+      } ${isToday ? "text-blue-400 font-medium" : "text-gray-400"}`}
     >
       {label && <span>{label}:</span>}
       <span>{text}</span>
 
-      <span className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-0.5 -translate-x-1/2 whitespace-nowrap rounded bg-black px-2 py-1 text-[10px] text-white opacity-0 transition group-hover:opacity-100">
-        {exactDate}
-      </span>
+      {showTooltip && (
+        <span className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-0.5 -translate-x-1/2 whitespace-nowrap rounded bg-black px-2 py-1 text-[10px] text-white opacity-0 transition group-hover:opacity-100">
+          {exactDate}
+        </span>
+      )}
     </span>
   );
 }

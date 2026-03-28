@@ -1,5 +1,6 @@
 "use client";
 
+import SignalRadar from "@/components/SignalRadar";
 import Link from "next/link";
 
 export default function About() {
@@ -19,7 +20,7 @@ export default function About() {
           Make early decision on ads
         </h1>
 
-        <p className="text-lg text-gray-600 leading-relaxed dark:text-gray-300">
+        <p className="flex text-lg text-gray-600 leading-relaxed dark:text-gray-300">
           There is a pattern in everything, we kept seeing media teams chasing a trend that gets overly saturated by the time it is spotted and put into strategic decks. 
           We realise if we can track early structural and creative patterns across short-form social media platforms. It will help performance and marketing teams achieve better conversion before it saturates click-to-action.
         </p>
@@ -30,21 +31,38 @@ export default function About() {
       </section>
 
       {/* WHAT WE DO */}
-      <section className="space-y-4">
-        <h2 className="text-sm font-bold tracking-wide uppercase">
-          What We Do
-        </h2>
+<section className="space-y-6">
+  <h2 className="text-sm font-bold tracking-wide uppercase">
+    What We Do
+  </h2>
 
-        <p className="text-gray-700 leading-relaxed dark:text-gray-300">
-          We monitor recurring creative patterns across <span className="font-bold">Meta, Instagram Reels, YouTube Shorts, and paid social media libraries.</span>
-        </p>
+  <div className="grid md:grid-cols-2 gap-10 items-center">
+    
+    {/* LEFT — TEXT */}
+    <div className="space-y-4">
+      <p className="text-gray-700 leading-relaxed dark:text-gray-300">
+        We monitor recurring creative patterns across{" "}
+        <span className="font-bold">
+          Meta, Instagram Reels, YouTube Shorts, and paid social media libraries.
+        </span>
+      </p>
 
-        <p className="text-gray-700 leading-relaxed dark:text-gray-300">
-          When a format appears independently and keeps rising or declining across multiple brands (shows actionable insight), it is logged, timestamped, tracked for confidence, velocity, and marked by lifecycle stage. 
-          This happens frequently, or until the campaigns&apos; significance dies.
-        </p>
+      <p className="text-gray-700 leading-relaxed dark:text-gray-300">
+        When a format appears independently and keeps rising or declining across multiple brands (shows actionable insight), it is logged, timestamped, tracked for confidence, velocity, and marked by lifecycle stage.
+      </p>
 
-      </section>
+      <p className="text-gray-700 leading-relaxed dark:text-gray-300">
+        This happens continuously until the pattern either scales or fades out.
+      </p>
+    </div>
+
+    {/* RIGHT — RADAR */}
+    <div className="flex justify-center md:justify-end">
+      <SignalRadar />
+    </div>
+
+  </div>
+</section>
 
 {/* HOW IT WORKS */}
 <section className="space-y-10">

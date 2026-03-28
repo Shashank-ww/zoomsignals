@@ -1,9 +1,7 @@
     "use client";
 
-    import { useState } from "react";
-    import SignalRadar from "@/components/SignalRadar";
-    import HeroHeadline from "./HeroHeadline";
-import PoweredStrip from "./PoweredStrip";
+import { useState } from "react";
+import HeroHeadline from "./HeroHeadline";
 import type { Signal } from "@/types/signal.types";
 import SignalPreviewPhone from "./SignalPreview";
 
@@ -23,7 +21,8 @@ import SignalPreviewPhone from "./SignalPreview";
     return (
         <>
         {/* ================= HERO ================= */}
-        <section className="min-h-[80vh] flex items-center max-w-6xl mx-auto px-6">
+        <section className="relative min-h-[80vh] flex items-center max-w-6xl mx-auto px-6">
+          
             <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-16">
             
             {/* LEFT CONTENT */}
@@ -31,28 +30,8 @@ import SignalPreviewPhone from "./SignalPreview";
 
                 {/* Headline */}
                 <HeroHeadline/>
-                
-                {/* <h1 className="lg:text-7xl text-3xl font-extralight tracking-tight text-blue-500">
-                zoomsignals
-                <br />
-                <span className="text-gray-500">
-                    spot signals for early lift
-                </span>
-                </h1> */}
 
-                {/* 
-                Signals Count
-                <div className="mt-8 text-sm font-semibold text-gray-600 flex items-center gap-3">
-                <span>
-                    {approvedSignalsCount} Approved
-                </span>
-                <span className="text-gray-400">
-                    out of {totalSignalsCount} total signals
-                </span>
-                </div>
-                 */}
-
-                {/* Toggle */}
+                {/* Toggle Below */}
                 <button
                     onClick={() => setShowExplainer(!showExplainer)}
                     className="
@@ -70,7 +49,7 @@ import SignalPreviewPhone from "./SignalPreview";
                   </button>
             </div>
 
-            {/* RIGHT RADAR */}
+            {/* RIGHT Action Shot */}
             <div className="hidden lg:flex justify-end">
               <div className="hidden lg:flex justify-end">
   {signals?.length > 0 ? (
@@ -136,7 +115,7 @@ import SignalPreviewPhone from "./SignalPreview";
 
 {/* ================= LIVE FEED HEADER ================= */}
 <section id="feed-header" className="max-w-6xl mx-auto px-6 mt-12">
-  <div className="rounded-2xl px-10 py-10 bg-linear-to-br from-[#EFF6FF] via-[#F8FAFC] to-[#F1F5F9] border border-[#DBEAFE]">
+  <div className="rounded-2xl p-6 md:p-9 bg-linear-to-br from-[#EFF6FF] via-[#F8FAFC] to-[#F1F5F9] border border-[#DBEAFE]">
     <LiveFeedHeader
       approvedCount={approvedSignalsCount}
       totalCount={totalSignalsCount}

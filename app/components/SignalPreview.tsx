@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from "react";
 import type { Signal } from "@/types/signal.types";
+import { FormatRelativeDate } from "./FormatRelativeDate";
+import { Clock } from "lucide-react";
 
-export default function SignalPreviewPhone({
+export default function SignalPreview({
   signals,
 }: {
   signals: Signal[];
@@ -21,7 +23,7 @@ export default function SignalPreviewPhone({
 
     const interval = setInterval(() => {
       setIndex((prev) => prev + 1);
-    }, 2500);
+    }, 7500);
 
     return () => clearInterval(interval);
   }, [approved.length]);
@@ -51,16 +53,32 @@ export default function SignalPreviewPhone({
     <div className="relative perspective-distant">
 
       {/* TILT */}
-      <div className="transform rotate-6 hover:-rotate-2 transition duration-500">
+      <div className="transform rotate-3 hover:-rotate-2 transition duration-500">
 
-        {/* PHONE FRAME */}
-        <div className="w-52 h-105 rounded-4xl bg-linear-to-br from-zinc-900 to-black p-[1.5px] shadow-[0_20px_50px_rgba(0,0,0,0.4)]">
+{/* PHONE FRAME */}
+<div className="relative w-56 h-105 rounded-[36px] p-0.5 
+  bg-linear-to-br from-zinc-700 via-zinc-700 to-black
+  shadow-[0_25px_60px_rgba(0,0,0,0.6)]
+">
 
-          {/* SCREEN */}
-          <div className="w-full h-full rounded-[26px] bg-zinc-900 p-3 relative overflow-hidden">
+  {/* SHINE OVERLAY */}
+  <div className="pointer-events-none absolute inset-0 rounded-[36px] overflow-hidden">
+    <div className="absolute -top-1/2 left-[-30%] w-[160%] h-[200%] 
+      bg-linear-to-br from-white/20 via-transparent to-transparent 
+      rotate-12 blur-xl opacity-40" />
+  </div>
 
-            {/* NOTCH */}
-            <div className="w-14 h-1 bg-zinc-400 rounded-full mx-auto mb-3" />
+  {/* SCREEN */}
+  <div className="relative w-full h-full rounded-[30px] 
+    bg-linear-to-br from-zinc-900 via-zinc-900 to-zinc-800 
+    overflow-hidden p-3">
+
+    {/* INNER GLOW */}
+    <div className="pointer-events-none absolute inset-0 
+      bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.08),transparent_60%)]" />
+
+    {/* NOTCH */}
+    <div className="w-14 h-1 bg-zinc-600/70 rounded-full mx-auto mb-3" />
 
             {/* TOP FADE */}
             <div className="pointer-events-none absolute top-0 left-0 right-0 h-10 bg-linear-to-b from-zinc-900 to-transparent z-5" />
@@ -85,10 +103,10 @@ export default function SignalPreviewPhone({
                         key={i}
                         className={`
                           group
-                          rounded-xl p-3 border transition-all duration-500
+                          rounded-xl p-3 border transition-all duration-600
                           ${
                             relativeIndex === 0
-                              ? "bg-zinc-700/70 border-zinc-600 scale-100 opacity-100"
+                              ? "bg-zinc-600/60 border-zinc-600 scale-100 opacity-100"
                               : relativeIndex === 1
                               ? "bg-zinc-800/80 border-zinc-700 scale-95 opacity-80"
                               : "bg-zinc-800/60 border-zinc-700 scale-90 opacity-60"
@@ -103,7 +121,7 @@ export default function SignalPreviewPhone({
                             className={`
                               h-3 w-1 rounded-full
                               transition-all duration-300
-                              group-hover:h-4
+                              group-hover:h-3 group-hover:w-3
                               ${HEAT_COLORS[signal.velocity]}
                             `}
                           />
@@ -128,8 +146,13 @@ export default function SignalPreviewPhone({
 
                         {/* META */}
                         <div className="mt-2 ml-1.5 text-[9px] text-zinc-400 flex gap-2">
-                          <span>⚡ {signal.velocity}</span>
-                          <span>✓ {signal.confidence}</span>
+                          <Clock size={12} />
+                          <span>
+                          <FormatRelativeDate 
+                            date={signal.updatedAt} 
+                            showTooltip={false} 
+                          />
+                          </span>
                         </div>
 
                       </div>
@@ -156,8 +179,8 @@ export default function SignalPreviewPhone({
       </div>
 
       {/* CAPTION */}
-      <p className="text-[11px] text-center text-zinc-500 mt-3">
-        Live signal patterns
+      <p className="text-[11px] text-center text-zinc-500 mt-6">
+        Working patterns&apos; across platforms
       </p>
     </div>
   );

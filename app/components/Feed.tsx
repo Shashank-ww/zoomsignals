@@ -228,7 +228,7 @@ const resonanceScore = s.resonanceScore ?? 0;
   <div className="sticky top-20 space-y-6">
 
     {/* DISCLAIMER */}
-    <div className="border border-gray-300 bg-gray-100/40 rounded-xl p-3 text-xs">
+    <div className="border border-gray-300 bg-gray-100/20 rounded-xl p-3 text-xs">
       <button
         onClick={() => setShowDisclaimer(!showDisclaimer)}
         className="flex items-center justify-between w-full font-medium text-left"

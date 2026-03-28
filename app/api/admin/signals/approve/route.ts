@@ -28,12 +28,10 @@ export async function POST(req: Request) {
     action === "APPROVE" ? "APPROVED" : "REJECTED";
 
   // DB UPDATE
-  const updated = await prisma.signal.update({
-    where: { id },
-    data: {
-      approvalStatus: status,
-    },
-  });
+const updated = await prisma.signal.update({
+  where: { id },
+  data: { approvalStatus: status },
+});
 
   return NextResponse.json(updated);
 }
