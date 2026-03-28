@@ -1,46 +1,36 @@
 "use client";
 
-import {
-  FiLayers,
-  FiTrendingUp,
-  FiClock,
-  FiTarget,
-} from "react-icons/fi";
-import SignalInline from "@/components/SignalInLine";
 import { useState, useEffect } from "react";
 import type { Signal } from "@/types/signal.types";
 import SignalCard from "@/components/SignalCard";
+import { Gauge, Repeat, Shield, ShieldCheck, Zap } from "lucide-react";
 
 export default function AboutSignals() {
   const [activeLayer, setActiveLayer] = useState(0);
   const [liveSignal, setLiveSignal] = useState <Signal | null> (null);
 
-  const layers = [
-    {
-      title: "Structural Pattern",
-      icon: FiLayers,
-      description:
-        "A repeatable creative mechanic observed independently across brands. Not a theme. Not an aesthetic. A structural solution to attention.",
-    },
-    {
-      title: "Velocity",
-      icon: FiTrendingUp,
-      description:
-        "The rate at which the structure spreads across brands and categories. Acceleration indicates ecosystem-level momentum — not isolated testing.",
-    },
-    {
-      title: "Lifecycle Position",
-      icon: FiClock,
-      description:
-        "Where the signal sits: Emerging, Accelerating, Peak, or Saturated. Timing determines strategic leverage and media efficiency.",
-    },
-    {
-      title: "Strategic Implication",
-      icon: FiTarget,
-      description:
-        "What shifts if this structure scales? Does it reduce friction? Reset audience expectations? Signal creative fatigue? Implication defines action.",
-    },
-  ];
+ const layers = [
+  {
+    title: "Velocity",
+    description: "Adoption speed across accounts and platforms.",
+    icon: Zap,
+  },
+  {
+    title: "Lifecycle",
+    description: "Stage of the format — emerging, stable, or declining.",
+    icon: Gauge,
+  },
+  {
+    title: "Confidence",
+    description: "Strength of validation based on repeated success.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Repetition",
+    description: "Frequency of format reuse across campaigns.",
+    icon: Repeat,
+  },
+];
 
   useEffect(() => {
   async function loadSignal() {
@@ -84,6 +74,7 @@ export default function AboutSignals() {
         ">
           Signals as structure
         </h1>
+      
 
         <p className="text-lg text-gray-700 dark:text-gray-300">
           Zoomsignals keep records of repeatable creative patterns forming across
@@ -97,9 +88,9 @@ export default function AboutSignals() {
         </p>
       </section>
 
-     {/* SIGNAL FRAMEWORK */}
+   {/* SIGNAL FRAMEWORK */}
 <section className="space-y-12">
-  <h2 className="text-sm font-bold tracking-wide uppercase">
+  <h2 className="text-sm font-bold tracking-wide uppercase text-gray-800">
     Signal Framework
   </h2>
 
@@ -133,9 +124,20 @@ export default function AboutSignals() {
 
       {/* ACTIVE CONTENT */}
       <div className="p-8 border rounded-2xl bg-gray-50 transition-all duration-300">
-        <p className="text-gray-900 font-semibold text-base mb-2">
-          {layers[activeLayer].title}
-        </p>
+        <div className="flex items-center gap-3 mb-3">
+          {(() => {
+            const Icon = layers[activeLayer].icon;
+            return (
+              <div className="p-2 rounded-lg bg-blue-100 text-blue-600">
+                <Icon size={18} />
+              </div>
+            );
+          })()}
+
+          <p className="text-gray-900 font-semibold text-base">
+            {layers[activeLayer].title}
+          </p>
+        </div>
 
         <p className="text-gray-700 text-base leading-relaxed">
           {layers[activeLayer].description}
@@ -146,24 +148,29 @@ export default function AboutSignals() {
       <div className="flex flex-wrap gap-2">
         {layers.map((layer, i) => {
           const isActive = i === activeLayer;
+          const Icon = layer.icon;
 
           return (
             <button
               key={i}
               onClick={() => setActiveLayer(i)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200
+              className={`
+                flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all
                 ${
                   isActive
-                    ? "bg-gray-900 text-white shadow-sm"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                }`}
+                    ? "bg-blue-600 text-white shadow-sm"
+                    : "bg-gray-100 text-gray-600 hover:bg-amber-50 hover:border-amber-400 border"
+                }
+              `}
             >
+              <Icon size={14} />
               {layer.title}
             </button>
           );
         })}
       </div>
     </div>
+
   </div>
 </section>
 

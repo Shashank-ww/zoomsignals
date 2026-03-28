@@ -1,5 +1,8 @@
 "use client";
 
+import { ExpectationsTabs } from "@/components/ExpectationsTabs";
+import { Building2, LineChart, Megaphone, Palette } from "lucide-react";
+
 export default function Explore() {
   return (
     <main className="mx-auto max-w-6xl px-6 py-24 space-y-24">
@@ -93,55 +96,75 @@ export default function Explore() {
         </p>
       </section>
 
-      {/* WHO IT IS FOR */}
-      <section className="space-y-8">
-        <h2 className="text-2xl font-semibold">Who are we here for</h2>
+{/* WHO IT IS FOR */}
+<section className="space-y-8">
+  <h2 className="text-2xl font-semibold">Who are we here for</h2>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto cursor-default">
+  <div className="grid md:grid-cols-2 gap-6 mx-auto cursor-default">
 
-          <div className="border rounded-xl p-6 space-y-3 hover:border-amber-500/60 hover:bg-amber-50/40 hover:shadow-md hover:text-blue-500 dark:hover:bg-amber-900/10 transition-all">
-            <h3 className="font-semibold">Marketing Teams</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Discover emerging ad formats before they saturate.
-            </p>
-          </div>
-
-          <div className="border rounded-xl p-6 space-y-3 hover:border-amber-500/60 hover:bg-amber-50/40 hover:shadow-md hover:text-blue-500 dark:hover:bg-amber-900/10 transition-all">
-            <h3 className="font-semibold">Creative Professionals</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Explore new design mechanics and creative structures.
-            </p>
-          </div>
-
-          <div className="border rounded-xl p-6 space-y-3 hover:border-amber-500/60 hover:bg-amber-50/40 hover:shadow-md hover:text-blue-500 dark:hover:bg-amber-900/10 transition-all">
-            <h3 className="font-semibold">Strategists & Planners</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Track format convergence across categories and platforms.
-            </p>
-          </div>
-
-          <div className="border rounded-xl p-6 space-y-3 hover:border-amber-500/60 hover:bg-amber-50/40 hover:shadow-md hover:text-blue-500 dark:hover:bg-amber-900/10 transition-all">
-            <h3 className="font-semibold">Agencies</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Bring signal-backed creative thinking into pitches and campaigns.
-            </p>
-          </div>
-
+    {/* MARKETING TEAMS */}
+    <div className="group border rounded-xl p-6 space-y-3 hover:border-amber-500/60 hover:bg-amber-50/40 hover:shadow-md transition-all">
+      <div className="flex items-center gap-3">
+        <div className="p-2 rounded-lg bg-zinc-100 text-zinc-600 group-hover:bg-blue-100 group-hover:text-blue-600 transition">
+          <Megaphone size={18} />
         </div>
-      </section>
+        <h3 className="font-semibold">Marketing Teams</h3>
+      </div>
 
-      {/* EXPECTATIONS */}
-      <section className="space-y-6">
-        <h2 className="text-2xl font-semibold">What you can expect</h2>
+      <p className="text-sm text-gray-600 dark:text-gray-400">
+        Discover emerging ad formats before they saturate.
+      </p>
+    </div>
 
-        <ul className="space-y-3 text-gray-700 dark:text-gray-300">
-          <li>• Manually curated advertising signals</li>
-          <li>• Early format pattern recognition</li>
-          <li>• Insight-driven signal interpretation</li>
-          <li>• Cross-category advertising observations</li>
-          <li>• Structural analysis beyond trend reporting</li>
-        </ul>
-      </section>
+    {/* CREATIVE PROFESSIONALS */}
+    <div className="group border rounded-xl p-6 space-y-3 hover:border-amber-500/60 hover:bg-amber-50/40 hover:shadow-md transition-all">
+      <div className="flex items-center gap-3">
+        <div className="p-2 rounded-lg bg-zinc-100 text-zinc-600 group-hover:bg-blue-100 group-hover:text-blue-600 transition">
+          <Palette size={18} />
+        </div>
+        <h3 className="font-semibold">Creative Professionals</h3>
+      </div>
+
+      <p className="text-sm text-gray-600 dark:text-gray-400">
+        Explore new design mechanics and creative structures.
+      </p>
+    </div>
+
+    {/* STRATEGISTS */}
+    <div className="group border rounded-xl p-6 space-y-3 hover:border-amber-500/60 hover:bg-amber-50/40 hover:shadow-md transition-all">
+      <div className="flex items-center gap-3">
+        <div className="p-2 rounded-lg bg-zinc-100 text-zinc-600 group-hover:bg-blue-100 group-hover:text-blue-600 transition">
+          <LineChart size={18} />
+        </div>
+        <h3 className="font-semibold">Strategists & Planners</h3>
+      </div>
+
+      <p className="text-sm text-gray-600 dark:text-gray-400">
+        Track format convergence across categories and platforms.
+      </p>
+    </div>
+
+    {/* AGENCIES */}
+    <div className="group border rounded-xl p-6 space-y-3 hover:border-amber-500/60 hover:bg-amber-50/40 hover:shadow-md transition-all">
+      <div className="flex items-center gap-3">
+        <div className="p-2 rounded-lg bg-zinc-100 text-zinc-600 group-hover:bg-blue-100 group-hover:text-blue-600 transition">
+          <Building2 size={18} />
+        </div>
+        <h3 className="font-semibold">Agencies</h3>
+      </div>
+
+      <p className="text-sm text-gray-600 dark:text-gray-400">
+        Bring signal-backed creative thinking into pitches and campaigns.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+     {/* EXPECTATIONS */}
+<section className="space-y-8">
+<ExpectationsTabs/>
+</section>
 
       <section className="flex flex-col items-center justify-center space-y-6 border-t text-center pt-12">
         <h2 className="text-xl font-semibold">

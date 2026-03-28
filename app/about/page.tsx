@@ -17,7 +17,7 @@ export default function About() {
         tracking-[-0.02em]
         leading-[1.05]
         ">
-          Make early decision on ads
+          Make early decision for Always-on ads
         </h1>
 
         <p className="flex text-lg text-gray-600 leading-relaxed dark:text-gray-300">

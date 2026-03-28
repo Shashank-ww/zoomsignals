@@ -339,7 +339,7 @@ export default function AdminControlPanel({
   </div>
 
   {/* PROGRESS BAR */}
-  <div className="w-full h-2 rounded-full bg-zinc-200 overflow-hidden flex">
+  <div className="w-full h-1 rounded-full bg-zinc-200 overflow-hidden flex">
 
     {(() => {
       const total = rows.length || 1;
