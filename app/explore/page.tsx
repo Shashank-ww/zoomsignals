@@ -13,7 +13,7 @@ export default function Explore() {
         py-1
         lg:text-6xl
         text-3xl
-        md:text-5xl bg-linear-to-tr from-blue-600 to-sky-400 bg-clip-text text-transparent
+        md:text-5xl bg-linear-to-tr from-green-500 to-blue-400 bg-clip-text text-transparent
         tracking-[-0.02em]
         leading-[1.05]
         ">
@@ -39,7 +39,9 @@ export default function Explore() {
 
       {/* INDUSTRY PROBLEM */}
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold">The problem with your regular trend reports</h2>
+        <h2 className="text-2xl font-semibold">
+          The problem with your regular trend reports
+          </h2>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
           Marketing teams do not lack data.
@@ -56,12 +58,16 @@ export default function Explore() {
         </p>
       </section>
 
-      {/* WHAT ZOOMSIGNALS DOES */}
+      {/* WHAT Nicescroll DOES */}
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold">What it does</h2>
+<div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
+
+  <h2 className="text-lg md:text-xl font-semibold">
+          What it does
+          </h2>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          Zoomsignals tracks ad formats as they begin repeating across brand and platforms.
+          Nicescroll tracks ad formats as they begin repeating across brand and platforms.
         </p>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -76,7 +82,11 @@ export default function Explore() {
 
       {/* WHY IT MATTERS */}
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold">Why this matters</h2>
+<div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
+
+  <h2 className="text-lg md:text-xl font-semibold">
+          Why this matters
+          </h2>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
           In competitive industries like automotive, technology, and finance,
@@ -88,7 +98,7 @@ export default function Explore() {
         </p>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          Zoomsignals doesn&apos;t promise virality. It gives marketers something far more useful:
+          Nicescroll doesn&apos;t promise virality. It gives marketers something far more useful:
         </p>
 
         <p className="font-medium text-gray-600 uppercase text-sm">
@@ -96,9 +106,13 @@ export default function Explore() {
         </p>
       </section>
 
-{/* WHO IT IS FOR */}
+{/* WHO ARE WE HERE FOR */}
 <section className="space-y-8">
-  <h2 className="text-2xl font-semibold">Who are we here for</h2>
+<div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
+
+  <h2 className="text-lg md:text-xl font-semibold">
+    Who are we here for
+    </h2>
 
   <div className="grid md:grid-cols-2 gap-6 mx-auto cursor-default">
 
@@ -172,11 +186,11 @@ export default function Explore() {
         </h2>
 
         <p className="text-center text-gray-600 dark:text-gray-400 max-w-2xl">
-          Zoomsignals was created after more than a decade working inside advertising, marketing, and campaign execution.
+          Nicescroll was created after more than a decade working inside advertising, marketing, and campaign execution.
         </p>
 
         <p className="text-center text-gray-600 dark:text-gray-400 max-w-2xl">
-         <span className="font-bold">It exists to solve a simple gap: </span>Helping teams see structural shifts in advertising, earlier than traditional reporting goes cold.
+         <span className="font-bold">It exists to solve a simple gap: </span>Helping teams see structural shifts in advertising, earlier than traditional reporting.
         </p>
       <p>
         ***
@@ -201,7 +215,7 @@ export default function Explore() {
           </p>
 
           <a
-            href="mailto:hello@zoomsignals.com?subject=ZoomSignals Inquiry"
+            href="mailto:hello@nicescroll.com?subject=nicescroll Inquiry"
             className="inline-flex
             items-center
             gap-2

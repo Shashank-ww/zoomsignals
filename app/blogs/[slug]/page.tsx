@@ -97,7 +97,7 @@ export default async function BlogPost({
           </p>
 
           <a
-            href="mailto:hello@zoomsignals.com?subject=ZoomSignals Inquiry"
+            href="mailto:hello@nicescroll.com?subject=nicescroll Inquiry"
             className="inline-flex
             items-center
             gap-2

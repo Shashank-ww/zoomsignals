@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import type { Signal } from "@/types/signal.types";
 import SignalCard from "@/components/SignalCard";
-import { Gauge, Repeat, Shield, ShieldCheck, Zap } from "lucide-react";
+import { Gauge, Repeat, ShieldCheck, Zap } from "lucide-react";
+import DownloadGateway from "@/components/DownloadGateway";
 
 export default function AboutSignals() {
   const [activeLayer, setActiveLayer] = useState(0);
@@ -68,7 +69,7 @@ export default function AboutSignals() {
         py-1
         lg:text-6xl
         text-3xl
-        md:text-5xl bg-linear-to-tr from-blue-600 to-sky-400 bg-clip-text text-transparent
+        md:text-5xl bg-linear-to-tr from-green-500 to-blue-400 bg-clip-text text-transparent
         tracking-[-0.02em]
         leading-[1.05]
         ">
@@ -77,7 +78,7 @@ export default function AboutSignals() {
       
 
         <p className="text-lg text-gray-700 dark:text-gray-300">
-          Zoomsignals keep records of repeatable creative patterns forming across
+          nicescroll keep records of repeatable creative patterns forming across
           short-form ecosystems. A signal emerges when independent brands
           begin solving attention in structurally similar ways on social media platforms.
         </p>
@@ -90,7 +91,9 @@ export default function AboutSignals() {
 
    {/* SIGNAL FRAMEWORK */}
 <section className="space-y-12">
-  <h2 className="text-sm font-bold tracking-wide uppercase text-gray-800">
+<div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
+
+  <h2 className="text-lg md:text-xl font-semibold">
     Signal Framework
   </h2>
 
@@ -155,7 +158,7 @@ export default function AboutSignals() {
               key={i}
               onClick={() => setActiveLayer(i)}
               className={`
-                flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all
+                flex items-center justify-between gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all
                 ${
                   isActive
                     ? "bg-blue-600 text-white shadow-sm"
@@ -176,7 +179,9 @@ export default function AboutSignals() {
 
 {/* LIVE EXAMPLE */}
 <section className="space-y-8">
-  <h2 className="text-sm font-bold tracking-wide uppercase">
+<div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
+
+  <h2 className="text-lg md:text-xl font-semibold">
     Decoding Signal
   </h2>
 
@@ -216,7 +221,9 @@ export default function AboutSignals() {
 
       {/* HOW TO USE */}
       <section className="space-y-12 max-w-4xl">
-        <h2 className="text-sm font-bold tracking-wide uppercase">
+<div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
+
+  <h2 className="text-lg md:text-xl font-semibold">
           How To Use Signals
         </h2>
 
@@ -251,6 +258,11 @@ export default function AboutSignals() {
 
         </div>
       </section>
+
+      {/* DOWNLOAD GATEWAY CTA*/}
+<section id="accessdata" className="space-y-8">
+ <DownloadGateway/>
+</section>
 
     </main>
   );

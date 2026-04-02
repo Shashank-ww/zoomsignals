@@ -33,7 +33,7 @@ export default function Navbar() {
   return (
     <nav
       ref={navRef}
-      className="sticky top-0 z-50 bg-linear-to-l from-[#EFF6FF] via-[#F8FAFC] to-[#F1F5F9] border border-[#DBEAFE]"
+      className="sticky top-0 z-50 drop-shadow-sm bg-gradient-to-l from-white via-blue-50 to-white"
     >
       <div className="mx-auto px-6 h-14 flex items-center justify-between">
 
@@ -44,16 +44,16 @@ export default function Navbar() {
     {/* Heat Block */}
     <span
       className="
-        h-4 w-0.75 rounded-full shadow-sm
+        h-4 w-1 rounded-full shadow-sm
         bg-blue-500
         transition-all duration-200 ease-in-out
-        group-hover:w-3 group-hover:h-3
+        group-hover:w-1.75
       "
     />
 
     {/* Brand Text */}
-    <span className="transition-colors duration-200 group-hover:text-blue-500">
-      ZOOMSIGNALS
+    <span className="font-light uppercase tracking-tight transition-colors duration-200 group-hover:text-blue-500">
+      nice<span className="font-bold">scroll</span>
     </span>
 
   </span>
@@ -81,7 +81,7 @@ export default function Navbar() {
       {/* ✅ Mobile Menu — Absolutely Positioned */}
       {open && (
         <div className="md:hidden absolute top-14 left-0 w-full bg-linear-to-tl from-[#EFF6FF] via-[#F8FAFC] to-[#F1F5F9] border-t border-[#DBEAFE] shadow-lg animate-in fade-in slide-in-from-top-2 duration-200">
-          <div className="flex flex-col px-6 py-4 pr-12 gap-3 text-sm text-gray-800 items-end">
+          <div className="flex flex-col px-6 py-4 pr-12 gap-3 text-sm text-gray-600 items-end">
             <a href="/about" className={linkStyle("/about")} onClick={() => setOpen(false)}>About</a>
             <a href="/explore" className={linkStyle("/explore")} onClick={() => setOpen(false)}>Explore</a>
             <a href="/about-signals" className={linkStyle("/about-signals")} onClick={() => setOpen(false)}>Signals</a>

@@ -51,7 +51,7 @@ export function FormatRelativeDate({
       <span>{text}</span>
 
       {showTooltip && (
-        <span className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-0.5 -translate-x-1/2 whitespace-nowrap rounded bg-black px-2 py-1 text-[10px] text-white opacity-0 transition group-hover:opacity-100">
+        <span className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-0.5 -translate-x-1/2 whitespace-nowrap rounded bg-black/60 px-2 py-1 text-[10px] text-white opacity-0 transition group-hover:opacity-100">
           {exactDate}
         </span>
       )}

@@ -50,12 +50,12 @@ export default function Filters({
     sortBy !== "recent";
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* HEADER */}
       <div className="flex items-center justify-between">
         <button
           onClick={() => setIsOpen((prev) => !prev)}
-          className="text-sm font-semibold uppercase tracking-wide" 
+          className="text-sm font-semibold"
         >
           {isOpen ? "Hide Filters" : "Show Filters"}
         </button>
@@ -63,7 +63,7 @@ export default function Filters({
         {hasActiveFilters && (
           <button
             onClick={clearAll}
-            className="text-xs text-gray-400 hover:text-black transition-all"
+            className="text-xs text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition"
           >
             Reset
           </button>
@@ -72,10 +72,10 @@ export default function Filters({
 
       {/* FILTER CONTENT */}
       {isOpen && (
-        <>
+        <div className="space-y-3">
           {/* SORT */}
-          <div className="space-y-2">
-            <p className="text-xs text-gray-400 uppercase tracking-wide">
+          <div className="space-y-1.5">
+            <p className="text-[11px] text-gray-400">
               Sort
             </p>
 
@@ -84,7 +84,7 @@ export default function Filters({
               onChange={(e) =>
                 setSortBy(e.target.value as SortOption)
               }
-              className="w-full text-sm bg-transparent border-b border-gray-200 py-1 focus:outline-none focus:border-black transition"
+              className="w-full text-sm bg-transparent border-b border-gray-200 dark:border-gray-700 py-1 focus:outline-none focus:border-black dark:focus:border-white transition"
             >
               <option value="recent">Most Recent</option>
               <option value="confidence">
@@ -138,7 +138,7 @@ export default function Filters({
                 : "Low"
             }
           />
-        </>
+        </div>
       )}
     </div>
   );
@@ -160,12 +160,12 @@ function CompactFilter({
   formatLabel?: (v: string) => string;
 }) {
   return (
-    <div className="space-y-2">
-      <p className="text-xs text-gray-400 uppercase tracking-wide underline underline-offset-2">
+    <div className="space-y-1">
+      <p className="text-[11px] text-gray-400">
         {label}
       </p>
 
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-1.5">
         {options.map((option) => {
           const active = activeValue === option;
 
@@ -176,11 +176,11 @@ function CompactFilter({
                 setValue(active ? "all" : option)
               }
               className={`
-                text-xs px-2.5 py-1 rounded-full transition
+                text-[11px] px-2 py-0.5 rounded-full transition
                 ${
                   active
-                    ? "bg-black text-white"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                    ? "bg-black text-white dark:bg-white dark:text-black"
+                    : "bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-zinc-800 dark:text-gray-300 dark:hover:bg-zinc-700"
                 }
               `}
             >

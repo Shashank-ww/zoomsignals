@@ -1,5 +1,7 @@
 "use client";
 
+<!-- SIGNAL PREVIEW DRAFT -->
+
 import { useEffect, useState } from "react";
 import type { Signal } from "@/types/signal.types";
 import { FormatRelativeDate } from "./FormatRelativeDate";
@@ -10,65 +12,88 @@ export default function SignalPreview({
 }: {
   signals: Signal[];
 }) {
+  
   const approved =
-    signals
-      ?.filter((s) => s.approvalStatus?.toLowerCase() === "approved")
-      .slice(0, 5) || [];
-
-  const [index, setIndex] = useState(0);
-
+  signals
+  ?.filter((s) => s.approvalStatus?.toLowerCase() === "approved")
+  .slice(0, 5) || [];
+  
+  const [index, setIndex] = useState(approved.length);
+  
   useEffect(() => {
     if (!approved.length) return;
 
     const interval = setInterval(() => {
       setIndex((prev) => prev + 1);
-    }, 4500);
+    }, 7500);
 
     return () => clearInterval(interval);
   }, [approved.length]);
 
-  if (!approved.length) return null;
+  if (!approved.length) {
+    return (
+      <div className="w-52 h-105 rounded-[28px] border flex items-center justify-center text-xs text-gray-400">
+        No signals present!
+      </div>
+    );
+  }
 
   const HEAT_COLORS: Record<string, string> = {
-    EMERGING: "bg-green-400",
-    ACCELERATING: "bg-blue-500",
-    STABLE: "bg-yellow-400",
-    DECLINING: "bg-red-400",
-  };
+  EMERGING: "bg-green-400",
+  ACCELERATING: "bg-blue-500",
+  STABLE: "bg-yellow-400",
+  DECLINING: "bg-red-400",
+};
 
+  // smooth infinite loop
   const looped = [...approved, ...approved, ...approved];
 
-  const CARD_HEIGHT = 100;
-  const GAP = 12;
-
-  // 🔥 CRITICAL FIX → modulo loop
-  const current = index % approved.length;
-const VIEWPORT_HEIGHT = 288; // matches h-72
-const CENTER_OFFSET = (VIEWPORT_HEIGHT - CARD_HEIGHT) / 2;
-
-const translateY =
-  -(current * (CARD_HEIGHT + GAP)) + CENTER_OFFSET;
+  const CARD_HEIGHT = 84; // keep in sync with UI
+  const translateY = -(index % approved.length) * (CARD_HEIGHT + 8);
 
   return (
-    <div className="relative w-72 mx-auto px-4 self-start">
+    <div className="relative perspective-distant">
 
-      {/* TOP FADE */}
-      <div className="pointer-events-none absolute top-0 left-0 right-0 h-16 z-20 
-        bg-linear-to-b from-white to-transparent 
-        dark:from-zinc-950"
-      />
+      {/* TILT */}
+      <div className="transform rotate-2 hover:-rotate-1 transition duration-300">
 
-      {/* BOTTOM FADE */}
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-16 z-20 
-        bg-linear-to-t from-white to-transparent 
-        dark:from-zinc-950"
-      />
+{/* PHONE FRAME */}
+<div className="relative cursor-default w-56 h-105 rounded-[36px] p-0.5 
+  bg-linear-to-br from-zinc-700 via-zinc-600 to-black
+  shadow-[0_8px_20px_rgba(0,0,0,0.25),0_2px_6px_rgba(0,0,0,0.2)]
+  border border-white/50
+">
 
-      {/* SCROLL WINDOW */}
-            <div className="overflow-hidden h-72 mt-2 p-6 cursor-default">
+  {/* SHINE OVERLAY */}
+  <div className="pointer-events-none absolute inset-0 rounded-xl overflow-hidden">
+    <div className="absolute -top-1/2 left-[-30%] w-[160%] h-[200%] 
+      bg-linear-to-br from-white/20 via-transparent to-transparent 
+      rotate-8 blur-xl opacity-60" />
+  </div>
+
+  {/* SCREEN */}
+  <div className="relative w-full h-full rounded-[30px] 
+    bg-linear-to-br from-zinc-900 via-zinc-900 to-zinc-800 
+    overflow-hidden p-3">
+
+    {/* INNER GLOW */}
+    <div className="pointer-events-none absolute inset-0 
+      bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.08),transparent_60%)]" />
+
+    {/* NOTCH */}
+    <div className="w-14 h-1 bg-zinc-600/70 rounded-full mx-auto mb-3" />
+
+            {/* TOP FADE */}
+            <div className="pointer-events-none absolute top-0 left-0 right-0 h-10 bg-linear-to-b from-zinc-900 to-transparent z-5" />
+
+            {/* BOTTOM FADE */}
+            <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-12 bg-linear-to-t from-zinc-900 to-transparent z-5" />
+
+            {/* SCROLL WINDOW */}
+            <div className="overflow-hidden h-72 mt-2 py-1">
 
               <div
-                className="transition-transform duration-700 ease-out space-y-4"
+                className="transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] space-y-2"
                 style={{
                   transform: `translateY(${translateY}px)`,
                 }}
@@ -81,13 +106,13 @@ const translateY =
                         key={i}
                         className={`
                           group
-                          rounded-xl p-3 transition-all duration-700
+                          rounded-xl p-3 border transition-all duration-600
                           ${
                             relativeIndex === 0
-                              ? "bg-gradient-to-tl from-blue-100 via-white to-lime-100 scale-110 z-20 shadow-[0_10px_30px_rgba(132,204,22,0.25)]"
+                              ? "bg-zinc-600/60 border-zinc-600 scale-100 opacity-100"
                               : relativeIndex === 1
-                              ? "bg-gray-200 scale-95 opacity-40"
-                              : "bg-zinc-200/40 scale-90 opacity-60"
+                              ? "bg-zinc-800/80 border-zinc-700 scale-95 opacity-80"
+                              : "bg-zinc-800/60 border-zinc-700 scale-90 opacity-60"
                           }
                         `}
                       >
@@ -104,14 +129,7 @@ const translateY =
                             `}
                           />
 
-                          <h3 className={`
-                            text-xs md:text-sm font-semibold leading-snug
-                            ${
-                              relativeIndex === 0
-                                ? "text-black"
-                                : "text-zinc-800"
-                            }
-                          `}>
+                          <h3 className="text-xs md:text-sm font-semibold text-blue-100 leading-snug">
                             {signal.formatName}
                           </h3>
 
@@ -122,7 +140,7 @@ const translateY =
                           {signal.primaryPlatforms.slice(0, 2).map((p) => (
                             <span
                               key={p}
-                              className="text-[9px] px-1.5 py-0.5 rounded bg-blue-500/40 text-white"
+                              className="text-[9px] px-1.5 py-0.5 rounded bg-blue-500/20 text-white/80"
                             >
                               {p}
                             </span>
@@ -147,7 +165,7 @@ const translateY =
             </div>
 
             {/* DOTS */}
-            <div className="absolute -bottom-4 left-0 right-0 flex justify-center gap-1 z-20">
+            <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1 z-20">
               {approved.slice(0, 5).map((_, i) => (
                 <span
                   key={i}
@@ -159,6 +177,14 @@ const translateY =
                 />
               ))}
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* CAPTION */}
+      <p className="text-[11px] text-center text-zinc-500 mt-6">
+        Working patterns&apos; across platforms
+      </p>
     </div>
   );
 }

@@ -39,7 +39,7 @@ import SignalPreviewPhone from "./SignalPreview";
                       text-sm 
                       font-medium 
                       text-blue-600 
-                      hover:text-blue-800 
+                      hover:text-blue-700 
                       transition-colors
                       cursor-pointer
                       hover:underline
@@ -115,7 +115,7 @@ import SignalPreviewPhone from "./SignalPreview";
 
 {/* ================= LIVE FEED HEADER ================= */}
 <section id="feed-header" className="max-w-6xl mx-auto px-6 mt-12">
-  <div className="rounded-2xl p-6 md:p-9 bg-linear-to-br from-[#EFF6FF] via-[#F8FAFC] to-[#F1F5F9] border border-[#DBEAFE]">
+  <div className="rounded-2xl p-8 md:p-9 bg-linear-to-br from-green-50 via-white to-blue-50 border border-blue-200">
     <LiveFeedHeader
       approvedCount={approvedSignalsCount}
       totalCount={totalSignalsCount}
@@ -171,7 +171,7 @@ function LiveFeedHeader({
           <span className="flex items-center gap-2 mt-2">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-40 animate-ping"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
             </span>
             <span className="text-xs uppercase tracking-wide text-blue-600/80">
               Active

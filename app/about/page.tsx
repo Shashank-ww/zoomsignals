@@ -8,16 +8,16 @@ export default function About() {
     <main className="mx-auto max-w-6xl px-6 py-24 space-y-16">
 
       {/* HERO */}
-      <section className="space-y-6">
+      <section className="space-y-6 ">
         <h1 className="
         py-1
         lg:text-6xl
         text-3xl
-        md:text-5xl bg-linear-to-tr from-blue-600 to-sky-400 bg-clip-text text-transparent
+        md:text-5xl bg-linear-to-tr from-green-500 to-blue-400 bg-clip-text text-transparent
         tracking-[-0.02em]
         leading-[1.05]
         ">
-          Make early decision for Always-on ads
+          Make early decision on ads
         </h1>
 
         <p className="flex text-lg text-gray-600 leading-relaxed dark:text-gray-300">
@@ -32,8 +32,11 @@ export default function About() {
 
       {/* WHAT WE DO */}
 <section className="space-y-6">
-  <h2 className="text-sm font-bold tracking-wide uppercase">
-    What We Do
+
+  <div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
+
+  <h2 className="text-lg md:text-xl font-semibold">
+    What we do
   </h2>
 
   <div className="grid md:grid-cols-2 gap-10 items-center">
@@ -66,14 +69,16 @@ export default function About() {
 
 {/* HOW IT WORKS */}
 <section className="space-y-10">
-  <h2 className="text-sm font-bold tracking-wide uppercase ">
+ <div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
+
+  <h2 className="text-lg md:text-xl font-semibold">
     How It Works
   </h2>
 
   <div className="grid gap-12 sm:grid-cols-2 dark:text-gray-200">
 
     {/* STEP 01 */}
-    <div className="space-y-4 dark:text-gray-200">
+    <div className="space-y-4 dark:text-gray-200 ">
       <div className="text-6xl font-bold text-gray-800 dark:text-gray-200">01</div>
       <p className="text-gray-800 text-base leading-relaxed dark:text-gray-300">
         We monitor ad formats closely across selected brands and social media platforms where it appears to show traction. 
@@ -109,13 +114,15 @@ export default function About() {
   </div>
 </section>
 
-<section className="space-y-4">
-  <h2 className="text-sm font-bold tracking-wide uppercase">
+<section className="space-y-6">
+  <div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
+
+  <h2 className="text-lg md:text-xl font-semibold">
           Who we are
         </h2>
 
         <p className="text-gray-700 leading-relaxed dark:text-gray-300">
-          Zoomsignals is built with decade long experience and passion for behavioural insights.
+          Nicescroll is built with decade long experience and passion for behavioural insights.
         </p>
 
         <p className="text-gray-700 leading-relaxed dark:text-gray-300">
@@ -136,7 +143,7 @@ export default function About() {
         Teams do not fail because they lack ideas. They fail because they are responding to signals that have already peaked over time.
         <br/>
         <span className="font-bold">
-          Zoomsignals come to fill that gap.
+          Nicescroll come to fill that gap.
         </span>
         </p>
 
@@ -148,8 +155,10 @@ export default function About() {
 </section>
 
       {/* WHAT THIS IS */}
-      <section className="space-y-4">
-        <h2 className="text-sm font-bold tracking-wide uppercase">
+      <section className="space-y-6">
+<div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
+
+  <h2 className="text-lg md:text-xl font-semibold">
           What This Is — And Isn&apos;t
         </h2>
 
@@ -193,7 +202,7 @@ export default function About() {
             transition-all
             duration-200"
         >
-          View Signals
+          Scroll Signals
         </Link>
 
         <Link

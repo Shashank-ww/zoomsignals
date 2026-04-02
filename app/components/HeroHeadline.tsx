@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const headlines = [
   "Ad formats that help you stand out, first.",
-  "Media buying intelligence, not random trends. ",
+  "Media buying patterns, not just trends. ",
   "Shift your creatives before your CPMs spike.",
   "Early patterns that give real brand lift.",
   // "If it&s not blowing minds, it&aposs blowing your budget.",
@@ -27,8 +27,8 @@ export default function HeroHeadline() {
         max-w-2xl
         py-1
         lg:text-6xl
-        text-3xl
-        md:text-5xl bg-linear-to-tr from-blue-600 to-sky-400 bg-clip-text text-transparent
+        text-4xl
+        md:text-5xl bg-linear-to-tr from-green-500 to-blue-400 bg-clip-text text-transparent
         tracking-[-0.02em]
         leading-[1.05]">
         {selected}
@@ -53,15 +53,15 @@ export default function HeroHeadline() {
             text-white
             bg-gray-800
             border
-            border-blue-600
+            border-blue-500
             rounded-full
             shadow-sm
-            hover:bg-blue-600
+            hover:bg-blue-500
             transition-all
             duration-200
           "
         >
-          View Signals
+          Scroll Nice
         </a>
       </div>
     </div>

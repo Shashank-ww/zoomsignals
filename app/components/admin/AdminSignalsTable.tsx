@@ -306,7 +306,7 @@ async function handleApproval(id: string, action: "APPROVE" | "REJECT") {
           {/* ACTIONS */}
           <td className="px-2 md:px-4 py-3 md:py-4 text-right">
 
-          <div className="flex flex-col items-end gap-1.5">
+          <div className="flex flex-col items-end h-full mt-auto gap-1.5">
 
             {/* PRIMARY ACTIONS */}
             <div className="flex flex-wrap justify-end gap-1.5">

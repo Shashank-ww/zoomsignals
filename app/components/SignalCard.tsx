@@ -167,7 +167,7 @@ setResonanceScore(data.resonanceScore);
   
   return (
     <article
-      className="rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 h-full bg-linear-to-br from-[#EFF6FF] via-[#F8FAFC] to-[#f9f9f1] border border-gray-400">
+      className="rounded-2xl overflow-hidden cursor-default hover:shadow-xl transition-all duration-300 h-full bg-linear-to-br from-[#EFF6FF] via-[#F8FAFC] to-[#f9f9f1] border border-blue-200">
       <div className="flex flex-col md:flex-row">
 
         {/* IMAGE */}
@@ -230,9 +230,9 @@ setResonanceScore(data.resonanceScore);
 
 <span
   className={`
-    h-4 w-0.75 rounded-full
+    h-4 w-1 rounded-full
     transition-all duration-200 ease-in-out
-    group-hover:w-3 group-hover:h-3
+    group-hover:w-1.75
     ${HEAT_COLORS[signal.velocity]}
     ${signal.velocity === "ACCELERATING" ? "animate-pulse" : ""}
   `}

@@ -217,43 +217,41 @@ const resonanceScore = s.resonanceScore ?? 0;
 <main className="max-w-6xl mx-auto px-6 py-12">
     <div className="flex flex-col lg:flex-row gap-12">
 
-       {/* ASIDE */}
+
+{/* ASIDE */}
 <aside
   className="
     order-1 lg:order-0
-    w-full lg:w-72 lg:flex-none
-    pt-6
-  "
+    w-full lg:w-72 lg:flex-none pt-6"
 >
-  <div className="sticky top-20 space-y-6">
+  <div className="lg:sticky lg:top-20 space-y-6">
 
     {/* DISCLAIMER */}
-    <div className="border border-gray-300 bg-gray-100/20 rounded-xl p-3 text-xs">
+    <div className="rounded-xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-zinc-900 p-4 text-xs">
       <button
         onClick={() => setShowDisclaimer(!showDisclaimer)}
-        className="flex items-center justify-between w-full font-medium text-left"
+        className="flex items-center justify-between w-full font-medium text-left text-gray-700 dark:text-gray-300"
       >
-        <span>Read Disclaimer</span>
-        <span className="text-gray-400">
-          {showDisclaimer ? "Hide" : "See"}
+        <span>Disclaimer</span>
+        <span className="text-gray-400 text-[11px]">
+          {showDisclaimer ? "Hide" : "Read"}
         </span>
       </button>
 
       {showDisclaimer && (
-        <div className="mt-2 space-y-2 text-gray-600">
+        <div className="mt-3 space-y-2 text-gray-500 dark:text-gray-400">
           <p>
-            By using this site, you agree to interact responsibly and
-            acknowledge that signals reflect community input.
+            By using this site, you agree to interact responsibly and acknowledge that signals reflect community input.
           </p>
           <p>
-            Signals patterns evolve based on ad lifecycle, spread velocity,
-            and usability recalculations.
+            Signals patterns evolve based on ad lifecycle, spread velocity, and usability recalculations.
           </p>
         </div>
       )}
     </div>
 
     {/* FILTERS */}
+    <div className="rounded-xl border border-gray-200 dark:border-gray-800 p-4">
     <Filters
       confidenceFilter={confidenceFilter}
       velocityFilter={velocityFilter}
@@ -268,20 +266,17 @@ const resonanceScore = s.resonanceScore ?? 0;
       setSortBy={setSortBy}
       clearAll={clearAll}
     />
+</div>
 
-    {/* SOFT DIVIDER */}
-    <div className="border-t pt-4"></div>
-
-    {/* MAILING LIST (VISUALLY DISTINCT CTA) */}
-
-      <MailingList />
-
+    {/* MAILING LIST */}
+      <MailingList variant="default" />
 
   </div>
 </aside>
 
 
-        {/* FEED */}
+{/* FEED */}
+
 {/* MAIN CONTENT */}
 <div className="order-3 lg:order-0 flex-1 min-w-0">
   <div className="space-y-6">

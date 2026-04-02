@@ -5,7 +5,7 @@ import { HiOutlineSearch } from "react-icons/hi";
 
 export default function Footer() {
   return (
-    <footer className="border-t mt-20 shadow-inner bg-linear-to-t from-[#F8FAFC] to-[#F1F5F9] border border-[#DBEAFE] dark:bg-neutral-950">
+    <footer className="border-t mt-20 shadow-inner bg-linear-to-t from-green-50 via-white to-blue-50 border border-blue-200 dark:bg-neutral-950">
       <div className="max-w-6xl mx-auto p-6 text-sm text-gray-500 dark:text-gray-400 mt-6">
         
         {/* Top Row */}
@@ -16,8 +16,8 @@ export default function Footer() {
             <Link
               href="/"
               className="font-bold text-blue-500 select-none">
-              <span className="flex items-center leading-none text-base">
-              ZOOMSIGNALS
+              <span className="font-light uppercase tracking-tight transition-colors duration-200 group-hover:text-blue-500">
+               &copy; nice<span className="font-bold">scroll</span>&trade;
               </span>
             </Link>
 
@@ -30,7 +30,7 @@ export default function Footer() {
             <p className="flex mt-4 py-6 border-t font-light items-end">
             <HiOutlineSearch className="text-lg"/>
               <span className="px-2 items-end justify-end">
-                www.zoomsignals.com
+                www.nicescroll.com
               </span>
             </p>
 
@@ -85,7 +85,7 @@ export default function Footer() {
         {/* Bottom Row */}
         <div className="border-t my-4 py-4 text-xs text-center text-gray-400">
           <p>
-            © {new Date().getFullYear()} ZOOMSIGNALS. 
+            &copy; {new Date().getFullYear()} NICESCROLL. 
             All rights reserved.
           </p>
         </div>

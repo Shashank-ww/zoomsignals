@@ -52,7 +52,9 @@ export function ExpectationsTabs() {
 
   return (
     <section className="space-y-8">
-      <h2 className="text-2xl font-semibold">
+<div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
+
+  <h2 className="text-lg md:text-xl font-semibold">
         What you can expect
       </h2>
 
@@ -130,7 +132,7 @@ export function ExpectationsTabs() {
                     {item.title}
                   </div>
 
-                  <div className="text-xs text-gray-600 mt-1">
+                  <div className="text-xs text-gray-600 mt-">
                     {item.description}
                   </div>
                 </div>
