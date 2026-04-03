@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/app/lib/prisma";
 
-import { calculateResonance } from "@/lib/resonanceEngine";
+import { calculateResonance } from "@/app/lib/resonanceEngine";
 import {
   lifecycleWeight,
   velocityWeight,
   confidenceWeight,
-} from "@/lib/resonance";
+} from "@/app/lib/resonance";
 
 export async function POST(req: Request) {
   try {

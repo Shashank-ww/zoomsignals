@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { Signal } from "@/types/signal.types";
+import type { Signal } from "@/app/types/signal.types";
 import AdminControlPanel from "./AdminControlPanel";
 import AdminSignalsTable from "./AdminSignalsTable";
 

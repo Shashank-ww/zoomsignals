@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import type { Signal } from "@/types/signal.types";
+import type { Signal } from "../../types/signal.types";
 
 export default function SignalAdminModal({
   onClose,

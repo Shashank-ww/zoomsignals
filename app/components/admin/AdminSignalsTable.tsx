@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import type { Signal } from "@/types/signal.types";
-import SignalAdminModal from "@/components/admin/SignalAdminModal";
+import type { Signal } from "@/app/types/signal.types";
+import SignalAdminModal from "@/app/components/admin/SignalAdminModal";
 import { DiamondPlus } from "lucide-react";
 
 type Props = {

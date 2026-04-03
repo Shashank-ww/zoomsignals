@@ -1,7 +1,7 @@
-import { prisma } from "@/lib/prisma";
-import HeroSection from "@/components/HeroSection";
-import Feed from "@/components/Feed";
-import type { Signal } from "@/types/signal.types";
+import { prisma } from "@/app/lib/prisma";
+import HeroSection from "@/app/components/HeroSection";
+import Feed from "@/app/components/Feed";
+import type { Signal } from "@/app/types/signal.types";
 
 export const dynamic = "force-dynamic"
 

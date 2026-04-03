@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import SignalCard from "@/components/SignalCard";
-import type { Signal } from "@/types/signal.types";
+import SignalCard from "@/app/components/SignalCard";
+import type { Signal } from "@/app/types/signal.types";
 
-import MailingList from "@/components/MailingList";
-import Filters from "@/components/Filters";
+import MailingList from "@/app/components/MailingList";
+import Filters from "@/app/components/Filters";
 
 interface FeedProps {
   initialSignals: Signal[];

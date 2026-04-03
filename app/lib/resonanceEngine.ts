@@ -1,4 +1,4 @@
-import type { Signal } from "@/types/signal.types";
+import type { Signal } from "@/app/types/signal.types";
 
 export type ResonanceResult = {
   score: number;

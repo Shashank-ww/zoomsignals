@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import HeroHeadline from "./HeroHeadline";
-import type { Signal } from "@/types/signal.types";
+import type { Signal } from "@/app/types/signal.types";
 import SignalPreviewPhone from "./SignalPreview";
 
     interface HeroSectionProps {

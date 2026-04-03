@@ -1,6 +1,6 @@
-import { getBlogBySlug } from "@/lib/blogs";
+import { getBlogBySlug } from "@/app/lib/blogs";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import SignalInline from "@/components/SignalInLine";
+import SignalInline from "@/app/components/SignalInLine";
 import Link from "next/link";
 
 export default async function BlogPost({

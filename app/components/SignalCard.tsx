@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { FormatRelativeDate } from "@/components/FormatRelativeDate";
-import type { Signal } from "@/types/signal.types";
+import { FormatRelativeDate } from "@/app/components/FormatRelativeDate";
+import type { Signal } from "@/app/types/signal.types";
 import ResonanceScore from "./ResonanceScore";
 
 /* ---------- Semantic Color Maps ---------- */

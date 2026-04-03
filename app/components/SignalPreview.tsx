@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { Signal } from "@/types/signal.types";
+import type { Signal } from "../types/signal.types";
 import { FormatRelativeDate } from "./FormatRelativeDate";
 import { Clock } from "lucide-react";
 

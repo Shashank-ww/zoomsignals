@@ -2,7 +2,7 @@
 
 import { Lock, Unlock, Eye, EyeOff, TriangleAlert } from "lucide-react";
 import { useState } from "react";
-import type { Signal } from "@/types/signal.types";
+import type { Signal } from "@/app/types/signal.types";
 
 type Props = {
   rows: Signal[];

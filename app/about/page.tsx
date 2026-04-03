@@ -1,6 +1,6 @@
 "use client";
 
-import SignalRadar from "@/components/SignalRadar";
+import SignalRadar from "@/app/components/SignalRadar";
 import Link from "next/link";
 
 export default function About() {

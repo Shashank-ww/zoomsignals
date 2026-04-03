@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import MailingList from "@/components/MailingList";
+import { Suspense, useState, useEffect } from "react";
+import MailingList from "@/app/components/MailingList";
 import { useSearchParams } from "next/navigation";
 
-export default function DownloadPage() {
+function DownloadPageInner() {
   const params = useSearchParams();
   const isPaid = params.get("paid");
 
@@ -13,13 +13,13 @@ export default function DownloadPage() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-  const saved = localStorage.getItem("subscribedEmail");
+    const saved = localStorage.getItem("subscribedEmail");
 
-  if (saved) {
-    setEmail(saved);
-    setIsSubscribed(true);
-  }
-    }, []);
+    if (saved) {
+      setEmail(saved);
+      setIsSubscribed(true);
+    }
+  }, []);
 
   const handleDownload = async () => {
     if (!email) return;
@@ -119,6 +119,7 @@ export default function DownloadPage() {
             </a>
           </div>
         )}
+        
 
         {/* FOOTNOTE */}
         <p className="text-[10px] text-gray-400 pt-2">
@@ -127,5 +128,14 @@ export default function DownloadPage() {
 
       </div>
     </div>
+    
+  );
+}
+
+export default function DownloadPage() {
+  return (
+    <Suspense fallback={<div className="p-10 text-center">Loading...</div>}>
+      <DownloadPageInner />
+    </Suspense>
   );
 }

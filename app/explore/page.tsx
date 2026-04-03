@@ -1,6 +1,6 @@
 "use client";
 
-import { ExpectationsTabs } from "@/components/ExpectationsTabs";
+import { ExpectationsTabs } from "@/app/components/ExpectationsTabs";
 import { Building2, LineChart, Megaphone, Palette } from "lucide-react";
 
 export default function Explore() {

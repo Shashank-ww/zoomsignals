@@ -1,4 +1,4 @@
-import type { Signal } from "@/types/signal.types";
+import type { Signal } from "@/app/types/signal.types";
 
 export const lifecycleWeight: Record<Signal["lifecycle"], number> = {
   EARLY: 1.3,

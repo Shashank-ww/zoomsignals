@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import type { Signal } from "@/types/signal.types";
-import SignalCard from "@/components/SignalCard";
+import type { Signal } from "@/app/types/signal.types";
+import SignalCard from "@/app/components/SignalCard";
 import { Gauge, Repeat, ShieldCheck, Zap } from "lucide-react";
-import DownloadGateway from "@/components/DownloadGateway";
+import DownloadGateway from "@/app/components/DownloadGateway";
 
 export default function AboutSignals() {
   const [activeLayer, setActiveLayer] = useState(0);

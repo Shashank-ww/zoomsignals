@@ -1,5 +1,5 @@
-import { prisma } from "@/lib/prisma";
-import AdminClient from "@/components/admin/AdminClient"; 
+import { prisma } from "../lib/prisma";
+import AdminClient from "../components/admin/AdminClient"; 
 
 export default async function AdminPage() {
   const signals = await prisma.signal.findMany({
@@ -14,10 +14,8 @@ export default async function AdminPage() {
           Admin Control Panel
         </h1>
 
-        {/* ✅ NEW WRAPPER */}
         <AdminClient signals={signals} />
 
-        {/* Guidelines stays SAME */}
       </div>
     </div>
   );

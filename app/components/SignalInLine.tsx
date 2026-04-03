@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { Signal } from "@/types/signal.types";
-import SignalModal from "@/components/SignalModal";
+import type { Signal } from "@/app/types/signal.types";
+import SignalModal from "@/app/components/SignalModal";
 
 export default function SignalInline({ id }: { id: string }) {
   const [signals, setSignals] = useState<Signal[]>([]);

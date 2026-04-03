@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import type { Signal } from "@/types/signal.types";
-import SignalCard from "@/components/SignalCard";
+import type { Signal } from "@/app/types/signal.types";
+import SignalCard from "@/app/components/SignalCard";
 
 
 export default function SignalModal({
