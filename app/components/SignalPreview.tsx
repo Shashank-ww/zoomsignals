@@ -50,7 +50,7 @@ const translateY =
   -(current * (CARD_HEIGHT + GAP)) + CENTER_OFFSET;
 
   return (
-    <div className="relative w-72 mx-auto px-4 self-start">
+    <div className="relative w-72 mx-auto px-4 self-start ring-1 ring-inset ring-gray-200 dark:ring-gray-700">
 
       {/* TOP FADE */}
       <div className="pointer-events-none absolute top-0 left-0 right-0 h-16 z-20 
@@ -65,7 +65,7 @@ const translateY =
       />
 
       {/* SCROLL WINDOW */}
-            <div className="overflow-hidden h-72 mt-2 p-6 cursor-default">
+            <div className="overflow-hidden h-72 mt-2 p-6  bg-sky-50/40 dark:bg-transparent cursor-default">
 
               <div
                 className="transition-transform duration-700 ease-out space-y-4"
@@ -84,10 +84,10 @@ const translateY =
                           rounded-xl p-3 transition-all duration-700
                           ${
                             relativeIndex === 0
-                              ? "bg-gradient-to-tl from-blue-100 via-white to-lime-100 scale-110 z-20 shadow-[0_10px_30px_rgba(132,204,22,0.25)]"
+                              ? "bg-linear-to-br from-green-50 via-white to-blue-50 border border-blue-200 scale-110 z-20 shadow-md"
                               : relativeIndex === 1
-                              ? "bg-gray-200 scale-95 opacity-40"
-                              : "bg-zinc-200/40 scale-90 opacity-60"
+                              ? "bg-gray-200 scale-90 opacity-40 border border-gray-300"
+                              : "bg-zinc-200/40 scale-95 opacity-60 border border-gray-300"
                           }
                         `}
                       >
@@ -99,7 +99,7 @@ const translateY =
                             className={`
                               h-3 w-1 rounded-full
                               transition-all duration-300
-                              group-hover:w-1.75
+                              group-hover:w-1.5
                               ${HEAT_COLORS[signal.velocity]}
                             `}
                           />
@@ -108,8 +108,8 @@ const translateY =
                             text-xs md:text-sm font-semibold leading-snug
                             ${
                               relativeIndex === 0
-                                ? "text-black"
-                                : "text-zinc-800"
+                                ? "text-zinc-800"
+                                : "text-zinc-700"
                             }
                           `}>
                             {signal.formatName}
@@ -122,7 +122,7 @@ const translateY =
                           {signal.primaryPlatforms.slice(0, 2).map((p) => (
                             <span
                               key={p}
-                              className="text-[9px] px-1.5 py-0.5 rounded bg-blue-500/40 text-white"
+                              className="text-[9px] px-1.5 py-0.5 rounded bg-gray-500/60 text-white"
                             >
                               {p}
                             </span>

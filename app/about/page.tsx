@@ -13,7 +13,7 @@ export default function About() {
         py-1
         lg:text-6xl
         text-3xl
-        md:text-5xl bg-linear-to-tr from-green-500 to-blue-400 bg-clip-text text-transparent
+        md:text-5xl bg-linear-to-tr from-blue-500 to-sky-400 bg-clip-text text-transparent
         tracking-[-0.02em]
         leading-[1.05]
         ">
@@ -21,12 +21,13 @@ export default function About() {
         </h1>
 
         <p className="flex text-lg text-gray-600 leading-relaxed dark:text-gray-300">
-          There is a pattern in everything, we kept seeing media teams chasing a trend that gets overly saturated by the time it is spotted and put into strategic decks. 
-          We realise if we can track early structural and creative patterns across short-form social media platforms. It will help performance and marketing teams achieve better conversion before it saturates click-to-action.
+          We kept seeing media teams chasing saturaded trends into strategic decks. There is a pattern in everything. 
+          We realised if it can be tracked for early structure and creative patterns across short-form social media platforms. 
+          It will help performance and marketing teams achieve better conversion and outreach.
         </p>
 
         <p className="text-gray-600">
-          That is how we help you understand what is emerging, accelerating, peaking, or saturating before it becomes obvious for the industry to call it a trend.
+          That is how we help you understand what is emerging, accelerating, peaking, or saturating by the time it becomes obvious for it to be a trend.
         </p>
       </section>
 
@@ -51,11 +52,11 @@ export default function About() {
       </p>
 
       <p className="text-gray-700 leading-relaxed dark:text-gray-300">
-        When a format appears independently and keeps rising or declining across multiple brands (shows actionable insight), it is logged, timestamped, tracked for confidence, velocity, and marked by lifecycle stage.
+        When a format appears independently and keeps rising or declining across multiple brands (shows action), it is logged, timestamped, tracked for confidence, velocity, and marked by lifecycle stage.
       </p>
 
       <p className="text-gray-700 leading-relaxed dark:text-gray-300">
-        This happens continuously until the pattern either scales or fades out.
+        This happens continuously until the pattern either tops the stats or saturates.
       </p>
     </div>
 
@@ -82,7 +83,7 @@ export default function About() {
       <div className="text-6xl font-bold text-gray-800 dark:text-gray-200">01</div>
       <p className="text-gray-800 text-base leading-relaxed dark:text-gray-300">
         We monitor ad formats closely across selected brands and social media platforms where it appears to show traction. 
-        Simply put, when an algorithm brings it up. We notice.
+        Simply put, when it resonates with the audience. We notice.
       </p>
     </div>
 
@@ -90,8 +91,8 @@ export default function About() {
     <div className="space-y-4">
       <div className="text-6xl font-bold text-gray-800 dark:text-gray-200">02</div>
       <p className="text-gray-800 text-base leading-relaxed dark:text-gray-300">
-        Ads that appear to repeat independently across brands are then logged as signals. 
-        With their peak performance metrics carrying strategic implications.
+        Ad formats that appear to repeat independently across brands are then logged as signal patterns, 
+        along with their metrics carrying strategic implications.
       </p>
     </div>
 
@@ -99,8 +100,8 @@ export default function About() {
     <div className="space-y-4">
       <div className="text-6xl font-bold text-gray-800 dark:text-gray-200">03</div>
       <p className="text-gray-800 text-base leading-relaxed dark:text-gray-300">
-        Signal patterns are then tracked for confidence, velocity and mapped over a period of time, until the impact dies. 
-        We refresh ads every week.
+        Signal patterns are then moved ahead to be tracked for confidence, velocity and mapped over a period of time, until the impact dies. 
+        We refresh ads every fortnight.
       </p>
     </div>
 
@@ -108,7 +109,7 @@ export default function About() {
     <div className="space-y-4">
       <div className="text-6xl font-bold text-gray-800 dark:text-gray-200">04</div>
       <p className="text-gray-800 text-base leading-relaxed dark:text-gray-300">
-        Strategic implications are defined to clarify whether or not to experiment, differentiate, or to just avoid that ad format.
+        Strategic inferences are then defined to clarify whether or not to experiment, differentiate, or to just avoid that ad format.
       </p>
     </div>
   </div>
@@ -126,29 +127,22 @@ export default function About() {
         </p>
 
         <p className="text-gray-700 leading-relaxed dark:text-gray-300">
-         We managed $100K+ campaigns, executed creatives daily, and tracked audience data. 
-         We sat in performance reviews, built strategic decks, and saw firsthand how marketing decisions are actually made.
+         We managed multi-brand campaigns, executed creatives daily, and analysed audience data. 
+         Working around performance reviews, we have built strategic proposals, and saw firsthand how marketing decisions are actually made.
         </p>
 
         <p className="text-gray-700 leading-relaxed dark:text-gray-300">
-         Working across brands like global streaming platforms, automotive giants, gaming companies, and consumer tech. 
-         <br/>
-         We realised that ad patterns kept repeating: 
-         <span className="font-bold"> Every time we intend to do something, the market has already accomplished.
-        </span>
-        </p>
-
-                <p className="text-gray-700 leading-relaxed dark:text-gray-300">
         By the time something is called a “winning ad,” it&apos;s already been overused, over-optimized, and stripped of its advantage. 
-        Teams do not fail because they lack ideas. They fail because they are responding to signals that have already peaked over time.
+        Teams do not fail because they lack data or ideas. They fail because they are responding to creative patterns that have already peaked over time.
         <br/>
         <span className="font-bold">
-          Nicescroll come to fill that gap.
+          Nicescroll glances on whether or not it is working.
         </span>
         </p>
 
-                <p className="text-gray-700 leading-relaxed dark:text-gray-300">
-         This is not a trend platform or SaaS tool. It is a measurable layer to how ad decisions are made.
+         <p className="text-gray-700 leading-relaxed dark:text-gray-300">
+         This is not made to be a trend platform or SaaS tool. It is a measurable system to help you make ad decisions, early.
+         <br/>
          Because better outcomes come from seeing the right patterns, earlier. Not data. Not statistics.
         </p>
 
@@ -165,17 +159,17 @@ export default function About() {
 <ul className="text-gray-700 leading-relaxed space-y-4 dark:text-gray-200">
 
     <li className="list-disc list-inside">
-    We are not a performance optimization agency or SaaS tool. This platform does not predict outcomes or guarantee results.
+    We are not a performance optimization agency or tech tool. It may not predict outcomes or guarantee results.
   </li>
       <li className="list-disc list-inside">
-    It is a curated signals' log designed to improve ad awareness, timing, and decision-making. Technically, when ads trend and we go all out to look for “Why” it is working. 
+    It is a curated ad pattern log designed to improve awareness, timing, and decision-making. Technically, when ads trend and we go all out to look for “why” it is working. 
     And if that pattern repeats across brands, platforms. It is evidently made use of.
   </li>
       <li className="list-disc list-inside">
-    If you are exploring this, chances are that you could formulate strategies around the best of the performance marketing campaign. 
+    Upon exploration, you could formulate strategies on your own around the best of the performance marketing campaign. 
   </li>
       <li className="">
-    <span className="font-semibold">Please note: </span>Signals reflect observed structural and creative patterns. We do not endorse any brand or ad format, or even platform.
+    <span className="font-semibold">Please note: </span>Signals reflect observed structural and creative patterns. We do not endorse any brand, ad format, or platform.
   </li>
 
 </ul>

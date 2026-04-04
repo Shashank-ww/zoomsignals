@@ -33,7 +33,7 @@ export default function Navbar() {
   return (
     <nav
       ref={navRef}
-      className="sticky top-0 z-50 drop-shadow-sm bg-gradient-to-l from-white via-blue-50 to-white"
+      className="sticky top-0 z-50 drop-shadow-sm bg-linear-to-l from-white via-blue-50 to-white"
     >
       <div className="mx-auto px-6 h-14 flex items-center justify-between">
 

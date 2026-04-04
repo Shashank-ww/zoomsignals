@@ -69,7 +69,7 @@ export default function AboutSignals() {
         py-1
         lg:text-6xl
         text-3xl
-        md:text-5xl bg-linear-to-tr from-green-500 to-blue-400 bg-clip-text text-transparent
+        md:text-5xl bg-linear-to-tr from-blue-500 to-sky-400 bg-clip-text text-transparent
         tracking-[-0.02em]
         leading-[1.05]
         ">
@@ -78,7 +78,7 @@ export default function AboutSignals() {
       
 
         <p className="text-lg text-gray-700 dark:text-gray-300">
-          nicescroll keep records of repeatable creative patterns forming across
+          Nicescroll keep records of repeatable creative patterns forming across
           short-form ecosystems. A signal emerges when independent brands
           begin solving attention in structurally similar ways on social media platforms.
         </p>
@@ -148,7 +148,7 @@ export default function AboutSignals() {
       </div>
 
       {/* PILLS BELOW */}
-      <div className="flex flex-wrap gap-2">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
         {layers.map((layer, i) => {
           const isActive = i === activeLayer;
           const Icon = layer.icon;
@@ -158,7 +158,7 @@ export default function AboutSignals() {
               key={i}
               onClick={() => setActiveLayer(i)}
               className={`
-                flex items-center justify-between gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all
+                flex items-center justify-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all w-full
                 ${
                   isActive
                     ? "bg-blue-600 text-white shadow-sm"

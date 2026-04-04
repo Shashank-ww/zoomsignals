@@ -43,7 +43,7 @@ function DownloadPageInner() {
 
         {/* HEADER */}
         <div className="space-y-2">
-          <h1 className="py-1 lg:text-6xl text-3xl md:text-5xl bg-linear-to-tr from-green-500 to-blue-400 bg-clip-text text-transparent">
+          <h1 className="py-1 lg:text-6xl text-3xl md:text-5xl bg-linear-to-tr from-blue-500 to-sky-400 bg-clip-text text-transparent">
             Access Signal Database
           </h1>
           <p className="text-sm text-gray-500">
@@ -68,13 +68,15 @@ function DownloadPageInner() {
           <button
             onClick={handleDownload}
             disabled={!isSubscribed || loading}
-            className={`inline-flex items-center justify-center gap-2 w-1/3 px-6 py-3 text-sm font-medium text-white rounded-full shadow-sm transition-all duration-200
+              className={`inline-flex items-center justify-center gap-2 
+              w-full sm:w-auto sm:min-w-55
+              px-6 py-3 text-sm font-medium text-white rounded-full shadow-sm 
+              transition-all duration-200
               ${
                 isSubscribed
                   ? "bg-blue-500 hover:bg-blue-600 border border-blue-500"
                   : "bg-gray-300 cursor-not-allowed"
-              }
-            `}
+              }`}
           >
             {loading ? "Checking..." : "Download Sample"}
           </button>
@@ -96,8 +98,11 @@ function DownloadPageInner() {
 
             <a
               href="https://rzp.io/l/YOUR_LINK"
-              className="inline-flex items-center justify-center gap-2 w-1/3 px-6 py-3 text-sm font-medium text-white bg-gray-800 border border-blue-600 rounded-full shadow-sm hover:bg-blue-600 transition-all duration-200"
-            >
+                className="inline-flex items-center justify-center gap-2 
+                w-full sm:w-auto sm:min-w-55
+                px-6 py-3 text-sm font-medium text-white 
+                bg-gray-800 border border-blue-600 rounded-full shadow-sm 
+                hover:bg-blue-600 transition-all duration-200">
               Unlock Full Access
             </a>
           </div>
@@ -113,8 +118,11 @@ function DownloadPageInner() {
 
             <a
               href={`/api/export/full?email=${email}`}
-              className="inline-flex items-center justify-center gap-2 w-1/3 px-6 py-3 text-sm font-medium text-white bg-blue-500 border border-blue-600 rounded-full shadow-sm hover:bg-blue-600 transition-all duration-200"
-            >
+              className="inline-flex items-center justify-center gap-2 
+              w-full sm:w-auto sm:min-w-55
+              px-6 py-3 text-sm font-medium text-white 
+              bg-blue-500 border border-blue-600 rounded-full shadow-sm 
+              hover:bg-blue-600 transition-all duration-200">
               Download Full CSV
             </a>
           </div>

@@ -19,7 +19,7 @@ export default async function BlogPost({
     <h1 className="py-1
         lg:text-4xl
         text-2xl
-        md:text-3xl bg-linear-to-tr from-blue-600 to-sky-400 bg-clip-text text-transparent
+        md:text-3xl bg-linear-to-tr from-blue-500 to-sky-400 bg-clip-text text-transparent
         tracking-[-0.02em]
         leading-[1.05]">
       {frontmatter.title}

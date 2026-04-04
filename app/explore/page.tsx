@@ -13,7 +13,7 @@ export default function Explore() {
         py-1
         lg:text-6xl
         text-3xl
-        md:text-5xl bg-linear-to-tr from-green-500 to-blue-400 bg-clip-text text-transparent
+        md:text-5xl bg-linear-to-tr from-blue-500 to-sky-400 bg-clip-text text-transparent
         tracking-[-0.02em]
         leading-[1.05]
         ">
@@ -25,11 +25,11 @@ export default function Explore() {
         </p>
         
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          Imagine a car ad you see on any short media platform.
+          Imagine a car ad seen on any short media platform.
         </p>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          You notice a hook appears in one category. Then another. Different brands. Same messaging. By the time the industry calls it a “trend”, everyone is already doing it.
+          A hook appears in one category. Then another. Different brands. Same messaging. By the time the industry calls it a “trend”, everyone is already doing it.
         </p>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -37,26 +37,56 @@ export default function Explore() {
         </p>
       </section>
 
-      {/* INDUSTRY PROBLEM */}
-      <section className="space-y-6">
-        <h2 className="text-2xl font-semibold">
-          The problem with your regular trend reports
-          </h2>
+{/* INDUSTRY PROBLEM */}
+<section className="space-y-8">
 
-        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          Marketing teams do not lack data.
-          They are buried in it.
-        </p>
+  {/* FULL WIDTH HEADLINE */}
+  <h2 className="text-2xl md:text-3xl font-semibold max-w-2xl">
+    The Problem with Regular Trend Reports
+  </h2>
 
-        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-         Case studies that explain what already worked. 
-         Trend decks summarizes what already spread.
-        </p>
+  {/* GRID: TEXT + IMAGE */}
+  <div className="grid md:grid-cols-2 gap-10 md:gap-14 items-center">
+    
+    {/* LEFT: TEXT */}
+    <div className="space-y-6 max-w-xl">
+      <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+        Marketing teams do not lack data. They are buried in it, yet starved for foresight. 
+        Standard decks may summarize the EV boom only after it has hit the streets.
+      </p>
 
-        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          Hence, only niche expertise and analytical observation can help spot early patterns.
+      {/* Highlight */}
+      <div className="px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-800 bg-blue-100 dark:bg-zinc-900">
+        <p className="text-sm font-medium text-gray-800 dark:text-gray-200">
+          ~25% YoY growth industry, yet most insights arrive too late.
         </p>
-      </section>
+      </div>
+
+      <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+        Looking at what “already worked” is a losing strategy.
+        We provide the niche expertise required to move past the data pile 
+        and spot the patterns that have not spread yet.
+      </p>
+    </div>
+
+    {/* RIGHT: IMAGE */}
+    <div className="w-full">
+      <img
+        src="https://www.marketdataforecast.com/images/mdf-india-connected-market.webp"
+        alt="Connected car market growth"
+        className="w-full h-full object-contain mt"
+      />
+    <div className="flex items-end justify-end">
+      <p className="text-xs uppercase text-gray-400">
+        Source:<span> Market Data Forceast </span>
+      </p>
+    </div>
+    </div>
+
+
+  </div>
+
+</section>
 
       {/* WHAT Nicescroll DOES */}
       <section className="space-y-6">
