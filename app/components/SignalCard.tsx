@@ -37,7 +37,7 @@ export default function SignalCard({
   signal: Signal;
 }) {
   
-  //  SOURCE OF TRUTH = DB COUNTERS (NOT votes array anymore)
+  //  SOURCE OF TRUTH = DB COUNTERS (NOT votes array)
 const [relevantCount, setRelevantCount] = useState(() =>
   Number(signal?.relevantCount ?? 0)
 );
@@ -167,7 +167,7 @@ setResonanceScore(data.resonanceScore);
   
   return (
     <article
-      className="rounded-2xl overflow-hidden cursor-default hover:shadow-xl transition-all duration-300 h-full bg-linear-to-br from-[#EFF6FF] via-[#F8FAFC] to-[#f9f9f1] border border-blue-200">
+      className="rounded-2xl overflow-hidden cursor-default hover:shadow-xl transition-all duration-300 h-full bg-linear-to-br from-[#e2eeff] via-[#F8FAFC] to-[#ffffe5] border border-blue-200">
       <div className="flex flex-col md:flex-row">
 
         {/* IMAGE */}
@@ -187,7 +187,7 @@ setResonanceScore(data.resonanceScore);
               </div>
             )}
 
-{/*  NARRATIVE OVERLAY */}
+{/*  NARRATIVE OVERLAY 
 {signal.narrative && (
   <div className="
     absolute bottom-0 left-0 w-full
@@ -201,6 +201,7 @@ setResonanceScore(data.resonanceScore);
     </p>
   </div>
 )}
+  */}
 
           </div>
 
@@ -254,41 +255,84 @@ setResonanceScore(data.resonanceScore);
 </div>
 
 {/*  COMPACT META BLOCK */}
-<div className="space-y-1.5 cursor-default">
+{/* BENTO META 3 COLUMN GRID */}
+<div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-[11px]">
 
-{/* Narrative */}
-<div className="flex items-center gap-1 text-[11px] text-gray-500 md:hidden">
-  <span className="uppercase tracking-wide text-gray-400">
-    Ad Narrative:
-  </span>
-
-  <p className="italic line-clamp-1">
-    {signal.narrative}
-  </p>
-</div>
-
-{/* Insight */}
-<div className="items-baseline gap-2">
-  <span className="text-[11px] uppercase tracking-wide text-gray-400">
-    What&apos;s working?
-  </span>
-
-  <p className="italic text-sm text-gray-800 leading-snug md:line-clamp-2">
-    {signal.insight}
-  </p>
-</div>
+  {/* Ad Type */}
+  <div className="bg-gray-50 hover:bg-amber-50 rounded-lg p-2 border border-gray-200">
+    <p className="text-[10px] uppercase text-gray-400 mb-1">
+      Ad Type
+    </p>
+    <p className="text-gray-700 font-medium line-clamp-2">
+      {signal.narrative}
+    </p>
+  </div>
 
 {/* Platforms */}
-<div className="flex items-center gap-1 text-[11px] text-gray-500 flex-wrap">
-  <span className="uppercase tracking-wide text-gray-400">
-    Seen on:
-  </span>
+<div className="bg-gray-50 hover:bg-amber-50 rounded-lg p-2 border border-gray-200">
+  <p className="text-[10px] uppercase text-gray-400 mb-1">
+    Seen On
+  </p>
 
-<span className="text-gray-500">
-  {signal.primaryPlatforms?.join(", ")}
-</span>
+  <div className="flex flex-wrap gap-1">
+    {signal.primaryPlatforms?.map((platform) => (
+      <span
+        key={platform}
+        className="
+          text-[9px]
+          px-1.5 py-0.5
+          rounded
+          bg-slate-500/50
+          text-white
+          uppercase
+          tracking-tighter
+        "
+      >
+        {platform}
+      </span>
+    ))}
+  </div>
 </div>
 
+  {/* Brands */}
+  {signal.advertiser?.length ? (
+    <div className="col-span-2 md:col-span-1 bg-gray-50 hover:bg-amber-50 rounded-lg p-2 border border-gray-200">
+      <p className="text-[10px] uppercase text-gray-400 mb-1">
+        Brands
+      </p>
+      <p className="text-gray-700 uppercase font-medium flex flex-wrap gap-1">
+         {signal.advertiser.map(a => (
+        <span
+          key={a.id}
+          className="
+            px-2 py-0.5
+            bg-gray-100
+            border border-gray-200
+            rounded-full
+            text-[9px]
+            font-medium
+            text-gray-700
+            uppercase
+            tracking-tight
+          "
+        >
+          {a.brandName}
+        </span>
+      ))}
+      </p>
+    </div>
+  ) : null}
+
+   {/* Insight (FULL WIDTH HERO) */}
+  <div className="col-span-3 bg-gray-50 hover:bg-amber-50 rounded-lg p-2.5 border border-gray-300">
+    <p className="text-[10px] uppercase text-gray-400 mb-1">
+      Hook / Insight
+    </p>
+    <p className="text-sm text-gray-700 leading-snug line-clamp-2">
+      {signal.insight}
+    </p>
+  </div>
+  
 
 </div>
 

@@ -26,7 +26,18 @@ model Signal {
   notRelevantCount Int            @default(0)
   relevantCount    Int            @default(0)
   resonanceScore   Float          @default(0)
+
+  advertiser       Advertiser[]
+
   votes            Vote[]
+}
+
+model Advertiser {
+  id        String   @id @default(uuid())
+  brandName String   @unique
+  signals   Signal[]
+
+  createdAt DateTime @default(now())
 }
 
 model Vote {

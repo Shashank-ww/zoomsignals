@@ -72,13 +72,13 @@ export default function Explore() {
     {/* RIGHT: IMAGE */}
     <div className="w-full">
       <img
-        src="https://www.marketdataforecast.com/images/mdf-india-connected-market.webp"
-        alt="Connected car market growth"
-        className="w-full h-full object-contain mt"
+        src="/tata_safari.jpg"
+        alt="A car ad, ahead of its times"
+        className="w-full h-full object-contain mt-2 rounded-xl"
       />
     <div className="flex items-end justify-end">
       <p className="text-xs uppercase text-gray-400">
-        Source:<span> Market Data Forceast </span>
+        Source:<span> Internet </span>
       </p>
     </div>
     </div>

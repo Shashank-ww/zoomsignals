@@ -21,6 +21,7 @@ export async function GET(req: Request) {
       take: limit,
       include: {
         votes: true,
+        advertiser: true,
         _count: {
           select: { votes: true },
         },

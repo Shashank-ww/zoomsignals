@@ -15,7 +15,10 @@ const [approvedSignalsCount, totalSignalsCount, rawSignals] =
     prisma.signal.count(),
     prisma.signal.findMany({
       where: { approvalStatus: "APPROVED" },
-      include: { votes: true },
+      include: {
+         votes: true,
+         advertiser: true,
+        },
       orderBy: { createdAt: "desc" },
     }),
   ]);

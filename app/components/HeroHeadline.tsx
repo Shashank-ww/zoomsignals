@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 
 const headlines = [
   "Ad formats that help you stand out, first.",
-  "Media buying patterns, not just trends. ",
-  "Shift your creatives before your CPMs spike.",
+  "Media buying patterns, not random trends. ",
+  "Shift creatives before your CPMs spike.",
   "Early patterns that give real brand lift.",
   // "If it&s not blowing minds, it&aposs blowing your budget.",
 ];
@@ -35,7 +35,7 @@ export default function HeroHeadline() {
       </h1>
 
       <p className="text-gray-500 max-w-lg leading-relaxed text-base dark:text-gray-300">
-        Insights on live ad formats showing early pattern for brands active on social media. 
+        Get insights on live ad formats showing unique patterns for brands active on social media. 
         Exclusively monitoring <span className="underline underline-offset-4">auto category.</span> 
       </p>
 

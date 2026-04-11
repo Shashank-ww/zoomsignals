@@ -17,11 +17,11 @@ export default function About() {
         tracking-[-0.02em]
         leading-[1.05]
         ">
-          Make early decision on ads
+          Make better decision on ads, early
         </h1>
 
         <p className="flex text-lg text-gray-600 leading-relaxed dark:text-gray-300">
-          We kept seeing media teams chasing saturaded trends into strategic decks. There is a pattern in everything. 
+          We kept seeing media teams chasing trends that had already peaked over time. There is a pattern in everything. 
           We realised if it can be tracked for early structure and creative patterns across short-form social media platforms. 
           It will help performance and marketing teams achieve better conversion and outreach.
         </p>
@@ -52,8 +52,20 @@ export default function About() {
       </p>
 
       <p className="text-gray-700 leading-relaxed dark:text-gray-300">
-        When a format appears independently and keeps rising or declining across multiple brands (shows action), it is logged, timestamped, tracked for confidence, velocity, and marked by lifecycle stage.
+        When a format starts appearing repeatedly—across brands, independently, we log it as a signal.
       </p>
+
+<ul className="list-disc ml-6 text-sm space-y-2 text-gray-700 leading-relaxed dark:text-gray-300">
+  <li>
+    <strong>Velocity:</strong> How fast it's growing (emerging, accelerating, stable, declining)
+  </li>
+  <li>
+    <strong>Confidence:</strong> How consistent it is (low, medium, high)
+  </li>
+  <li>
+    <strong>Lifecycle:</strong> Where it stands (early → peaking → saturating)
+  </li>
+</ul>
 
       <p className="text-gray-700 leading-relaxed dark:text-gray-300">
         This happens continuously until the pattern either tops the stats or saturates.

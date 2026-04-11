@@ -33,11 +33,16 @@ export default function AboutSignals() {
   },
 ];
 
-  useEffect(() => {
+useEffect(() => {
   async function loadSignal() {
     try {
       const res = await fetch("/api/signals");
       const data = await res.json();
+
+      if (!Array.isArray(data)) {
+        console.error("Expected array, got:", data);
+        return;
+      }
 
       const normalized = data.map((s: any) => ({
         ...s,
@@ -45,7 +50,6 @@ export default function AboutSignals() {
         updatedAt: new Date(s.updatedAt),
       }));
 
-      // Try fixed ID → fallback to first
       const found = normalized.find(
         (s: Signal) =>
           s.id === "129d72f3-5790-4282-baeb-1464fbabde63"

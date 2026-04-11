@@ -100,7 +100,7 @@ import SignalPreviewPhone from "./SignalPreview";
                 </ul>
 
                 <p>
-                    We discover patterns early, making it easy for the planners and marketeers to improve decision making. These are updated frequently. 
+                    We discover patterns early, making it easy for the planners and marketers to improve decision making. These are updated frequently. 
                 </p>
                 </div>
 
@@ -153,7 +153,7 @@ function LiveFeedHeader({
         </h2>
 
         <p className="text-sm text-gray-600 max-w-md mt-2">
-          Discover real-time ad formats, creative patterns, campaign lifecycle across brands and social media platforms.
+          Discover real-time ad formats, creative patterns, campaign lifecycle across competition brands on social media platforms.
         </p>
       </div>
 

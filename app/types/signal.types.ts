@@ -21,6 +21,16 @@ export type Vote = {
 };
 
 /* ================================
+   Advertiser Brand Name
+================================ */
+
+export type Advertiser = {
+  id: string;
+  brandName: string;
+  createdAt: Date;
+};
+
+/* ================================
    Signal (DB Strict Aligned)
 ================================ */
 
@@ -46,6 +56,8 @@ export type Signal = {
 
   relevantCount: number;
   notRelevantCount: number;
+
+  advertiser?: Advertiser[];
 
   votes?: Vote[];
 

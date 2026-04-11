@@ -104,6 +104,21 @@ const { mode, rows, fileName } = body as {
         const platforms = platformsRaw as Platform[];
 
         /* ===========================
+          ADVERTISER NORMALIZATION
+        =========================== */
+
+        const advertiserRaw =
+          row.advertiser
+            ?.split(",")
+            .map((b: string) => b.trim())
+            .filter((b: string) => b.length > 0) || [];
+
+        const advertiserConnect = advertiserRaw.map((brandName: string) => ({
+          where: { brandName },
+          create: { brandName },
+        }));
+
+        /* ===========================
            CLEAN DATA OBJECT
         =========================== */
 
@@ -121,6 +136,13 @@ const { mode, rows, fileName } = body as {
           sourceLink: row.sourceLink?.trim() || null,
           relevantCount: Number(row.relevantCount) || 0,
           notRelevantCount: Number(row.notRelevantCount) || 0,
+
+          ...(advertiserConnect.length > 0 && {
+            advertiser: {
+              connectOrCreate: advertiserConnect,
+            },
+          }),
+
         };
 
         /* ===========================
@@ -149,9 +171,17 @@ const { mode, rows, fileName } = body as {
 
           if (existing) {
             await prisma.signal.update({
-              where: { formatName },
-              data,
-            });
+            where: { formatName },
+            data: {
+              ...data,
+              ...(advertiserConnect.length > 0 && {
+                advertiser: {
+                  set: [], // needs to clear data before creating or adding more brands
+                  connectOrCreate: advertiserConnect,
+                },
+              }),
+            },
+          });
 
             updated++;
           } else {
