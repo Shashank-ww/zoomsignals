@@ -3,7 +3,6 @@
 import { useState } from "react";
 import type { Signal } from "@/app/types/signal.types";
 import SignalAdminModal from "@/app/components/admin/SignalAdminModal";
-import { DiamondPlus } from "lucide-react";
 
 type Props = {
   rows: Signal[];
@@ -30,6 +29,9 @@ export default function AdminSignalsTable({
   const [statusSort, setStatusSort] = useState<"asc" | "desc" | null>(null);
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [loadingBulk, setLoadingBulk] = useState(false);
+  const [loadingRowId, setLoadingRowId] = useState<string | null>(null);
+
+  const isRowLoading = (id: string) => loadingRowId === id;
 
   /* ============================
      REFRESH
@@ -47,22 +49,28 @@ export default function AdminSignalsTable({
   ============================ */
 
 async function updateStatus(id: string, status: string) {
-  const res = await fetch("/api/admin/signals", {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-      "x-admin-secret": adminPassword,
-    },
-    body: JSON.stringify({ id, approvalStatus: status }),
-  });
+  setLoadingRowId(id);
 
-  if (!res.ok) return;
+  try {
+    const res = await fetch("/api/admin/signals", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "x-admin-secret": adminPassword,
+      },
+      body: JSON.stringify({ id, approvalStatus: status }),
+    });
 
-  setRows(prev =>
-    prev.map((s: Signal) =>
-      s.id === id ? { ...s, approvalStatus: status as any } : s
-    )
-  );
+    if (!res.ok) return;
+
+    setRows(prev =>
+      prev.map((s: Signal) =>
+        s.id === id ? { ...s, approvalStatus: status as any } : s
+      )
+    );
+  } finally {
+    setLoadingRowId(null);
+  }
 }
 
   /* ============================
@@ -149,27 +157,33 @@ async function handleApproval(id: string, action: "APPROVE" | "REJECT") {
     return;
   }
 
-  const res = await fetch("/api/admin/signals/approve", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "x-admin-secret": adminPassword,
-    },
-    body: JSON.stringify({ id, action }),
-  });
+  setLoadingRowId(id);
 
-  if (!res.ok) {
-    alert("Unauthorized or failed");
-    return;
+  try {
+    const res = await fetch("/api/admin/signals/approve", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-admin-secret": adminPassword,
+      },
+      body: JSON.stringify({ id, action }),
+    });
+
+    if (!res.ok) {
+      alert("Unauthorized or failed");
+      return;
+    }
+
+    const updated = await res.json();
+
+    setRows(prev =>
+      prev.map((s: Signal) =>
+        s.id === id ? updated : s
+      )
+    );
+  } finally {
+    setLoadingRowId(null);
   }
-
-  const updated = await res.json();
-
-  setRows(prev =>
-    prev.map((s: Signal) =>
-      s.id === id ? updated : s
-    )
-  );
 }
 
   /* ============================
@@ -178,6 +192,17 @@ async function handleApproval(id: string, action: "APPROVE" | "REJECT") {
 
   return (
     <div className="space-y-8">
+      <div className="flex justify-end">
+  <button
+    onClick={() => {
+      setEditingSignal(null); // important → create mode
+      setIsOpen(true);
+    }}
+    className="px-4 py-2 text-sm bg-black text-white rounded-lg hover:bg-zinc-800"
+  >
+    + Create Signal
+  </button>
+</div>
 
       <div className="overflow-x-auto border rounded-xl">
   <table className="w-full text-xs md:text-sm">
@@ -251,6 +276,22 @@ async function handleApproval(id: string, action: "APPROVE" | "REJECT") {
               ))}
             </div>
 
+            {/* ADVERTISERS */}
+            <div className="flex flex-wrap gap-1">
+              {signal.advertiser?.length ? (
+                signal.advertiser.map((a) => (
+                  <span
+                    key={a.id ?? a.brandName}
+                    className="text-[9px] md:text-[10px] px-1.5 py-0.5 bg-blue-100 text-blue-700 rounded-full uppercase"
+                  >
+                    {a.brandName.charAt(0) + a.brandName.slice(1).toLowerCase()}
+                  </span>
+                ))
+              ) : (
+                <span className="text-[9px] text-zinc-400">No advertiser listed</span>
+              )}
+            </div>
+
             {/* META */}
             <div className="text-[9px] md:text-[10px] text-zinc-400 flex flex-wrap gap-2">
               <span>{signal.lifecycle}</span>
@@ -312,25 +353,27 @@ async function handleApproval(id: string, action: "APPROVE" | "REJECT") {
             <div className="flex flex-wrap justify-end gap-1.5">
               
               <button
+                disabled={isRowLoading(signal.id)}
                 onClick={async (e) => {
                   e.stopPropagation();
                   await updateStatus(signal.id, "DRAFT");
                   setEditingSignal(signal);
                   setIsOpen(true);
                 }}
-                className="text-[10px] md:text-xs px-2.5 py-1 border rounded hover:bg-zinc-50"
+                className="cursor-pointer text-[10px] md:text-xs px-2.5 py-1 border rounded hover:bg-zinc-50 disabled:opacity-50"
               >
-                Edit
+                {isRowLoading(signal.id) ? "..." : "Edit"}
               </button>
 
               <button
+                disabled={loadingBulk}
                 onClick={(e) => {
                   e.stopPropagation();
                   deleteSelected([signal.id]);
                 }}
-                className="text-[10px] md:text-xs px-2.5 py-1 border text-red-600 rounded hover:bg-red-50"
+                className="cursor-pointer text-[10px] md:text-xs px-2.5 py-1 border text-red-600 rounded hover:bg-red-50 disabled:opacity-50"
               >
-                Delete
+                {loadingBulk ? "Deleting..." : "Delete"}
               </button>
 
             </div>
@@ -338,38 +381,47 @@ async function handleApproval(id: string, action: "APPROVE" | "REJECT") {
             {/* SECONDARY ACTIONS */}
             {signal.approvalStatus === "DRAFT" && (
               <button
+                disabled={isRowLoading(signal.id)}
                 onClick={(e) => {
                   e.stopPropagation();
                   updateStatus(signal.id, "PENDING");
                 }}
-                className="w-full md:w-auto text-[10px] md:text-xs px-3 py-1 border rounded hover:bg-zinc-50"
+                className="cursor-pointer w-full md:w-auto text-[10px] md:text-xs px-3 py-1 border rounded hover:bg-zinc-50 disabled:opacity-50"
               >
-                Send for Approval
+                {isRowLoading(signal.id) ? "Sending..." : "Send for Approval"}
               </button>
             )}
 
             {signal.approvalStatus === "PENDING" && (
               <div className="flex flex-wrap justify-end gap-1.5 w-full md:w-auto">
 
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleApproval(signal.id, "APPROVE");
-                  }}
-                  className="flex-1 md:flex-none text-[10px] md:text-xs px-3 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200"
-                >
-                  Approve
-                </button>
+                {isRowLoading(signal.id) ? (
+                  <span className="text-[10px] md:text-xs text-zinc-400 px-3 py-1">
+                    Processing...
+                  </span>
+                ) : (
+                  <>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleApproval(signal.id, "APPROVE");
+                      }}
+                      className="cursor-pointer flex-1 md:flex-none text-[10px] md:text-xs px-3 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200"
+                    >
+                      Approve
+                    </button>
 
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleApproval(signal.id, "REJECT");
-                  }}
-                  className="flex-1 md:flex-none text-[10px] md:text-xs px-3 py-1 bg-red-100 text-red-600 rounded hover:bg-red-200"
-                >
-                  Reject
-                </button>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleApproval(signal.id, "REJECT");
+                      }}
+                      className="cursor-pointer flex-1 md:flex-none text-[10px] md:text-xs px-3 py-1 bg-red-100 text-red-600 rounded hover:bg-red-200"
+                    >
+                      Reject
+                    </button>
+                  </>
+                )}
 
               </div>
             )}

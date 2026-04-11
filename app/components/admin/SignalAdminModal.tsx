@@ -25,7 +25,19 @@ export default function SignalAdminModal({
     author: "Admin",
     imageUrl: "",
     sourceLink: "",
+    advertiser: [] as { brandName: string }[]
   });
+
+  const ADVERTISERS = [
+  "AUDI",
+  "BMW",
+  "HYUNDAI",
+  "TOYOTA",
+  "BYD",
+  "VOLKSWAGEN",
+  "VOLVO",
+  "OTHERS",
+];
 
   const PLATFORMS = [
   "INSTAGRAM",
@@ -51,6 +63,7 @@ useEffect(() => {
     author: signal.author ?? "Admin",
     imageUrl: signal.imageUrl ?? "",
     sourceLink: signal.sourceLink ?? "",
+    advertiser: signal.advertiser ?? [],
   });
 }, [signal]);
 
@@ -180,6 +193,54 @@ useEffect(() => {
             />
           </div>
         </div>
+
+        {/* Advertiser */}
+        <div>
+  <label className="text-sm font-medium text-zinc-600">
+    Select Advertisers
+  </label>
+
+  <div className="flex flex-wrap gap-2 mt-2">
+    {ADVERTISERS.map((brand) => {
+      const active = form.advertiser.some(
+        (a) => a.brandName === brand
+      );
+
+      return (
+        <button
+          key={brand}
+          type="button"
+          onClick={() => {
+            if (active) {
+              setForm({
+                ...form,
+                advertiser: form.advertiser.filter(
+                  (a) => a.brandName !== brand
+                ),
+              });
+            } else {
+              setForm({
+                ...form,
+                advertiser: [
+                  ...form.advertiser,
+                  { brandName: brand },
+                ],
+              });
+            }
+          }}
+          className={`px-3 py-1 rounded-full text-xs border transition
+            ${
+              active
+                ? "bg-black text-white border-black"
+                : "bg-white text-zinc-600 border-zinc-300 hover:bg-zinc-100"
+            }`}
+        >
+          {brand}
+        </button>
+      );
+    })}
+  </div>
+</div>
 
         {/* Classification Grid */}
         <div className="grid grid-cols-3 gap-6">

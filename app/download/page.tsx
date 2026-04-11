@@ -69,7 +69,7 @@ function DownloadPageInner() {
             onClick={handleDownload}
             disabled={!isSubscribed || loading}
               className={`inline-flex items-center justify-center gap-2 
-              w-full sm:w-auto sm:min-w-55
+              w-full sm:w-auto sm:min-w-55 cursor-pointer
               px-6 py-3 text-sm font-medium text-white rounded-full shadow-sm 
               transition-all duration-200
               ${

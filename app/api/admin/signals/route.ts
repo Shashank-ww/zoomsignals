@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/app/lib/prisma";
+
 export const dynamic = "force-dynamic";
 
 /* ---------------------- */
@@ -12,6 +13,7 @@ export async function GET() {
     },
     include: {
       votes: true,
+      advertiser: true,
     },
   });
 
@@ -40,12 +42,30 @@ export async function POST(req: Request) {
         author: body.author,
         imageUrl: body.imageUrl || null,
         sourceLink: body.sourceLink || null,
+
+        advertiser: body.advertiser?.length
+          ? {
+              connectOrCreate: body.advertiser.map((a: any) => {
+                const brand = a.brandName.trim().toUpperCase();
+
+                return {
+                  where: { brandName: brand },
+                  create: { brandName: brand },
+                };
+              }),
+            }
+          : undefined,
+      },
+
+      include: {
+        advertiser: true,
+        votes: true,
       },
     });
 
     return NextResponse.json(signal);
   } catch (error) {
-    console.error(error);
+    console.error("POST error:", error);
     return NextResponse.json(
       { error: "Failed to create signal" },
       { status: 500 }
@@ -56,7 +76,6 @@ export async function POST(req: Request) {
 /* ---------------------- */
 /* PATCH SIGNAL */
 /* ---------------------- */
-
 export async function PATCH(req: Request) {
   try {
     const body = await req.json();
@@ -68,9 +87,9 @@ export async function PATCH(req: Request) {
       );
     }
 
-    const { id, ...rest } = body;
+    const { id, advertiser, ...rest } = body;
 
-    const updateData = Object.fromEntries(
+    const updateData: any = Object.fromEntries(
       Object.entries(rest).filter(([_, value]) => value !== undefined)
     );
 
@@ -78,9 +97,29 @@ export async function PATCH(req: Request) {
       updateData.repetitionCount = Number(updateData.repetitionCount);
     }
 
+    if (advertiser !== undefined) {
+      updateData.advertiser = {
+        set: [], // clear existing relations
+
+        connectOrCreate: advertiser.map((a: any) => {
+          const brand = a.brandName.trim().toUpperCase();
+
+          return {
+            where: { brandName: brand },
+            create: { brandName: brand },
+          };
+        }),
+      };
+    }
+
     const updated = await prisma.signal.update({
       where: { id },
       data: updateData,
+
+      include: {
+        advertiser: true,
+        votes: true,
+      },
     });
 
     return NextResponse.json(updated);

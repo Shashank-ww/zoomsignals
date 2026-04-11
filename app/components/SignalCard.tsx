@@ -256,7 +256,7 @@ setResonanceScore(data.resonanceScore);
 
 {/*  COMPACT META BLOCK */}
 {/* BENTO META 3 COLUMN GRID */}
-<div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-[11px]">
+<div className="grid grid-cols-2 md:grid-cols-3 gap-2 w-full text-[11px]">
 
   {/* Ad Type */}
   <div className="bg-gray-50 hover:bg-amber-50 rounded-lg p-2 border border-gray-200">
@@ -268,63 +268,45 @@ setResonanceScore(data.resonanceScore);
     </p>
   </div>
 
-{/* Platforms */}
-<div className="bg-gray-50 hover:bg-amber-50 rounded-lg p-2 border border-gray-200">
-  <p className="text-[10px] uppercase text-gray-400 mb-1">
-    Seen On
-  </p>
+  {/* Platforms */}
+  <div className="bg-gray-50 hover:bg-amber-50 rounded-lg p-2 border border-gray-200">
+    <p className="text-[10px] uppercase text-gray-400 mb-1">
+      Seen On
+    </p>
 
-  <div className="flex flex-wrap gap-1">
-    {signal.primaryPlatforms?.map((platform) => (
-      <span
-        key={platform}
-        className="
-          text-[9px]
-          px-1.5 py-0.5
-          rounded
-          bg-slate-500/50
-          text-white
-          uppercase
-          tracking-tighter
-        "
-      >
-        {platform}
-      </span>
-    ))}
+    <div className="flex flex-wrap gap-1">
+      {signal.primaryPlatforms?.map((platform) => (
+        <span
+          key={platform}
+          className="text-[9px] px-1.5 py-0.5 rounded bg-slate-500/50 text-white uppercase tracking-tighter"
+        >
+          {platform}
+        </span>
+      ))}
+    </div>
   </div>
-</div>
 
   {/* Brands */}
   {signal.advertiser?.length ? (
     <div className="col-span-2 md:col-span-1 bg-gray-50 hover:bg-amber-50 rounded-lg p-2 border border-gray-200">
       <p className="text-[10px] uppercase text-gray-400 mb-1">
-        Brands
+        Used by
       </p>
-      <p className="text-gray-700 uppercase font-medium flex flex-wrap gap-1">
-         {signal.advertiser.map(a => (
-        <span
-          key={a.id}
-          className="
-            px-2 py-0.5
-            bg-gray-100
-            border border-gray-200
-            rounded-full
-            text-[9px]
-            font-medium
-            text-gray-700
-            uppercase
-            tracking-tight
-          "
-        >
-          {a.brandName}
-        </span>
-      ))}
-      </p>
+      <div className="flex flex-wrap gap-1">
+        {signal.advertiser.map(a => (
+          <span
+            key={a.id}
+            className="px-2 py-0.5 bg-gray-100 border border-gray-200 rounded-full text-[9px] font-medium text-gray-700 uppercase tracking-tight"
+          >
+            {a.brandName}
+          </span>
+        ))}
+      </div>
     </div>
   ) : null}
 
-   {/* Insight (FULL WIDTH HERO) */}
-  <div className="col-span-3 bg-gray-50 hover:bg-amber-50 rounded-lg p-2.5 border border-gray-300">
+  {/* Insight */}
+  <div className="col-span-2 md:col-span-3 bg-gray-50 hover:bg-amber-50 rounded-lg p-2.5 border border-gray-200">
     <p className="text-[10px] uppercase text-gray-400 mb-1">
       Hook / Insight
     </p>
@@ -332,7 +314,6 @@ setResonanceScore(data.resonanceScore);
       {signal.insight}
     </p>
   </div>
-  
 
 </div>
 
