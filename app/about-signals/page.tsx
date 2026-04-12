@@ -221,7 +221,36 @@ useEffect(() => {
   </div>
 </section>
 
+{/* LEADERBOARD CTA */}
+<section className="space-y-10">
+  <div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
 
+  <div className="max-w-4xl space-y-6">
+    <h2 className="text-lg md:text-xl font-semibold">
+      Track What&apos;s Winning
+    </h2>
+
+    <p className="text-gray-700 leading-relaxed">
+      Signals are not isolated observations. Patterns gain meaning when
+      tracked across brands, categories, and time.
+    </p>
+
+    <p className="text-gray-600 text-sm leading-relaxed">
+      The Leaderboard surfaces formats with the highest velocity,
+      strongest validation, and repeated execution across the ecosystem —
+      helping you identify what is actually scaling, not just trending.
+    </p>
+
+    <div className="pt-4">
+      <a
+        href="/leaderboard"
+        className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition-all shadow-sm"
+      >
+        Explore Leaderboard →
+      </a>
+    </div>
+  </div>
+</section>
 
       {/* HOW TO USE */}
       <section className="space-y-12 max-w-4xl">

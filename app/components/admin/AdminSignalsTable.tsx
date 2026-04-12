@@ -28,10 +28,15 @@ export default function AdminSignalsTable({
   const [editingSignal, setEditingSignal] = useState<Signal | null>(null);
   const [statusSort, setStatusSort] = useState<"asc" | "desc" | null>(null);
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const [deletedCount, setDeletedCount] = useState<number | null>(null);
   const [loadingBulk, setLoadingBulk] = useState(false);
   const [loadingRowId, setLoadingRowId] = useState<string | null>(null);
 
   const isRowLoading = (id: string) => loadingRowId === id;
+
+  const Spinner = () => (
+  <span className="inline-block w-3 h-3 border-2 border-zinc-400 border-t-transparent rounded-full animate-spin" />
+);
 
   /* ============================
      REFRESH
@@ -77,23 +82,33 @@ async function updateStatus(id: string, status: string) {
      DELETE
   ============================ */
 
-  async function deleteSelected(ids: string[]) {
-    if (!isAuthorized) {
-      setShowPassword(true);
-      alert("Authorization required");
-      return;
-    }
+async function deleteSelected(ids: string[]) {
+  if (!isAuthorized) {
+    setShowPassword(true);
+    alert("Authorization required");
+    return;
+  }
 
-    if (ids.length === 0) return;
+  if (ids.length === 0) return;
 
-    const confirmDelete = window.confirm(
-      `Delete ${ids.length} selected signals?`
-    );
-    if (!confirmDelete) return;
+  const isSingle = ids.length === 1;
 
+  const confirmDelete = window.confirm(
+    isSingle
+      ? "Delete this signal?"
+      : `Delete ${ids.length} selected signals?`
+  );
+  if (!confirmDelete) return;
+
+  // 👉 loaders
+  if (isSingle) {
+    setLoadingRowId(ids[0]);
+  } else {
     setLoadingBulk(true);
+  }
 
-    await fetch("/api/admin/signals/delete", {
+  try {
+    const res = await fetch("/api/admin/signals/delete", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -102,10 +117,30 @@ async function updateStatus(id: string, status: string) {
       body: JSON.stringify({ mode: "selected", ids }),
     });
 
+    if (!res.ok) {
+      throw new Error("Delete failed");
+    }
+
+    // optimistic UI update
     setRows((prev) => prev.filter((s) => !ids.includes(s.id)));
-    setSelectedIds([]);
+
+    // show feedback FIRST
+    setDeletedCount(ids.length);
+
+    // delay clearing selection so button can show feedback
+    setTimeout(() => {
+      setSelectedIds([]);
+      setDeletedCount(null);
+    }, 3500);
+
+  } catch (err) {
+    console.error(err);
+    alert("Something went wrong while deleting");
+  } finally {
     setLoadingBulk(false);
+    setLoadingRowId(null);
   }
+}
 
   /* ============================
      SORT
@@ -192,28 +227,47 @@ async function handleApproval(id: string, action: "APPROVE" | "REJECT") {
 
   return (
     <div className="space-y-8">
-      <div className="flex justify-end">
+    <div className="flex justify-end gap-2">
+
+  {/* DELETE */}
+  {(selectedIds.length > 0 || deletedCount) && (
+    <button
+      onClick={() => deleteSelected(selectedIds)}
+      disabled={loadingBulk}
+      className="px-4 py-2 text-sm border border-red-300 text-red-600 rounded-lg hover:bg-red-50 cursor-pointer"
+    >
+      {loadingBulk
+        ? <Spinner />
+        : deletedCount
+        ? `${deletedCount} Signal${deletedCount > 1 ? "s" : ""} deleted`
+        : `Delete (${selectedIds.length})`}
+    </button>
+  )}
+
+  {/* CREATE */}
   <button
     onClick={() => {
-      setEditingSignal(null); // important → create mode
+      setEditingSignal(null);
       setIsOpen(true);
     }}
-    className="px-4 py-2 text-sm bg-black text-white rounded-lg hover:bg-zinc-800"
+    className="px-4 py-2 text-sm bg-black text-white rounded-lg hover:bg-zinc-800 cursor-pointer"
   >
     + Create Signal
   </button>
+
 </div>
 
       <div className="overflow-x-auto border rounded-xl">
   <table className="w-full text-xs md:text-sm">
     
     {/* HEADER */}
-    <thead className="bg-zinc-100 text-[10px] md:text-xs uppercase">
+    <thead className="bg-zinc-400 text-[10px] md:text-xs uppercase">
       <tr>
         <th className="px-2 md:px-4 py-2 md:py-3">
           <input
             type="checkbox"
             checked={selectedIds.length === rows.length && rows.length > 0}
+            className="cursor-pointer"
             onChange={toggleSelectAll}
           />
         </th>
@@ -347,81 +401,89 @@ async function handleApproval(id: string, action: "APPROVE" | "REJECT") {
           {/* ACTIONS */}
           <td className="px-2 md:px-4 py-3 md:py-4 text-right">
 
-          <div className="flex flex-col items-end h-full mt-auto gap-1.5">
+            <div className="flex flex-col items-end gap-1.5">
 
-            {/* PRIMARY ACTIONS */}
-            <div className="flex flex-wrap justify-end gap-1.5">
-              
-              <button
-                disabled={isRowLoading(signal.id)}
-                onClick={async (e) => {
-                  e.stopPropagation();
-                  await updateStatus(signal.id, "DRAFT");
-                  setEditingSignal(signal);
-                  setIsOpen(true);
-                }}
-                className="cursor-pointer text-[10px] md:text-xs px-2.5 py-1 border rounded hover:bg-zinc-50 disabled:opacity-50"
-              >
-                {isRowLoading(signal.id) ? "..." : "Edit"}
-              </button>
+              {/* PRIMARY ACTIONS */}
+              <div className="flex flex-wrap justify-end gap-1.5">
 
-              <button
-                disabled={loadingBulk}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  deleteSelected([signal.id]);
-                }}
-                className="cursor-pointer text-[10px] md:text-xs px-2.5 py-1 border text-red-600 rounded hover:bg-red-50 disabled:opacity-50"
-              >
-                {loadingBulk ? "Deleting..." : "Delete"}
-              </button>
+                {/* EDIT */}
+                <button
+                  disabled={loadingRowId === signal.id}
+                  onClick={async (e) => {
+                    e.stopPropagation();
+                    setLoadingRowId(signal.id);
 
-            </div>
+                    await updateStatus(signal.id, "DRAFT");
+
+                    setEditingSignal(signal);
+                    setIsOpen(true);
+
+                    setLoadingRowId(null);
+                  }}
+                  className="text-[10px] md:text-xs px-2.5 py-1 border rounded hover:bg-zinc-50 cursor-pointer disabled:opacity-50"
+                >
+                  {loadingRowId === signal.id ? <Spinner /> : "Edit"}
+                </button>
+
+                <button
+                            disabled={loadingBulk}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              deleteSelected([signal.id]);
+                            }}
+                            className="cursor-pointer text-[10px] md:text-xs px-2.5 py-1 border text-red-600 rounded hover:bg-red-50 disabled:opacity-50"
+                          >
+                            {loadingBulk ? <Spinner/> : "Delete"}
+                          </button>
+
+              </div>
 
             {/* SECONDARY ACTIONS */}
+            {/* DRAFT */}
             {signal.approvalStatus === "DRAFT" && (
               <button
-                disabled={isRowLoading(signal.id)}
-                onClick={(e) => {
+                disabled={loadingRowId === signal.id}
+                onClick={async (e) => {
                   e.stopPropagation();
-                  updateStatus(signal.id, "PENDING");
+                  setLoadingRowId(signal.id);
+                  await updateStatus(signal.id, "PENDING");
+                  setLoadingRowId(null);
                 }}
-                className="cursor-pointer w-full md:w-auto text-[10px] md:text-xs px-3 py-1 border rounded hover:bg-zinc-50 disabled:opacity-50"
+                className="w-full md:w-auto text-[10px] md:text-xs px-3 py-1 border rounded hover:bg-zinc-50 cursor-pointer disabled:opacity-50"
               >
-                {isRowLoading(signal.id) ? "Sending..." : "Send for Approval"}
+                {loadingRowId === signal.id ? <Spinner /> : "Send for Approval"}
               </button>
             )}
 
+            {/* PENDING */}
             {signal.approvalStatus === "PENDING" && (
-              <div className="flex flex-wrap justify-end gap-1.5 w-full md:w-auto">
+              <div className="flex gap-1.5 w-full md:w-auto">
 
-                {isRowLoading(signal.id) ? (
-                  <span className="text-[10px] md:text-xs text-zinc-400 px-3 py-1">
-                    Processing...
-                  </span>
-                ) : (
-                  <>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleApproval(signal.id, "APPROVE");
-                      }}
-                      className="cursor-pointer flex-1 md:flex-none text-[10px] md:text-xs px-3 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200"
-                    >
-                      Approve
-                    </button>
+                <button
+                  disabled={loadingRowId === signal.id}
+                  onClick={async (e) => {
+                    e.stopPropagation();
+                    setLoadingRowId(signal.id);
+                    await handleApproval(signal.id, "APPROVE");
+                    setLoadingRowId(null);
+                  }}
+                  className="flex-1 text-[10px] md:text-xs px-3 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200 cursor-pointer disabled:opacity-50"
+                >
+                  {loadingRowId === signal.id ? <Spinner /> : "Approve"}
+                </button>
 
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleApproval(signal.id, "REJECT");
-                      }}
-                      className="cursor-pointer flex-1 md:flex-none text-[10px] md:text-xs px-3 py-1 bg-red-100 text-red-600 rounded hover:bg-red-200"
-                    >
-                      Reject
-                    </button>
-                  </>
-                )}
+                <button
+                  disabled={loadingRowId === signal.id}
+                  onClick={async (e) => {
+                    e.stopPropagation();
+                    setLoadingRowId(signal.id);
+                    await handleApproval(signal.id, "REJECT");
+                    setLoadingRowId(null);
+                  }}
+                  className="flex-1 text-[10px] md:text-xs px-3 py-1 bg-red-100 text-red-600 rounded hover:bg-red-200 cursor-pointer disabled:opacity-50"
+                >
+                  {loadingRowId === signal.id ? <Spinner /> : "Reject"}
+                </button>
 
               </div>
             )}

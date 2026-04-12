@@ -38,7 +38,7 @@ export function calculateResonance({
     };
   }
 
-  // 🔥 CORE: approval ratio
+  // CORE: approval ratio
   const approvalRatio = relevant / total; // 0 → 1
 
   // Convert to centered score (-50 to +50)
