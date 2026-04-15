@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 
 const headlines = [
-  "Ad formats that help you stand out, first.",
-  "Media buying patterns, not random trends. ",
-  "Shift creatives before your CPMs spike.",
-  "Early patterns that give real brand lift.",
+  "This ad break that help you stand out, first.",
+  "Media patterns, not just that ad break. ",
+  "Shift decisions before ads break your budgets.",
+  "Early patterns that give you a real break.",
   // "If it&s not blowing minds, it&aposs blowing your budget.",
 ];
 
@@ -18,7 +18,7 @@ export default function HeroHeadline() {
     setSelected(headlines[index]);
   }, []);
 
-  // Prevent hydration mismatch by rendering nothing until mounted
+  // Prevent hydration mismatch and render nothing until mounted
   if (!selected) return null;
 
   return (
@@ -35,8 +35,8 @@ export default function HeroHeadline() {
       </h1>
 
       <p className="text-gray-500 max-w-lg leading-relaxed text-base dark:text-gray-300">
-        Get insights on live ad formats showing unique patterns for brands active on social media. 
-        Exclusively monitoring <span className="underline underline-offset-4">auto category.</span> 
+        Get insights into live ad formats that show unique patterns for brands active on social media.
+        Exclusively monitoring <span className="underline underline-offset-4">automobile category.</span> 
       </p>
 
       <div>

@@ -351,13 +351,13 @@ setResonanceScore(data.resonanceScore);
   {/* Row 1 — Metadata */}
   <div className="flex justify-between items-center text-[11px] text-gray-500">
 <div className="
-    flex flex-col gap-2
+    flex flex-wrap gap-2
     sm:flex-row sm:items-center sm:justify-between
   ">
 
     {/* Dates */}
     <div className="
-      flex flex-col text-gray-500
+      flex flex-wrap text-gray-500
       sm:flex-row sm:items-center sm:gap-2
     ">
       <FormatRelativeDate

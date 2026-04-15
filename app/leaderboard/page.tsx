@@ -70,17 +70,16 @@ function getMetricStyle(value?: string) {
 }
 
   return (
-    <main className="mx-auto max-w-6xl px-6 py-24 space-y-16">
+    <main className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-24 space-y-12 bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100">
 
       {/* HERO */}
       <section className="space-y-6">
         <h1 className="py-1 lg:text-6xl text-3xl md:text-5xl bg-linear-to-tr from-blue-500 to-sky-400 bg-clip-text text-transparent tracking-[-0.02em] leading-[1.05]">
-          What&apos;s actually working in ads right now
+          What&apos;s actually breaking ads
         </h1>
 
         <p className="text-zinc-600 max-w-2xl text-sm md:text-base leading-relaxed">
-          This leaderboard surfaces performance, not noise. 
-          Track high-performing signals, dominant formats, and advertisers repeating them.
+         This leaderboard shows performance, not noise. Keep an eye on signals that do well, formats that are popular, and advertisers who use them again and often.
         </p>
       </section>
 

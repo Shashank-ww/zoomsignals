@@ -65,9 +65,9 @@ import SignalPreviewPhone from "./SignalPreview";
         </section>
 
         {/* ================= EXPLAINER SECTION ================= */}
-        <section id="explainer" className="border-t border-gray-200 bg-gray-50 cursor-pointer">
+        <section id="explainer" className="border-t border-gray-200 bg-gray-50 cursor-auto">
             <div
-            className={`max-w-6xl mx-auto px-6 transition-all duration-500 overflow-hidden cursor-pointer ${
+            className={`max-w-6xl mx-auto px-6 transition-all duration-500 overflow-hidden ${
                 showExplainer ? "max-h-200 py-20 opacity-100" : "max-h-0 opacity-0"
             }`}
             >
@@ -79,11 +79,11 @@ import SignalPreviewPhone from "./SignalPreview";
                 </h2>
 
                 <p>
-                    This is where we dive deeper. Each signal represents a repeatable creative pattern, generating early performance lift across multiple advertiser accounts.
+                   This is where we dive deeper. Each signal represents a repeatable creative pattern that generates early performance lift across multiple advertiser accounts.
                 </p>
 
                 <p>
-                   These signals are then manually reviewed, structured, and approved before they appear in the live feed. It carries strategic implications to improve decision making.
+                  These signal patterns are then manually reviewed, structured, and approved before they appear in the live feed. It carries strategic implications to improve decision-making.
                 </p>
                 </div>
 
@@ -96,7 +96,7 @@ import SignalPreviewPhone from "./SignalPreview";
                     <li><b>Velocity</b> → Adoption speed across accounts and platforms</li>
                     <li><b>Confidence</b> → Repeat validation strength</li>
                     <li><b>Lifecycle</b> → Emerging, Stable, Declining</li>
-                    <li><b>Repetition</b> → No. of times creative format is repeated</li>
+                    <li><b>Repetition</b> → No. of times the creative format is repeated</li>
                 </ul>
 
                 <p>
@@ -153,7 +153,7 @@ function LiveFeedHeader({
         </h2>
 
         <p className="text-sm text-gray-600 max-w-md mt-2">
-          Discover real-time ad formats, creative patterns, campaign lifecycle across competition brands on social media platforms.
+          Discover real-time ad formats, creative patterns, and campaign lifecycle across competition brands on social media platforms.
         </p>
       </div>
 

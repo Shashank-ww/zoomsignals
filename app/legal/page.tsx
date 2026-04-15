@@ -29,8 +29,8 @@ export default function LegalPage() {
   <h2 className="text-2xl font-semibold">Terms & Conditions</h2>
 
   <p>
-    By accessing or using nicescroll, you agree to be bound by these Terms under applicable laws of India. 
-    nicescroll operates as a structured advertising intelligence platform that provides curated datasets, 
+    By accessing or using ThisAdBreak, you agree to be bound by these Terms under applicable laws of India. 
+    ThisAdBreak operates as a structured advertising intelligence platform that provides curated datasets, 
     signal frameworks, and analytical interpretations of advertising formats across platforms and categories.
   </p>
 
@@ -51,7 +51,7 @@ export default function LegalPage() {
 
   <h3 className="font-semibold">Nature of Data Access</h3>
   <p>
-    Access to nicescroll is provided as a data license. All downloadable files, including Excel datasets, 
+    Access to ThisAdBreak is provided as a data license. All downloadable files, including Excel datasets, 
     are provided for internal use only and do not constitute transfer of ownership.
   </p>
 
@@ -72,7 +72,7 @@ export default function LegalPage() {
   <h3 className="font-semibold">Intellectual Property</h3>
   <p>
     All signal frameworks, classification systems, scoring methodologies, and structural interpretations 
-    available on nicescroll are proprietary intellectual property.
+    available on ThisAdBreak are proprietary intellectual property.
   </p>
   <p>
     Any attempt to reproduce, reverse engineer, extract patterns for replication, or commercially exploit 
@@ -88,7 +88,7 @@ export default function LegalPage() {
 
   <h3 className="font-semibold">Third-Party References</h3>
   <p>
-    nicescroll may reference publicly available advertisements or third-party platforms. 
+    ThisAdBreak may reference publicly available advertisements or third-party platforms. 
     All such content remains the property of respective owners and is used solely for analytical purposes.
   </p>
 
@@ -106,7 +106,7 @@ export default function LegalPage() {
 
   <h3 className="font-semibold">Limitation of Liability</h3>
   <p>
-    nicescroll shall not be liable for any direct or indirect losses, including campaign performance, 
+    ThisAdBreak shall not be liable for any direct or indirect losses, including campaign performance, 
     business decisions, or financial outcomes arising from use of the platform.
   </p>
 
@@ -122,7 +122,7 @@ export default function LegalPage() {
   <h2 className="text-2xl font-semibold">Privacy Policy</h2>
 
   <p>
-    nicescroll collects limited user information required to provide access to its services, 
+    ThisAdBreak collects limited user information required to provide access to its services, 
     including name, email, and payment-related details.
   </p>
 
@@ -141,7 +141,7 @@ export default function LegalPage() {
 
   <h3 className="font-semibold">Data Sharing</h3>
   <p>
-    nicescroll does not sell or rent user data. Information may only be shared where required 
+    ThisAdBreak does not sell or rent user data. Information may only be shared where required 
     by law or for essential service operations such as payment processing.
   </p>
 
@@ -161,7 +161,7 @@ export default function LegalPage() {
   <h2 className="text-2xl font-semibold">Disclaimer</h2>
 
   <p>
-    nicescroll provides structured observations and analytical insights into advertising formats. 
+    ThisAdBreak provides structured observations and analytical insights into advertising formats. 
     The platform does not provide guarantees of performance, virality, or campaign success.
   </p>
 
@@ -180,13 +180,13 @@ export default function LegalPage() {
   <h3 className="font-semibold">Third-Party Content</h3>
   <p>
     Advertisements referenced on the platform belong to their respective owners. 
-    nicescroll does not claim ownership and uses such references for analysis only.
+    ThisAdBreak does not claim ownership and uses such references for analysis only.
   </p>
 
   <h3 className="font-semibold">User Responsibility</h3>
   <p>
     Users are expected to apply independent judgment while using insights. 
-    nicescroll is not responsible for strategic decisions or business outcomes.
+    ThisAdBreak is not responsible for strategic decisions or business outcomes.
   </p>
 
   <h3 className="font-semibold">Data Evolution</h3>

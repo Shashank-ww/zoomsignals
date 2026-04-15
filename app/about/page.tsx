@@ -21,8 +21,8 @@ export default function About() {
         </h1>
 
         <p className="flex text-lg text-gray-600 leading-relaxed dark:text-gray-300">
-          We kept seeing media teams chasing trends that had already peaked over time. There is a pattern in everything. 
-          We realised if it can be tracked for early structure and creative patterns across short-form social media platforms. 
+          We kept seeing media teams chasing trends that had already peaked over time. 
+          There is a pattern in everything. We realised that it can be tracked for early structure and creative patterns across short-form social media platforms. 
           It will help performance and marketing teams achieve better conversion and outreach.
         </p>
 
@@ -135,12 +135,12 @@ export default function About() {
         </h2>
 
         <p className="text-gray-700 leading-relaxed dark:text-gray-300">
-          Nicescroll is built with decade long experience and passion for behavioural insights.
+          ThisAdBreak is built with decade long experience and passion for behavioural insights.
         </p>
 
         <p className="text-gray-700 leading-relaxed dark:text-gray-300">
-         We managed multi-brand campaigns, executed creatives daily, and analysed audience data. 
-         Working around performance reviews, we have built strategic proposals, and saw firsthand how marketing decisions are actually made.
+         We have managed multi-brand campaigns, executed daily creative tasks, and analyzed audience data. 
+         Through performance reviews, we have developed strategic proposals and witnessed firsthand how marketing decisions are truly made.
         </p>
 
         <p className="text-gray-700 leading-relaxed dark:text-gray-300">
@@ -148,7 +148,7 @@ export default function About() {
         Teams do not fail because they lack data or ideas. They fail because they are responding to creative patterns that have already peaked over time.
         <br/>
         <span className="font-bold">
-          Nicescroll glances on whether or not it is working.
+          ThisAdBreak focuses on whether or not your ad is genuinely working.
         </span>
         </p>
 

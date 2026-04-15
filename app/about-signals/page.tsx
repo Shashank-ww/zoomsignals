@@ -82,7 +82,7 @@ useEffect(() => {
       
 
         <p className="text-lg text-gray-700 dark:text-gray-300">
-          Nicescroll keep records of repeatable creative patterns forming across
+          ThisAdBreak keep records of repeatable creative patterns forming across
           short-form ecosystems. A signal emerges when independent brands
           begin solving attention in structurally similar ways on social media platforms.
         </p>
@@ -313,16 +313,20 @@ function SignalContext() {
       desc: "A 3 word label or slug defining the core structure of the ad format."
     },
     {
-      title: "Ad Narrative",
+      title: "Ad Narrative / Type",
       desc: "How the ad post is delivered — visual-only, text-led, voiceover, or music-driven."
     },
     {
-      title: "Insight",
+      title: "Hook / Insight",
       desc: "Key insight explaining what's working and why this format is gaining traction."
     },
     {
       title: "Seen On / Origin",
       desc: "Platforms where the format first appeared and began spreading."
+    },
+    {
+      title: "Used By / Brands",
+      desc: "Brands that are using the same ad format with different layout."
     },
     {
       title: "Confidence",
@@ -342,15 +346,15 @@ function SignalContext() {
     },
     {
       title: "Validation Strength",
-      desc: "Level of industry or community confirmation."
+      desc: "Utility strenght level of industry or community confirmation."
     },
     {
       title: "Timestamps",
-      desc: "When the signal was first spotted and how it evolved."
+      desc: "When the signal was first spotted and how it evolved over time."
     },
     {
       title: "Community Voting",
-      desc: "Community validation used to support or challenge the signal."
+      desc: "Community validation used to validate or challenge the signal if it is useful or not"
     }
   ];
 

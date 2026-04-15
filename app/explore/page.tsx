@@ -21,15 +21,15 @@ export default function Explore() {
         </h1>
 
         <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-          Winning ads don't explode. They converge into one working pattern.
+          Winning ads don't appear out of nowhere! They quietly start repeating. 
         </p>
         
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          Imagine a car ad seen on any short media platform.
+          Imagine a car ad see on instagram.
         </p>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          A hook appears in one category. Then another. Different brands. Same messaging. By the time the industry calls it a “trend”, everyone is already doing it.
+          A hook shows up in one category. Then another brand using the same adapt. Different brand layout. Same messaging. By the time the industry calls it a “trend”, everyone is already doing it.
         </p>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -51,8 +51,12 @@ export default function Explore() {
     {/* LEFT: TEXT */}
     <div className="space-y-6 max-w-xl">
       <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-        Marketing teams do not lack data. They are buried in it, yet starved for foresight. 
-        Standard decks may summarize the EV boom only after it has hit the streets.
+        Marketing teams do not lack data. They are buried in it, yet starved with insights. 
+        Office PPTs may summarize the EV boom but only after it has peaked over time.
+      </p>
+
+      <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+        Professionally, it feels like progress. In reality, it is just reactive summary.
       </p>
 
       {/* Highlight */}
@@ -63,21 +67,20 @@ export default function Explore() {
       </div>
 
       <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-        Looking at what “already worked” is a losing strategy.
-        We provide the niche expertise required to move past the data pile 
-        and spot the patterns that have not spread yet.
+        Because early signals does not look like trends. 
+        They look like isolated examples, unless someone is tracking them closely.
       </p>
     </div>
 
     {/* RIGHT: IMAGE */}
     <div className="w-full">
       <img
-        src="/tata_safari.jpg"
+        src="/two_cars.jpg"
         alt="A car ad, ahead of its times"
         className="w-full h-full object-contain mt-2 rounded-xl"
       />
     <div className="flex items-end justify-end">
-      <p className="text-xs uppercase text-gray-400">
+      <p className="text-xs uppercase text-gray-400 mt-2">
         Source:<span> Internet </span>
       </p>
     </div>
@@ -88,7 +91,7 @@ export default function Explore() {
 
 </section>
 
-      {/* WHAT Nicescroll DOES */}
+      {/* WHAT ThisAdBreak DOES */}
       <section className="space-y-6">
 <div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
 
@@ -97,7 +100,7 @@ export default function Explore() {
           </h2>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          Nicescroll tracks ad formats as they begin repeating across brand and platforms.
+          ThisAdBreak tracks ad formats as they begin repeating across brand and platforms.
         </p>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -128,7 +131,7 @@ export default function Explore() {
         </p>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          Nicescroll doesn&apos;t promise virality. It gives marketers something far more useful:
+          ThisAdBreak doesn&apos;t promise virality. It gives marketers something far more useful:
         </p>
 
         <p className="font-medium text-gray-600 uppercase text-sm">
@@ -216,11 +219,11 @@ export default function Explore() {
         </h2>
 
         <p className="text-center text-gray-600 dark:text-gray-400 max-w-2xl">
-          Nicescroll was created after more than a decade working inside advertising, marketing, and campaign execution.
+          ThisAdBreak was created after more than a decade of working inside advertising, marketing, and running campaigns.
         </p>
 
         <p className="text-center text-gray-600 dark:text-gray-400 max-w-2xl">
-         <span className="font-bold">It exists to solve a simple gap: </span>Helping teams see structural shifts in advertising, earlier than traditional reporting.
+         <span className="font-bold">It exists to solve a simple gap: </span>helping teams see structural shifts in advertising earlier than traditional approach.
         </p>
       <p>
         ***
@@ -245,7 +248,7 @@ export default function Explore() {
           </p>
 
           <a
-            href="mailto:hello@nicescroll.com?subject=nicescroll Inquiry"
+            href="mailto:hello@ThisAdBreak.com?subject=ThisAdBreak Inquiry"
             className="inline-flex
             items-center
             gap-2

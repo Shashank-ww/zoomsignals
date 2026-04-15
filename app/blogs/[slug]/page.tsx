@@ -97,7 +97,7 @@ export default async function BlogPost({
           </p>
 
           <a
-            href="mailto:hello@nicescroll.com?subject=nicescroll Inquiry"
+            href="mailto:hello@ThisAdBreak.com?subject=ThisAdBreak Inquiry"
             className="inline-flex
             items-center
             gap-2
