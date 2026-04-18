@@ -227,7 +227,7 @@ useEffect(() => {
 
   <div className="max-w-4xl space-y-6">
     <h2 className="text-lg md:text-xl font-semibold">
-      Track What&apos;s Winning
+      See what&apos;s breaking ads
     </h2>
 
     <p className="text-gray-700 leading-relaxed">

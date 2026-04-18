@@ -17,15 +17,21 @@ export default function SignalPreview({
 
   const [index, setIndex] = useState(0);
 
-  useEffect(() => {
-    if (!approved.length) return;
+useEffect(() => {
+  if (!approved.length) return;
 
-    const interval = setInterval(() => {
-      setIndex((prev) => prev + 1);
-    }, 4500);
+  const interval = setInterval(() => {
+    setIndex((prev) => {
+      // reset after 2 loops (not visible to user)
+      if (prev >= approved.length * 2) {
+        return approved.length; // middle loop → seamless
+      }
+      return prev + 1;
+    });
+  }, 4500);
 
-    return () => clearInterval(interval);
-  }, [approved.length]);
+  return () => clearInterval(interval);
+}, [approved.length]);
 
   if (!approved.length) return null;
 
@@ -41,8 +47,10 @@ export default function SignalPreview({
   const CARD_HEIGHT = 100;
   const GAP = 12;
 
-  // 🔥 CRITICAL FIX → modulo loop
-  const current = index % approved.length;
+  // Modulo loop
+
+const current = index;
+
 const VIEWPORT_HEIGHT = 288; // matches h-72
 const CENTER_OFFSET = (VIEWPORT_HEIGHT - CARD_HEIGHT) / 2;
 

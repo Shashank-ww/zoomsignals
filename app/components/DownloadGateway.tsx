@@ -52,7 +52,8 @@ export default function DownloadGateway() {
             shadow-sm
             hover:bg-blue-600
             transition-all
-            duration-200"
+            duration-200
+            active:scale-95"
         >
           Download Free Sample
         </a>
@@ -91,7 +92,7 @@ export default function DownloadGateway() {
             hover:bg-blue-600
             transition-all
             duration-200
-            "
+            active:scale-95"
         >
           Unlock Full Access
         </a>

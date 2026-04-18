@@ -2,6 +2,14 @@
 
 import SignalRadar from "@/app/components/SignalRadar";
 import Link from "next/link";
+import {
+  TrendingUp,
+  Zap,
+  Brain,
+  Search,
+  Globe,
+  Target,
+} from "lucide-react";
 
 export default function About() {
   return (
@@ -17,7 +25,7 @@ export default function About() {
         tracking-[-0.02em]
         leading-[1.05]
         ">
-          Make better decision on ads, early
+          Better ads, faster decisions
         </h1>
 
         <p className="flex text-lg text-gray-600 leading-relaxed dark:text-gray-300">
@@ -26,10 +34,83 @@ export default function About() {
           It will help performance and marketing teams achieve better conversion and outreach.
         </p>
 
-        <p className="text-gray-600">
-          That is how we help you understand what is emerging, accelerating, peaking, or saturating by the time it becomes obvious for it to be a trend.
+        <p className="text-lg text-gray-600 leading-relaxed dark:text-gray-300">
+          By the time something is called a “winning format,” it has already been overused, 
+          over-optimized, and stripped of its advantage.
         </p>
+
+        <p className="text-gray-800 dark:text-gray-200 font-medium leading-relaxed">
+          <span className="font-bold">ThisAdBreak</span> exists to catch those patterns earlier. Before they become obvious.
+        </p>
+
       </section>
+
+ {/* RTBs / VALUE CARDS */}
+<section className="mt-12">
+
+  <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
+
+    {[
+      {
+        icon: TrendingUp,
+        text: "Spot ad patterns before they peak",
+      },
+      {
+        icon: Zap,
+        text: "Track velocity, not just trends",
+      },
+      {
+        icon: Search,
+        text: "Signals, not noise or dashboards",
+      },
+      {
+        icon: Brain,
+        text: "Built on real campaign experience",
+      },
+      {
+        icon: Globe,
+        text: "Cross-platform creative tracking",
+      },
+      {
+        icon: Target,
+        text: "Make better decisions, earlier",
+      },
+    ].map((item, i) => {
+      const Icon = item.icon;
+
+      return (
+        <div
+          key={i}
+          className="
+            group
+            rounded-2xl
+            border border-gray-200 dark:border-gray-800
+            bg-blue-200/20 dark:bg-zinc-900/50
+            backdrop-blur
+            p-5 md:p-6
+            min-h-30
+            flex flex-col justify-between
+            transition-all duration-300
+            hover:shadow-lg hover:-translate-y-1
+            cursor-default
+          "
+        >
+          <Icon
+            size={22}
+            className="text-blue-500 mb-3 group-hover:scale-110 transition-transform"
+          />
+
+          <p className="text-sm md:text-[15px] text-gray-700 dark:text-gray-300 leading-snug">
+            {item.text}
+          </p>
+        </div>
+      );
+    })}
+
+  </div>
+</section>
+
+
 
       {/* WHAT WE DO */}
 <section className="space-y-6">
@@ -144,7 +225,6 @@ export default function About() {
         </p>
 
         <p className="text-gray-700 leading-relaxed dark:text-gray-300">
-        By the time something is called a “winning ad,” it&apos;s already been overused, over-optimized, and stripped of its advantage. 
         Teams do not fail because they lack data or ideas. They fail because they are responding to creative patterns that have already peaked over time.
         <br/>
         <span className="font-bold">
@@ -153,19 +233,20 @@ export default function About() {
         </p>
 
          <p className="text-gray-700 leading-relaxed dark:text-gray-300">
-         This is not made to be a trend platform or SaaS tool. It is a measurable system to help you make ad decisions, early.
+         This is not a trend platform. Not a dashboard. It is a structured way to observe how ad formats actually behave in the real world.
          <br/>
          Because better outcomes come from seeing the right patterns, earlier. Not data. Not statistics.
         </p>
 
 </section>
 
+
       {/* WHAT THIS IS */}
       <section className="space-y-6">
 <div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
 
   <h2 className="text-lg md:text-xl font-semibold">
-          What This Is — And Isn&apos;t
+          What This Is. And Isn&apos;t
         </h2>
 
 <ul className="text-gray-700 leading-relaxed space-y-4 dark:text-gray-200">
@@ -174,14 +255,17 @@ export default function About() {
     We are not a performance optimization agency or tech tool. It may not predict outcomes or guarantee results.
   </li>
       <li className="list-disc list-inside">
-    It is a curated ad pattern log designed to improve awareness, timing, and decision-making. Technically, when ads trend and we go all out to look for “why” it is working. 
-    And if that pattern repeats across brands, platforms. It is evidently made use of.
+    It is a curated ad pattern log designed to improve awareness, timing, and decision-making.
+  </li>
+  <li className="list-disc list-inside">
+    Technically, when ads trend, we go all out to look for “why” it is working. 
+    And if that pattern repeats across brands/platforms. It is evidently made use of.
   </li>
       <li className="list-disc list-inside">
-    Upon exploration, you could formulate strategies on your own around the best of the performance marketing campaign. 
+    Upon best judgement, you could formulate strategies on your own around the best performance marketing campaign. 
   </li>
       <li className="">
-    <span className="font-semibold">Please note: </span>Signals reflect observed structural and creative patterns. We do not endorse any brand, ad format, or platform.
+    <span className="font-semibold">Please note: </span>Signal Patterms reflect observed structural and creative patterns. We do not endorse any brand, ad format, or platform.
   </li>
 
 </ul>
@@ -206,7 +290,8 @@ export default function About() {
             shadow-sm
             hover:bg-blue-600
             transition-all
-            duration-200"
+            duration-200
+            active:scale-95"
         >
           Scroll Signals
         </Link>
@@ -228,7 +313,8 @@ export default function About() {
             shadow-sm
             hover:bg-blue-600
             transition-all
-            duration-200"
+            duration-200
+            active:scale-95"
         >
           Explore Why We Exist
         </Link>

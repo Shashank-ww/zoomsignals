@@ -1,42 +1,31 @@
-"use client";
+interface HeroHeadlineProps {
+  headline: string;
+}
 
-import { useEffect, useState } from "react";
-
-const headlines = [
-  "This ad break that help you stand out, first.",
-  "Media patterns, not just that ad break. ",
-  "Shift decisions before ads break your budgets.",
-  "Early patterns that give you a real break.",
-  // "If it&s not blowing minds, it&aposs blowing your budget.",
-];
-
-export default function HeroHeadline() {
-  const [selected, setSelected] = useState<string | null>(null);
-
-  useEffect(() => {
-    const index = Math.floor(Math.random() * headlines.length);
-    setSelected(headlines[index]);
-  }, []);
-
-  // Prevent hydration mismatch and render nothing until mounted
-  if (!selected) return null;
-
+export default function HeroHeadline({ headline }: HeroHeadlineProps) {
   return (
     <div className="space-y-6 dark:text-gray-300 h-full">
-      <h1 className="
+      <h1
+        className="
         max-w-2xl
         py-1
         lg:text-6xl
         text-4xl
-        md:text-5xl bg-linear-to-tr from-blue-500 to-sky-400 bg-clip-text text-transparent
+        md:text-5xl 
+        bg-linear-to-tr from-blue-500 to-sky-400 bg-clip-text text-transparent
         tracking-[-0.02em]
-        leading-[1.05]">
-        {selected}
+        leading-[1.05]
+        "
+      >
+        {headline}
       </h1>
 
       <p className="text-gray-500 max-w-lg leading-relaxed text-base dark:text-gray-300">
         Get insights into live ad formats that show unique patterns for brands active on social media.
-        Exclusively monitoring <span className="underline underline-offset-4">automobile category.</span> 
+        Exclusively monitoring{" "}
+        <span className="underline underline-offset-4">
+          automobile category.
+        </span>
       </p>
 
       <div>
@@ -59,9 +48,10 @@ export default function HeroHeadline() {
             hover:bg-blue-500
             transition-all
             duration-200
+            active:scale-95
           "
         >
-          Scroll to Patterns
+          Explore Library
         </a>
       </div>
     </div>

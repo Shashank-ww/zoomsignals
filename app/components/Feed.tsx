@@ -352,7 +352,8 @@ const resonanceScore = s.resonanceScore ?? 0;
             hover:bg-gray-500
             transition-all
             duration-200
-            cursor-pointer"
+            cursor-pointer
+            active:scale-95"
                 >
                   Load More
                 </button>

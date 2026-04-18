@@ -21,19 +21,20 @@ export default function Explore() {
         </h1>
 
         <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-          Winning ads don't appear out of nowhere! They quietly start repeating. 
+          Winning ads don&apos;t pop-out randomly! They quietly repeat, before getting viral, or even noticed. 
         </p>
         
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          Imagine a car ad see on instagram.
+          Imagine a car ad seen on instagram.
         </p>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          A hook shows up in one category. Then another brand using the same adapt. Different brand layout. Same messaging. By the time the industry calls it a “trend”, everyone is already doing it.
+          A hook shows up in one category. Then another brand using the same adapt. Different brand layout. Same messaging. 
         </p>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          Which means an early advantage goes for a toss!
+          By the time the industry calls it a “trend”, everyone is already doing it.
+          <span className="font-bold"> That means an early advantage goes for a toss!</span>
         </p>
       </section>
 
@@ -42,7 +43,7 @@ export default function Explore() {
 
   {/* FULL WIDTH HEADLINE */}
   <h2 className="text-2xl md:text-3xl font-semibold max-w-2xl">
-    The Problem with Regular Trend Reports
+    The problem with current scenario
   </h2>
 
   {/* GRID: TEXT + IMAGE */}
@@ -264,7 +265,8 @@ export default function Explore() {
             shadow-sm
             hover:bg-blue-600
             transition-all
-            duration-200"
+            duration-200
+            active:scale-95"
           >
             Email Now
           </a>

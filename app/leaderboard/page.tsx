@@ -162,7 +162,7 @@ function getMetricStyle(value?: string) {
                 className={`grid grid-cols-12 items-center px-3 py-3 text-sm transition
                   ${i === 0 ? "bg-yellow-100 border-l-4 border-yellow-500" : ""}
                   ${i === 1 ? "bg-slate-200 border-l-4 border-slate-500" : ""}
-                  ${i === 2 ? "bg-mist-100 border-l-4 border-mist-500" : ""}
+                  ${i === 2 ? "bg-gray-100 border-l-4 border-gray-500" : ""}
                   ${i > 2 ? "hover:bg-zinc-50" : ""}
                 `}
               >

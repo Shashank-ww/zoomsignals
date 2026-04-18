@@ -1,68 +1,55 @@
-    "use client";
+"use client";
 
 import { useState } from "react";
 import HeroHeadline from "./HeroHeadline";
 import type { Signal } from "@/app/types/signal.types";
 import SignalPreviewPhone from "./SignalPreview";
 
-    interface HeroSectionProps {
-    approvedSignalsCount: number;
-    totalSignalsCount: number;
-    signals?: Signal[];
-    }
+interface HeroSectionProps {
+  headline: string; 
+  approvedSignalsCount: number;
+  totalSignalsCount: number;
+  signals?: Signal[];
+}
 
-    export default function HeroSection({
-    approvedSignalsCount,
-    totalSignalsCount,
-    signals = [],
-    }: HeroSectionProps) {
-    const [showExplainer, setShowExplainer] = useState(false);
+export default function HeroSection({
+  headline,
+  approvedSignalsCount,
+  totalSignalsCount,
+  signals = [],
+}: HeroSectionProps) {
+  const [showExplainer, setShowExplainer] = useState(false);
 
-    return (
-        <>
-        {/* ================= HERO ================= */}
-        <section className="relative min-h-[80vh] flex items-center max-w-6xl mx-auto px-6">
+  return (
+    <>
+      <section className="relative min-h-[80vh] flex items-center max-w-6xl mx-auto px-6">
+
+        <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-16">
           
-            <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-16">
-            
-            {/* LEFT CONTENT */}
-            <div className="max-w-screen">
+          <div className="max-w-screen">
+            <HeroHeadline headline={headline} />
 
-                {/* Headline */}
-                <HeroHeadline/>
+            <button
+              onClick={() => setShowExplainer(!showExplainer)}
+              className="mt-10 text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors cursor-pointer hover:underline"
+            >
+              {showExplainer
+                ? "Hide explainer"
+                : "How to read Signal Patterns?"}
+            </button>
+          </div>
 
-                {/* Toggle Below */}
-                <button
-                    onClick={() => setShowExplainer(!showExplainer)}
-                    className="
-                      mt-10 
-                      text-sm 
-                      font-medium 
-                      text-blue-600 
-                      hover:text-blue-700 
-                      transition-colors
-                      cursor-pointer
-                      hover:underline
-                    "
-                  >
-                    {showExplainer ? "Hide explainer" : "How to read Signal Patterns?"}
-                  </button>
-            </div>
-
-            {/* RIGHT Action Shot */}
-            <div className="hidden lg:flex justify-end">
-              <div className="hidden lg:flex justify-end">
-  {signals?.length > 0 ? (
-    <SignalPreviewPhone signals={signals} />
-  ) : (
-    <div className="w-65 h-130 rounded-[36px] border flex items-center justify-center text-xs text-gray-400">
-      Loading signals...
-    </div>
-  )}
-</div>
-</div>
-            </div>
-        </section>
+          <div className="hidden lg:flex justify-end">
+            {signals?.length > 0 ? (
+              <SignalPreviewPhone signals={signals} />
+            ) : (
+              <div className="w-65 h-130 rounded-[36px] border flex items-center justify-center text-xs text-gray-400">
+                Loading signals...
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
 
         {/* ================= EXPLAINER SECTION ================= */}
         <section id="explainer" className="border-t border-gray-200 bg-gray-50 cursor-auto">
@@ -75,7 +62,7 @@ import SignalPreviewPhone from "./SignalPreview";
 
                 <div className="space-y-5">
                 <h2 className="text-xl font-light text-gray-800">
-                    Methodology
+                  Methodology
                 </h2>
 
                 <p>
@@ -89,14 +76,14 @@ import SignalPreviewPhone from "./SignalPreview";
 
                 <div className="space-y-5">
                 <h2 className="text-xl font-light text-gray-800">
-                    Singal Pattern Markers
+                    Pattern Markers
                 </h2>
 
                 <ul className="space-y-2 list-disc ml-5">
                     <li><b>Velocity</b> → Adoption speed across accounts and platforms</li>
-                    <li><b>Confidence</b> → Repeat validation strength</li>
+                    <li><b>Confidence</b> → Creative validation strength</li>
                     <li><b>Lifecycle</b> → Emerging, Stable, Declining</li>
-                    <li><b>Repetition</b> → No. of times the creative format is repeated</li>
+                    <li><b>Repetition</b> → No. of times the creative format gets repeated</li>
                 </ul>
 
                 <p>

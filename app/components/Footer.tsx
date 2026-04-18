@@ -30,7 +30,7 @@ export default function Footer() {
             <p className="flex mt-4 py-6 border-t font-light items-end">
             <HiOutlineSearch className="text-lg"/>
               <span className="px-2 items-end justify-end">
-                www.ThisAdBreak.com
+                www.thisadbreak.com
               </span>
             </p>
 
