@@ -25,11 +25,11 @@ export default function Explore() {
         </p>
         
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          Imagine a car ad seen on instagram.
+          Imagine a car ad you see on instagram.
         </p>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          A hook shows up in one category. Then another brand using the same adapt. Different brand layout. Same messaging. 
+          A hook shows up in one category. Then another. They keep using the same approach. Different brand, different layout. Same pattern.
         </p>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -53,7 +53,8 @@ export default function Explore() {
     <div className="space-y-6 max-w-xl">
       <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
         Marketing teams do not lack data. They are buried in it, yet starved with insights. 
-        Office PPTs may summarize the EV boom but only after it has peaked over time.
+        Your office PPTs may summarize the EV boom but strategies are only defined after it has peaked over time.
+
       </p>
 
       <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -110,7 +111,7 @@ export default function Explore() {
         </p>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          Our goal is simple: identify formats that converge early, before markets saturate them.
+          Our goal is simple: we identify formats that converge early, before it saturates.
         </p>
       </section>
 
@@ -123,8 +124,8 @@ export default function Explore() {
           </h2>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          In competitive industries like automotive, technology, and finance,
-          timing is leverage. Marketing sits on it.
+          In competitive industries like automotive, technology, and finance, timing is leverage. 
+          Marketing sits on it, seldom without noticing!
         </p>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -136,7 +137,7 @@ export default function Explore() {
         </p>
 
         <p className="font-medium text-gray-600 uppercase text-sm">
-          Context before scale distorts the signal.
+          Context before hype kills the value.
         </p>
       </section>
 

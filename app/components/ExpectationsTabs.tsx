@@ -64,7 +64,7 @@ export function ExpectationsTabs() {
         <div className="relative rounded-2xl border 
           border-gray-200 dark:border-gray-800
           bg-linear-to-br from-slate-50 to-white
-          dark:from-zinc-900 dark:to-zinc-800/60
+          dark:from-zinc-900 dark:to-zinc-800/40
           p-6 flex items-center justify-center min-h-60">
 
           {/* SUBTLE GLOW */}

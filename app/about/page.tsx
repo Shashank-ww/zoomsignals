@@ -40,7 +40,7 @@ export default function About() {
         </p>
 
         <p className="text-gray-800 dark:text-gray-200 font-medium leading-relaxed">
-          <span className="font-bold">ThisAdBreak</span> exists to catch ad patterns earlier. Before they become obvious.
+          <span className="font-bold">ThisAdBreak</span>  exists to catch ad patterns earlier. Before they become obvious.
         </p>
 
       </section>
@@ -149,7 +149,7 @@ export default function About() {
 </ul>
 
       <p className="text-gray-700 leading-relaxed dark:text-gray-300">
-        This happens continuously until the pattern either tops the stats or saturates.
+        This happens continuously until the pattern either tops stats or saturates.
       </p>
     </div>
 

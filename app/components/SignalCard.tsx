@@ -408,6 +408,7 @@ setResonanceScore(data.resonanceScore);
           active:scale-95
           text-[10px] sm:text-[11px]
           whitespace-nowrap
+          cursor-pointer
         "
       >
         &#x1F44E;
@@ -427,6 +428,7 @@ setResonanceScore(data.resonanceScore);
           active:scale-95
           text-[10px] sm:text-[11px]
           whitespace-nowrap
+          cursor-pointer
         "
       >
         &#x1F44D;
