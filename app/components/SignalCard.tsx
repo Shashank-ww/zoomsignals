@@ -344,111 +344,99 @@ setResonanceScore(data.resonanceScore);
 
 </div>
 
-
 {/* FOOTER */}
-<div className="mt-4 border-t border-gray-300 pt-3 space-y-3">
+<div className="mt-4 border-t border-gray-300 pt-3">
 
-  {/* Row 1 — Metadata */}
-  <div className="flex justify-between items-center text-[11px] text-gray-500">
-<div className="
-    flex flex-wrap gap-2
-    sm:flex-row sm:items-center sm:justify-between
-  ">
+  <div className="flex items-center justify-between gap-3 text-[11px] text-gray-500">
 
-    {/* Dates */}
-    <div className="
-      flex flex-wrap text-gray-500
-      sm:flex-row sm:items-center sm:gap-2
-    ">
-      <FormatRelativeDate
-        label="Spotted"
-        date={signal.createdAt}
-        showTooltip={true}
-      />
+    {/* LEFT: Dates */}
+    <div className="flex items-center gap-3 min-w-0">
 
-      <span className="hidden sm:block w-1 h-1 bg-gray-400 rounded-full" />
+      {/* Dates block */}
+      <div className="flex flex-wrap items-center gap-1">
 
-      <FormatRelativeDate
-        label="Updated"
-        date={signal.updatedAt}
-        showTooltip={true}
-      />
+        <FormatRelativeDate
+          label="Spotted"
+          date={signal.createdAt}
+          showTooltip={true}
+        />
+
+        <span className="w-0.5 h-0.5 bg-gray-400 rounded-full" />
+
+        <FormatRelativeDate
+          label="Updated"
+          date={signal.updatedAt}
+          showTooltip={true}
+        />
+
+      </div>
+
+      {/* View Source */}
+      {signal.sourceLink && (
+        <a
+          href={
+            signal.sourceLink.startsWith("http")
+              ? signal.sourceLink
+              : `https://${signal.sourceLink}`
+          }
+          target="_blank"
+          rel="noopener noreferrer"
+          className="
+            hover:text-black transition-colors
+            wrap-break-word
+          "
+        >
+          View Source →
+        </a>
+      )}
+
     </div>
 
-
- {signal.sourceLink && (
-  <a
-    href={
-      signal.sourceLink.startsWith("http")
-        ? signal.sourceLink
-        : `https://${signal.sourceLink}`
-    }
-    target="_blank"
-    rel="noopener noreferrer"
-    className="hover:text-black transition-colors"
-  >
-    View Source →
-  </a>
-)}
-  </div>
-
-  {/* (Voting (Isolated) */}
-  <div className="flex justify-end">
-    <div className="flex gap-2 self-end sm:self-auto">
+    {/* RIGHT: Voting (fixed, never wrap) */}
+    <div className="flex items-center gap-2 shrink-0">
 
       <button
         onClick={() => handleFeedback("NOT_RELEVANT")}
         className="
-          h-7 px-3
+          h-7 px-1 sm:px-2
           flex items-center gap-1
           rounded-md
           text-red-500
           border border-red-200/70
           bg-red-50/60
           hover:bg-red-100/70
-          hover:border-red-300
           active:scale-95
-          transition-all duration-150
-          text-[11px] font-medium
-          cursor-pointer
+          text-[10px] sm:text-[11px]
+          whitespace-nowrap
         "
-        title="Challenge signal"
       >
-        <span className="leading-none">Not useful</span>
-        <span className="text-[10px] opacity-80">
-          {notRelevantCount}
-        </span>
+        &#x1F44E;
+        <span className="opacity-80">{notRelevantCount}</span>
       </button>
 
       <button
         onClick={() => handleFeedback("RELEVANT")}
         className="
-          h-7 px-3
+          h-7 px-1 sm:px-2
           flex items-center gap-1
           rounded-md
           text-emerald-600
           border border-emerald-200/70
           bg-emerald-50/60
           hover:bg-emerald-100/70
-          hover:border-emerald-300
           active:scale-95
-          transition-all duration-150
-          text-[11px] font-medium
-          cursor-pointer
+          text-[10px] sm:text-[11px]
+          whitespace-nowrap
         "
-        title="Validate signal"
       >
-        <span className="leading-none">Useful</span>
-        <span className="text-[10px] opacity-80">
-          {relevantCount}
-        </span>
+        &#x1F44D;
+        <span className="opacity-80">{relevantCount}</span>
       </button>
 
     </div>
   </div>
-  </div>
-
 </div>
+
       </div>
       </div>
     </article>

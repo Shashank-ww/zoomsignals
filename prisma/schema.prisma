@@ -10,13 +10,11 @@ datasource db {
 model Signal {
   id               String         @id @default(uuid())
   formatName       String         @unique
-  narrative        Narrative
   insight          String
   lifecycle        Lifecycle
   velocity         Velocity
   confidence       Confidence
   approvalStatus   ApprovalStatus
-  primaryPlatforms Platform[]
   repetitionCount  Int
   author           String?
   imageUrl         String?
@@ -25,19 +23,18 @@ model Signal {
   updatedAt        DateTime       @updatedAt
   notRelevantCount Int            @default(0)
   relevantCount    Int            @default(0)
+  narrative        Narrative
+  primaryPlatforms Platform[]
   resonanceScore   Float          @default(0)
-
-  advertiser       Advertiser[]
-
   votes            Vote[]
+  advertiser       Advertiser[]   @relation("AdvertiserToSignal")
 }
 
 model Advertiser {
   id        String   @id @default(uuid())
   brandName String   @unique
-  signals   Signal[]
-
   createdAt DateTime @default(now())
+  signals   Signal[] @relation("AdvertiserToSignal")
 }
 
 model Vote {
@@ -56,13 +53,13 @@ model subscriber {
 }
 
 model ImportLog {
-  id         String   @id @default(cuid())
-  fileName   String
-  mode       String
-  inserted   Int
-  updated    Int
-  failed     Int
-  createdAt  DateTime @default(now())
+  id        String   @id @default(cuid())
+  fileName  String
+  mode      String
+  inserted  Int
+  updated   Int
+  failed    Int
+  createdAt DateTime @default(now())
 }
 
 enum Lifecycle {

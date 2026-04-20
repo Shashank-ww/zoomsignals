@@ -29,9 +29,9 @@ export default function About() {
         </h1>
 
         <p className="flex text-lg text-gray-600 leading-relaxed dark:text-gray-300">
-          We kept seeing media teams chasing trends that had already peaked over time. 
-          There is a pattern in everything. We realised that it can be tracked for early structure and creative patterns across short-form social media platforms. 
-          It will help performance and marketing teams achieve better conversion and outreach.
+          Media teams are often seen chasing trends that have already peaked. We noticed what they are after. 
+          And that is how we realised it could be made easier for them by keeping track of early structure and creative patterns across social media platforms. 
+          It will help performance marketing teams achieve better conversion and outreach.
         </p>
 
         <p className="text-lg text-gray-600 leading-relaxed dark:text-gray-300">
@@ -40,7 +40,7 @@ export default function About() {
         </p>
 
         <p className="text-gray-800 dark:text-gray-200 font-medium leading-relaxed">
-          <span className="font-bold">ThisAdBreak</span> exists to catch those patterns earlier. Before they become obvious.
+          <span className="font-bold">ThisAdBreak</span> exists to catch ad patterns earlier. Before they become obvious.
         </p>
 
       </section>
