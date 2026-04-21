@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import type { Signal } from "@/app/types/signal.types";
 import SignalCard from "@/app/components/SignalCard";
-import { Gauge, Repeat, ShieldCheck, Zap } from "lucide-react";
+import { Gauge, Loader2, Repeat, ShieldCheck, Zap } from "lucide-react";
 import DownloadGateway from "@/app/components/DownloadGateway";
 
 export default function AboutSignals() {
@@ -13,12 +13,12 @@ export default function AboutSignals() {
  const layers = [
   {
     title: "Velocity",
-    description: "Adoption speed across accounts and platforms.",
+    description: "Adoption speed — Emerging, Accelerating, Stable, Declining.",
     icon: Zap,
   },
   {
     title: "Lifecycle",
-    description: "Stage of the format — emerging, stable, or declining.",
+    description: "Stage of the format — emerging, peaking, saturating.",
     icon: Gauge,
   },
   {
@@ -82,7 +82,7 @@ useEffect(() => {
       
 
         <p className="text-lg text-gray-700 dark:text-gray-300">
-          ThisAdBreak keep records of repeatable creative patterns forming across
+          MyAdBreak keep records of repeatable creative patterns forming across
           short-form ecosystems. A signal emerges when independent brands
           begin solving attention in structurally similar ways on social media platforms.
         </p>
@@ -192,28 +192,34 @@ useEffect(() => {
   <div className="grid lg:grid-cols-3 gap-10 items-start">
 
     {/* LEFT: SIGNAL (STICKY) */}
-    <div className="lg:col-span-2 lg:sticky lg:top-24 self-start">
-  {!liveSignal ? (
-    <div className="text-sm text-gray-400 italic">
-      Loading signal...
-    </div>
-  ) : (
-    <div className="relative border border-gray-200 rounded-2xl p-5 bg-white shadow-sm">
+<div className="lg:col-span-2 lg:sticky lg:top-24 self-start">
+  <div className="relative border border-gray-200 rounded-2xl p-5 bg-white shadow-sm min-h-55 flex flex-col">
 
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2 text-xs text-gray-400 uppercase tracking-wide">
-          <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-          Live Signal
-        </div>
-
-        <span className="text-[10px] text-gray-400">
-          Real-time capture
-        </span>
+    {/* HEADER (always visible) */}
+    <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center gap-2 text-xs text-gray-400 uppercase tracking-wide">
+        <span
+          className={`w-2 h-2 rounded-full animate-pulse ${liveSignal ? "bg-blue-500" : "bg-red-500"}`}
+        />
+        Live Signal
       </div>
 
-      <SignalCard signal={liveSignal} />
+      <span className="text-[10px] text-gray-400">
+        {liveSignal ? "Real-time view" : "Fetching signal..."}
+      </span>
     </div>
-  )}
+
+    {/* BODY */}
+    {!liveSignal ? (
+      <div className="flex flex-1 items-center justify-center flex-col gap-3 text-zinc-500">
+        <Loader2 className="animate-spin w-6 h-6 text-blue-500" />
+        <div className="text-sm">Loading signal...</div>
+      </div>
+    ) : (
+      <SignalCard signal={liveSignal} />
+    )}
+    
+  </div>
 </div>
 
     {/* RIGHT: CONTEXT */}
@@ -231,12 +237,11 @@ useEffect(() => {
     </h2>
 
     <p className="text-gray-700 leading-relaxed">
-      Signals are not isolated observations. Patterns gain meaning when
-      tracked across brands, categories, and time.
+      Signals are not isolated observations. Patterns gain meaning when tracked across brands, categories, and time.
     </p>
 
     <p className="text-gray-600 text-sm leading-relaxed">
-      The Leaderboard surfaces formats with the highest velocity,
+      The Leaderboard shows you formats with the highest velocity,
       strongest validation, and repeated execution across the ecosystem —
       helping you identify what is actually scaling, not just trending.
     </p>

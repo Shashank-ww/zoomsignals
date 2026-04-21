@@ -93,7 +93,7 @@ export default function Explore() {
 
 </section>
 
-      {/* WHAT ThisAdBreak DOES */}
+      {/* WHAT MyAdBreak DOES */}
       <section className="space-y-6">
 <div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
 
@@ -102,7 +102,7 @@ export default function Explore() {
           </h2>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          ThisAdBreak tracks ad formats as they begin repeating across brand and platforms.
+          MyAdBreak tracks ad formats as they begin repeating across brand and platforms.
         </p>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -133,7 +133,7 @@ export default function Explore() {
         </p>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          ThisAdBreak doesn&apos;t promise virality. It gives marketers something far more useful:
+          MyAdBreak doesn&apos;t promise virality. It gives marketers something far more useful:
         </p>
 
         <p className="font-medium text-gray-600 uppercase text-sm">
@@ -221,7 +221,7 @@ export default function Explore() {
         </h2>
 
         <p className="text-center text-gray-600 dark:text-gray-400 max-w-2xl">
-          ThisAdBreak was created after more than a decade of working inside advertising, marketing, and running campaigns.
+          MyAdBreak was created after more than a decade of working inside advertising, marketing, and running campaigns.
         </p>
 
         <p className="text-center text-gray-600 dark:text-gray-400 max-w-2xl">
@@ -250,7 +250,7 @@ export default function Explore() {
           </p>
 
           <a
-            href="mailto:hello@ThisAdBreak.com?subject=ThisAdBreak Inquiry"
+            href="mailto:hello@MyAdBreak.com?subject=MyAdBreak Inquiry"
             className="inline-flex
             items-center
             gap-2

@@ -6,7 +6,7 @@ import type { Signal } from "@/app/types/signal.types";
 export default async function Page() {
 
   const headlines = [
-    "This ad break that makes you stand out, first.",
+    "Ad break that makes you stand out, first.",
     "Media patterns, not just ad breaks.",
     "Make decisions before ads break your budget.",
     "Early patterns that give you a real edge.",

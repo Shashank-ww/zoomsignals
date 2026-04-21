@@ -38,18 +38,28 @@ export function calculateResonance({
     };
   }
 
+  
   // CORE: approval ratio
   const approvalRatio = relevant / total; // 0 → 1
 
   // Convert to centered score (-50 to +50)
-  const centered = (approvalRatio - 0.5) * 100;
+const centered = (approvalRatio - 0.5) * 100;
+
+// NEW: volume factor (log scaled to avoid explosion)
+const volumeFactor = Math.log10(total + 1); // 0 → ~3 range typically
+
+const baseScore = centered * volumeFactor;
 
   // Weight multiplier
   const lifecycleW = lifecycleWeight[lifecycle] ?? 1;
   const velocityW = velocityWeight[velocity] ?? 1;
   const confidenceW = confidenceWeight[confidence] ?? 1;
 
-  const weighted = centered * lifecycleW * velocityW * confidenceW;
+const weighted =
+  baseScore *
+  lifecycleW *
+  velocityW *
+  confidenceW;
 
   // Clamp to -100 → 100
   const capped = Math.max(-100, Math.min(100, weighted));

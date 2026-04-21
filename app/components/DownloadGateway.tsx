@@ -1,6 +1,6 @@
 "use client";
 
-import { Megaphone, Download, Lock } from "lucide-react";
+import { Download, Lock } from "lucide-react";
 
 export default function DownloadGateway() {
   return (
@@ -11,10 +11,10 @@ export default function DownloadGateway() {
 <div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
 
   <h2 className="text-lg md:text-xl font-semibold">
-          Download Signal Data
+          Access Exclusive Signal Data
         </h2>
         <p className="text-sm text-gray-500">
-          Access curated, high-performing ad formats across platforms. Start with a sample or unlock the full dataset.
+          Download curated, high-performing ad formats across platforms. Start with a sample or unlock the full dataset.
         </p>
       </div>
 

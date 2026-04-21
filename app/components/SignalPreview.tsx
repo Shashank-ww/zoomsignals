@@ -73,7 +73,7 @@ const translateY =
       />
 
       {/* SCROLL WINDOW */}
-            <div className="overflow-hidden h-72 mt-2 p-6  bg-sky-50/40 dark:bg-transparent cursor-default">
+            <div className="overflow-hidden h-72 mt-2 p-6 dark:bg-transparent cursor-default">
 
               <div
                 className="transition-transform duration-700 ease-out space-y-4"

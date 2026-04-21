@@ -17,7 +17,7 @@ export default function Footer() {
               href="/"
               className="font-bold text-blue-500 select-none">
               <span className="font-light uppercase tracking-tight transition-colors duration-200 group-hover:text-blue-500">
-               &copy; This<span className="font-bold">adbreak</span>&trade;
+               &copy; My<span className="font-bold">adbreak</span>&trade;
               </span>
             </Link>
 
@@ -30,7 +30,7 @@ export default function Footer() {
             <p className="flex mt-4 py-6 border-t font-light items-end">
             <HiOutlineSearch className="text-lg"/>
               <span className="px-2 items-end justify-end">
-                www.thisadbreak.com
+                www.myadbreak.com
               </span>
             </p>
 
@@ -85,7 +85,7 @@ export default function Footer() {
         {/* Bottom Row */}
         <div className="border-t my-4 py-4 text-xs text-center text-gray-400">
           <p>
-            &copy; {new Date().getFullYear()} ThisAdBreak. 
+            &copy; {new Date().getFullYear()} MyAdBreak. 
             All rights reserved.
           </p>
         </div>

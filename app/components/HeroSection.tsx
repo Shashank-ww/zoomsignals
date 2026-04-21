@@ -80,9 +80,9 @@ export default function HeroSection({
                 </h2>
 
                 <ul className="space-y-2 list-disc ml-5">
-                    <li><b>Velocity</b> → Adoption speed across accounts and platforms</li>
+                    <li><b>Velocity</b> → Adoption speed across accounts and platforms; Emerging, Accelerating, Stable, Declining.</li>
                     <li><b>Confidence</b> → Creative validation strength</li>
-                    <li><b>Lifecycle</b> → Emerging, Stable, Declining</li>
+                    <li><b>Lifecycle</b> → Early, Peaking, Saturated</li>
                     <li><b>Repetition</b> → No. of times the creative format gets repeated</li>
                 </ul>
 
@@ -136,7 +136,7 @@ function LiveFeedHeader({
         </div>
 
         <h2 className="text-2xl font-bold text-gray-900 tracking-tight">
-          See what&apos;s working right now
+          Know what&apos;s working at the moment
         </h2>
 
         <p className="text-sm text-gray-600 max-w-md mt-2">

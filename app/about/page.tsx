@@ -40,7 +40,7 @@ export default function About() {
         </p>
 
         <p className="text-gray-800 dark:text-gray-200 font-medium leading-relaxed">
-          <span className="font-bold">ThisAdBreak</span>  exists to catch ad patterns earlier. Before they become obvious.
+          <span className="font-bold">MyAdBreak</span>  exists to catch ad patterns earlier. Before they become obvious.
         </p>
 
       </section>
@@ -216,7 +216,7 @@ export default function About() {
         </h2>
 
         <p className="text-gray-700 leading-relaxed dark:text-gray-300">
-          ThisAdBreak is built with decade long experience and passion for behavioural insights.
+          MyAdBreak is built with decade long experience and passion for behavioural insights.
         </p>
 
         <p className="text-gray-700 leading-relaxed dark:text-gray-300">
@@ -228,7 +228,7 @@ export default function About() {
         Teams do not fail because they lack data or ideas. They fail because they are responding to creative patterns that have already peaked over time.
         <br/>
         <span className="font-bold">
-          ThisAdBreak focuses on whether or not your ad is genuinely working.
+          MyAdBreak focuses on whether or not your ad is genuinely working.
         </span>
         </p>
 
