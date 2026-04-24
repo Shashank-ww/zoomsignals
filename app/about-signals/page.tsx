@@ -213,7 +213,7 @@ useEffect(() => {
     {!liveSignal ? (
       <div className="flex flex-1 items-center justify-center flex-col gap-3 text-zinc-500">
         <Loader2 className="animate-spin w-6 h-6 text-blue-500" />
-        <div className="text-sm">Loading signal...</div>
+        <div className="text-sm">Loading...</div>
       </div>
     ) : (
       <SignalCard signal={liveSignal} />

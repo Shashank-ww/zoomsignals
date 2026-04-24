@@ -160,7 +160,7 @@ export default function AdminControlPanel({
     {/* LEFT */}
     <div>
       <h3 className="font-semibold text-md tracking-tight">
-        Approval Control Panel
+        Control Panel
       </h3>
       <p className="text-xs text-zinc-600 mt-1 max-w-md">
         Manage signal validation lifecycle. Draft → Pending → Approved/Rejected. Editing resets status for re-validation.

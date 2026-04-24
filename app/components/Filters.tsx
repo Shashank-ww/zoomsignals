@@ -52,7 +52,7 @@ export default function Filters({
   return (
     <div className="space-y-4">
       {/* HEADER */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-start">
         <button
           onClick={() => setIsOpen((prev) => !prev)}
           className="text-sm font-semibold"

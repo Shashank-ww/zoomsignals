@@ -50,7 +50,7 @@ export default function AdminSignalsTable({
   }
 
   /* ============================
-     STATUS UPDATE
+     PATCH - STATUS UPDATE
   ============================ */
 
 async function updateStatus(id: string, status: string) {
@@ -332,17 +332,19 @@ async function handleApproval(id: string, action: "APPROVE" | "REJECT") {
 
             {/* ADVERTISERS */}
             <div className="flex flex-wrap gap-1">
-              {signal.advertiser?.length ? (
-                signal.advertiser.map((a) => (
+              {signal.advertiser && signal.advertiser.length > 0 ? (
+                signal.advertiser.map((a, i) => (
                   <span
-                    key={a.id ?? a.brandName}
+                    key={a.id || `${a.brandName}-${i}`}
                     className="text-[9px] md:text-[10px] px-1.5 py-0.5 bg-blue-100 text-blue-700 rounded-full uppercase"
                   >
-                    {a.brandName.charAt(0) + a.brandName.slice(1).toLowerCase()}
+                    {a.brandName}
                   </span>
                 ))
               ) : (
-                <span className="text-[9px] text-zinc-400">No advertiser listed</span>
+                <span className="text-[9px] text-zinc-400">
+                  No advertiser listed
+                </span>
               )}
             </div>
 

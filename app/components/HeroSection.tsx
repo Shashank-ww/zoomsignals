@@ -102,7 +102,7 @@ export default function HeroSection({
 
 {/* ================= LIVE FEED HEADER ================= */}
 <section id="feed-header" className="max-w-6xl mx-auto px-6 mt-12">
-  <div className="rounded-2xl p-8 md:p-9 bg-linear-to-br from-green-50 via-white to-blue-50 border border-blue-200">
+  <div className="rounded-2xl p-9 md:p-9 bg-linear-to-br from-green-50 via-white to-blue-50 border border-blue-200">
     <LiveFeedHeader
       approvedCount={approvedSignalsCount}
       totalCount={totalSignalsCount}
@@ -130,17 +130,17 @@ function LiveFeedHeader({
       <div>
         <div className="mb-2 inline-block">
           <p className="text-xs uppercase tracking-widest text-blue-600/80">
-            Live Library
+            Always-on Library
           </p>
           <span className="block w-6 h-2 border-b-[1.5px] border-blue-600 mt-1"></span>
         </div>
 
         <h2 className="text-2xl font-bold text-gray-900 tracking-tight">
-          Know what&apos;s working at the moment
+          Know what&apos;s working at-the-moment
         </h2>
 
         <p className="text-sm text-gray-600 max-w-md mt-2">
-          Discover real-time ad formats, creative patterns, and campaign lifecycle across competition brands on social media platforms.
+          Discover real-time ad formats and creative patterns in its lifecycle across competition brands on social media.
         </p>
       </div>
 

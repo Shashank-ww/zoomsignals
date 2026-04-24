@@ -217,11 +217,11 @@ export default function Explore() {
 
       <section className="flex flex-col items-center justify-center space-y-6 border-t text-center pt-12">
         <h2 className="text-xl font-semibold">
-          Built by someone from the industry
+          Built by professionals from the industry
         </h2>
 
         <p className="text-center text-gray-600 dark:text-gray-400 max-w-2xl">
-          MyAdBreak was created after more than a decade of working inside advertising, marketing, and running campaigns.
+          MyAdBreak is created after more than a decade of working inside advertising, marketing, and running campaigns.
         </p>
 
         <p className="text-center text-gray-600 dark:text-gray-400 max-w-2xl">

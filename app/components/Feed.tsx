@@ -6,6 +6,7 @@ import type { Signal } from "@/app/types/signal.types";
 
 import MailingList from "@/app/components/MailingList";
 import Filters from "@/app/components/Filters";
+import Link from "next/link";
 
 interface FeedProps {
   initialSignals: Signal[];
@@ -246,6 +247,12 @@ const resonanceScore = s.resonanceScore ?? 0;
           <p>
             Signals patterns evolve based on ad lifecycle, spread velocity, and usability recalculations.
           </p>
+          <Link
+          href="/legal"
+          className="inline-flex hover:underline text-blue-500 "
+        >
+          See Terms
+        </Link>
         </div>
       )}
     </div>
@@ -319,9 +326,9 @@ const resonanceScore = s.resonanceScore ?? 0;
           </div>
         ) : visibleSignals.length === 0 ? (
           <div className="py-20 text-left space-y-3">
-            <h3 className="text-lg font-semibold">No Signals Yet</h3>
+            <h3 className="text-lg font-semibold">No Signals Published Yet</h3>
             <p className="text-sm text-gray-500">
-              Signals will appear here once approved and published.
+              Signals appear here once we approve and publish it.
             </p>
           </div>
         ) : (

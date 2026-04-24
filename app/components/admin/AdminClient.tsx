@@ -17,7 +17,7 @@ export default function AdminClient({ signals }: { signals: Signal[] }) {
 
       <AdminControlPanel
         rows={rows}
-        setRows={setRows} // ✅ REAL STATE
+        setRows={setRows} // REAL active STATE
         isAuthorized={isAuthorized}
         setIsAuthorized={setIsAuthorized}
         showPassword={showPassword}

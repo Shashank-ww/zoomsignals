@@ -2,6 +2,14 @@
 
 import { useState, useEffect } from "react";
 import type { Signal } from "../../types/signal.types";
+import {
+  Lifecycle,
+  Velocity,
+  Confidence,
+  ApprovalStatus,
+  Narrative,
+  Platform,
+} from "@prisma/client";
 
 export default function SignalAdminModal({
   onClose,
@@ -12,40 +20,71 @@ export default function SignalAdminModal({
   signal?: Signal | null;
   onSaved?: () => void;
 }) {
-  const [form, setForm] = useState({
-    formatName: "",
-    lifecycle: "EARLY",
-    velocity: "EMERGING",
-    confidence: "HIGH",
-    approvalStatus: "DRAFT",
-    primaryPlatforms: ["INSTAGRAM"],
-    repetitionCount: 1,
-    narrative: "VISUAL_ONLY",
-    insight: "",
-    author: "Admin",
-    imageUrl: "",
-    sourceLink: "",
-    advertiser: [] as { brandName: string }[]
-  });
 
-  const ADVERTISERS = [
-  "AUDI",
-  "BMW",
-  "HYUNDAI",
-  "TOYOTA",
-  "BYD",
-  "VOLKSWAGEN",
-  "VOLVO",
-  "OTHERS",
+  const [form, setForm] = useState<{
+  formatName: string;
+  lifecycle: Lifecycle;
+  velocity: Velocity;
+  confidence: Confidence;
+  approvalStatus: ApprovalStatus;
+  primaryPlatforms: Platform[];
+  narrative: Narrative;
+  repetitionCount: number;
+  insight: string;
+  author: string;
+  imageUrl: string;
+  sourceLink: string;
+  advertiser: { brandName: string }[];
+}>({
+  formatName: "",
+  lifecycle: Lifecycle.EARLY,
+  velocity: Velocity.EMERGING,
+  confidence: Confidence.HIGH,
+  approvalStatus: ApprovalStatus.DRAFT,
+  primaryPlatforms: [Platform.INSTAGRAM],
+  narrative: Narrative.THEMATIC,
+  repetitionCount: 1,
+  insight: "",
+  author: "Admin",
+  imageUrl: "",
+  sourceLink: "",
+  advertiser: [],
+});
+
+const PLATFORMS = Object.values(Platform);
+
+const [advertisers, setAdvertisers] = useState<{ id: string; brandName: string }[]>([]);
+
+const allAdvertisers = [
+  ...advertisers,
+  ...form.advertiser
+    .filter(
+      (fa) =>
+        !advertisers.some(
+          (a) => a.brandName === fa.brandName
+        )
+    )
+    .map((fa) => ({
+      id: fa.brandName, // fallback id
+      brandName: fa.brandName,
+    })),
 ];
 
-  const PLATFORMS = [
-  "INSTAGRAM",
-  "FACEBOOK",
-  "META_PAID",
-  "TWITTER",
-  "GOOGLE_YT",
-];
+const [search, setSearch] = useState("");
+
+const filteredAdvertisers = allAdvertisers.filter((a) =>
+  a.brandName.toUpperCase().includes(search.toUpperCase())
+);
+
+useEffect(() => {
+  async function loadAdvertisers() {
+    const res = await fetch("/api/advertisers");
+    const data = await res.json();
+    setAdvertisers(data);
+  }
+
+  loadAdvertisers();
+}, []);
 
 useEffect(() => {
   if (!signal) return;
@@ -84,6 +123,7 @@ useEffect(() => {
       body: JSON.stringify({
         id: signal?.id,
         ...form,
+        advertiser: form.advertiser ?? [],
         approvalStatus: "DRAFT",
       }),
     });
@@ -93,9 +133,9 @@ useEffect(() => {
     if (res.ok) {
       setSuccess(true);
 
-      setTimeout(() => {
+      setTimeout(async () => {
         setSuccess(false);
-        onSaved?.(); // refresh table
+        await onSaved?.(); // refresh table
         onClose();
       }, 800);
     } else {
@@ -195,27 +235,58 @@ useEffect(() => {
         </div>
 
         {/* Advertiser */}
-        <div>
+ <div>
   <label className="text-sm font-medium text-zinc-600">
     Select Advertisers
   </label>
 
-  <div className="flex flex-wrap gap-2 mt-2">
-    {ADVERTISERS.map((brand) => {
+  {/* Search / Input */}
+  <input
+    placeholder="Select from list below or add advertiser..."
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+    className="mt-2 w-full bg-zinc-50 border border-zinc-200 rounded-lg px-3 py-2 text-sm"
+    onKeyDown={(e) => {
+      if (e.key === "Enter") {
+        const value = search.trim().toUpperCase();
+        if (!value) return;
+
+        const exists = form.advertiser.some(
+          (a) => a.brandName === value
+        );
+
+        if (!exists) {
+          setForm({
+            ...form,
+            advertiser: [
+              ...form.advertiser,
+              { brandName: value },
+            ],
+          });
+        }
+
+        setSearch("");
+      }
+    }}
+  />
+
+  {/* Chips */}
+  <div className="flex flex-wrap gap-2 mt-3">
+    {filteredAdvertisers.map((brand) => {
       const active = form.advertiser.some(
-        (a) => a.brandName === brand
+        (a) => a.brandName === brand.brandName
       );
 
       return (
         <button
-          key={brand}
+          key={brand.id}
           type="button"
           onClick={() => {
             if (active) {
               setForm({
                 ...form,
                 advertiser: form.advertiser.filter(
-                  (a) => a.brandName !== brand
+                  (a) => a.brandName !== brand.brandName
                 ),
               });
             } else {
@@ -223,7 +294,7 @@ useEffect(() => {
                 ...form,
                 advertiser: [
                   ...form.advertiser,
-                  { brandName: brand },
+                  { brandName: brand.brandName },
                 ],
               });
             }
@@ -235,7 +306,7 @@ useEffect(() => {
                 : "bg-white text-zinc-600 border-zinc-300 hover:bg-zinc-100"
             }`}
         >
-          {brand}
+          {brand.brandName}
         </button>
       );
     })}
@@ -252,12 +323,14 @@ useEffect(() => {
               className={selectClass}
               value={form.lifecycle}
               onChange={(e) =>
-                setForm({ ...form, lifecycle: e.target.value })
-              }
+              setForm({ ...form, lifecycle: e.target.value as Lifecycle })
+            }
             >
-              <option value="EARLY">EARLY</option>
-              <option value="PEAKING">PEAKING</option>
-              <option value="SATURATED">SATURATED</option>
+{Object.values(Lifecycle).map((val) => (
+  <option key={val} value={val}>
+    {val}
+  </option>
+))}
             </select>
           </div>
 
@@ -269,13 +342,14 @@ useEffect(() => {
               className={selectClass}
               value={form.velocity}
               onChange={(e) =>
-                setForm({ ...form, velocity: e.target.value })
+                setForm({ ...form, velocity: e.target.value as Velocity })
               }
             >
-              <option value="EMERGING">EMERGING</option>
-              <option value="ACCELERATING">ACCELERATING</option>
-              <option value="STABLE">STABLE</option>
-              <option value="DECLINING">DECLINING</option>
+{Object.values(Velocity).map((val) => (
+  <option key={val} value={val}>
+    {val}
+  </option>
+))}
             </select>
           </div>
 
@@ -287,12 +361,14 @@ useEffect(() => {
               className={selectClass}
               value={form.confidence}
               onChange={(e) =>
-                setForm({ ...form, confidence: e.target.value })
+                setForm({ ...form, confidence: e.target.value as Confidence})
               }
             >
-              <option value="HIGH">HIGH</option>
-              <option value="MEDIUM">MEDIUM</option>
-              <option value="LOW">LOW</option>
+{Object.values(Confidence).map((val) => (
+  <option key={val} value={val}>
+    {val}
+  </option>
+))}
             </select>
           </div>
         </div>
@@ -353,16 +429,14 @@ useEffect(() => {
               className={selectClass}
               value={form.narrative}
               onChange={(e) =>
-                setForm({ ...form, narrative: e.target.value })
+                setForm({ ...form, narrative: e.target.value as Narrative })
               }
             >
-              <option value="SILENT">SILENT</option>
-              <option value="TACTICAL">TACTICAL</option>
-              <option value="TEXT_ONLY">TEXT_ONLY</option>
-              <option value="VO_ONLY">VO_ONLY</option>
-              <option value="VISUAL_ONLY">VISUAL_ONLY</option>
-              <option value="BG_MUSIC_ONLY">BG_MUSIC_ONLY</option>
-              <option value="COMPARATIVE">COMPARATIVE</option>
+{Object.values(Narrative).map((val) => (
+  <option key={val} value={val}>
+    {val}
+  </option>
+))}
             </select>
           </div>
 
@@ -374,13 +448,14 @@ useEffect(() => {
               className={selectClass}
               value={form.approvalStatus}
               onChange={(e) =>
-                setForm({ ...form, approvalStatus: e.target.value })
+                setForm({ ...form, approvalStatus: e.target.value as ApprovalStatus })
               }
             >
-              <option value="DRAFT">DRAFT</option>
-              <option value="PENDING">PENDING</option>
-              <option value="APPROVED">APPROVED</option>
-              <option value="REJECTED">REJECTED</option>
+{Object.values(ApprovalStatus).map((val) => (
+  <option key={val} value={val}>
+    {val}
+  </option>
+))}
             </select>
           </div>
         </div>
@@ -448,7 +523,7 @@ useEffect(() => {
             {loading
               ? "Saving..."
               : success
-              ? "Saved ✓"
+              ? "Saved"
               : "Save Signal"}
 
           </button>

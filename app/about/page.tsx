@@ -28,18 +28,21 @@ export default function About() {
           Better ads, faster decisions
         </h1>
 
-        <p className="flex text-lg text-gray-600 leading-relaxed dark:text-gray-300">
-          Media teams are often seen chasing trends that have already peaked. We noticed what they are after. 
-          And that is how we realised it could be made easier for them by keeping track of early structure and creative patterns across social media platforms. 
-          It will help performance marketing teams achieve better conversion and outreach.
+        <p className="flex text-gray-600 leading-relaxed dark:text-gray-300">
+          Media teams end up chasing trends that have already peaked. We noticed what they are after and when they need it. 
         </p>
 
-        <p className="text-lg text-gray-600 leading-relaxed dark:text-gray-300">
-          By the time something is called a “winning format,” it has already been overused, 
+        <p className="flex text-gray-600 leading-relaxed dark:text-gray-300">
+          And that is how we made it easier for them to keep track of early structure and creative patterns across social media platforms. 
+          We help performance marketing teams achieve better engagement and outreach.
+        </p>
+
+        <p className= "flex text-gray-600 leading-relaxed dark:text-gray-300">
+          By the time something is called a “winning format,” it has already been over-used, 
           over-optimized, and stripped of its advantage.
         </p>
 
-        <p className="text-gray-800 dark:text-gray-200 font-medium leading-relaxed">
+        <p className="text-gray-600 dark:text-gray-300 font-medium leading-relaxed">
           <span className="font-bold">MyAdBreak</span>  exists to catch ad patterns earlier. Before they become obvious.
         </p>
 
@@ -251,17 +254,17 @@ export default function About() {
 
 <ul className="text-gray-700 leading-relaxed space-y-4 dark:text-gray-200">
 
-    <li className="list-disc list-inside">
+    <li className="list-disc ml-6">
     We are not a performance optimization agency or tech tool. It may not predict outcomes or guarantee results.
   </li>
-      <li className="list-disc list-inside">
+      <li className="list-disc ml-6">
     It is a curated ad pattern log designed to improve awareness, timing, and decision-making.
   </li>
-  <li className="list-disc list-inside">
+  <li className="list-disc ml-6">
     Technically, when ads trend, we go all out to look for “why” it is working. 
     And if that pattern repeats across brands/platforms. It is evidently made use of.
   </li>
-      <li className="list-disc list-inside">
+      <li className="list-disc ml-6">
     Upon best judgement, you could formulate strategies on your own around the best performance marketing campaign. 
   </li>
       <li className="">

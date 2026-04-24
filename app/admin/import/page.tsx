@@ -32,7 +32,7 @@ export default function ImportPage() {
 
   const [history, setHistory] = useState<any[]>([]);
 
-  // 🔐 Admin password (no frontend validation)
+  // Admin password (no frontend validation)
   const [adminPassword, setAdminPassword] = useState("");
 
   /* =============================
@@ -224,7 +224,7 @@ export default function ImportPage() {
           Signal Import Workflow
         </h1>
 
-        {/* 🔐 Admin Password */}
+        {/* Admin Password */}
         <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-xl">
           <input
             type="password"
