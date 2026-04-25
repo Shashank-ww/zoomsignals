@@ -115,6 +115,11 @@ export default function Explore() {
         </p>
       </section>
 
+ {/* EXPECTATIONS - WHAT CAN YOU EXPECT */}
+<section className="space-y-8">
+<ExpectationsTabs/>
+</section>
+
       {/* WHY IT MATTERS */}
       <section className="space-y-6">
 <div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
@@ -210,18 +215,13 @@ export default function Explore() {
   </div>
 </section>
 
-     {/* EXPECTATIONS */}
-<section className="space-y-8">
-<ExpectationsTabs/>
-</section>
-
       <section className="flex flex-col items-center justify-center space-y-6 border-t text-center pt-12">
         <h2 className="text-xl font-semibold">
-          Built by professionals from the industry
+          Built by industry professionals
         </h2>
 
         <p className="text-center text-gray-600 dark:text-gray-400 max-w-2xl">
-          MyAdBreak is created after more than a decade of working inside advertising, marketing, and running campaigns.
+          MyAdBreak is created after more than a decade of working inside advertising, executing marketing strategies, and running campaigns.
         </p>
 
         <p className="text-center text-gray-600 dark:text-gray-400 max-w-2xl">

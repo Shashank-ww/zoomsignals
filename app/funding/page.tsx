@@ -1,7 +1,9 @@
+import Link from "next/link";
+
 export default function FundingPage() {
   return (
-    <main className="min-h-screen bg-white text-gray-900 px-6 py-16">
-      <div className="max-w-6xl mx-auto space-y-12">
+    <main className="min-h-screen bg-white text-gray-900">
+      <div className="mx-auto max-w-6xl px-6 py-24 space-y-24">
 
  <section className="space-y-6">
         <h1 className="
@@ -12,9 +14,9 @@ export default function FundingPage() {
         tracking-[-0.02em]
         leading-[1.05]
         ">
-            Back the Infrastructure Behind Modern Advertising Signals
+            Back the infra behind modern advertising
           </h1>
-          <p className="text-gray-600 text-base sm:text-lg max-w-2xl">
+          <p className="text-gray-600 text-base sm:text-lg max-w-3xl">
             We are building a real-time intelligence layer for how brands
             actually advertise — not reports, not dashboards — but
             actionable signal flows that teams can use instantly.
@@ -37,7 +39,7 @@ export default function FundingPage() {
 
         {/* SOLUTION */}
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold">What We’re Building</h2>
+          <h2 className="text-xl font-semibold">What We are Building</h2>
           <p className="text-gray-600 leading-relaxed">
             A signal-first platform that captures, validates, and surfaces
             real-world advertising patterns — across formats, brands, and
@@ -78,7 +80,7 @@ export default function FundingPage() {
 
             <div className="border rounded-lg p-4">
               <p className="text-xs text-gray-500">Round Size</p>
-              <p className="text-lg font-semibold">$150K – $250K</p>
+              <p className="text-lg font-semibold">Rs 3.4L – 5.5L</p>
             </div>
 
             <div className="border rounded-lg p-4">
@@ -136,7 +138,7 @@ export default function FundingPage() {
 
     <div className="border rounded-lg p-4">
       <p className="text-xs text-gray-500">Cheque Size</p>
-      <p className="text-lg font-semibold">$10K – $50K</p>
+      <p className="text-lg font-semibold">Rs 40K – 90K</p>
     </div>
 
     <div className="border rounded-lg p-4">
@@ -182,24 +184,57 @@ export default function FundingPage() {
         <section className="pt-6 border-t space-y-4">
           <h2 className="text-xl font-semibold">Get Involved</h2>
           <p className="text-gray-600">
-            If this resonates, we’re open to a small number of conversations.
+            If this resonates, we’re open to conversations with a small number of people.
           </p>
 
-          <div className="flex gap-3">
-            <a
-              href="mailto:founder@yourdomain.com"
-              className="px-5 py-2.5 bg-black text-white rounded-md text-sm hover:bg-gray-800 transition"
-            >
-              Express Interest
-            </a>
+          {/* CTA */}
+      <div className="pt-8 flex flex-col sm:flex-row mx-auto gap-6 items-center sm:items-start">
+        <Link
+          href="mailto:hello@myadbreak.com"
+          className="inline-flex
+            items-center
+            gap-2
+            px-6
+            py-3
+            text-sm
+            font-medium
+            text-white
+            bg-blue-500
+            border
+            border-blue-600
+            rounded-full
+            shadow-sm
+            hover:bg-blue-600
+            transition-all
+            duration-200
+            active:scale-95"
+        >
+          Express Interest
+        </Link>
 
-            <a
-              href="mailto:founder@yourdomain.com"
-              className="px-5 py-2.5 border border-gray-300 rounded-md text-sm hover:bg-gray-100 transition"
-            >
-              Start Conversation
-            </a>
-          </div>
+        <Link
+          href="mailto:hello@myadbreak.com"
+          className="inline-flex
+            items-center
+            gap-2
+            px-6
+            py-3
+            text-sm
+            font-medium
+            text-white
+            bg-gray-800
+            border
+            border-blue-600
+            rounded-full
+            shadow-sm
+            hover:bg-blue-600
+            transition-all
+            duration-200
+            active:scale-95"
+        >
+          Start Conversation
+        </Link>
+      </div>
         </section>
 
       </div>

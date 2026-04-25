@@ -51,7 +51,7 @@ export default function HeroHeadline({ headline }: HeroHeadlineProps) {
             active:scale-95
           "
         >
-          Explore Library
+          View Signals
         </a>
       </div>
     </div>

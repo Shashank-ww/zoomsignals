@@ -65,7 +65,7 @@ export default function SignalPreview({
 
   const CARD_HEIGHT = 100;
   const GAP = 12;
-  const VIEWPORT_HEIGHT = 288;
+  const VIEWPORT_HEIGHT = 280;
   const CENTER_OFFSET = (VIEWPORT_HEIGHT - CARD_HEIGHT) / 2;
 
   const translateY =

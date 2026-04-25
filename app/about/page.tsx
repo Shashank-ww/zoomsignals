@@ -13,7 +13,7 @@ import {
 
 export default function About() {
   return (
-    <main className="mx-auto max-w-6xl px-6 py-24 space-y-16">
+    <main className="mx-auto max-w-6xl px-6 py-24 space-y-24">
 
       {/* HERO */}
       <section className="space-y-6 ">
@@ -33,7 +33,7 @@ export default function About() {
         </p>
 
         <p className="flex text-gray-600 leading-relaxed dark:text-gray-300">
-          And that is how we made it easier for them to keep track of early structure and creative patterns across social media platforms. 
+          And that is how we came about to make it easier for them to keep track of early structure and creative patterns across social media platforms. 
           We help performance marketing teams achieve better engagement and outreach.
         </p>
 
@@ -241,6 +241,14 @@ export default function About() {
          Because better outcomes come from seeing the right patterns, earlier. Not data. Not statistics.
         </p>
 
+<p className="text-gray-700 leading-relaxed dark:text-gray-300">
+  We&apos;re currently in early conversations with limited set of investors and industry experts who understand where this is headed. <br/> {" "}
+  <a href="/funding" className="text-gray-700 hover:underline hover:text-blue-500 transition">
+    View opportunity
+  </a> →
+</p>
+
+
 </section>
 
 
@@ -319,7 +327,7 @@ export default function About() {
             duration-200
             active:scale-95"
         >
-          Explore Why We Exist
+          Why We Exist
         </Link>
       </section>
 

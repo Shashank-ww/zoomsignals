@@ -26,7 +26,7 @@ export default function Navbar() {
   }, [open]);
 
   const linkStyle = (path: string) =>
-    `hover:underline ${
+    `hover:underline hover:text-amber-600 ${
       pathname === path ? "text-blue-600 font-medium" : ""
     }`;
 
@@ -78,7 +78,7 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* ✅ Mobile Menu — Absolutely Positioned */}
+      {/* Mobile Menu — Absolutely Positioned */}
       {open && (
         <div className="md:hidden absolute top-14 left-0 w-full z-50 bg-linear-to-tl from-[#EFF6FF] via-[#F8FAFC] to-[#F1F5F9] border-t border-[#DBEAFE] shadow-lg animate-in fade-in slide-in-from-top-2 duration-200">
           <div className="flex flex-col px-6 py-4 pr-12 gap-3 text-sm text-gray-600 items-end">
