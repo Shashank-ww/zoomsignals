@@ -4,8 +4,6 @@ import { useState } from "react";
 import HeroHeadline from "./HeroHeadline";
 import type { Signal } from "@/app/types/signal.types";
 import SignalPreviewPhone from "./SignalPreview";
-import { TiltCard } from "@/app/components/unlumen-ui/tilt-card";
-import SignalSlider from "./ui/SignalSlider";
 
 interface HeroSectionProps {
   headline: string; 
@@ -41,11 +39,7 @@ export default function HeroSection({
             </button>
           </div>
 
-<TiltCard
-  signals={signals}
-/>
-
-          {/* <div className="hidden lg:flex justify-end">
+          <div className="hidden lg:flex justify-end">
             {signals?.length > 0 ? (
               <SignalPreviewPhone signals={signals} />
             ) : (
@@ -53,7 +47,7 @@ export default function HeroSection({
                 Loading signals...
               </div>
             )}
-          </div> */}
+          </div>
         </div>
       </section>
 
