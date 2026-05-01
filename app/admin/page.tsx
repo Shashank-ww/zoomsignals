@@ -1,4 +1,4 @@
-import { prisma } from "../lib/prisma";
+import { prisma } from "@/lib/prisma";
 import AdminClient from "../components/admin/AdminClient"; 
 
 export default async function AdminPage() {
