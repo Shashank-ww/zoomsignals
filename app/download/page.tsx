@@ -9,29 +9,38 @@ function DownloadPageInner() {
   const isPaid = params.get("paid");
 
   const [email, setEmail] = useState("");
-  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     const saved = localStorage.getItem("subscribedEmail");
-
     if (saved) {
       setEmail(saved);
-      setIsSubscribed(true);
     }
   }, []);
 
-  const handleDownload = async () => {
+  const handleSend = async () => {
     if (!email) return;
 
     setLoading(true);
+    setMessage("");
 
-    const res = await fetch(`/api/export/sample?email=${email}`);
+    try {
+      const res = await fetch("/api/send-access", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
 
-    if (res.ok) {
-      window.location.href = `/api/export/sample?email=${email}`;
-    } else {
-      alert("Please subscribe first");
+      if (!res.ok) throw new Error();
+
+      setIsSubmitted(true);
+      setMessage("Check your inbox. We have sent your access link.");
+    } catch {
+      setMessage("Something went wrong. Try again.");
     }
 
     setLoading(false);
@@ -57,29 +66,44 @@ function DownloadPageInner() {
             Free preview • 3 signals
           </p>
 
-          {/* EMAIL */}
-            <MailingList
+          {/* EMAIL INPUT */}
+          <MailingList
             variant="download"
             setEmail={setEmail}
-            setIsSubscribed={setIsSubscribed}
-            />
+          />
 
-          {/* DOWNLOAD BUTTON */}
+          {/* ACTION BUTTON */}
           <button
-            onClick={handleDownload}
-            disabled={!isSubscribed || loading}
-              className={`inline-flex items-center justify-center gap-2 
+            onClick={handleSend}
+            disabled={!email || loading}
+            className={`inline-flex items-center justify-center gap-2 
               w-full sm:w-auto sm:min-w-55 cursor-pointer
               px-6 py-3 text-sm font-medium text-white rounded-full shadow-sm 
               transition-all duration-200
               ${
-                isSubscribed
+                email
                   ? "bg-blue-500 hover:bg-blue-600 border border-blue-500"
                   : "bg-gray-300 cursor-not-allowed"
               }`}
           >
-            {loading ? "Checking..." : "Download Sample"}
+            {loading ? "Sending..." : isSubmitted ? "Resend Email" : "Get Sample via Email"}
           </button>
+
+          {/* STATUS MESSAGE */}
+          {message && (
+            <p className={`text-xs ${
+              message.includes("wrong") ? "text-amber-500" : "text-emerald-600"
+            }`}>
+              {message}
+            </p>
+          )}
+
+          {/* SUCCESS STATE HELP */}
+          {isSubmitted && (
+            <p className="text-[10px] text-gray-500">
+              Didn&apos;t receive it? Check spam or try again.
+            </p>
+          )}
         </div>
 
         {/* DIVIDER */}
@@ -98,7 +122,7 @@ function DownloadPageInner() {
 
             <a
               href="https://rzp.io/l/YOUR_LINK"
-                className="inline-flex items-center justify-center gap-2 
+              className="inline-flex items-center justify-center gap-2 
                 w-full sm:w-auto sm:min-w-55
                 px-6 py-3 text-sm font-medium text-white 
                 bg-gray-800 border border-blue-600 rounded-full shadow-sm 
@@ -109,25 +133,24 @@ function DownloadPageInner() {
         ) : (
           <div className="space-y-4">
             <p className="text-sm text-blue-600 font-medium">
-              Payment successful 🎉
+              Payment successful!
             </p>
 
             <p className="text-xs text-gray-500">
-              Your full dataset is ready.
+              We have sent your full dataset to your email.
             </p>
 
-            <a
-              href={`/api/export/full?email=${email}`}
+            <button
+              onClick={handleSend}
               className="inline-flex items-center justify-center gap-2 
-              w-full sm:w-auto sm:min-w-55
-              px-6 py-3 text-sm font-medium text-white 
-              bg-blue-500 border border-blue-600 rounded-full shadow-sm 
-              hover:bg-blue-600 transition-all duration-200">
-              Download Full CSV
-            </a>
+                w-full sm:w-auto sm:min-w-55
+                px-6 py-3 text-sm font-medium text-white 
+                bg-blue-500 border border-blue-600 rounded-full shadow-sm 
+                hover:bg-blue-600 transition-all duration-200">
+              Resend Full Access
+            </button>
           </div>
         )}
-        
 
         {/* FOOTNOTE */}
         <p className="text-[10px] text-gray-400 pt-2">
@@ -136,7 +159,6 @@ function DownloadPageInner() {
 
       </div>
     </div>
-    
   );
 }
 

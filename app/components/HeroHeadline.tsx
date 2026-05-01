@@ -21,11 +21,11 @@ export default function HeroHeadline({ headline }: HeroHeadlineProps) {
       </h1>
 
       <p className="text-gray-500 max-w-lg leading-relaxed text-base dark:text-gray-300">
-        Get insights into live ad formats showing unique patterns for brands active on social media.
+        Insights into live ad formats showing unique patterns for brands active on social media.
         Exclusively monitoring{" "}
         <span className="underline underline-offset-4">
-          automobile category.
-        </span>
+          automobile category
+        </span>.
       </p>
 
       <div>

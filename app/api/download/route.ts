@@ -1,24 +1,32 @@
 import { NextResponse } from "next/server";
+import { validateToken } from "@/lib/access/validateToken";
 import { getSignals } from "@/lib/export/getSignals";
 import { generateCsv } from "@/lib/export/generateCsv";
-import { checkSubscribers } from "@/lib/subscribers/checkSubscribers"
-
+import { prisma } from "@/lib/prisma";
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
-  const email = searchParams.get("email");
+  const token = searchParams.get("token");
 
-  // auth layer (clean)
-  const isValid = await checkSubscribers(email || "");
+  // AUTH (single source of truth)
+  const access = await validateToken(token || "");
 
-  if (!isValid) {
+  if (!access) {
     return NextResponse.json(
-      { error: "Unauthorized - please subscribe" },
+      { error: "Invalid or expired link" },
       { status: 401 }
     );
   }
 
-  // data layer
+  // OPTIONAL: one-time usage
+  if (!access.used) {
+    await prisma.accessToken.update({
+      where: { token: access.token },
+      data: { used: true },
+    });
+  }
+
+  // DATA
   const signals = await getSignals(3);
 
   if (!signals.length) {
@@ -28,10 +36,10 @@ export async function GET(req: Request) {
     );
   }
 
-  // transformation layer
+  // TRANSFORM
   const csv = generateCsv(signals);
 
-  // response layer
+  // RESPONSE
   return new NextResponse(csv, {
     headers: {
       "Content-Type": "text/csv",

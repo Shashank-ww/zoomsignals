@@ -53,7 +53,7 @@ export default function Navbar() {
 
     {/* Brand Text */}
     <span className="font-light tracking-tight transition-colors duration-200 group-hover:text-blue-500">
-      My<span className="font-bold">AdBreak</span>
+      My<span className="font-bold">adbreak</span>
     </span>
 
   </span>

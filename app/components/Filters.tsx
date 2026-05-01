@@ -50,9 +50,9 @@ export default function Filters({
     sortBy !== "recent";
 
   return (
-    <div className="space-y-4">
+    <div className="rounded-xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-zinc-900 p-4 text-sm space-y-2">
       {/* HEADER */}
-      <div className="flex items-center justify-start">
+      <div className="flex items-start justify-between">
         <button
           onClick={() => setIsOpen((prev) => !prev)}
           className="text-sm font-semibold"
@@ -65,7 +65,7 @@ export default function Filters({
             onClick={clearAll}
             className="text-xs text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition"
           >
-            Reset
+            Clear Filters
           </button>
         )}
       </div>

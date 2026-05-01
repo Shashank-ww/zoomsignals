@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getAllBlogs } from "@/app/lib/getBlogs";
-import { fetchTrendingRSS, FeedItem as TrendingItem } from "@/app/lib/fetchRSS";
+import { getAllBlogs } from "@/lib/getBlogs";
+import { fetchTrendingRSS, FeedItem as TrendingItem } from "@/lib/fetchRSS";
 
 interface Blog {
   slug: string;

@@ -11,7 +11,7 @@ export default function LegalPage() {
         py-1
         lg:text-6xl
         text-3xl
-        md:text-5xl bg-linear-to-tr from-green-500 to-blue-400 bg-clip-text text-transparent
+        md:text-5xl bg-linear-to-tr from-blue-500 to-sky-400 bg-clip-text text-transparent
         tracking-[-0.02em]
         leading-[1.05]
         my-16">

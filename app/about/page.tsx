@@ -231,23 +231,15 @@ export default function About() {
         Teams do not fail because they lack data or ideas. They fail because they are responding to creative patterns that have already peaked over time.
         <br/>
         <span className="font-bold">
-          MyAdBreak focuses on whether or not your ad is genuinely working.
+          MyAdBreak focuses on whether or not your ad genuinely works.
         </span>
         </p>
 
          <p className="text-gray-700 leading-relaxed dark:text-gray-300">
-         This is not a trend platform. Not a dashboard. It is a structured way to observe how ad formats actually behave in the real world.
+         We are not a trend platform. This is not a dashboard. It is a structured way to observe how ad formats actually behave in the real world.
          <br/>
          Because better outcomes come from seeing the right patterns, earlier. Not data. Not statistics.
         </p>
-
-<p className="text-gray-700 leading-relaxed dark:text-gray-300">
-  We&apos;re currently in early conversations with limited set of investors and industry experts who understand where this is headed. <br/> {" "}
-  <a href="/funding" className="text-gray-700 hover:underline hover:text-blue-500 transition">
-    View opportunity
-  </a> →
-</p>
-
 
 </section>
 
@@ -278,8 +270,16 @@ export default function About() {
       <li className="">
     <span className="font-semibold">Please note: </span>Signal Patterms reflect observed structural and creative patterns. We do not endorse any brand, ad format, or platform.
   </li>
-
+  
 </ul>
+
+<p className="text-gray-700 leading-relaxed dark:text-gray-300">
+  We&apos;re currently in early conversations with limited set of investors and industry experts who understand where this is headed. <br/> {" "}
+  <a href="/funding" className="text-gray-700 hover:underline hover:text-blue-500 transition">
+    View opportunity
+  </a> →
+</p>
+
       </section>
 
       {/* CTA */}

@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/app/lib/prisma";
+import { prisma } from "@/lib/prisma";
 
-import { calculateResonance } from "@/app/lib/resonanceEngine";
+import { calculateResonance } from "@/lib/resonanceEngine";
 import {
   lifecycleWeight,
   velocityWeight,
   confidenceWeight,
-} from "@/app/lib/resonance";
+} from "@/lib/resonance";
 
 export async function GET() {
   try {

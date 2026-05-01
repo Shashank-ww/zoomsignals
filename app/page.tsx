@@ -1,4 +1,4 @@
-import { prisma } from "@/app/lib/prisma";
+import { prisma } from "@/lib/prisma";
 import HeroSection from "@/app/components/HeroSection";
 import Feed from "@/app/components/Feed";
 import type { Signal } from "@/app/types/signal.types";

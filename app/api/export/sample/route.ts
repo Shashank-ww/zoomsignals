@@ -11,7 +11,7 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: "Email required" }, { status: 400 });
   }
 
-  // ✅ CHECK SUBSCRIBER
+  // CHECK SUBSCRIBER
   const subscriber = await prisma.subscriber.findUnique({
     where: { email },
   });
@@ -23,7 +23,7 @@ export async function GET(req: Request) {
     );
   }
 
-  // ✅ FETCH DATA
+  // FETCH DATA
   const signals = await prisma.signal.findMany({
     where: { approvalStatus: "APPROVED" },
     orderBy: { updatedAt: "desc" },

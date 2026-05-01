@@ -17,7 +17,7 @@ export default function Footer() {
               href="/"
               className="font-bold text-blue-500 select-none">
               <span className="font-light tracking-tight transition-colors duration-200 group-hover:text-blue-500">
-               &copy; My<span className="font-bold">AdBreak</span>&trade;
+               &copy; My<span className="font-bold">adbreak</span>&trade;
               </span>
             </Link>
 

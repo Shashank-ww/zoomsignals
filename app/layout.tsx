@@ -15,15 +15,6 @@ export default function RootLayout({
     <html lang="en" className="font-sans">
       <body className="antialiased">
         <Navbar />
-        
-        {/* Sticky Ticker - Using TrendTicker as requested 
-        <div 
-          className="sticky top-14 z-40 bg-white border-b border-gray-200"
-          id="ticker-wrapper"
-        >
-          <TrendTicker />
-        </div>
-        */}
 
         <main>{children}</main>
         

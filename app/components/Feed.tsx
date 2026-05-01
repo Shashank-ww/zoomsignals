@@ -258,7 +258,6 @@ const resonanceScore = s.resonanceScore ?? 0;
     </div>
 
     {/* FILTERS */}
-    <div className="rounded-xl border border-gray-200 dark:border-gray-800 p-4">
     <Filters
       confidenceFilter={confidenceFilter}
       velocityFilter={velocityFilter}
@@ -273,7 +272,6 @@ const resonanceScore = s.resonanceScore ?? 0;
       setSortBy={setSortBy}
       clearAll={clearAll}
     />
-</div>
 
     {/* MAILING LIST */}
       <MailingList variant="default" />
