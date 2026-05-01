@@ -8,6 +8,7 @@ import MailingList from "@/app/components/MailingList";
 import Filters from "@/app/components/Filters";
 import Link from "next/link";
 
+
 interface FeedProps {
   initialSignals: Signal[];
 }

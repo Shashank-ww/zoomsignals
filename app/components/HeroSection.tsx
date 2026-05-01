@@ -4,6 +4,7 @@ import { useState } from "react";
 import HeroHeadline from "./HeroHeadline";
 import type { Signal } from "@/app/types/signal.types";
 import SignalPreviewPhone from "./SignalPreview";
+import { useSearchParams } from "next/navigation";
 
 interface HeroSectionProps {
   headline: string; 
@@ -18,7 +19,11 @@ export default function HeroSection({
   totalSignalsCount,
   signals = [],
 }: HeroSectionProps) {
+  
   const [showExplainer, setShowExplainer] = useState(false);
+  
+  const params = useSearchParams();
+  const downloaded = params.get("downloaded");
 
   return (
     <>
@@ -106,6 +111,7 @@ export default function HeroSection({
     <LiveFeedHeader
       approvedCount={approvedSignalsCount}
       totalCount={totalSignalsCount}
+      downloaded={downloaded}
     />
   </div>
 </section>
@@ -117,9 +123,11 @@ export default function HeroSection({
 function LiveFeedHeader({
   approvedCount,
   totalCount,
+  downloaded
 }: {
   approvedCount: number;
   totalCount: number;
+  downloaded: string | null;
 }) {
   const isLive = approvedCount > 0;
 
@@ -142,6 +150,22 @@ function LiveFeedHeader({
         <p className="text-sm text-gray-600 max-w-md mt-2">
           Discover real-time ad formats and creative patterns in its lifecycle across competition brands on social media.
         </p>
+
+          {/* 👇 Subtle conversion nudge */}
+        {downloaded === "true" && (
+          <p className="text-xs text-gray-500 mt-3">
+            Liked the sample?{" "}
+            <a
+              href="https://rzp.io/l/YOUR_LINK"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 underline hover:text-blue-700"
+            >
+              Get full access here!
+            </a>
+          </p>
+        )}
+
       </div>
 
       {/* RIGHT — Status Block */}

@@ -33,7 +33,7 @@ export async function POST(req: Request) {
       },
     });
 
-    const link = `${process.env.NEXT_PUBLIC_BASE_URL}/api/download?token=${token}`;
+    const link = `${process.env.NEXT_PUBLIC_BASE_URL}/download/${token}`;
 
     // email transport
     const transporter = nodemailer.createTransport({
@@ -50,49 +50,48 @@ export async function POST(req: Request) {
  await transporter.sendMail({
   from: process.env.EMAIL_FROM,
   to: normalizedEmail,
-  subject: "Quick one — your signal access",
-
-  replyTo: process.env.SMTP_USER, // important to keep for replies
+  subject: "Here is your signal access! From Myadbreak.com",
 
   html: `
-    <div style="font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial; line-height:1.5; color:#111; padding:20px;">
+    <div>
+
+      <p>Hey There!</p>
       
-      <p>Hey,</p>
-
       <p>
-        Saw you checked out the signal database — sharing your access below.
+      I see you accessed our exclusive database and hope you liked it. Sharing your custom access link:
+      </p>
+
+      <p> 
+      <a href="${link}"> 
+      Download here! 
+      </a> 
       </p>
 
       <p>
-        <a href="${link}" style="color:#2563eb; text-decoration:underline;">
-        Download your sample
-        </a>
+      This sample has 3 signals. It is a small slice of how we're tracking live ad formats, narratives, and patterns across brands.
       </p>
 
       <p>
-        This is a small preview with 3 free samples, of how we're tracking live ad formats, narratives, and patterns across brands.
+      Would genuinely love your thoughts as in what works, what feels missing, anything you'd want deeper understanding on.
       </p>
 
       <p>
-        Would genuinely love your thoughts as in what works, what feels missing, anything you'd want deeper.
+      You can also reply to this email. I read everything.
       </p>
 
       <p>
-        You can just reply to this email. I read everything.
+      Thanks,
       </p>
-
+      <p>
+      Shashank Sriv.
       <br/>
-
-      <p style="font-size:12px; color:#666;">
-        Link expires in 30 mins. If it breaks, just reply and Ill resend.
+      Founder, CEO
+      <br/>
+      Myadbreak
       </p>
 
-      <br/>
-
       <p>
-        — Shashank  
-        <br/>
-        Myadbreak
+      P.S. Link expires in 30 mins. If it doesn’t work, just reply and I will send a fresh one.
       </p>
 
     </div>

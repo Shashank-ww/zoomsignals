@@ -22,7 +22,9 @@ export async function GET(req: Request) {
   if (!access.used) {
     await prisma.accessToken.update({
       where: { token: access.token },
-      data: { used: true },
+      data: { 
+        used: true
+       },
     });
   }
 
