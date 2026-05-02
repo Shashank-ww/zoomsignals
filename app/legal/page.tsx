@@ -41,12 +41,12 @@ export default function LegalPage() {
 
   <h3 className="font-semibold">Subscription & Access</h3>
   <p>
-    Standard subscription is offered at ₹4,600 per month and provides access to curated signal datasets, 
+    Standard subscription is offered at ₹24,700 per month and provides access to curated signal datasets, 
     including downloadable Excel-based libraries and structured insights.
   </p>
   <p>
     Premium access may include extended intelligence services such as deeper signal interpretation, 
-    category-level observations, and strategic advisory layers, with an indicative value of ₹50,000 per month.
+    category-level observations, and strategic advisory layers, with an indicative value of ₹144,000 per month.
   </p>
 
   <h3 className="font-semibold">Nature of Data Access</h3>

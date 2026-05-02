@@ -1,240 +1,274 @@
+"use client";
+
 import Link from "next/link";
+import SignalRadar from "../components/SignalRadar";
+import { Loader2Icon } from "lucide-react";
+import SignalCard from "../components/SignalCard";
+import type { Signal } from "@/app/types/signal.types";
+import { useState, useEffect } from "react";
+
 
 export default function FundingPage() {
+  
+  const [liveSignal, setLiveSignal] = useState <Signal | null> (null);
+  
+    useEffect(() => {
+    async function loadSignal() {
+      try {
+        const res = await fetch("/api/signals");
+        const data = await res.json();
+  
+        if (!Array.isArray(data)) {
+          console.error("Expected array, got:", data);
+          return;
+        }
+  
+        const normalized = data.map((s: any) => ({
+          ...s,
+          createdAt: new Date(s.createdAt),
+          updatedAt: new Date(s.updatedAt),
+        }));
+  
+        const found = normalized.find(
+          (s: Signal) =>
+            s.id === "129d72f3-5790-4282-baeb-1464fbabde63"
+        );
+  
+        setLiveSignal(found || normalized[0] || null);
+      } catch (err) {
+        console.error("Failed to load signal", err);
+      }
+    }
+  
+    loadSignal();
+  }, []);
+    
   return (
-    <main className="min-h-screen bg-white text-gray-900">
-      <div className="mx-auto max-w-6xl px-6 py-24 space-y-24">
+    <main className="min-h-screen text-gray-900 dark:text-gray-300">
+      <div className="mx-auto max-w-6xl px-6 py-24 space-y-20">
 
- <section className="space-y-6">
-        <h1 className="
-        py-1
-        lg:text-6xl
-        text-3xl
-        md:text-5xl bg-linear-to-tr from-blue-500 to-sky-400 bg-clip-text text-transparent
-        tracking-[-0.02em]
-        leading-[1.05]
-        ">
-            Back the infra behind modern advertising
+        {/* HERO */}
+        <section className="space-y-6">
+          <h1 className="
+            py-1
+            lg:text-6xl
+            text-3xl
+            md:text-5xl
+            bg-linear-to-tr from-blue-500 to-sky-400
+            bg-clip-text text-transparent
+            tracking-[-0.02em]
+            leading-[1.05]
+          ">
+            Building that missing layer in advertising
           </h1>
-          <p className="text-gray-600 text-base sm:text-lg max-w-3xl">
-            We are building a real-time intelligence layer for how brands
-            actually advertise — not reports, not dashboards — but
-            actionable signal flows that teams can use instantly.
+
+          <p className="text-gray-600 text-base sm:text-lg ">
+            Most ad teams only see their own data. Everything else like competitor analysis,
+            creatives, patterns, execution styles is scattered and unstructured.
+          </p>
+
+          <p className="text-gray-600 text-base sm:text-lg ">
+            We are building a way to track and understand what is happening across
+            the market, in real time.
           </p>
         </section>
 
-        {/* PROBLEM */}
-        <section className="space-y-3">
-          <h2 className="text-xl font-semibold">The Gap</h2>
-          <p className="text-gray-600 leading-relaxed">
-            Billions are spent on advertising, yet there is no structured,
-            real-time layer that captures *how campaigns behave in the wild*.
-            Teams rely on fragmented tools, delayed reports, or intuition.
+        {/* GAP */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold">What are we trying to solve</h2>
+
+          <p className="text-gray-600 leading-relaxed ">
+            Billions spent on ads, thousands of campaigns go live every day across Meta,
+            YouTube, and other SoMe platforms.
           </p>
-          <p className="text-gray-600 leading-relaxed">
-            The result: missed patterns, slower decisions, and zero shared
-            intelligence across the ecosystem.
+
+          <p className="text-gray-600 leading-relaxed ">
+            But there is no shared layer that shows how these ads are actually
+            structured; what hooks are being used, what formats are repeating,
+            or which patterns are quietly scaling.
+          </p>
+
+          <p className="text-gray-600 leading-relaxed ">
+            Teams end up relying on instinct, swipe files, or delayed reporting.
           </p>
         </section>
 
-        {/* SOLUTION */}
-        <section className="space-y-3">
-          <h2 className="text-xl font-semibold">What We are Building</h2>
-          <p className="text-gray-600 leading-relaxed">
-            A signal-first platform that captures, validates, and surfaces
-            real-world advertising patterns — across formats, brands, and
-            execution styles.
-          </p>
-          <p className="text-gray-600 leading-relaxed">
-            Think of it as a live feed of *what is actually working* in
-            advertising — structured, searchable, and immediately usable.
-          </p>
-        </section>
+        {/* WHAT WE ARE DOING */}
+        <section className="grid lg:grid-cols-2 gap-10 items-start">
 
-        {/* WHY NOW */}
-        <section className="space-y-3">
-          <h2 className="text-xl font-semibold">Why Now</h2>
-          <ul className="text-gray-600 space-y-2 list-disc list-inside">
-            <li>Creative fatigue is accelerating across platforms</li>
-            <li>Teams need faster signal loops, not slower reporting</li>
-            <li>AI increases volume — but reduces clarity</li>
-            <li>No category leader exists in signal intelligence</li>
+          <div className="space-y-4">
+          <h2 className="text-xl font-semibold">What we are doing</h2>
+
+          <p className="text-gray-600 leading-relaxed ">
+            We are tracking live ads, breaking them down into patterns, and
+            structuring them into usable signals.
+          </p>
+
+          <p className="text-gray-600 leading-relaxed ">
+            For example:
+          </p>
+
+          <ul className="text-gray-600 space-y-2 list-disc list-inside ml-2">
+            <li>Which opening hooks are repeating across D2C brands</li>
+            <li>What creative formats are currently scaling</li>
+            <li>How different categories structure their ads</li>
           </ul>
-        </section>
 
-        {/* TRACTION (KEEP IT REAL) */}
-        <section className="space-y-3">
-          <h2 className="text-xl font-semibold">Early Momentum</h2>
-          <p className="text-gray-600 leading-relaxed">
-            The product is live and evolving with a clear focus on signal
-            quality, pattern detection, and usability. Initial usage and
-            feedback loops are validating the core thesis.
+          <p className="text-gray-600 leading-relaxed ">
+            The goal is simple, to reduce guesswork and shorten decision cycles for performance marketing teams.
           </p>
-        </section>
-
-        {/* FUNDING ASK */}
-        <section className="space-y-4 border-t pt-8">
-          <h2 className="text-xl font-semibold">Pre-Seed Round</h2>
-
-          <div className="grid sm:grid-cols-3 gap-4">
-
-            <div className="border rounded-lg p-4">
-              <p className="text-xs text-gray-500">Round Size</p>
-              <p className="text-lg font-semibold">Rs 3.4L – 5.5L</p>
-            </div>
-
-            <div className="border rounded-lg p-4">
-              <p className="text-xs text-gray-500">Instrument</p>
-              <p className="text-lg font-semibold">SAFE / Equity</p>
-            </div>
-
-            <div className="border rounded-lg p-4">
-              <p className="text-xs text-gray-500">Stage</p>
-              <p className="text-lg font-semibold">Pre-Seed</p>
-            </div>
-
           </div>
 
-          <p className="text-gray-600 leading-relaxed">
-            We are bringing in a small set of operators and industry insiders
-            who understand advertising, data, or marketplaces — and want to
-            shape this category early.
-          </p>
+          <div className="max-w-4xl h-full place-items-end">
+            <SignalRadar/>
+          </div>
+
         </section>
 
-        {/* USE OF FUNDS */}
-        <section className="space-y-3">
-          <h2 className="text-xl font-semibold">Use of Capital</h2>
-          <ul className="text-gray-600 space-y-2 list-disc list-inside">
-            <li>Product development & signal infrastructure</li>
-            <li>Data acquisition & validation systems</li>
-            <li>Early distribution loops within industry networks</li>
-          </ul>
-        </section>
+        {/* LIVE SIGNAL */}
+<section className="space-y-6 flex flex-col items-center text-center">
 
-        {/* WHO SHOULD INVEST */}
-        <section className="space-y-3">
-          <h2 className="text-xl font-semibold">Who This Is For</h2>
-          <p className="text-gray-600 leading-relaxed">
-            This round is best suited for:
-          </p>
-          <ul className="text-gray-600 space-y-2 list-disc list-inside">
-            <li>Operators from ad-tech, media, or SaaS</li>
-            <li>Angels who invest early and think long-term</li>
-            <li>Builders who value signal over noise</li>
-          </ul>
-        </section>
+  <div className="space-y-3 max-w-prose">
+    <h2 className="text-xl font-semibold">Our proof of work</h2>
 
-        {/* INVESTMENT PROCESS */}
-<section className="space-y-6 border-t pt-8">
-  <h2 className="text-xl font-semibold">How to Participate</h2>
+    <p className="text-gray-600 leading-relaxed">
+      A real pattern observed across active campaigns. This is not a single ad preview, 
+      it reflects a structure currently repeating across multiple brands.
+    </p>
 
-  <p className="text-gray-600 leading-relaxed">
-    This is a focused pre-seed round with a defined structure and timeline.
-    We are prioritising speed, clarity, and alignment with early believers.
-  </p>
-
-  <div className="grid sm:grid-cols-3 gap-4">
-
-    <div className="border rounded-lg p-4">
-      <p className="text-xs text-gray-500">Cheque Size</p>
-      <p className="text-lg font-semibold">Rs 40K – 90K</p>
-    </div>
-
-    <div className="border rounded-lg p-4">
-      <p className="text-xs text-gray-500">Allocation</p>
-      <p className="text-lg font-semibold">Limited Slots</p>
-    </div>
-
-    <div className="border rounded-lg p-4">
-      <p className="text-xs text-gray-500">Close Timeline</p>
-      <p className="text-lg font-semibold">2–3 Weeks</p>
-    </div>
+    <p>
+    <a
+    href="/about-signals/#framework"
+    className="text-xs text-gray-500 hover:text-amber-600 underline underline-offset-4"
+    >
+    See it in action
+    </a>
+    </p>
 
   </div>
 
-  {/* PROCESS STEPS */}
-  <div className="space-y-3">
-    <h3 className="text-sm font-medium text-gray-800">Process</h3>
+  {/* SIGNAL PREVIEW */}
+  <div className="w-full max-w-4xl">
+    <div className="relative border border-gray-200 rounded-3xl p-6 bg-amber-100/80 shadow-sm min-h-55 flex flex-col">
 
-    <ol className="text-gray-600 space-y-2 list-decimal list-inside">
-      <li>Initial conversation to align on thesis and fit</li>
-      <li>Access to product walkthrough and data layer</li>
-      <li>Review of deck and round structure</li>
-      <li>Commitment via SAFE</li>
-      <li>Allocation confirmation and documentation</li>
-    </ol>
-  </div>
+      {/* HEADER */}
+      <div className="flex items-center justify-between mb-5">
+        <div className="flex items-center gap-2 text-xs text-gray-400 uppercase tracking-wide">
+          <span
+            className={`w-2 h-2 rounded-full animate-pulse ${
+              liveSignal ? "bg-blue-500" : "bg-gray-300"
+            }`}
+          />
+          Live Signal
+        </div>
 
-  {/* WHAT INVESTORS GET */}
-  <div className="space-y-3">
-    <h3 className="text-sm font-medium text-gray-800">What This Round Unlocks</h3>
+        <span className="text-[10px] text-gray-400">
+          {liveSignal ? "Updating in real time" : "Connecting…"}
+        </span>
+      </div>
 
-    <ul className="text-gray-600 space-y-2 list-disc list-inside">
-      <li>Expansion of signal ingestion and classification engine</li>
-      <li>Structured pattern detection across advertisers and formats</li>
-      <li>Private early access layer for contributors and investors</li>
-      <li>Foundation for a scalable intelligence marketplace</li>
-    </ul>
+      {/* BODY */}
+      {!liveSignal ? (
+        <div className="flex flex-1 items-center justify-center flex-col gap-3 text-gray-400">
+          <Loader2Icon className="animate-spin w-5 h-5 text-blue-500" />
+          <div className="text-sm">Loading signal</div>
+        </div>
+      ) : (
+        <SignalCard signal={liveSignal} />
+      )}
+<p className="text-gray-500 text-xs mt-4">
+  As observed across multiple brand campaigns in the last few days.
+</p>
+    </div>
   </div>
 
 </section>
 
-        {/* CTA */}
-        <section className="pt-6 border-t space-y-4">
-          <h2 className="text-xl font-semibold">Get Involved</h2>
-          <p className="text-gray-600">
-            If this resonates, we’re open to conversations with a small number of people.
+        {/* EARLY PROGRESS */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold">Early progress</h2>
+
+          <p className="text-gray-600 leading-relaxed ">
+            The product is live and evolving. Current focus is on signal quality,
+            not scale.
           </p>
 
-          {/* CTA */}
-      <div className="pt-8 flex flex-col sm:flex-row mx-auto gap-6 items-center sm:items-start">
-        <Link
-          href="mailto:hello@myadbreak.com"
-          className="inline-flex
-            items-center
-            gap-2
-            px-6
-            py-3
-            text-sm
-            font-medium
-            text-white
-            bg-blue-500
-            border
-            border-blue-600
-            rounded-full
-            shadow-sm
-            hover:bg-blue-600
-            transition-all
-            duration-200
-            active:scale-95"
-        >
-          Express Interest
-        </Link>
+          <p className="text-gray-600 leading-relaxed ">
+            Early users are using it to explore patterns, validate ideas, and
+            speed up creative decisions. And often then not, people curious about it ask for details data sheets.
+          </p>
 
-        <Link
-          href="mailto:hello@myadbreak.com"
-          className="inline-flex
-            items-center
-            gap-2
-            px-6
-            py-3
-            text-sm
-            font-medium
-            text-white
-            bg-gray-800
-            border
-            border-blue-600
-            rounded-full
-            shadow-sm
-            hover:bg-blue-600
-            transition-all
-            duration-200
-            active:scale-95"
-        >
-          Start Conversation
-        </Link>
-      </div>
+          <h3 className="text-lg font-semibold">We intend to expand with more context with</h3>
+
+          <ul className="text-gray-600 space-y-2 list-disc list-inside ml-2">
+            <li>Spends on categories</li>
+            <li>Audience targeting approach</li>
+            <li>Conversion visibility</li>
+            <li>Performance and profitability</li>
+          </ul>
+
+        </section>
+
+        {/* WHY THIS MATTERS */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold">Why this matters</h2>
+
+          <p className="text-gray-600 leading-relaxed ">
+            As more ads get generated using AI, volume is increasing but
+            clarity is decreasing.
+          </p>
+
+          <p className="text-gray-600 leading-relaxed ">
+            The advantage is shifting towards teams that can identify patterns
+            faster, not just produce more creatives.
+          </p>
+        </section>
+
+        {/* WHO THIS RESONATES WITH */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold">Who this resonates with</h2>
+
+          <ul className="text-gray-600 space-y-2 list-disc list-inside ml-2">
+            <li>People who have worked in performance marketing or ad-tech</li>
+            <li>People who have built or scaled D2C brands</li>
+            <li>Anyone who has had to make creative decisions with limited visibility</li>
+          </ul>
+        </section>
+
+        {/* CTA */}
+        <section className="pt-6 border-t space-y-4">
+          <h2 className="text-xl font-semibold">Open to conversations</h2>
+
+          <p className="text-gray-600 ">
+            If you have spent time in advertising, data, or marketplaces,
+            this will likely be of your interest.
+          </p>
+
+          <p className="text-gray-600 ">
+            Happy to share what we are building to discuss perspectives.
+          </p>
+
+          <div className="pt-4">
+            <Link
+              href="mailto:hello@myadbreak.com"
+              className="inline-flex
+                items-center
+                gap-2
+                px-6
+                py-3
+                text-sm
+                font-medium
+                text-white
+                bg-gray-900
+                rounded-full
+                hover:bg-blue-600
+                transition-all
+                duration-200
+                active:scale-95"
+            >
+              Start a conversation
+            </Link>
+          </div>
         </section>
 
       </div>

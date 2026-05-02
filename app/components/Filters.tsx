@@ -55,7 +55,7 @@ export default function Filters({
       <div className="flex items-start justify-between">
         <button
           onClick={() => setIsOpen((prev) => !prev)}
-          className="text-sm font-semibold"
+          className="text-sm font-semibold cursor-pointer"
         >
           {isOpen ? "Hide Filters" : "Show Filters"}
         </button>

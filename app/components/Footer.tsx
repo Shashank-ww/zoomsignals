@@ -41,9 +41,14 @@ export default function Footer() {
           <div className="flex gap-10 text-gray-800">
             <div>
               <h6 className="font-medium mb-3 pb-1 border-b">
-                Product
+                Business
               </h6>
               <ul className="space-y-2 text-xs">
+                <li>
+                  <Link href="/funding" className="hover:underline">
+                    Investors
+                  </Link>
+                </li>
                 <li>
                   <Link href="/explore" className="hover:underline">
                     Explore

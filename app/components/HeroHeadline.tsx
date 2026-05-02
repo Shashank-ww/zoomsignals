@@ -4,8 +4,24 @@ interface HeroHeadlineProps {
 
 export default function HeroHeadline({ headline }: HeroHeadlineProps) {
   return (
-    <div className="space-y-6 dark:text-gray-300 h-full">
+    <div className="space-y-4 dark:text-gray-300 h-full">
+
+      {/* ✅ FIXED H1 (SEO + brand clarity) */}
       <h1
+        className="
+        max-w-2xl
+        text-lg
+        md:text-sm
+        mb-1
+        font-medium
+        text-gray-600 dark:text-white px-1
+      "
+      >
+        Myadbreak, insights on live ad formats
+      </h1>
+
+      {/* DYNAMIC HEADLINE */}
+      <h2
         className="
         max-w-2xl
         py-1
@@ -15,20 +31,20 @@ export default function HeroHeadline({ headline }: HeroHeadlineProps) {
         bg-linear-to-tr from-blue-500 to-sky-400 bg-clip-text text-transparent
         tracking-[-0.02em]
         leading-[1.05]
-        "
+        font-extralight
+      "
       >
         {headline}
-      </h1>
+      </h2>
 
-      <p className="text-gray-500 max-w-lg leading-relaxed text-base dark:text-gray-300">
-        Insights into live ad formats showing unique patterns for brands active on social media.
-        Exclusively monitoring{" "}
-        <span className="underline underline-offset-4">
-          automobile category
-        </span>.
+      {/* IMPROVED SUBTEXT */}
+      <p className="text-gray-600 max-w-lg leading-relaxed text-base dark:text-gray-300"> 
+        We track live ad campaigns and surface patterns that are actually repeating,
+        so you can craft value before flighting your next ad.
       </p>
 
-      <div>
+      {/* CTA */}
+      <div className="flex items-center justify-start gap-4">
         <a
           href="#explainer"
           className="
@@ -53,7 +69,23 @@ export default function HeroHeadline({ headline }: HeroHeadlineProps) {
         >
           View Signals
         </a>
+
+        <a
+          href="/funding"
+          className="text-sm text-gray-500 hover:text-blue-600 underline underline-offset-4"
+        >
+          For operators
+        </a>
       </div>
+
+      {/* MICRO TRUST LINE */}
+      <p className="text-xs text-gray-500 pt-2">
+        Tracking patterns across live campaigns on Meta, YouTube and more. <br/> Exclusively monitoring{" "} 
+      <span className="underline underline-offset-2"> 
+      automobile category 
+      </span>. 
+      </p>
+
     </div>
   );
 }

@@ -35,8 +35,8 @@ export default function HeroSection({
               className="mt-10 text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors cursor-pointer hover:underline"
             >
               {showExplainer
-                ? "Hide explainer"
-                : "How to read Signal Patterns?"}
+                ? "Hide explainer below"
+                : "What are Signal Patterns?"}
             </button>
           </div>
 
@@ -63,7 +63,7 @@ export default function HeroSection({
 
                 <div className="space-y-5">
                 <h2 className="text-xl font-light text-gray-800">
-                  Methodology
+                  Methodology we use
                 </h2>
 
                 <p>
@@ -73,6 +73,22 @@ export default function HeroSection({
                 <p>
                   These signal patterns are then manually reviewed, structured, and approved before they appear in the live feed. It carries strategic implications to improve decision-making.
                 </p>
+
+                <p>
+                  <a
+                  href="/about-signals/#framework"
+                  className="text-xs text-gray-500 hover:text-amber-600 underline underline-offset-4"
+                >
+                  See signal framework
+                </a>
+                </p>
+
+                <a
+                  href="/download"
+                  className="text-xs text-gray-500 hover:text-amber-600 underline underline-offset-4"
+                >
+                  Get sample data
+                </a>
                 </div>
 
                 <div className="space-y-5">
@@ -88,8 +104,9 @@ export default function HeroSection({
                 </ul>
 
                 <p>
-                    We discover patterns early, making it easy for the planners and marketers to improve decision making. These are updated frequently. 
+                    We discover patterns early, making it easy for the planners and marketers to improve decision making and audience engagement.
                 </p>
+
                 </div>
 
                 <p>
@@ -141,7 +158,7 @@ function LiveFeedHeader({
         </h2>
 
         <p className="text-sm text-gray-600 max-w-md mt-2">
-          Discover real-time ad formats and creative patterns in its lifecycle across competition brands on social media.
+          Discover real-time ad formats and creative patterns in its lifecycle across D2C competition brands on social media.
         </p>
       
       </div>

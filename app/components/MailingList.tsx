@@ -62,7 +62,7 @@ export default function MailingList({
 
   return (
     <div className="rounded-xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-zinc-900 p-4 text-sm space-y-2">
-      <h4 className="font-semibold">Get Early Access</h4>
+      <h4 className="font-semibold">Join access list</h4>
 
       <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden bg-white text-gray-800">
         <input

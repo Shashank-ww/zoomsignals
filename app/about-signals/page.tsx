@@ -94,7 +94,7 @@ useEffect(() => {
       </section>
 
    {/* SIGNAL FRAMEWORK */}
-<section className="space-y-12">
+<section id="framework" className="space-y-12">
 <div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
 
   <h2 className="text-lg md:text-xl font-semibold">
@@ -186,8 +186,12 @@ useEffect(() => {
 <div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
 
   <h2 className="text-lg md:text-xl font-semibold">
-    Decoding Signal
+    What a signal looks like
   </h2>
+
+  <p className="text-gray-800">
+     Signal captures a pattern observed across multiple live campaigns, not a single ad, but something that is repeating across brands.
+  </p>
 
   <div className="grid lg:grid-cols-3 gap-10 items-start">
 
