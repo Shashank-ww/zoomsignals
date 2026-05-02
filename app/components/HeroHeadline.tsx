@@ -4,14 +4,13 @@ interface HeroHeadlineProps {
 
 export default function HeroHeadline({ headline }: HeroHeadlineProps) {
   return (
-    <div className="space-y-4 dark:text-gray-300 h-full">
+    <div className="space-y-5 dark:text-gray-300 h-full">
 
       {/* ✅ FIXED H1 (SEO + brand clarity) */}
       <h1
         className="
         max-w-2xl
-        text-lg
-        md:text-sm
+        text-sm
         mb-1
         font-medium
         text-gray-600 dark:text-white px-1

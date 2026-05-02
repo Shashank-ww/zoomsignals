@@ -50,7 +50,7 @@ export async function POST(req: Request) {
  await transporter.sendMail({
   from: process.env.EMAIL_FROM,
   to: normalizedEmail,
-  subject: "Here is your signal access! From Myadbreak.com",
+  subject: "Here is your signal data! From Myadbreak.com",
 
   html: `
     <div>
@@ -58,7 +58,7 @@ export async function POST(req: Request) {
       <p>Hey There!</p>
       
       <p>
-      I see you accessed our exclusive database and hope you liked it. Sharing your custom access link:
+      I see you accessed the database. Sharing your custom link:
       </p>
 
       <p> 
@@ -72,7 +72,7 @@ export async function POST(req: Request) {
       </p>
 
       <p>
-      Would genuinely love your thoughts as in what works, what feels missing, anything you'd want deeper understanding on.
+      If you need more info, a larger dataset, insights, maybe something feels missing, anything you'd want deeper understanding on.
       </p>
 
       <p>
@@ -87,11 +87,11 @@ export async function POST(req: Request) {
       <br/>
       Founder, CEO
       <br/>
-      Myadbreak
+      Myadbreak, insights on live ad formats
       </p>
 
       <p>
-      P.S. Link expires in 30 mins. If it doesn’t work, just reply and I will send a fresh one.
+      P.S. This link expires in 30 mins. If it doesn’t work, you can reply to request a fresh one.
       </p>
 
     </div>

@@ -34,9 +34,12 @@ export default function AdminSignalsTable({
 
   const isRowLoading = (id: string) => loadingRowId === id;
 
-  const Spinner = () => (
-  <span className="inline-block w-3 h-3 border-2 border-zinc-400 border-t-transparent rounded-full animate-spin" />
-);
+  const LoadingIndicator = ({ text = "Loading..." }) => (
+    <span className="inline-flex items-center gap-1 text-[10px] text-zinc-500">
+      <span className="w-3 h-3 border-2 border-zinc-400 border-t-transparent rounded-full animate-spin" />
+      {text}
+    </span>
+  );
 
   /* ============================
      REFRESH
@@ -227,6 +230,14 @@ async function handleApproval(id: string, action: "APPROVE" | "REJECT") {
 
   return (
     <div className="space-y-8">
+    
+    {loadingRowId && (
+    <div className="text-xs text-zinc-500 flex items-center gap-2">
+      <span className="w-3 h-3 border-2 border-zinc-400 border-t-transparent rounded-full animate-spin" />
+      Updating database...
+    </div>
+    )}
+
     <div className="flex justify-end gap-2">
 
   {/* DELETE */}
@@ -237,7 +248,7 @@ async function handleApproval(id: string, action: "APPROVE" | "REJECT") {
       className="px-4 py-2 text-sm border border-red-300 text-red-600 rounded-lg hover:bg-red-50 cursor-pointer"
     >
       {loadingBulk
-        ? <Spinner />
+        ? <LoadingIndicator />
         : deletedCount
         ? `${deletedCount} Signal${deletedCount > 1 ? "s" : ""} deleted`
         : `Delete (${selectedIds.length})`}
@@ -424,7 +435,7 @@ async function handleApproval(id: string, action: "APPROVE" | "REJECT") {
                   }}
                   className="text-[10px] md:text-xs px-2.5 py-1 border rounded hover:bg-zinc-50 cursor-pointer disabled:opacity-50"
                 >
-                  {loadingRowId === signal.id ? <Spinner /> : "Edit"}
+                  {loadingRowId === signal.id ? <LoadingIndicator /> : "Edit"}
                 </button>
 
                 <button
@@ -435,7 +446,7 @@ async function handleApproval(id: string, action: "APPROVE" | "REJECT") {
                             }}
                             className="cursor-pointer text-[10px] md:text-xs px-2.5 py-1 border text-red-600 rounded hover:bg-red-50 disabled:opacity-50"
                           >
-                            {loadingBulk ? <Spinner/> : "Delete"}
+                            {loadingBulk ? <LoadingIndicator/> : "Delete"}
                           </button>
 
               </div>
@@ -453,7 +464,7 @@ async function handleApproval(id: string, action: "APPROVE" | "REJECT") {
                 }}
                 className="w-full md:w-auto text-[10px] md:text-xs px-3 py-1 border rounded hover:bg-zinc-50 cursor-pointer disabled:opacity-50"
               >
-                {loadingRowId === signal.id ? <Spinner /> : "Send for Approval"}
+                {loadingRowId === signal.id ? <LoadingIndicator /> : "Send for Approval"}
               </button>
             )}
 
@@ -471,7 +482,7 @@ async function handleApproval(id: string, action: "APPROVE" | "REJECT") {
                   }}
                   className="flex-1 text-[10px] md:text-xs px-3 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200 cursor-pointer disabled:opacity-50"
                 >
-                  {loadingRowId === signal.id ? <Spinner /> : "Approve"}
+                  {loadingRowId === signal.id ? <LoadingIndicator /> : "Approve"}
                 </button>
 
                 <button
@@ -484,7 +495,7 @@ async function handleApproval(id: string, action: "APPROVE" | "REJECT") {
                   }}
                   className="flex-1 text-[10px] md:text-xs px-3 py-1 bg-red-100 text-red-600 rounded hover:bg-red-200 cursor-pointer disabled:opacity-50"
                 >
-                  {loadingRowId === signal.id ? <Spinner /> : "Reject"}
+                  {loadingRowId === signal.id ? <LoadingIndicator /> : "Reject"}
                 </button>
 
               </div>

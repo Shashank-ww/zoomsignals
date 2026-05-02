@@ -209,7 +209,7 @@ export default function AdminControlPanel({
     "
   >
     <TriangleAlert size={14} />
-    Activate Access
+    Unlock Controls
   </button>
 ) : (
   <button
