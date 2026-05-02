@@ -145,6 +145,7 @@ export default function ImportPage() {
             const chunk = allRows.slice(i, i + chunkSize);
 
             const response = await fetch("/api/admin/import", {
+              cache: "no-store",
               method: "POST",
               headers: {
                 "Content-Type": "application/json",

@@ -11,7 +11,9 @@ export default function SignalInline({ id }: { id: string }) {
   useEffect(() => {
     async function loadSignals() {
       try {
-        const res = await fetch("/api/signals");
+        const res = await fetch("/api/signals", {
+          cache: "no-store"
+        });
         const data = await res.json();
 
         const normalized = data.map((s: any) => ({

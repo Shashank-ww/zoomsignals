@@ -15,7 +15,9 @@ export default function FundingPage() {
     useEffect(() => {
     async function loadSignal() {
       try {
-        const res = await fetch("/api/signals");
+        const res = await fetch("/api/signals", {
+          cache: "no-store"
+        });
         const data = await res.json();
   
         if (!Array.isArray(data)) {

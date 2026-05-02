@@ -94,6 +94,8 @@ console.log("PROP resonance:", signal.resonanceScore);
   setVoterHash(existing);
 }, []);
 
+const [isVoting, setIsVoting] = useState(false);
+
     // Might as well keep below, only updating because of the SAFARI Browser along with above useeffect comment just before
   //   if (!existing) {
   //     existing = crypto.randomUUID();
@@ -107,10 +109,13 @@ console.log("PROP resonance:", signal.resonanceScore);
   setResonanceScore(Number(signal?.resonanceScore ?? 0));
 }, [signal.resonanceScore]);
 
-  // ✅ OPTIMISTIC + RECONCILIATION
+  // OPTIMISTIC + RECONCILIATION
 const handleFeedback = async (type: "RELEVANT" | "NOT_RELEVANT") => {
-  if (!voterHash) return;
+  if (!voterHash || isVoting) return;
 
+  setIsVoting(true); // VOTE STARTS LOADING HERE
+
+  // OPTIMISTIC UPDATE
   if (type === "RELEVANT") {
     setRelevantCount(prev => prev + 1);
   } else {
@@ -119,48 +124,38 @@ const handleFeedback = async (type: "RELEVANT" | "NOT_RELEVANT") => {
 
   try {
     const res = await fetch("/api/vote", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          signalId: signal.id,
-          type,
-          voterHash,
-        }),
-      });
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        signalId: signal.id,
+        type,
+        voterHash,
+      }),
+    });
 
+    if (!res.ok) {
 
-if (!res.ok) {
-  if (type === "RELEVANT") {
-    setRelevantCount(prev => prev - 1);
-  } else {
-    setNotRelevantCount(prev => prev - 1);
-  }
-  console.error("Vote failed:", await res.text());
-  return;
-}
+      if (type === "RELEVANT") {
+        setRelevantCount(prev => prev - 1);
+      } else {
+        setNotRelevantCount(prev => prev - 1);
+      }
 
-const data = await res.json();
+      console.error("Vote failed:", await res.text());
+      return;
+    }
 
-setRelevantCount(data.relevantCount);
-setNotRelevantCount(data.notRelevantCount);
-setResonanceScore(data.resonanceScore);
+    const data = await res.json();
 
-// setRelevantCount(
-//   Number.isFinite(data.relevantCount)
-//     ? data.relevantCount
-//     : 0
-// );
-
-// setNotRelevantCount(
-//   Number.isFinite(data.notRelevantCount)
-//     ? data.notRelevantCount
-//     : 0
-// );
-
-
+    // reconcile with server
+    setRelevantCount(data.relevantCount);
+    setNotRelevantCount(data.notRelevantCount);
+    setResonanceScore(data.resonanceScore);
 
   } catch (err) {
     console.error("Vote failed", err);
+  } finally {
+    setIsVoting(false); 
   }
 };
 
@@ -411,8 +406,12 @@ setResonanceScore(data.resonanceScore);
           cursor-pointer
         "
       >
-        &#x1F44E;
-        <span className="opacity-80">{notRelevantCount}</span>
+        {isVoting ? (
+    <span className="w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin" />
+  ) : (
+    "👎"
+  )}
+  <span className="opacity-80">{notRelevantCount}</span>
       </button>
 
       <button
@@ -431,8 +430,12 @@ setResonanceScore(data.resonanceScore);
           cursor-pointer
         "
       >
-        &#x1F44D;
-        <span className="opacity-80">{relevantCount}</span>
+        {isVoting ? (
+    <span className="w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin" />
+  ) : (
+    "👍"
+  )}
+  <span className="opacity-80">{relevantCount}</span>
       </button>
 
     </div>

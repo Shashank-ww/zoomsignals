@@ -46,7 +46,9 @@ export default function AdminSignalsTable({
   ============================ */
 
   async function refresh() {
-    const res = await fetch("/api/admin/signals");
+    const res = await fetch("/api/admin/signals", {
+      cache: "no-store"
+    });
     const data = await res.json();
     setRows(data);
     setSelectedIds([]);
@@ -61,6 +63,7 @@ async function updateStatus(id: string, status: string) {
 
   try {
     const res = await fetch("/api/admin/signals", {
+      cache: "no-store", 
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -190,6 +193,8 @@ async function deleteSelected(ids: string[]) {
   ============================ */
 
 async function handleApproval(id: string, action: "APPROVE" | "REJECT") {
+  await refresh();
+  
   if (!isAuthorized) {
     setShowPassword(true);
     return;
