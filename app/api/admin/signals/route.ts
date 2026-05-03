@@ -1,7 +1,29 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
+function normalizeAdvertiser(input: any) {
+  if (!input) return [];
+
+  // already array → [{ brandName }]
+  if (Array.isArray(input)) {
+    return input.map((a: any) => ({
+      brandName: a.brandName?.trim().toUpperCase(),
+    }));
+  }
+
+  // string → "BMW, AUDI"
+  if (typeof input === "string") {
+    return input.split(",").map((name: string) => ({
+      brandName: name.trim().toUpperCase(),
+    }));
+  }
+
+  return [];
+}
+
 export const dynamic = "force-dynamic";
+export const revalidate = 0;
+export const runtime = "nodejs";
 
 /* ---------------------- */
 /* GET ALL SIGNALS */
@@ -17,15 +39,21 @@ export async function GET() {
     },
   });
 
-  return NextResponse.json(signals);
+  return NextResponse.json(signals, {
+    headers: {
+      "Cache-Control": "no-store, max-age=0",
+    }
+  });
 }
 
 /* ---------------------- */
-/* CREATE SIGNAL */
+/* CREATE SIGNAL or POST */
 /* ---------------------- */
 export async function POST(req: Request) {
   try {
     const body = await req.json();
+
+    const advertisers = normalizeAdvertiser(body.advertiser);
 
     const signal = await prisma.signal.create({
       data: {
@@ -43,16 +71,12 @@ export async function POST(req: Request) {
         imageUrl: body.imageUrl || null,
         sourceLink: body.sourceLink || null,
 
-        advertiser: body.advertiser?.length
+        advertiser: advertisers.length
           ? {
-              connectOrCreate: body.advertiser.map((a: any) => {
-                const brand = a.brandName.trim().toUpperCase();
-
-                return {
-                  where: { brandName: brand },
-                  create: { brandName: brand },
-                };
-              }),
+              connectOrCreate: advertisers.map((a: any) => ({
+                where: { brandName: a.brandName },
+                create: { brandName: a.brandName },
+              })),
             }
           : undefined,
       },
@@ -63,7 +87,11 @@ export async function POST(req: Request) {
       },
     });
 
-    return NextResponse.json(signal);
+    return NextResponse.json(signal, {
+      headers: {
+        "Cache-Control": "no-store",
+      },
+    });
   } catch (error) {
     console.error("POST error:", error);
     return NextResponse.json(
@@ -98,19 +126,17 @@ export async function PATCH(req: Request) {
     }
 
     if (advertiser !== undefined) {
-      updateData.advertiser = {
-        set: [], // clear existing relations
+  const advertisers = normalizeAdvertiser(advertiser);
 
-        connectOrCreate: advertiser.map((a: any) => {
-          const brand = a.brandName.trim().toUpperCase();
+  updateData.advertiser = {
+    set: [],
 
-          return {
-            where: { brandName: brand },
-            create: { brandName: brand },
-          };
-        }),
-      };
-    }
+    connectOrCreate: advertisers.map((a: any) => ({
+      where: { brandName: a.brandName },
+      create: { brandName: a.brandName },
+    })),
+  };
+}
 
     const updated = await prisma.signal.update({
       where: { id },
@@ -122,7 +148,11 @@ export async function PATCH(req: Request) {
       },
     });
 
-    return NextResponse.json(updated);
+    return NextResponse.json(updated, {
+      headers: {
+        "Cache-Control": "no-store",
+      }
+    });
   } catch (error) {
     console.error("PATCH error:", error);
     return NextResponse.json(

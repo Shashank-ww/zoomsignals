@@ -79,7 +79,7 @@ export default function HeroHeadline({ headline }: HeroHeadlineProps) {
 
       {/* MICRO TRUST LINE */}
       <p className="text-xs text-gray-500 pt-2">
-        Tracking patterns across live campaigns on Meta, YouTube and more. <br/> Exclusively monitoring{" "} 
+        Tracking patterns across live campaigns on Meta, YouTube and more. Exclusively monitoring{" "} 
       <span className="underline underline-offset-2"> 
       automobile category 
       </span>. 

@@ -73,7 +73,7 @@ const allAdvertisers = [
 const [search, setSearch] = useState("");
 
 const filteredAdvertisers = allAdvertisers.filter((a) =>
-  a.brandName.toUpperCase().includes(search.toUpperCase())
+  a.brandName.trim().toUpperCase().includes(search.trim().toUpperCase())
 );
 
 useEffect(() => {
@@ -102,7 +102,9 @@ useEffect(() => {
     author: signal.author ?? "Admin",
     imageUrl: signal.imageUrl ?? "",
     sourceLink: signal.sourceLink ?? "",
-    advertiser: signal.advertiser ?? [],
+    advertiser: (signal.advertiser || []).map((a) => ({
+      brandName: a.brandName.trim().toUpperCase(),
+    })),
   });
 }, [signal]);
 
@@ -274,7 +276,9 @@ useEffect(() => {
   <div className="flex flex-wrap gap-2 mt-3">
     {filteredAdvertisers.map((brand) => {
       const active = form.advertiser.some(
-        (a) => a.brandName === brand.brandName
+        (a) =>
+          a.brandName.trim().toUpperCase() ===
+          brand.brandName.trim().toUpperCase()
       );
 
       return (
@@ -285,8 +289,11 @@ useEffect(() => {
             if (active) {
               setForm({
                 ...form,
-                advertiser: form.advertiser.filter(
-                  (a) => a.brandName !== brand.brandName
+                advertiser: 
+                form.advertiser.filter(
+                  (a) =>
+                    a.brandName.trim().toUpperCase() !==
+                    brand.brandName.trim().toUpperCase()
                 ),
               });
             } else {

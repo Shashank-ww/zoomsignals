@@ -193,8 +193,6 @@ async function deleteSelected(ids: string[]) {
   ============================ */
 
 async function handleApproval(id: string, action: "APPROVE" | "REJECT") {
-  await refresh();
-  
   if (!isAuthorized) {
     setShowPassword(true);
     return;
