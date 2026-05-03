@@ -72,7 +72,7 @@ export async function POST(req: Request) {
       </p>
 
       <p>
-      If you need more info, a larger dataset, insights, maybe something feels missing, anything you'd want deeper understanding on.
+      If you need more info, a larger dataset, insights, feel something missing, or anything you'd want deeper understanding on.
       </p>
 
       <p>

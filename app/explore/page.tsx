@@ -97,7 +97,7 @@ export default function Explore() {
       <section className="space-y-6">
 <div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
 
-  <h2 className="text-lg md:text-xl font-semibold">
+  <h2 className="text-2xl font-semibold tracking-tight">
           What it does
           </h2>
 
@@ -124,7 +124,7 @@ export default function Explore() {
       <section className="space-y-6">
 <div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
 
-  <h2 className="text-lg md:text-xl font-semibold">
+  <h2 className="text-2xl font-semibold tracking-tight">
           Why this matters
           </h2>
 
@@ -147,10 +147,10 @@ export default function Explore() {
       </section>
 
 {/* WHO ARE WE HERE FOR */}
-<section className="space-y-8">
+<section id="herefor" className="space-y-8">
 <div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
 
-  <h2 className="text-lg md:text-xl font-semibold">
+  <h2 className="text-2xl font-semibold tracking-tight">
     Who are we here for
     </h2>
 
@@ -216,7 +216,7 @@ export default function Explore() {
 </section>
 
       <section className="flex flex-col items-center justify-center space-y-6 border-t text-center pt-12">
-        <h2 className="text-xl font-semibold">
+        <h2 className="text-2xl font-semibold tracking-tight">
           Built by industry professionals
         </h2>
 
@@ -236,7 +236,7 @@ export default function Explore() {
       {/* CTA */}
         <section className="text-center space-y-6 pt-12">
 
-          <h2 className="text-2xl font-semibold">
+          <h2 className="text-2xl font-semibold tracking-tight">
             Start a conversation
           </h2>
 

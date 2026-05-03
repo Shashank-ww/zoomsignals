@@ -77,7 +77,7 @@ export default function FundingPage() {
 
         {/* GAP */}
         <section className="space-y-4">
-          <h2 className="text-xl font-semibold">What are we trying to solve</h2>
+          <h2 className="text-2xl font-semibold tracking-tight">What are we trying to solve</h2>
 
           <p className="text-gray-600 leading-relaxed ">
             Billions spent on ads, thousands of campaigns go live every day across Meta,
@@ -99,7 +99,7 @@ export default function FundingPage() {
         <section className="grid lg:grid-cols-2 gap-10 items-start">
 
           <div className="space-y-4">
-          <h2 className="text-xl font-semibold">What we are doing</h2>
+          <h2 className="text-2xl font-semibold tracking-tight">What we are doing</h2>
 
           <p className="text-gray-600 leading-relaxed ">
             We are tracking live ads, breaking them down into patterns, and
@@ -131,7 +131,7 @@ export default function FundingPage() {
 <section className="space-y-6 flex flex-col items-center text-center">
 
   <div className="space-y-3 max-w-prose">
-    <h2 className="text-xl font-semibold">Our proof of work</h2>
+    <h2 className="text-2xl font-semibold tracking-tight">Our proof of work</h2>
 
     <p className="text-gray-600 leading-relaxed">
       A real pattern observed across active campaigns. This is not a single ad preview, 
@@ -213,7 +213,7 @@ export default function FundingPage() {
 
         {/* WHY THIS MATTERS */}
         <section className="space-y-4">
-          <h2 className="text-xl font-semibold">Why this matters</h2>
+          <h2 className="text-2xl font-semibold tracking-tight">Why this matters</h2>
 
           <p className="text-gray-600 leading-relaxed ">
             As more ads get generated using AI, volume is increasing but

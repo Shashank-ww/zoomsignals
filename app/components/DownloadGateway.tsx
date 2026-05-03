@@ -10,8 +10,8 @@ export default function DownloadGateway() {
       <div className="space-y-6">
 <div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
 
-  <h2 className="text-lg md:text-xl font-semibold">
-          Access Exclusive Signal Data
+  <h2 className="text-2xl font-semibold tracking-tight">
+          Access exclusive signal data
         </h2>
         <p className="text-sm text-gray-500">
           Download curated, high-performing ad formats across platforms. Start with a sample or unlock the full dataset.

@@ -120,7 +120,7 @@ export default function About() {
 
   <div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
 
-  <h2 className="text-lg md:text-xl font-semibold">
+  <h2 className="text-2xl font-semibold tracking-tight">
     What we do
   </h2>
 
@@ -168,8 +168,8 @@ export default function About() {
 <section className="space-y-10">
  <div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
 
-  <h2 className="text-lg md:text-xl font-semibold">
-    How It Works
+  <h2 className="text-2xl font-semibold tracking-tight">
+    How it works
   </h2>
 
   <div className="grid gap-12 sm:grid-cols-2 dark:text-gray-200">
@@ -214,7 +214,7 @@ export default function About() {
 <section className="space-y-6">
   <div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
 
-  <h2 className="text-lg md:text-xl font-semibold">
+  <h2 className="text-2xl font-semibold tracking-tight">
           Who we are
         </h2>
 
@@ -248,8 +248,8 @@ export default function About() {
       <section className="space-y-6">
 <div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
 
-  <h2 className="text-lg md:text-xl font-semibold">
-          What This Is. And Isn&apos;t
+  <h2 className="text-2xl font-semibold tracking-tight">
+          What this is. And isn&apos;t
         </h2>
 
 <ul className="text-gray-700 leading-relaxed space-y-4 dark:text-gray-200">

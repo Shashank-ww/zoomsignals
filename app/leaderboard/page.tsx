@@ -79,7 +79,7 @@ function getMetricStyle(value?: string) {
         </h1>
 
         <p className="text-zinc-600 max-w-2xl text-sm md:text-base leading-relaxed">
-         This leaderboard shows performance, not noise. Keep an eye on signals that do well, formats that are popular, and advertisers who use them again and often.
+         This leaderboard shows performance, without noise. Keep an eye on signals that do well, formats that are popular, and advertisers who use them again and often. We review and update these frequently.
         </p>
       </section>
 

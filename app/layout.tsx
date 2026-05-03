@@ -7,6 +7,10 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   metadataBase: new URL("https://myadbreak.com"),
 
+  verification: {
+    google: "PhCX4IMy-QOBg9m6YC1m4XdWDH9IZTdx-CxSOYPiPa4",
+  },
+
   title: {
     default: "Myadbreak, insights on live ad formats",
     template: "%s | MyAdBreak",

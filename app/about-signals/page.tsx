@@ -5,6 +5,7 @@ import type { Signal } from "@/app/types/signal.types";
 import SignalCard from "@/app/components/SignalCard";
 import { Gauge, Loader2, Repeat, ShieldCheck, Zap } from "lucide-react";
 import DownloadGateway from "@/app/components/DownloadGateway";
+import FaqSection from "../components/FaqSection";
 
 export default function AboutSignals() {
   const [activeLayer, setActiveLayer] = useState(0);
@@ -99,7 +100,7 @@ useEffect(() => {
 <section id="framework" className="space-y-12">
 <div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
 
-  <h2 className="text-lg md:text-xl font-semibold">
+  <h2 className="text-2xl font-semibold tracking-tight">
     Signal Framework
   </h2>
 
@@ -187,7 +188,7 @@ useEffect(() => {
 <section className="space-y-8">
 <div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
 
-  <h2 className="text-lg md:text-xl font-semibold">
+  <h2 className="text-2xl font-semibold tracking-tight">
     What a signal looks like
   </h2>
 
@@ -238,7 +239,7 @@ useEffect(() => {
   <div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
 
   <div className="max-w-4xl space-y-6">
-    <h2 className="text-lg md:text-xl font-semibold">
+    <h2 className="text-2xl font-semibold tracking-tight">
       See what&apos;s breaking ads
     </h2>
 
@@ -267,8 +268,8 @@ useEffect(() => {
       <section className="space-y-12 max-w-4xl">
 <div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
 
-  <h2 className="text-lg md:text-xl font-semibold">
-          How To Use Signals
+  <h2 className="text-2xl font-semibold tracking-tight">
+          How to use Signals
         </h2>
 
         <div className="grid md:grid-cols-3 gap-16">
@@ -302,6 +303,8 @@ useEffect(() => {
 
         </div>
       </section>
+
+      <FaqSection/>
 
       {/* DOWNLOAD GATEWAY CTA*/}
 <section id="accessdata" className="space-y-8">

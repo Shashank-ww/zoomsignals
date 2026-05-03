@@ -62,7 +62,7 @@ export default function HeroSection({
             <div className="grid md:grid-cols-2 gap-12 text-sm text-gray-600 leading-relaxed">
 
                 <div className="space-y-5">
-                <h2 className="text-xl font-light text-gray-800">
+                <h2 className="text-2xl font-light tracking-tight text-gray-800">
                   Methodology we use
                 </h2>
 
@@ -92,7 +92,7 @@ export default function HeroSection({
                 </div>
 
                 <div className="space-y-5">
-                <h2 className="text-xl font-light text-gray-800">
+                <h2 className="text-2xl tracking-tight font-light text-gray-800">
                     Pattern Markers
                 </h2>
 
@@ -153,7 +153,7 @@ function LiveFeedHeader({
           <span className="block w-6 h-2 border-b-[1.5px] border-blue-600 mt-1"></span>
         </div>
 
-        <h2 className="text-2xl font-bold text-gray-900 tracking-tight">
+        <h2 className="text-2xl font-semibold text-gray-900 tracking-tight">
           Know what&apos;s working at-the-moment
         </h2>
 
