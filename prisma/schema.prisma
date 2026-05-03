@@ -59,6 +59,7 @@ model ImportLog {
   inserted  Int
   updated   Int
   failed    Int
+  total     Int
   createdAt DateTime @default(now())
 }
 

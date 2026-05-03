@@ -21,66 +21,78 @@ export default function SignalAdminModal({
   onSaved?: () => void;
 }) {
 
-  const [form, setForm] = useState<{
-  formatName: string;
-  lifecycle: Lifecycle;
-  velocity: Velocity;
-  confidence: Confidence;
-  approvalStatus: ApprovalStatus;
-  primaryPlatforms: Platform[];
-  narrative: Narrative;
-  repetitionCount: number;
-  insight: string;
-  author: string;
-  imageUrl: string;
-  sourceLink: string;
-  advertiser: { brandName: string }[];
-}>({
-  formatName: "",
-  lifecycle: Lifecycle.EARLY,
-  velocity: Velocity.EMERGING,
-  confidence: Confidence.HIGH,
-  approvalStatus: ApprovalStatus.DRAFT,
-  primaryPlatforms: [Platform.INSTAGRAM],
-  narrative: Narrative.THEMATIC,
-  repetitionCount: 1,
-  insight: "",
-  author: "Admin",
-  imageUrl: "",
-  sourceLink: "",
-  advertiser: [],
-});
+ const [form, setForm] = useState(() => ({
+  formatName: signal?.formatName || "",
+  lifecycle: signal?.lifecycle || Lifecycle.EARLY,
+  velocity: signal?.velocity || Velocity.EMERGING,
+  confidence: signal?.confidence || Confidence.HIGH,
+  approvalStatus: signal?.approvalStatus || ApprovalStatus.DRAFT,
+  primaryPlatforms: signal?.primaryPlatforms || [Platform.INSTAGRAM],
+  narrative: signal?.narrative || Narrative.THEMATIC,
+  repetitionCount: signal?.repetitionCount || 1,
+  insight: signal?.insight || "",
+  author: signal?.author ?? "Admin",
+  imageUrl: signal?.imageUrl ?? "",
+  sourceLink: signal?.sourceLink ?? "",
+  advertiser: (signal?.advertiser || []).map((a) => ({
+    brandName: a.brandName.trim().toUpperCase(),
+  })),
+}));
 
 const PLATFORMS = Object.values(Platform);
 
-const [advertisers, setAdvertisers] = useState<{ id: string; brandName: string }[]>([]);
+const [advertiserOptions, setAdvertiserOptions] = useState<
+  { id: string; brandName: string }[]
+>([]);
 
-const allAdvertisers = [
-  ...advertisers,
-  ...form.advertiser
-    .filter(
-      (fa) =>
-        !advertisers.some(
-          (a) => a.brandName === fa.brandName
-        )
-    )
-    .map((fa) => ({
-      id: fa.brandName, // fallback id
-      brandName: fa.brandName,
-    })),
-];
+// const allAdvertisers = [
+//   ...advertisers,
+//   ...form.advertiser
+//     .filter(
+//       (fa) =>
+//         !advertisers.some(
+//           (a) => a.brandName === fa.brandName
+//         )
+//     )
+//     .map((fa) => ({
+//       id: fa.brandName, // fallback id
+//       brandName: fa.brandName,
+//     })),
+// ];
 
 const [search, setSearch] = useState("");
 
-const filteredAdvertisers = allAdvertisers.filter((a) =>
-  a.brandName.trim().toUpperCase().includes(search.trim().toUpperCase())
+// const filteredAdvertisers = allAdvertisers.filter((a) =>
+//   a.brandName.trim().toUpperCase().includes(search.trim().toUpperCase())
+// );
+
+const filteredAdvertisers = [
+  ...advertiserOptions,
+  ...form.advertiser
+    .filter(
+      (fa) =>
+        !advertiserOptions.some(
+          (a) =>
+            a.brandName.trim().toUpperCase() ===
+            fa.brandName.trim().toUpperCase()
+        )
+    )
+    .map((fa) => ({
+      id: fa.brandName,
+      brandName: fa.brandName,
+    })),
+].filter((a) =>
+  a.brandName
+    .trim()
+    .toUpperCase()
+    .includes(search.trim().toUpperCase())
 );
 
 useEffect(() => {
   async function loadAdvertisers() {
     const res = await fetch("/api/advertisers");
     const data = await res.json();
-    setAdvertisers(data);
+    setAdvertiserOptions(data);
   }
 
   loadAdvertisers();
@@ -89,7 +101,8 @@ useEffect(() => {
 useEffect(() => {
   if (!signal) return;
 
-  setForm({
+  setForm((prev) => ({
+    ...prev,
     formatName: signal.formatName,
     lifecycle: signal.lifecycle,
     velocity: signal.velocity,
@@ -105,7 +118,7 @@ useEffect(() => {
     advertiser: (signal.advertiser || []).map((a) => ({
       brandName: a.brandName.trim().toUpperCase(),
     })),
-  });
+  }));
 }, [signal]);
 
   const [loading, setLoading] = useState(false);
@@ -250,11 +263,13 @@ useEffect(() => {
     className="mt-2 w-full bg-zinc-50 border border-zinc-200 rounded-lg px-3 py-2 text-sm"
     onKeyDown={(e) => {
       if (e.key === "Enter") {
+        e.preventDefault(); 
+        
         const value = search.trim().toUpperCase();
         if (!value) return;
 
         const exists = form.advertiser.some(
-          (a) => a.brandName === value
+          (a) => a.brandName.trim().toUpperCase() === value
         );
 
         if (!exists) {
@@ -301,7 +316,7 @@ useEffect(() => {
                 ...form,
                 advertiser: [
                   ...form.advertiser,
-                  { brandName: brand.brandName },
+                  { brandName: brand.brandName.trim().toUpperCase() },
                 ],
               });
             }

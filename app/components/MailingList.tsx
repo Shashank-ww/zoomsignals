@@ -77,7 +77,7 @@ export default function MailingList({
         <button
           onClick={handleSubmit}
           disabled={status === "loading" || !email}
-          className="px-4 py-2 text-xs font-medium bg-zinc-800 text-white hover:bg-blue-500 transition-all flex items-center gap-1"
+          className="px-4 py-2 text-xs font-medium bg-zinc-800 text-white hover:bg-blue-500 transition-all flex items-center gap-1 cursor-pointer"
         >
           {status === "loading" && <Loader className="w-4 h-4 animate-spin" />}
           {status === "success"

@@ -31,6 +31,7 @@ export default function ImportPage() {
   const [confirmText, setConfirmText] = useState("");
 
   const [history, setHistory] = useState<any[]>([]);
+  const [previewRows, setPreviewRows] = useState<any[]>([]);
 
   // Admin password (no frontend validation)
   const [adminPassword, setAdminPassword] = useState("");
@@ -100,6 +101,7 @@ export default function ImportPage() {
       complete: async (results) => {
         try {
           const allRows = results.data as any[];
+          setPreviewRows(allRows.slice(0, 10));
 
           if (!allRows.length) {
             throw new Error("CSV is empty");
@@ -204,7 +206,7 @@ export default function ImportPage() {
 
   return (
     <div className="min-h-screen flex justify-center">
-      {/* 🔄 LOADING OVERLAY */}
+      {/* LOADING OVERLAY */}
       {loading && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-2xl shadow-xl flex flex-col items-center gap-4">
@@ -305,11 +307,47 @@ export default function ImportPage() {
             )}
           </div>
 
+          {previewRows.length > 0 && (
+            <div className="border rounded-xl p-4 bg-gray-50">
+              <p className="text-sm font-medium mb-2">
+                Preview (first 10 rows)
+              </p>
+
+              <div className="overflow-x-auto text-xs">
+                <table className="w-full">
+                  <thead>
+                    <tr>
+                      {Object.keys(previewRows[0]).map((key) => (
+                        <th key={key} className="text-left p-2 border-b">
+                          {key}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    {previewRows.map((row, i) => (
+                      <tr key={i}>
+                        {Object.values(row).map((val: any, j) => (
+                          <td key={j} className="p-2 border-b">
+                            {String(val)}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
           <div className="flex gap-4">
             <button
               onClick={handleImport}
               disabled={!file || loading}
-              className="px-6 py-2 bg-black text-white rounded-lg disabled:opacity-40"
+              className={`px-6 py-2 rounded-lg text-white ${
+                loading ? "bg-gray-400" : "bg-black hover:bg-zinc-800"
+              }`}
             >
               Start Import
             </button>
@@ -333,7 +371,7 @@ export default function ImportPage() {
               <p>Failed: {result.failed}</p>
             </div>
 
-            {/* ✅ ERROR CARD RESTORED */}
+            {/* ERROR CARD RESTORED */}
             {result.errors?.length > 0 && (
               <div className="mt-4 bg-red-50 border border-red-200 p-4 rounded-xl text-sm">
                 <p className="font-semibold mb-2">Errors:</p>
@@ -359,17 +397,38 @@ export default function ImportPage() {
             </p>
           )}
 
-          {history.map((item) => (
-            <div
-              key={item.id}
-              className="text-sm border-b py-2 flex justify-between"
-            >
-              <span>{item.fileName}</span>
-              <span>
-                {new Date(item.createdAt).toLocaleString()}
-              </span>
-            </div>
-          ))}
+          <div className="space-y-3">
+            {history.map((item) => (
+              <div
+                key={item.id}
+                className="border rounded-xl p-4 flex justify-between items-center"
+              >
+                <div className="space-y-1">
+                  <div className="font-medium text-sm">
+                    {item.fileName}
+                  </div>
+
+                  <div className="text-xs text-gray-500 flex gap-3">
+                    <span>Mode: {item.mode}</span>
+                    <span>Total: {item.total}</span>
+                    <span className="text-green-600">
+                      +{item.inserted}
+                    </span>
+                    <span className="text-blue-600">
+                      ↺ {item.updated}
+                    </span>
+                    <span className="text-red-600">
+                      -{item.failed}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="text-xs text-gray-400">
+                  {new Date(item.createdAt).toLocaleString()}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

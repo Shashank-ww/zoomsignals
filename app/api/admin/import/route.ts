@@ -25,11 +25,11 @@ export async function POST(req: Request) {
     }
 
     const body = await req.json();
-const { mode, rows, fileName } = body as {
-  mode: "append" | "upsert";
-  rows: any[];
-  fileName?: string;
-};
+    const { mode, rows, fileName } = body as {
+      mode: "append" | "upsert";
+      rows: any[];
+      fileName?: string;
+    };
 
     if (!Array.isArray(rows)) {
       return NextResponse.json(
@@ -215,6 +215,7 @@ const historyRecord = await prisma.importLog.create({
     inserted,
     updated,
     failed,
+    total : rows.length,
   },
 });
 

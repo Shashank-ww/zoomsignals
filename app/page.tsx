@@ -11,7 +11,7 @@ export default async function Page() {
     "Ad break that makes you stand out, first",
     "Make decisions before ads break your budget",
     "Early patterns that give you a real edge",
-    "See patterns that are repeating across live ads",
+    "See patterns that repeat across live ads",
     "Stop guessing. Start seeing what scales",
     "Find winning ad patterns before the next flighting",
   ];

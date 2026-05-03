@@ -56,7 +56,7 @@ export default function HeroSection({
         <section id="explainer" className="border-t border-gray-200 bg-gray-50 cursor-auto">
             <div
             className={`max-w-6xl mx-auto px-6 transition-all duration-500 overflow-hidden ${
-                showExplainer ? "max-h-200 py-20 opacity-100" : "max-h-0 opacity-0"
+                showExplainer ? "max-h-400 py-20 opacity-100" : "max-h-0 opacity-0"
             }`}
             >
             <div className="grid md:grid-cols-2 gap-12 text-sm text-gray-600 leading-relaxed">
@@ -158,7 +158,7 @@ function LiveFeedHeader({
         </h2>
 
         <p className="text-sm text-gray-600 max-w-md mt-2">
-          Discover real-time ad formats and creative patterns in its lifecycle across D2C competition brands on social media.
+          Discover real-time ad formats and creative patterns in its lifecycle across competition brands on social media.
         </p>
       
       </div>
