@@ -171,7 +171,7 @@ const handleFeedback = async (type: "RELEVANT" | "NOT_RELEVANT") => {
               <img
                 src={signal.imageUrl}
                 alt={signal.formatName}
-                className="w-full h-full object-cover object-center"
+                className="w-full h-full object-contain object-center"
                 loading="lazy"
                 decoding="async"
                 style={{ maxWidth: '100%', maxHeight: '100%' }}
@@ -182,21 +182,21 @@ const handleFeedback = async (type: "RELEVANT" | "NOT_RELEVANT") => {
               </div>
             )}
 
-{/*  NARRATIVE OVERLAY 
-{signal.narrative && (
-  <div className="
-    absolute bottom-0 left-0 w-full
-    bg-linear-to-t from-black/70 via-black/50 to-transparent
-    text-white
-    p-2
-    hidden md:block
-  ">
-    <p className="flex items-center justify-center text-xs md:text-sm font-medium leading-snug line-clamp-2">
-      {signal.narrative}
-    </p>
-  </div>
-)}
-  */}
+            {/*  NARRATIVE OVERLAY 
+            {signal.narrative && (
+              <div className="
+                absolute bottom-0 left-0 w-full
+                bg-linear-to-t from-black/70 via-black/50 to-transparent
+                text-white
+                p-2
+                hidden md:block
+              ">
+                <p className="flex items-center justify-center text-xs md:text-sm font-medium leading-snug line-clamp-2">
+                  {signal.narrative}
+                </p>
+              </div>
+            )}
+              */}
 
           </div>
 

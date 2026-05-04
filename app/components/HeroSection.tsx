@@ -104,7 +104,10 @@ export default function HeroSection({
                 </ul>
 
                 <p>
-                    We discover patterns early, making it easy for the planners and marketers to improve decision making and audience engagement.
+                    We discover patterns early, making it easy for the planners and marketers to improve decision making and audience engagement.&nbsp;
+                    <a href="/about-signals/#faqs" className="hover:underline hover:text-blue-500 transition"> 
+                     See FAQs
+                    </a> →
                 </p>
 
                 </div>

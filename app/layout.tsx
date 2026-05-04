@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   },
 
   title: {
-    default: "Myadbreak, insights on live ad formats",
+    default: "Myadbreak, signals that scale before you spend",
     template: "%s | MyAdBreak",
   },
 
@@ -20,12 +20,34 @@ export const metadata: Metadata = {
     "MyAdBreak tracks patterns from live advertising campaigns and turns them into usable signals. See what’s actually working across Meta, YouTube, and more.",
 
   keywords: [
-    "myadbreak",
-    "ad signals",
-    "meta ad library alternative",
-    "ad intelligence",
+    // Core category
+    "ad intelligence platform",
+    "ad spy tool",
+    "facebook ads spy",
+    "meta ads library alternative",
+    "ad research tool",
+
+    // Creative strategy
+    "winning ads examples",
+    "high converting ad creatives",
+    "ad hooks examples",
+    "video ad ideas",
+    "ad copy inspiration",
+
+    // D2C / performance
+    "ecommerce ads examples",
+    "d2c ad strategy",
+    "performance marketing ads",
+    "lead generation ads examples",
+
+    // Positioning angle
     "ad patterns",
-    "d2c ads",
+    "creative signals",
+    "ad trend analysis",
+    "what ads are working now",
+
+    // Brand
+    "myadbreak",
   ],
 
   alternates: {

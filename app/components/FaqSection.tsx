@@ -67,7 +67,7 @@ export default function FaqSection() {
             Questions before you decide
         </h2>
         <p className="text-zinc-700 text-sm mt-2">
-            Clear answers. No fluff.
+            Clear answers. No advertising!
         </p>
         </div>
 

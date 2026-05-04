@@ -13,7 +13,7 @@ export default async function BlogPost({
   const { frontmatter, content } = getBlogBySlug(slug);
 
   return (
-<main className="mx-auto max-w-6xl px-6 py-24">
+<main className="mx-auto max-w-4xl px-6 py-24">
 
   <header className="border-b border-gray-200 pb-10 mb-16">
     <h1 className="py-1

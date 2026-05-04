@@ -6,7 +6,7 @@ export default function HeroHeadline({ headline }: HeroHeadlineProps) {
   return (
     <div className="space-y-5 dark:text-gray-300 h-full">
 
-      {/* ✅ FIXED H1 (SEO + brand clarity) */}
+      {/* FIXED H1 (SEO + brand clarity) */}
       <h1
         className="
         max-w-2xl
@@ -16,7 +16,7 @@ export default function HeroHeadline({ headline }: HeroHeadlineProps) {
         text-gray-600 dark:text-white px-1
       "
       >
-        Myadbreak, insights on live ad formats
+        Myadbreak, signals that scale before you spend
       </h1>
 
       {/* DYNAMIC HEADLINE */}
@@ -30,7 +30,7 @@ export default function HeroHeadline({ headline }: HeroHeadlineProps) {
         bg-linear-to-tr from-blue-500 to-sky-400 bg-clip-text text-transparent
         tracking-[-0.02em]
         leading-[1.05]
-        font-extralight
+        font-light
       "
       >
         {headline}
@@ -78,8 +78,8 @@ export default function HeroHeadline({ headline }: HeroHeadlineProps) {
       </div>
 
       {/* MICRO TRUST LINE */}
-      <p className="text-xs text-gray-500 pt-2">
-        Tracking patterns across live campaigns on Meta, YouTube and more. Exclusively monitoring{" "} 
+      <p className="text-xs text-gray-500 pt-2 max-w-prose">
+        Tracking 90+ patterns across live campaigns on Meta, YouTube and more. Exclusively monitoring{" "} 
       <span className="underline underline-offset-2"> 
       automobile category 
       </span>. 
