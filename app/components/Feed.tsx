@@ -19,6 +19,10 @@ export default function Feed({ initialSignals }: FeedProps) {
   const [signals, setSignals] = useState<Signal[]>(initialSignals);
   const [isLoading, setIsLoading] = useState(false);
 
+
+  /* ---------------- SEARCH STATE ---------------- */
+  const [searchQuery, setSearchQuery] = useState("");
+
   /* ---------------- FILTER STATE ---------------- */
   const [confidenceFilter, setConfidenceFilter] = useState("all");
   const [velocityFilter, setVelocityFilter] = useState("all");
@@ -106,15 +110,37 @@ const lifecycleOptions = useMemo<string[]>(() => {
   /* ---------------- FILTERING ---------------- */
 const filteredSignals = useMemo<Signal[]>(() => {
   return approvedSignals.filter((s: Signal) => {
-    const relevant =
-      s.votes?.filter((v) => v.type === "RELEVANT").length ?? 0;
+    const query = searchQuery.toLowerCase().trim();
 
-    const notRelevant =
-      s.votes?.filter((v) => v.type === "NOT_RELEVANT").length ?? 0;
+    /* ---------- NORMALIZED ADVERTISING AND PLATFORMS FIELDS ---------- */
 
-const resonanceScore = s.resonanceScore ?? 0;
+    const advertiserText = s.advertiser
+      ?.map((a) => a.brandName.toLowerCase())
+      .join(" ") ?? "";
+
+    const platformText = s.primaryPlatforms
+      ?.join(" ")
+      .toLowerCase() ?? "";
+
+    /* ---------- SEARCH MATCH ---------- */
+
+    const searchableText = [
+      s.formatName,
+      s.insight,
+      String(s.narrative),
+      advertiserText,
+      platformText,
+    ]
+      .join(" ")
+      .toLowerCase();
+
+    const matchesSearch =
+      !query || searchableText.includes(query);
+
+    const resonanceScore = s.resonanceScore ?? 0;
 
     return (
+      matchesSearch &&
       (confidenceFilter === "all" ||
         s.confidence === confidenceFilter) &&
       (velocityFilter === "all" ||
@@ -131,11 +157,13 @@ const resonanceScore = s.resonanceScore ?? 0;
   });
 }, [
   approvedSignals,
+  searchQuery,
   confidenceFilter,
   velocityFilter,
   lifecycleFilter,
   resonanceFilter,
 ]);
+
 
   /* ---------------- SORTING ---------------- */
   const sortedSignals = useMemo(() => {
@@ -194,6 +222,7 @@ const resonanceScore = s.resonanceScore ?? 0;
   useEffect(() => {
     setVisibleCount(PAGE_SIZE);
   }, [
+    searchQuery,
     confidenceFilter,
     velocityFilter,
     lifecycleFilter,
@@ -217,7 +246,8 @@ const resonanceScore = s.resonanceScore ?? 0;
 
   return (
 <main className="max-w-6xl mx-auto px-6 py-12">
-    <div className="flex flex-col lg:flex-row gap-12">
+  
+  <div className="flex flex-col lg:flex-row gap-8">
 
 
 {/* ASIDE */}
@@ -227,6 +257,28 @@ const resonanceScore = s.resonanceScore ?? 0;
     w-full lg:w-72 lg:flex-none pt-6"
 >
   <div className="lg:sticky lg:top-20 space-y-6">
+
+    {/* FILTERS */}
+    <Filters
+      searchQuery={searchQuery}
+      setSearchQuery={setSearchQuery}
+
+      confidenceFilter={confidenceFilter}
+      velocityFilter={velocityFilter}
+      lifecycleFilter={lifecycleFilter}
+      resonanceFilter={resonanceFilter}
+      sortBy={sortBy}
+      lifecycleOptions={lifecycleOptions}
+      setConfidenceFilter={setConfidenceFilter}
+      setVelocityFilter={setVelocityFilter}
+      setLifecycleFilter={setLifecycleFilter}
+      setResonanceFilter={setResonanceFilter}
+      setSortBy={setSortBy}
+      clearAll={clearAll}
+    />
+
+    {/* MAILING LIST */}
+      <MailingList variant="default" />
 
     {/* DISCLAIMER */}
     <div className="rounded-xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-zinc-900 p-4 text-xs">
@@ -258,25 +310,6 @@ const resonanceScore = s.resonanceScore ?? 0;
       )}
     </div>
 
-    {/* FILTERS */}
-    <Filters
-      confidenceFilter={confidenceFilter}
-      velocityFilter={velocityFilter}
-      lifecycleFilter={lifecycleFilter}
-      resonanceFilter={resonanceFilter}
-      sortBy={sortBy}
-      lifecycleOptions={lifecycleOptions}
-      setConfidenceFilter={setConfidenceFilter}
-      setVelocityFilter={setVelocityFilter}
-      setLifecycleFilter={setLifecycleFilter}
-      setResonanceFilter={setResonanceFilter}
-      setSortBy={setSortBy}
-      clearAll={clearAll}
-    />
-
-    {/* MAILING LIST */}
-      <MailingList variant="default" />
-
   </div>
 </aside>
 
@@ -289,6 +322,13 @@ const resonanceScore = s.resonanceScore ?? 0;
 
     {/* ACTIVE FILTER CHIPS */}
 <div className="grid grid-cols-2 gap-2">
+
+  {searchQuery && (
+    <Chip
+      label={`Search: ${searchQuery}`}
+      onClear={() => setSearchQuery("")}
+    />
+  )}
 
   {confidenceFilter !== "all" && (
     <Chip
@@ -344,22 +384,22 @@ const resonanceScore = s.resonanceScore ?? 0;
                 <button
                   onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
                   className="inline-flex
-            items-center
-            gap-2
-            px-6
-            py-3
-            text-sm
-            font-medium
-            hover:text-white
-            border
-            border-gray-600
-            rounded-full
-            shadow-sm
-            hover:bg-gray-500
-            transition-all
-            duration-200
-            cursor-pointer
-            active:scale-95"
+                  items-center
+                  gap-2
+                  px-6
+                  py-3
+                  text-sm
+                  font-medium
+                  hover:text-white
+                  border
+                  border-gray-600
+                  rounded-full
+                  shadow-sm
+                  hover:bg-gray-500
+                  transition-all
+                  duration-200
+                  cursor-pointer
+                  active:scale-95"
                 >
                   Load More
                 </button>
@@ -392,3 +432,4 @@ function Chip({
     </button>
   );
 }
+

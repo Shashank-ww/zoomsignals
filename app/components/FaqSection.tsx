@@ -83,11 +83,10 @@ export default function FaqSection() {
             >
                 <button
                 onClick={() => setOpenIndex(isOpen ? null : i)}
-                className="w-full flex justify-between items-center px-5 py-4 text-left text-sm font-bold"
+                className="w-full flex justify-between items-center px-5 py-4 text-left dark:text-gray-700 text-sm font-bold"
                 >
                 <span className="pr-6">{faq.q}</span>
 
-                {/* ICON ROTATION */}
                 <PlusIcon
                 className={`w-4 h-4 transition-transform duration-300 ${
                     isOpen ? "rotate-45" : "rotate-0"

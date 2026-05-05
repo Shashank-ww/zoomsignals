@@ -22,7 +22,7 @@ export default function Footer() {
             </Link>
 
             <p className="mt-4 text-xs leading-relaxed text-gray-800">
-              Observational market signals. Structured insights on ads.
+              Market signals. Structured creative insights on ads.
               Not predictive.
             </p>
 

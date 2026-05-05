@@ -4,12 +4,12 @@ interface HeroHeadlineProps {
 
 export default function HeroHeadline({ headline }: HeroHeadlineProps) {
   return (
-    <div className="space-y-5 dark:text-gray-300 h-full">
+    <div className="space-y-5 dark:text-gray-300 h-full max-w-2xl">
 
       {/* FIXED H1 (SEO + brand clarity) */}
       <h1
         className="
-        max-w-2xl
+        max-w-prose
         text-sm
         mb-1
         font-medium
@@ -43,7 +43,7 @@ export default function HeroHeadline({ headline }: HeroHeadlineProps) {
       </p>
 
       {/* CTA */}
-      <div className="flex items-center justify-start gap-4">
+      <div className="flex items-center justify-start gap-6 max-w-fit">
         <a
           href="#explainer"
           className="
@@ -79,7 +79,7 @@ export default function HeroHeadline({ headline }: HeroHeadlineProps) {
 
       {/* MICRO TRUST LINE */}
       <p className="text-xs text-gray-500 pt-2 max-w-prose">
-        Tracking 90+ patterns across live campaigns on Meta, YouTube and more. Exclusively monitoring{" "} 
+        Tracking patterns across 90+ live campaigns on Meta, YouTube and more. Exclusively monitoring{" "} 
       <span className="underline underline-offset-2"> 
       automobile category 
       </span>. 

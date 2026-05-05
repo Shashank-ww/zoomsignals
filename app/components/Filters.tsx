@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Search, X } from "lucide-react";
 
 export type SortOption =
   | "recent"
@@ -9,6 +10,9 @@ export type SortOption =
   | "velocity";
 
 interface FiltersProps {
+  searchQuery: string;
+  setSearchQuery: (v: string) => void;
+
   confidenceFilter: string;
   velocityFilter: string;
   lifecycleFilter: string;
@@ -27,6 +31,8 @@ interface FiltersProps {
 }
 
 export default function Filters({
+  searchQuery,
+  setSearchQuery,
   confidenceFilter,
   velocityFilter,
   lifecycleFilter,
@@ -43,59 +49,106 @@ export default function Filters({
   const [isOpen, setIsOpen] = useState(false);
 
   const hasActiveFilters =
+    searchQuery ||
     confidenceFilter !== "all" ||
     velocityFilter !== "all" ||
     lifecycleFilter !== "all" ||
     resonanceFilter !== "all" ||
     sortBy !== "recent";
 
-  return (
-    <div className="rounded-xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-zinc-900 p-4 text-sm space-y-2">
-      {/* HEADER */}
-      <div className="flex items-start justify-between">
-        <button
-          onClick={() => setIsOpen((prev) => !prev)}
-          className="text-sm font-semibold cursor-pointer"
-        >
-          {isOpen ? "Hide Filters" : "Show Filters"}
-        </button>
+  const handleClearAll = () => {
+    setSearchQuery("");
+    clearAll();
+  };
 
-        {hasActiveFilters && (
+  /* ---------- "/" FOCUS ---------- */
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement;
+
+      if (
+        target.tagName === "INPUT" ||
+        target.tagName === "TEXTAREA" ||
+        target.isContentEditable
+      ) return;
+
+      if (e.key === "/") {
+        e.preventDefault();
+        document.getElementById("signal-search")?.focus();
+      }
+    };
+
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, []);
+
+  return (
+    <div className="rounded-xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-zinc-900 p-4 space-y-4">
+
+      {/* SEARCH */}
+      <div className="relative">
+        <Search
+          size={16}
+          className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+        />
+
+        <input
+          id="signal-search"
+          type="text"
+          placeholder="Search formats, brands, insights..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="w-full text-xs pl-9 pr-9 py-2 rounded-full border border-gray-200 dark:border-gray-700 bg-blue-50 dark:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-white"
+        />
+
+        {searchQuery && (
           <button
-            onClick={clearAll}
-            className="text-xs text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition"
+            onClick={() => setSearchQuery("")}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700"
           >
-            Clear Filters
+            <X size={14} />
           </button>
         )}
       </div>
 
-      {/* FILTER CONTENT */}
+      {/* HEADER */}
+      <div className="flex items-center justify-between">
+        <button
+          onClick={() => setIsOpen((p) => !p)}
+          className="text-xs text-gray-500 hover:underline hover:text-blue-600 cursor-pointer"
+        >
+          {isOpen ? "Hide filters" : "Show Filters"}
+        </button>
+
+        {hasActiveFilters && (
+          <button
+            onClick={handleClearAll}
+            className="text-xs text-gray-400 hover:text-gray-700"
+          >
+            Reset
+          </button>
+        )}
+      </div>
+
+      {/* FILTERS */}
       {isOpen && (
-        <div className="space-y-3">
+        <div className="space-y-4 pt-2 border-t">
+
           {/* SORT */}
-          <div className="space-y-1.5">
-            <p className="text-[11px] text-gray-400">
-              Sort
-            </p>
+          <div>
+            <p className="text-[10px] text-gray-400 mb-1 uppercase">Sort</p>
 
             <select
               value={sortBy}
               onChange={(e) =>
                 setSortBy(e.target.value as SortOption)
               }
-              className="w-full text-sm bg-transparent border-b border-gray-200 dark:border-gray-700 py-1 focus:outline-none focus:border-black dark:focus:border-white transition"
+              className="w-full text-sm border-b py-1 bg-transparent text-gray-400"
             >
               <option value="recent">Most Recent</option>
-              <option value="confidence">
-                Highest Confidence
-              </option>
-              <option value="velocity">
-                Highest Velocity
-              </option>
-              <option value="platforms">
-                Most Platforms
-              </option>
+              <option value="confidence">Confidence</option>
+              <option value="velocity">Velocity</option>
+              <option value="platforms">Platforms</option>
             </select>
           </div>
 
@@ -126,17 +179,10 @@ export default function Filters({
           />
 
           <CompactFilter
-            label="Resonance"
-            options={["high", "medium", "low"]}
+            label="Utility Resonance"
+            options={["HIGH", "MED", "LOW"]}
             activeValue={resonanceFilter}
             setValue={setResonanceFilter}
-            formatLabel={(v) =>
-              v === "high"
-                ? "High"
-                : v === "medium"
-                ? "Medium"
-                : "Low"
-            }
           />
         </div>
       )}
@@ -144,49 +190,42 @@ export default function Filters({
   );
 }
 
-/* ---------------- Compact Filter ---------------- */
+/* ---------- CHIP GROUP ---------- */
 
 function CompactFilter({
   label,
   options,
   activeValue,
   setValue,
-  formatLabel,
 }: {
   label: string;
   options: string[];
   activeValue: string;
   setValue: (v: string) => void;
-  formatLabel?: (v: string) => string;
 }) {
   return (
-    <div className="space-y-1">
-      <p className="text-[11px] text-gray-400">
+    <div>
+      <p className="text-[10px] text-gray-400 mb-1 uppercase">
         {label}
       </p>
 
       <div className="flex flex-wrap gap-1.5">
-        {options.map((option) => {
-          const active = activeValue === option;
+        {options.map((opt) => {
+          const active = opt === activeValue;
 
           return (
             <button
-              key={option}
+              key={opt}
               onClick={() =>
-                setValue(active ? "all" : option)
+                setValue(active ? "all" : opt)
               }
-              className={`
-                text-[11px] px-2 py-0.5 rounded-full transition
-                ${
-                  active
-                    ? "bg-black text-white dark:bg-white dark:text-black"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-zinc-800 dark:text-gray-300 dark:hover:bg-zinc-700"
-                }
-              `}
+              className={`text-[11px] px-2 py-0.5 rounded-full transition cursor-pointer hover:shadow ${
+                active
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200 text-gray-600 hover:bg-gray-100 dark:bg-zinc-700 dark:text-gray-300 dark:hover:bg-zinc-500"
+              }`}
             >
-              {formatLabel
-                ? formatLabel(option)
-                : option}
+              {opt}
             </button>
           );
         })}

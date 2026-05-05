@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import type { Signal } from "@/app/types/signal.types";
 import SignalCard from "@/app/components/SignalCard";
-import { Gauge, Loader2, Repeat, ShieldCheck, Zap } from "lucide-react";
+import { Gauge, Loader2, Plus, Repeat, ShieldCheck, Zap } from "lucide-react";
 import DownloadGateway from "@/app/components/DownloadGateway";
 import FaqSection from "../components/FaqSection";
 
@@ -398,16 +398,44 @@ function SignalContext() {
           <details
             key={i}
             open={expandAll}
-            className="group border border-transparent hover:border-gray-200 rounded-lg px-3 py-2 transition"
+            className="
+              group rounded-lg px-3 py-2
+              border border-transparent
+              hover:border-gray-200 dark:hover:border-zinc-700
+              bg-white dark:bg-zinc-900
+              transition
+            "
           >
-            <summary className="cursor-pointer list-none flex justify-between items-center text-[11px] uppercase tracking-wide text-gray-500">
+            {/* HEADER */}
+            <summary
+              className="
+                cursor-pointer list-none flex justify-between items-center
+                text-[11px] uppercase tracking-wide
+                text-gray-600 dark:text-gray-300
+              "
+            >
               {item.title}
-              <span className="text-gray-400 group-open:rotate-180 transition">
-                ▾
-              </span>
+
+              {/* PLUS ICON */}
+              <Plus
+                className="
+                  w-3 h-3
+                  text-gray-400
+                  transition-transform duration-300
+                  group-open:rotate-45
+                "
+              />
             </summary>
 
-            <p className="mt-2 pl-3 border-l border-gray-300 text-gray-800 leading-relaxed">
+            {/* CONTENT */}
+            <p
+              className="
+                mt-2 pl-3 border-l
+                border-gray-300 dark:border-zinc-700
+                text-gray-700 dark:text-gray-300
+                text-sm leading-relaxed
+              "
+            >
               {item.desc}
             </p>
           </details>
