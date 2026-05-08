@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   },
 
   title: {
-    default: "Myadbreak, signals that scale before you spend",
+    default: "Myadbreak, signals to scale before you spend", // Myadbreak; see what scales, before you spend
     template: "%s | MyAdBreak",
   },
 
@@ -48,6 +48,9 @@ export const metadata: Metadata = {
 
     // Brand
     "myadbreak",
+    "my ad break",
+    "ad break",
+    "adbreak",
   ],
 
   alternates: {

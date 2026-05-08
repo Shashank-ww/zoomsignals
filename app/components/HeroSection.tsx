@@ -21,9 +21,34 @@ export default function HeroSection({
   
   const [showExplainer, setShowExplainer] = useState(false);
 
+const markers = [
+  { key: "velocity", label: "Velocity", color: "blue" },
+  { key: "confidence", label: "Confidence", color: "green" },
+  { key: "lifecycle", label: "Lifecycle", color: "purple" },
+  { key: "repetition", label: "Repetition", color: "amber" },
+] as const;
+
+const markerColours = {
+  blue: "bg-blue-100 text-blue-800",
+  green: "bg-green-100 text-green-800",
+  purple: "bg-purple-100 text-purple-800",
+  amber: "bg-amber-100 text-amber-800",
+};
+
+type MarkerType = typeof markers[number]["key"];
+
+const [active, setActive] = useState<MarkerType>("velocity");
+
+const content: Record<MarkerType, string> = {
+  velocity: "How fast a pattern is spreading across campaigns.",
+  confidence: "How strongly the pattern is validated across ads.",
+  lifecycle: "Stage of the pattern. Early, peaking, or saturated.",
+  repetition: "How often the pattern appears across campaigns.",
+};
+
   return (
     <>
-      <section className="relative min-h-[80vh] flex items-center max-w-6xl mx-auto px-6">
+      <section className="relative min-h-[80vh] flex items-center max-w-7xl mx-auto px-6">
 
         <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-16">
           
@@ -61,60 +86,114 @@ export default function HeroSection({
             >
             <div className="grid md:grid-cols-2 gap-12 text-sm text-gray-600 leading-relaxed">
 
-                <div className="space-y-5">
-                <h2 className="text-2xl font-light tracking-tight text-gray-800">
-                  Methodology we use
-                </h2>
+                <div className="space-y-4">
+                  <div className="mb-2 inline-block">
+                    <p className="text-xs uppercase tracking-widest text-blue-600/80">
+                      Pattern Markers
+                    </p>
+                    <span className="block w-6 h-2 border-b-[1.5px] border-blue-600 mt-1"></span>
+                  </div>
+                  <h2 className="text-2xl tracking-tight font-light text-gray-800">
+                      What are these signals?
+                  </h2>
 
-                <p>
-                   This is where we dive deeper. Each signal represents a repeatable creative pattern that generates early performance lift across multiple advertiser accounts.
-                </p>
+                 {/* SPH - Inline Definitions (NOT chips) */}
+                    <div className="text-sm text-gray-600 leading-relaxed">
+                      <ul className="space-y-1 text-sm text-gray-600 list-disc ml-5">
+                        <li><b>Ad Signals</b> are early signs of what&apos;s working in a campaign</li>
+                        <li><b>Signal Patterns</b> are ideas repeating across live ads</li>
+                        <li><b>Pattern Hooks</b> are the first 3-sec attention triggers</li>
+                      </ul>
+                    </div>
 
-                <p>
-                  These signal patterns are then manually reviewed, structured, and approved before they appear in the live feed. It carries strategic implications to improve decision-making.
-                </p>
+                    {/* Divider */}
+                    <div className="border-t border-gray-200"></div>
 
-                <p>
+                    {/* VCLR Chips */}
+                    <div>
+                      <p className="text-xs uppercase tracking-wide text-gray-500 mb-2">
+                        Signal Markers
+                      </p>
+
+                      <div className="flex flex-wrap gap-2">
+                      {markers.map((item) => (
+                          <button
+                            key={item.key}
+                            onClick={() => setActive(item.key)}
+                            className={`px-3 py-1 text-sm rounded-full transition-all duration-200
+                              ${
+                                active === item.key
+                                  ? markerColours[item.color]
+                                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                              }`}
+                          >
+                            {item.label}
+                          </button>
+                        ))}
+                      </div>
+
+                      {/* Dynamic Content */}
+                      <div className="mt-3 text-sm text-gray-600 min-h-10 transition-all">
+                        {content[active]}
+                      </div>
+                    </div>
+
+                    {/* Footer */}
+                    <p className="text-sm text-gray-500">
+                      We track how ad signals emerge, creative patterns repeat and how they scale early. 
+                      Making it easier for the planners and marketers to improve decision making and audience engagement.&nbsp;
+                    </p>
+                    <p>
+                      <a href="/about-signals/#faqs" className="text-blue-500 hover:underline">
+                        Learn more
+                      </a> →
+                    </p>
+                    <p>
+                      No Logins, No Forms, Just Data with meaning!
+                    </p>
+                  </div>
+
+                  <div className="space-y-4">
+                  <div className="mb-2 inline-block">
+                    <p className="text-xs uppercase tracking-widest text-blue-600/80">
+                      Methodology we use
+                    </p>
+                    <span className="block w-6 h-2 border-b-[1.5px] border-blue-600 mt-1"></span>
+                  </div>
+
+                  <h2 className="text-2xl font-light tracking-tight text-gray-800">
+                    How do we identify a signal?
+                  </h2>
+
+                  <p>
+                    This is where we dive deeper. Each signal highlights a repeatable creative pattern that shows an early traction across multiple advertiser accounts.
+                  </p>
+
+                  <p>
+                    These signal patterns are a result of in-depth analysis and structured framework. Since it carries strategic implications that can help improve decision-making. 
+                    We review and approve before they appear in our live feed. 
+                  </p>
+
+                  <p>
+                    So you are not chasing noise or one-off viral hits, but patterns that scales across platforms. It is useful for D2C brands, media professionals and performance marketers, who run ad campaigns on a monthly budget.
+                  </p>
+
+                  <p className="space-x-4">
+                    <a
+                    href="/about-signals/#framework"
+                    className="hover:underline text-blue-500 hover:text-amber-500 transition-all duration-300"
+                  >
+                    Explore framework
+                  </a>
+
                   <a
-                  href="/about-signals/#framework"
-                  className="text-xs text-gray-500 hover:text-amber-600 underline underline-offset-4"
-                >
-                  See signal framework
-                </a>
-                </p>
-
-                <a
-                  href="/download"
-                  className="text-xs text-gray-500 hover:text-amber-600 underline underline-offset-4"
-                >
-                  Get sample data
-                </a>
+                    href="/download"
+                    className="hover:underline text-blue-500 hover:text-amber-500 transition-all duration-300"
+                  >
+                    Access sample data
+                  </a>
+                  </p>
                 </div>
-
-                <div className="space-y-5">
-                <h2 className="text-2xl tracking-tight font-light text-gray-800">
-                    Pattern Markers
-                </h2>
-
-                <ul className="space-y-2 list-disc ml-5">
-                    <li><b>Velocity</b> → Adoption speed across accounts and platforms; Emerging, Accelerating, Stable, Declining.</li>
-                    <li><b>Confidence</b> → Creative validation strength</li>
-                    <li><b>Lifecycle</b> → Early, Peaking, Saturated</li>
-                    <li><b>Repetition</b> → No. of times the creative format gets repeated</li>
-                </ul>
-
-                <p>
-                    We discover patterns early, making it easy for the planners and marketers to improve decision making and audience engagement.&nbsp;
-                    <a href="/about-signals/#faqs" className="hover:underline hover:text-blue-500 transition"> 
-                     See FAQs
-                    </a> →
-                </p>
-
-                </div>
-
-                <p>
-                  No Logins, No Forms, Just Data with meaning!
-                </p>
 
             </div>
             </div>

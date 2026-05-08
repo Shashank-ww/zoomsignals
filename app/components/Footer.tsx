@@ -22,8 +22,8 @@ export default function Footer() {
             </Link>
 
             <p className="mt-4 text-xs leading-relaxed text-gray-800">
-              Market signals. Structured creative insights on ads.
-              Not predictive.
+              We decode patterns, surface signals of brands that repeat across platforms.
+              If you want to scale ads on social media, the way they should, you&apos;re in the right place.
             </p>
 
 

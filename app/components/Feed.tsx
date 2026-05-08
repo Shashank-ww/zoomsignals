@@ -365,9 +365,11 @@ const filteredSignals = useMemo<Signal[]>(() => {
           </div>
         ) : visibleSignals.length === 0 ? (
           <div className="py-20 text-left space-y-3">
-            <h3 className="text-lg font-semibold">No Signals Published Yet</h3>
+              <h3 className="text-lg font-semibold">
+                No Signals found!
+              </h3>
             <p className="text-sm text-gray-500">
-              Signals appear here once we approve and publish it.
+              Signals will appear here once we approve and publish it.
             </p>
           </div>
         ) : (

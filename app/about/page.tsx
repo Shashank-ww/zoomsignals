@@ -9,7 +9,12 @@ import {
   Search,
   Globe,
   Target,
+  Building2,
+  LineChart,
+  Palette,
+  Megaphone,
 } from "lucide-react";
+import { ExpectationsTabs } from "../components/ExpectationsTabs";
 
 export default function About() {
   return (
@@ -211,6 +216,120 @@ export default function About() {
   </div>
 </section>
 
+     {/* WHAT MyAdBreak DOES */}
+      <section className="space-y-6">
+<div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
+
+  <h2 className="text-2xl font-semibold tracking-tight">
+          What it does
+          </h2>
+
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+          MyAdBreak tracks ad formats as they begin repeating across brand and platforms.
+        </p>
+
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+          Instead of data-heavy Excel trackers and jargonned PPTs, that require extensive research and cumbersome tasks. 
+          We built a live signal intelligence that shows emerging ad mechanics across categories and platforms. Updated as and when observed. 
+        </p>
+
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+          Our goal is simple: we identify formats that converge early, before it saturates.
+        </p>
+      </section>
+
+      {/* WHY YOU GET */}
+      <section className="space-y-6">
+<div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
+
+  <h2 className="text-2xl font-semibold tracking-tight">
+          What you get
+          </h2>
+
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+          Early patterns of ad signals that you can use test to reduce wasted experiments.
+        </p>
+
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+          Actionable creative insights that help creative teams develop relevance with audience.
+        </p>
+
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+          A deep learning across ads and brands to break out the clutter.
+        </p>
+
+      </section>
+
+
+{/* WHO ARE WE HERE FOR */}
+<section id="herefor" className="space-y-8">
+<div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
+
+  <h2 className="text-2xl font-semibold tracking-tight">
+    Who are we here for
+    </h2>
+
+  <div className="grid md:grid-cols-2 gap-6 mx-auto cursor-default">
+
+    {/* MARKETING TEAMS */}
+    <div className="group border rounded-xl p-6 space-y-3 hover:border-amber-500/60 hover:bg-amber-50/40 hover:shadow-md transition-all">
+      <div className="flex items-center gap-3">
+        <div className="p-2 rounded-lg bg-zinc-100 text-zinc-600 group-hover:bg-blue-100 group-hover:text-blue-600 transition">
+          <Megaphone size={18} />
+        </div>
+        <h3 className="font-semibold">Marketing Teams</h3>
+      </div>
+
+      <p className="text-sm text-gray-600 dark:text-gray-400">
+        Discover emerging ad formats before they saturate.
+      </p>
+    </div>
+
+    {/* CREATIVE PROFESSIONALS */}
+    <div className="group border rounded-xl p-6 space-y-3 hover:border-amber-500/60 hover:bg-amber-50/40 hover:shadow-md transition-all">
+      <div className="flex items-center gap-3">
+        <div className="p-2 rounded-lg bg-zinc-100 text-zinc-600 group-hover:bg-blue-100 group-hover:text-blue-600 transition">
+          <Palette size={18} />
+        </div>
+        <h3 className="font-semibold">Creative Professionals</h3>
+      </div>
+
+      <p className="text-sm text-gray-600 dark:text-gray-400">
+        Explore new design mechanics and creative structures.
+      </p>
+    </div>
+
+    {/* STRATEGISTS */}
+    <div className="group border rounded-xl p-6 space-y-3 hover:border-amber-500/60 hover:bg-amber-50/40 hover:shadow-md transition-all">
+      <div className="flex items-center gap-3">
+        <div className="p-2 rounded-lg bg-zinc-100 text-zinc-600 group-hover:bg-blue-100 group-hover:text-blue-600 transition">
+          <LineChart size={18} />
+        </div>
+        <h3 className="font-semibold">Strategists & Planners</h3>
+      </div>
+
+      <p className="text-sm text-gray-600 dark:text-gray-400">
+        Track format convergence across categories and platforms.
+      </p>
+    </div>
+
+    {/* AGENCIES */}
+    <div className="group border rounded-xl p-6 space-y-3 hover:border-amber-500/60 hover:bg-amber-50/40 hover:shadow-md transition-all">
+      <div className="flex items-center gap-3">
+        <div className="p-2 rounded-lg bg-zinc-100 text-zinc-600 group-hover:bg-blue-100 group-hover:text-blue-600 transition">
+          <Building2 size={18} />
+        </div>
+        <h3 className="font-semibold">Agencies</h3>
+      </div>
+
+      <p className="text-sm text-gray-600 dark:text-gray-400">
+        Bring signal-backed creative thinking into pitches and campaigns.
+      </p>
+    </div>
+
+  </div>
+</section>
+
 <section className="space-y-6">
   <div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
 
@@ -222,29 +341,15 @@ export default function About() {
           MyAdBreak is built with decade long experience and passion for behavioural insights.
         </p>
 
-        <p className="text-gray-700 leading-relaxed dark:text-gray-300">
-         We have managed multi-brand campaigns, executed daily creative tasks, and analyzed audience data. 
-         Through performance reviews, we have developed strategic proposals and witnessed firsthand how marketing decisions are truly made.
-        </p>
-
-        <p className="text-gray-700 leading-relaxed dark:text-gray-300">
-        Teams do not fail because they lack data or ideas. They fail because they are responding to creative patterns that have already peaked over time.
-        <br/>
-        <span className="font-bold">
-          MyAdBreak focuses on whether or not your ad genuinely works.
-        </span>
-        </p>
-
          <p className="text-gray-700 leading-relaxed dark:text-gray-300">
-         We are not a trend platform. This is not a dashboard. It is a structured way to observe how ad formats actually behave in the real world.
-         <br/>
+         We are an ad intelligence system that provides a structured way on how ad formats actually behave in the real world.
          Because better outcomes come from seeing the right patterns, earlier. Not data. Not statistics.
         </p>
 
 </section>
 
 
-      {/* WHAT THIS IS */}
+      {/* WHAT THIS IS AND IS NOT */}
       <section className="space-y-6">
 <div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
 
@@ -268,17 +373,10 @@ export default function About() {
     Upon best judgement, you could formulate strategies on your own around the best performance marketing campaign. 
   </li>
       <li className="">
-    <span className="font-semibold">Please note: </span>Signal Patterms reflect observed structural and creative patterns. We do not endorse any brand, ad format, or platform.
+    <span className="font-semibold">Please note: </span>Signal Patterns reflect observed structural and creative patterns. We do not endorse any brand, ad format, or platform.
   </li>
   
 </ul>
-
-<p className="text-gray-700 leading-relaxed dark:text-gray-300">
-  We&apos;re currently in early conversations with limited set of investors and industry experts who understand where this is headed. <br/> {" "}
-  <a href="/funding" className="text-gray-700 hover:underline hover:text-blue-500 transition">
-    View opportunity
-  </a> →
-</p>
 
       </section>
 
@@ -330,6 +428,66 @@ export default function About() {
           Why We Exist
         </Link>
       </section>
+
+      
+      <section className="flex flex-col items-center justify-center space-y-6 border-t text-center pt-12">
+        <h2 className="text-2xl font-semibold tracking-tight">
+          Built by industry professionals
+        </h2>
+
+        <p className="text-center text-gray-600 dark:text-gray-400 max-w-2xl">
+          MyAdBreak is created after more than a decade of working inside advertising, executing marketing strategies, and running campaigns.
+        </p>
+
+        <p className="text-center text-gray-600 dark:text-gray-400 max-w-2xl">
+         <span className="font-bold">It exists to solve a simple gap: </span>helping teams see structural shifts in advertising earlier than traditional approach.
+        </p>
+      <p>
+        ***
+      </p>
+      </section>
+
+
+      {/* CTA */}
+        <section className="text-center space-y-6 pt-12">
+
+          <h2 className="text-2xl font-semibold tracking-tight">
+            Start a conversation
+          </h2>
+
+          <p className="text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
+            Exploring a campaign idea, category shift, or creative
+            patterns and want early insights, reach out to us.
+          </p>
+
+          <p className="text-sm text-gray-500">
+            No forms. No sales pitch. Just a conversation.
+          </p>
+
+          <a
+            href="mailto:hello@MyAdBreak.com?subject=MyAdBreak Inquiry"
+            className="inline-flex
+            items-center
+            gap-2
+            px-6
+            py-3
+            text-sm
+            font-medium
+            text-white
+            bg-gray-800
+            border
+            border-blue-600
+            rounded-full
+            shadow-sm
+            hover:bg-blue-600
+            transition-all
+            duration-200
+            active:scale-95"
+          >
+            Email Now
+          </a>
+
+        </section>
 
     </main>
   );

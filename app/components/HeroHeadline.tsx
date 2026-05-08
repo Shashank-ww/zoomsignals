@@ -1,3 +1,5 @@
+import { Orbit, Plane, PlaneIcon, Radio, Target } from "lucide-react";
+
 interface HeroHeadlineProps {
   headline: string;
 }
@@ -7,17 +9,33 @@ export default function HeroHeadline({ headline }: HeroHeadlineProps) {
     <div className="space-y-5 dark:text-gray-300 h-full max-w-2xl">
 
       {/* FIXED H1 (SEO + brand clarity) */}
-      <h1
-        className="
-        max-w-prose
-        text-sm
-        mb-1
-        font-medium
-        text-gray-600 dark:text-white px-1
-      "
-      >
-        Myadbreak, signals that scale before you spend
+            <h1
+              className="
+                inline-flex
+                items-center
+                gap-2
+
+                rounded-full
+                border
+                border-blue-100
+
+                bg-blue-50/40
+
+                px-3
+                py-1.5
+
+                mb-1
+
+                text-xs
+                font-medium
+                tracking-wide
+                text-blue-600
+              "
+            >
+        Myadbreak, signals to scale before you spend
       </h1>
+
+      {/* // Myadbreak, see what scales, before you spend */}
 
       {/* DYNAMIC HEADLINE */}
       <h2
@@ -28,9 +46,10 @@ export default function HeroHeadline({ headline }: HeroHeadlineProps) {
         text-4xl
         md:text-5xl 
         bg-linear-to-tr from-blue-500 to-sky-400 bg-clip-text text-transparent
-        tracking-[-0.02em]
-        leading-[1.05]
-        font-light
+                font-semibold
+                tracking-[-0.04em]
+                leading-[1.02]
+
       "
       >
         {headline}
@@ -43,7 +62,7 @@ export default function HeroHeadline({ headline }: HeroHeadlineProps) {
       </p>
 
       {/* CTA */}
-      <div className="flex items-center justify-start gap-6 max-w-fit">
+      <div className="flex items-center justify-start gap-5 max-w-fit">
         <a
           href="#explainer"
           className="
@@ -58,9 +77,9 @@ export default function HeroHeadline({ headline }: HeroHeadlineProps) {
             bg-gray-800
             border
             border-blue-500
+            hover:bg-blue-500
             rounded-full
             shadow-sm
-            hover:bg-blue-500
             transition-all
             duration-200
             active:scale-95
@@ -70,16 +89,25 @@ export default function HeroHeadline({ headline }: HeroHeadlineProps) {
         </a>
 
         <a
-          href="/funding"
-          className="text-sm text-gray-500 hover:text-blue-600 underline underline-offset-4"
+          href="/explore"
+          className="text-sm text-gray-600 hover:text-amber-500 transition-all duration-300 underline underline-offset-4"
         >
-          For operators
+          Explore MAB
         </a>
+
+        {/* //------- some options for later 
+        Inside Myadbreak
+        Behind the system/signals/site
+        What powers this
+        Behind the engine
+        Beyond Ads
+         //------ */}
+
       </div>
 
       {/* MICRO TRUST LINE */}
       <p className="text-xs text-gray-500 pt-2 max-w-prose">
-        Tracking patterns across 90+ live campaigns on Meta, YouTube and more. Exclusively monitoring{" "} 
+        Tracking patterns across 100+ live ads on Meta, YouTube and more. Exclusively working on {" "} 
       <span className="underline underline-offset-2"> 
       automobile category 
       </span>. 

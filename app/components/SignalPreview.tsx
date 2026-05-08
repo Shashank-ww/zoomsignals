@@ -38,10 +38,10 @@ export default function SignalPreview({
     return () => clearInterval(interval);
   }, [approved.length]);
 
-  // ✅ EMPTY STATE (no signals)
+  // EMPTY STATE (no signals)
   if (!approved.length) {
     return (
-      <div className="relative w-72 mx-auto px-4 self-start ring-1 ring-inset ring-gray-200 dark:ring-gray-700">
+      <div className="relative mx-auto px-4 self-start ring-1 ring-inset ring-gray-200 dark:ring-gray-700">
         <div className="h-72 flex flex-col items-center justify-center text-center text-zinc-500 px-6">
           <div className="text-sm font-medium text-zinc-600">
             No signals yet
@@ -72,7 +72,7 @@ export default function SignalPreview({
     -(index * (CARD_HEIGHT + GAP)) + CENTER_OFFSET;
 
   return (
-    <div className="relative w-72 mx-auto px-4 self-start ring-1 ring-inset ring-gray-200 dark:ring-gray-700">
+    <div className="relative w-72 mx-6 px-4 self-start ring-1 ring-inset ring-gray-200 dark:ring-gray-700">
 
       {/* TOP FADE */}
       <div className="pointer-events-none absolute top-0 left-0 right-0 h-16 z-20 
@@ -87,7 +87,7 @@ export default function SignalPreview({
       />
 
       {/* SCROLL WINDOW */}
-      <div className="overflow-hidden h-72 mt-2 p-6 cursor-default">
+      <div className="overflow-hidden h-84 mt-2 p-6 cursor-default">
 
         <div
           className="transition-transform duration-700 ease-out space-y-4"

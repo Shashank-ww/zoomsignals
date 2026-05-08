@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { PlaneIcon } from "lucide-react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -39,17 +40,30 @@ export default function Navbar() {
 
        {/* Brand */}
 <a href="/" className="font-bold text-gray-800 select-none group">
-  <span className="flex items-center gap-2 leading-none text-base">
+  <span className="flex items-center gap-2 leading-none text-base group">
 
     {/* Heat Block */}
-    <span
+    {/* <span
       className="
         h-4 w-1 rounded-full shadow-sm
         bg-blue-500
         transition-all duration-200 ease-in-out
         group-hover:w-1.75
       "
-    />
+    /> */}
+
+<PlaneIcon
+  size={20}
+  className="
+    text-blue-500
+
+    transition-colors
+    duration-300
+
+    group-hover:text-amber-500
+    group-hover:animate-[planeFly_1.2s_linear_1]
+  "
+/>
 
     {/* Brand Text */}
     <span className="font-light tracking-tight transition-colors duration-200 group-hover:text-blue-500">

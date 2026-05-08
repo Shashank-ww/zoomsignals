@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { FormatRelativeDate } from "@/app/components/FormatRelativeDate";
 import type { Signal } from "@/app/types/signal.types";
 import ResonanceScore from "./ResonanceScore";
+import { ArrowBigDownIcon, ArrowBigUpIcon } from "lucide-react";
 
 /* ---------- Semantic Color Maps ---------- */
 
@@ -50,7 +51,7 @@ const [resonanceScore, setResonanceScore] = useState<number>(
   Number(signal?.resonanceScore ?? 0)
 );
 
-  // 🔐 Persist voter identity (very important)
+  // Persist voter identity (very important)
   const [voterHash, setVoterHash] = useState<string | null>(null);
 
 useEffect(() => {
@@ -94,7 +95,7 @@ console.log("PROP resonance:", signal.resonanceScore);
   setVoterHash(existing);
 }, []);
 
-const [isVoting, setIsVoting] = useState(false);
+const [loadingType, setLoadingType] = useState<"RELEVANT" | "NOT_RELEVANT" | null>(null);
 
     // Might as well keep below, only updating because of the SAFARI Browser along with above useeffect comment just before
   //   if (!existing) {
@@ -111,9 +112,9 @@ const [isVoting, setIsVoting] = useState(false);
 
   // OPTIMISTIC + RECONCILIATION
 const handleFeedback = async (type: "RELEVANT" | "NOT_RELEVANT") => {
-  if (!voterHash || isVoting) return;
+  if (!voterHash || loadingType ) return;
 
-  setIsVoting(true); // VOTE STARTS LOADING HERE
+setLoadingType(type); // VOTE STARTS LOADING HERE
 
   // OPTIMISTIC UPDATE
   if (type === "RELEVANT") {
@@ -155,7 +156,7 @@ const handleFeedback = async (type: "RELEVANT" | "NOT_RELEVANT") => {
   } catch (err) {
     console.error("Vote failed", err);
   } finally {
-    setIsVoting(false); 
+    setLoadingType(null); 
   }
 };
 
@@ -249,6 +250,46 @@ const handleFeedback = async (type: "RELEVANT" | "NOT_RELEVANT") => {
 
 </div>
 
+  {/* Insight */}
+  <div className="col-span-2 md:col-span-3 bg-gray-50 hover:bg-amber-50 rounded-lg p-2.5 border border-gray-200">
+    <p className="text-[10px] uppercase text-gray-400 mb-1">
+      Why this works?
+    </p>
+    <p className="text-sm text-gray-700 leading-snug line-clamp-2">
+      {signal.insight}
+    </p>
+
+    <p className="text-[11px] text-blue-600 font-medium">
+      Repeating across {signal.repetitionCount}+ ads.
+    </p>
+  </div>
+  
+
+   {/* BENTO GRID */}
+          <div className="grid grid-cols-2 md:grid-cols-4 rounded-xl overflow-hidden border border-gray-200 font-medium">
+            <Metric
+              label="Confidence"
+              value={signal.confidence}
+              style={METRIC_STYLES[signal.confidence]}
+            />
+            <Metric
+              label="Velocity"
+              value={signal.velocity}
+              style={METRIC_STYLES[signal.velocity]}
+            />
+            <Metric
+              label="Lifecycle"
+              value={signal.lifecycle}
+              style={METRIC_STYLES[signal.lifecycle]}
+            />
+            <Metric
+              label="Frequency"
+              value={`${signal.repetitionCount}x`}
+              style="bg-gray-100 text-gray-700"
+            />
+          </div>
+
+
 {/*  COMPACT META BLOCK */}
 {/* BENTO META 3 COLUMN GRID */}
 <div className="grid grid-cols-2 md:grid-cols-3 gap-2 w-full text-[11px]">
@@ -256,10 +297,11 @@ const handleFeedback = async (type: "RELEVANT" | "NOT_RELEVANT") => {
   {/* Ad Type */}
   <div className="bg-gray-50 hover:bg-amber-50 rounded-lg p-2 border border-gray-200">
     <p className="text-[10px] uppercase text-gray-400 mb-1">
-      Ad Type
+      How to use?
     </p>
-    <p className="text-gray-700 font-medium line-clamp-2">
-      {signal.narrative}
+
+    <p className="text-gray-700 font-medium line-clamp-3">
+      Apply this to test on {signal.narrative} formats
     </p>
   </div>
 
@@ -300,42 +342,8 @@ const handleFeedback = async (type: "RELEVANT" | "NOT_RELEVANT") => {
     </div>
   ) : null}
 
-  {/* Insight */}
-  <div className="col-span-2 md:col-span-3 bg-gray-50 hover:bg-amber-50 rounded-lg p-2.5 border border-gray-200">
-    <p className="text-[10px] uppercase text-gray-400 mb-1">
-      Hook / Insight
-    </p>
-    <p className="text-sm text-gray-700 leading-snug line-clamp-2">
-      {signal.insight}
-    </p>
-  </div>
 
 </div>
-
-          
-          {/* BENTO GRID */}
-          <div className="grid grid-cols-2 md:grid-cols-4 rounded-xl overflow-hidden border border-gray-200 font-medium">
-            <Metric
-              label="Confidence"
-              value={signal.confidence}
-              style={METRIC_STYLES[signal.confidence]}
-            />
-            <Metric
-              label="Velocity"
-              value={signal.velocity}
-              style={METRIC_STYLES[signal.velocity]}
-            />
-            <Metric
-              label="Lifecycle"
-              value={signal.lifecycle}
-              style={METRIC_STYLES[signal.lifecycle]}
-            />
-            <Metric
-              label="Repetition"
-              value={`${signal.repetitionCount}x`}
-              style="bg-gray-100 text-gray-700"
-            />
-          </div>
 
 </div>
 
@@ -392,6 +400,7 @@ const handleFeedback = async (type: "RELEVANT" | "NOT_RELEVANT") => {
 
       <button
         onClick={() => handleFeedback("NOT_RELEVANT")}
+        disabled={loadingType === "NOT_RELEVANT"}
         className="
           h-7 px-1 sm:px-2
           flex items-center gap-1
@@ -406,16 +415,17 @@ const handleFeedback = async (type: "RELEVANT" | "NOT_RELEVANT") => {
           cursor-pointer
         "
       >
-        {isVoting ? (
-    <span className="w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin" />
-  ) : (
-    "👎"
-  )}
-  <span className="opacity-80">{notRelevantCount}</span>
+        {loadingType === "NOT_RELEVANT" ? (
+          <span className="w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin" />
+        ) : (
+          <ArrowBigDownIcon size={14} strokeWidth={2} />
+        )}
+        <span className="opacity-80">{notRelevantCount}</span>
       </button>
 
       <button
         onClick={() => handleFeedback("RELEVANT")}
+        disabled={loadingType === "RELEVANT"}
         className="
           h-7 px-1 sm:px-2
           flex items-center gap-1
@@ -430,12 +440,12 @@ const handleFeedback = async (type: "RELEVANT" | "NOT_RELEVANT") => {
           cursor-pointer
         "
       >
-        {isVoting ? (
-    <span className="w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin" />
-  ) : (
-    "👍"
-  )}
-  <span className="opacity-80">{relevantCount}</span>
+          {loadingType === "RELEVANT" ? (
+            <span className="w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin" />
+          ) : (
+            <ArrowBigUpIcon size={14} strokeWidth={2} />
+          )}
+          <span className="opacity-80">{relevantCount}</span>
       </button>
 
     </div>

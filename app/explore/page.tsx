@@ -1,278 +1,730 @@
 "use client";
 
-import { ExpectationsTabs } from "@/app/components/ExpectationsTabs";
-import { Building2, LineChart, Megaphone, Palette } from "lucide-react";
+import {
+  Activity,
+  ArrowUpRight,
+  BrainCircuit,
+  LineChart,
+  Radar,
+  Sparkles,
+} from "lucide-react";
+
+import PacingTool from "../components/tools/pacing/PacingTool";
 
 export default function Explore() {
   return (
-    <main className="mx-auto max-w-6xl px-6 py-24 space-y-24">
+    <main
+      className="
+        mx-auto
+        max-w-7xl
 
-      {/* HERO */}
-      <section className="space-y-6">
-        <h1 className="
-        py-1
-        lg:text-6xl
-        text-3xl
-        md:text-5xl bg-linear-to-tr from-blue-500 to-sky-400 bg-clip-text text-transparent
-        tracking-[-0.02em]
-        leading-[1.05]
-        ">
-          Look beyond patterns, peak into performance
-        </h1>
+        px-4
+        md:px-8
 
-        <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-          Winning ads don&apos;t pop-out randomly! They quietly repeat, before getting viral, or even noticed. 
-        </p>
-        
-        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          Imagine a car ad you see on instagram.
-        </p>
+        py-16
+        md:py-24
 
-        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          A hook shows up in one category. Then another. They keep using the same approach. Different brand, different layout. Same pattern.
-        </p>
+        space-y-24
+      "
+    >
 
-        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          By the time the industry calls it a “trend”, everyone is already doing it.
-          <span className="font-bold"> That means an early advantage goes for a toss!</span>
-        </p>
-      </section>
+      {/* =================================================
+          HERO
+      ================================================= */}
 
-{/* INDUSTRY PROBLEM */}
-<section className="space-y-8">
-
-  {/* FULL WIDTH HEADLINE */}
-  <h2 className="text-2xl md:text-3xl font-semibold max-w-2xl">
-    The problem with current scenario
-  </h2>
-
-  {/* GRID: TEXT + IMAGE */}
-  <div className="grid md:grid-cols-2 gap-10 md:gap-14 items-center">
-    
-    {/* LEFT: TEXT */}
-    <div className="space-y-6 max-w-xl">
-      <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-        Marketing teams do not lack data. They are buried in it, yet starved with insights. 
-        Your office PPTs may summarize the EV boom but strategies are only defined after it has peaked over time.
-
-      </p>
-
-      <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-        Professionally, it feels like progress. In reality, it is just reactive summary.
-      </p>
-
-      {/* Highlight */}
-      <div className="px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-800 bg-blue-100 dark:bg-zinc-900">
-        <p className="text-sm font-medium text-gray-800 dark:text-gray-200">
-          ~25% YoY growth industry, yet most insights arrive too late.
-        </p>
-      </div>
-
-      <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-        Because early signals does not look like trends. 
-        They look like isolated examples, unless someone is tracking them closely.
-      </p>
-    </div>
-
-    {/* RIGHT: IMAGE */}
-    <div className="w-full">
-      <img
-        src="/two_cars.jpg"
-        alt="A car ad, ahead of its times"
-        className="w-full h-full object-contain mt-2 rounded-xl"
-      />
-    <div className="flex items-end justify-end">
-      <p className="text-xs uppercase text-gray-400 mt-2">
-        Source:<span> Internet </span>
-      </p>
-    </div>
-    </div>
+      <section
+        className="
+          relative
+          overflow-hidden
+        "
+      >
 
 
+        <div
+          className="
+            relative
+            z-10
+
+            grid
+            gap-12
+
+            lg:grid-cols-[1.1fr_0.9fr]
+            lg:items-center
+          "
+        >
+
+          {/* LEFT */}
+
+          <div className="max-w-3xl">
+
+            <div
+              className="
+                inline-flex
+                items-center
+                gap-2
+
+                rounded-full
+                border
+                border-blue-100
+
+                bg-blue-50
+
+                px-3
+                py-1.5
+
+                text-xs
+                font-medium
+                tracking-wide
+                text-blue-700
+              "
+            >
+              <Sparkles size={14} />
+              Signal-Aware Creative Intelligence
+            </div>
+
+            <h1
+              className="
+                mt-4
+
+                max-w-prose
+
+                text-4xl
+                md:text-6xl
+
+                font-semibold
+                tracking-[-0.04em]
+                leading-[1.02]
+
+                text-gray-900
+              "
+            >
+              Repeating ad patterns.
+              <br />
+              Predict what&apos;s next.
+            </h1>
+
+            <p
+              className="
+                mt-6
+
+                text-lg
+                leading-relaxed
+                text-gray-600
+
+                dark:text-white
+
+                max-w-prose 
+              "
+            >
+              Winning ads rarely arrive as trends.
+              They quietly repeat across categories before
+              the industry notices them.
+            </p>
+
+            <p
+              className="
+                mt-4
+
+                text-base
+                leading-relaxed
+                text-gray-600
+
+                max-w-prose
+              "
+            >
+              MyAdBreak helps teams identify emerging
+              creative behavior, signal momentum, and
+              delivery pressure before saturation begins.
+            </p>
+
+            {/* SIGNALS */}
+
+            <div
+              className="
+                mt-8
+
+                flex
+                flex-wrap
+                gap-3
+              "
+            >
+
+              <div
+                className="
+                  flex
+                  items-center
+                  gap-2
+
+                  rounded-full
+                  border
+                  border-gray-200
+
+                  bg-amber-100
+
+                  px-4
+                  py-3
+                "
+              >
+                <Radar
+                  size={16}
+                  className="text-amber-600"
+                />
+
+                <span
+                  className="
+                    text-sm
+                    font-medium
+                    text-gray-700
+                  "
+                >
+                  Early signal tracking
+                </span>
+              </div>
+
+              <div
+                className="
+                  flex
+                  items-center
+                  gap-2
+
+                  rounded-full
+                  border
+                  border-gray-200
+
+                  bg-violet-100
+
+                  px-4
+                  py-3
+                "
+              >
+                <BrainCircuit
+                  size={16}
+                  className="text-violet-600"
+                />
+
+                <span
+                  className="
+                    text-sm
+                    font-medium
+                    text-gray-700
+                  "
+                >
+                  Pattern-aware pacing
+                </span>
+              </div>
+
+              <div
+                className="
+                  flex
+                  items-center
+                  gap-2
+
+                  rounded-full
+                  border
+                  border-gray-200
+
+                  bg-emerald-100
+
+                  px-4
+                  py-3
+                "
+              >
+                <LineChart
+                  size={16}
+                  className="text-emerald-600"
+                />
+
+                <span
+                  className="
+                    text-sm
+                    font-medium
+                    text-gray-700
+                  "
+                >
+                  Signal-backed scaling
+                </span>
+              </div>
+
+            </div>
+
+          </div>
+
+          {/* RIGHT IMAGE */}
+
+<div className="relative h-full">
+
+  {/* IMAGE */}
+
+  <div
+    className="
+      overflow-hidden
+
+      rounded-4xl
+      border
+      border-gray-200
+
+      bg-gray-50
+    "
+  >
+
+    <img
+      src="/two_cars.jpg"
+      alt="Creative signal tracking"
+      className="
+        h-full
+        w-full
+
+        object-cover
+
+        transition-transform
+        duration-700
+
+        hover:scale-[1.03]
+      "
+    />
   </div>
 
-</section>
+  {/* FLOATING SIGNAL CARD */}
 
-      {/* WHAT MyAdBreak DOES */}
-      <section className="space-y-6">
-<div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
+  <div
+    className="
+      absolute
 
-  <h2 className="text-2xl font-semibold tracking-tight">
-          What it does
-          </h2>
+      left-1/2
+      bottom-5
 
-        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          MyAdBreak tracks ad formats as they begin repeating across brand and platforms.
-        </p>
+      w-[calc(100%-2rem)]
+      max-w-md
 
-        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          Instead of data-heavy Excel trackers and jargonned PPTs, that require extensive research and cumbersome tasks. 
-          We built a live signal intelligence that shows emerging ad mechanics across categories and platforms. Updated as and when observed. 
-        </p>
+      -translate-x-1/2
 
-        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          Our goal is simple: we identify formats that converge early, before it saturates.
-        </p>
-      </section>
+      rounded-3xl
+      border
+      border-white/20
 
- {/* EXPECTATIONS - WHAT CAN YOU EXPECT */}
-<section className="space-y-8">
-<ExpectationsTabs/>
-</section>
+      bg-white/80
+      backdrop-blur-2xl
 
-      {/* WHY IT MATTERS */}
-      <section className="space-y-6">
-<div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
+      p-4
+      md:p-5
 
-  <h2 className="text-2xl font-semibold tracking-tight">
-          Why this matters
-          </h2>
+      shadow-lg
+    "
+  >
 
-        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          In competitive industries like automotive, technology, and finance, timing is leverage. 
-          Marketing sits on it, seldom without noticing!
-        </p>
+    <div
+      className="
+        flex
+        items-start
+        gap-4
+      "
+    >
 
-        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          A clear format awareness helps teams reduce wasted experimentation, avoid saturation, and help build campaigns with an early strategic direction. That which works!
-        </p>
+      {/* ICON */}
 
-        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          MyAdBreak doesn&apos;t promise virality. It gives marketers something far more useful:
-        </p>
+      <div
+        className="
+          flex
+          h-11
+          w-11
+          shrink-0
+          items-center
+          justify-center
 
-        <p className="font-medium text-gray-600 uppercase text-sm">
-          Context before hype kills the value.
-        </p>
-      </section>
+          rounded-full
 
-{/* WHO ARE WE HERE FOR */}
-<section id="herefor" className="space-y-8">
-<div className="border-t border-gray-200 dark:border-gray-800 my-8 md:my-12" />
-
-  <h2 className="text-2xl font-semibold tracking-tight">
-    Who are we here for
-    </h2>
-
-  <div className="grid md:grid-cols-2 gap-6 mx-auto cursor-default">
-
-    {/* MARKETING TEAMS */}
-    <div className="group border rounded-xl p-6 space-y-3 hover:border-amber-500/60 hover:bg-amber-50/40 hover:shadow-md transition-all">
-      <div className="flex items-center gap-3">
-        <div className="p-2 rounded-lg bg-zinc-100 text-zinc-600 group-hover:bg-blue-100 group-hover:text-blue-600 transition">
-          <Megaphone size={18} />
-        </div>
-        <h3 className="font-semibold">Marketing Teams</h3>
+          bg-blue-100
+          text-blue-600
+        "
+      >
+        <ArrowUpRight size={18} />
       </div>
 
-      <p className="text-sm text-gray-600 dark:text-gray-400">
-        Discover emerging ad formats before they saturate.
-      </p>
-    </div>
+      {/* CONTENT */}
 
-    {/* CREATIVE PROFESSIONALS */}
-    <div className="group border rounded-xl p-6 space-y-3 hover:border-amber-500/60 hover:bg-amber-50/40 hover:shadow-md transition-all">
-      <div className="flex items-center gap-3">
-        <div className="p-2 rounded-lg bg-zinc-100 text-zinc-600 group-hover:bg-blue-100 group-hover:text-blue-600 transition">
-          <Palette size={18} />
-        </div>
-        <h3 className="font-semibold">Creative Professionals</h3>
-      </div>
+      <div className="min-w-0">
 
-      <p className="text-sm text-gray-600 dark:text-gray-400">
-        Explore new design mechanics and creative structures.
-      </p>
-    </div>
-
-    {/* STRATEGISTS */}
-    <div className="group border rounded-xl p-6 space-y-3 hover:border-amber-500/60 hover:bg-amber-50/40 hover:shadow-md transition-all">
-      <div className="flex items-center gap-3">
-        <div className="p-2 rounded-lg bg-zinc-100 text-zinc-600 group-hover:bg-blue-100 group-hover:text-blue-600 transition">
-          <LineChart size={18} />
-        </div>
-        <h3 className="font-semibold">Strategists & Planners</h3>
-      </div>
-
-      <p className="text-sm text-gray-600 dark:text-gray-400">
-        Track format convergence across categories and platforms.
-      </p>
-    </div>
-
-    {/* AGENCIES */}
-    <div className="group border rounded-xl p-6 space-y-3 hover:border-amber-500/60 hover:bg-amber-50/40 hover:shadow-md transition-all">
-      <div className="flex items-center gap-3">
-        <div className="p-2 rounded-lg bg-zinc-100 text-zinc-600 group-hover:bg-blue-100 group-hover:text-blue-600 transition">
-          <Building2 size={18} />
-        </div>
-        <h3 className="font-semibold">Agencies</h3>
-      </div>
-
-      <p className="text-sm text-gray-600 dark:text-gray-400">
-        Bring signal-backed creative thinking into pitches and campaigns.
-      </p>
-    </div>
-
-  </div>
-</section>
-
-      <section className="flex flex-col items-center justify-center space-y-6 border-t text-center pt-12">
-        <h2 className="text-2xl font-semibold tracking-tight">
-          Built by industry professionals
-        </h2>
-
-        <p className="text-center text-gray-600 dark:text-gray-400 max-w-2xl">
-          MyAdBreak is created after more than a decade of working inside advertising, executing marketing strategies, and running campaigns.
-        </p>
-
-        <p className="text-center text-gray-600 dark:text-gray-400 max-w-2xl">
-         <span className="font-bold">It exists to solve a simple gap: </span>helping teams see structural shifts in advertising earlier than traditional approach.
-        </p>
-      <p>
-        ***
-      </p>
-      </section>
-
-
-      {/* CTA */}
-        <section className="text-center space-y-6 pt-12">
-
-          <h2 className="text-2xl font-semibold tracking-tight">
-            Start a conversation
-          </h2>
-
-          <p className="text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
-            Exploring a campaign idea, category shift, or creative
-            patterns and want early insights, reach out to us.
-          </p>
-
-          <p className="text-sm text-gray-500">
-            No forms. No sales pitch. Just a conversation.
-          </p>
-
-          <a
-            href="mailto:hello@MyAdBreak.com?subject=MyAdBreak Inquiry"
-            className="inline-flex
+        <div
+          className="
+            flex
             items-center
             gap-2
-            px-6
-            py-3
-            text-sm
-            font-medium
-            text-white
-            bg-gray-800
-            border
-            border-blue-600
-            rounded-full
-            shadow-sm
-            hover:bg-blue-600
-            transition-all
-            duration-200
-            active:scale-95"
-          >
-            Email Now
-          </a>
+            flex-wrap
+          "
+        >
 
-        </section>
+          <p
+            className="
+              text-sm
+              font-semibold
+              text-gray-900
+            "
+          >
+            Repeating creative patterns
+          </p>
+
+          <span
+            className="
+              rounded-full
+
+              bg-blue-100
+              border
+              border-blue-600
+
+              px-2
+              py-0.5
+
+              text-[9px]
+              font-light
+              uppercase
+              tracking-wide
+
+              text-blue-700
+            "
+          >
+            Accelerating
+          </span>
+
+        </div>
+
+        <p
+          className="
+            mt-1.5
+
+            text-xs
+            leading-relaxed
+            text-gray-600
+          "
+        >
+          Similar storytelling hooks are beginning to repeat across multiple automotive advertisers.
+        </p>
+
+      </div>
+
+    </div>
+
+              </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* =================================================
+          INDUSTRY PROBLEM
+      ================================================= */}
+
+      <section
+        className="
+          grid
+          gap-14
+
+          lg:grid-cols-[0.95fr_1.05fr]
+          lg:items-start
+        "
+      >
+
+        {/* LEFT */}
+
+        <div>
+
+          <p
+            className="
+              text-sm
+              font-medium
+              uppercase
+              tracking-[0.18em]
+              text-blue-600
+            "
+          >
+            Industry Reality
+          </p>
+
+          <h2
+            className="
+              mt-4
+
+              text-3xl
+              md:text-4xl
+
+              font-semibold
+              tracking-tight
+
+              text-gray-950
+            "
+          >
+            Most marketing teams react to trends,
+            instead of identifying them early.
+          </h2>
+
+        </div>
+
+        {/* RIGHT */}
+
+        <div className="space-y-6">
+
+          <p
+            className="
+              text-lg
+              leading-relaxed
+              text-gray-600
+            "
+          >
+            Teams do not lack dashboards.
+            They lack timing clarity.
+          </p>
+
+          <p
+            className="
+              leading-relaxed
+              text-gray-600
+            "
+          >
+            By the time performance decks identify
+            a winning creative direction, the market
+            has usually saturated it already.
+          </p>
+
+          <div
+            className="
+              rounded-2xl
+              border
+              border-blue-100
+
+              bg-blue-50
+
+              p-5
+            "
+          >
+
+            <div
+              className="
+                flex
+                items-start
+                gap-3
+              "
+            >
+
+              <div
+                className="
+                  mt-0.5
+
+                  flex
+                  h-10
+                  w-10
+                  items-center
+                  justify-center
+
+                  rounded-xl
+
+                  bg-white
+                  text-blue-600
+                "
+              >
+                <Activity size={18} />
+              </div>
+
+              <div>
+
+                <p
+                  className="
+                    text-base
+                    font-semibold
+                    text-gray-900
+                  "
+                >
+                  Signals appear before trends do
+                </p>
+
+                <p
+                  className="
+                    mt-1
+                    text-sm
+                    leading-relaxed
+                    text-gray-600
+                  "
+                >
+                  Repeated hooks, pacing changes,
+                  and advertiser behavior often reveal
+                  momentum weeks before market-wide adoption.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* =================================================
+          WHY THIS MATTERS
+      ================================================= */}
+
+
+      <section
+        className="
+          grid
+          gap-14
+
+          lg:grid-cols-[0.95fr_1.05fr]
+          lg:items-start
+        "
+      >
+
+          <div>
+
+            <p
+              className="
+                text-sm
+                font-medium
+                uppercase
+                tracking-[0.18em]
+                text-gray-500
+              "
+            >
+              Why this matters
+            </p>
+
+            <h2
+              className="
+                mt-4
+
+                text-3xl
+                md:text-4xl
+
+                font-semibold
+                tracking-tight
+
+                text-gray-950
+              "
+            >
+              Timing is often a stronger advantage
+              than creative volume.
+            </h2>
+
+          </div>
+
+          <div className="space-y-5">
+
+            <p
+              className="
+                leading-relaxed
+                text-gray-600
+              "
+            >
+              In categories like automotive,
+              fintech, and consumer tech,
+              performance shifts happen fast.
+            </p>
+
+            <p
+              className="
+                leading-relaxed
+                text-gray-600
+              "
+            >
+              Teams that identify delivery pressure,
+              signal acceleration, and repeated creative
+              behavior early reduce wasted experimentation
+              and scale with more conviction.
+            </p>
+
+          </div>
+
+ 
+
+      </section>
+
+ {/* =================================================
+          PACING TOOL
+      ================================================= */}
+
+      <section
+        className="
+          rounded-4xl
+          border
+          border-gray-200
+
+          bg-gray-50/70
+
+          p-8
+          md:p-10
+        "
+      >
+
+        <div
+          className="
+            grid
+            gap-10
+
+            lg:grid-cols-2
+          "
+        >
+        <div>
+
+            <p
+              className="
+                text-sm
+                font-medium
+                uppercase
+                tracking-[0.18em]
+                text-blue-600
+              "
+            >
+              Interactive Tool
+            </p>
+
+            <h2
+              className="
+                mt-3
+
+                text-3xl
+                md:text-4xl
+
+                font-semibold
+                tracking-tight
+
+                text-gray-950
+              "
+            >
+              Signal-Aware Ad Pacing
+            </h2>
+
+          </div>
+
+          <p
+            className="
+              max-w-md
+
+              text-sm
+              leading-relaxed
+              text-gray-500
+            "
+          >
+            Simulate campaign pacing using
+            delivery pressure, performance signals,
+            and signal momentum indicators.
+          </p>
+
+
+        </div>
+
+      </section>
+
+      {/* =================================================
+          ACTUAL PACING ENGINE
+      ================================================= */}
+
+      <section className="space-y-6">
+
+
+        <PacingTool />
+
+      </section>
 
     </main>
   );

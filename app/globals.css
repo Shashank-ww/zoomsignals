@@ -71,3 +71,27 @@ body {
     }
   }
 }
+
+@keyframes planeFly {
+
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+
+  45% {
+    transform: translate(10px, -10px);
+    opacity: 0;
+  }
+
+  46% {
+    transform: translate(-10px, 10px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+
+}

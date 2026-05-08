@@ -39,14 +39,15 @@ export default function MailingList({
     fetchCount();
   }, [variant]);
 
-  /* ---------- PREFILL ---------- */
+  /* ---------- PREFILL 
   useEffect(() => {
     const saved = localStorage.getItem("subscribedEmail");
     if (saved) {
       setEmail(saved);
       setParentEmail?.(saved);
     }
-  }, [setParentEmail]);
+  }, [setParentEmail]); 
+  ---------- */
 
   /* ---------- AUTO HIDE SOCIAL PROOF ---------- */
   useEffect(() => {
@@ -105,7 +106,7 @@ const handleSubmit = async () => {
         setStatus("success");
       }
 
-      localStorage.setItem("subscribedEmail", email);
+     // localStorage.setItem("subscribedEmail", email);
       setParentEmail?.(email);
     } catch {
       setStatus("error");
@@ -127,7 +128,7 @@ const handleSubmit = async () => {
         <p className="text-xs text-gray-500 dark:text-gray-400">
           {isDownload
             ? "We will send your 3 free sample signals instantly"
-            : "Join and see creative patterns first"}
+            : "Join to see creative patterns first"}
         </p>
       </div>
 
@@ -142,7 +143,6 @@ const handleSubmit = async () => {
           type="email"
           placeholder="you@company.com"
           value={email}
-          autoFocus={!email}
           onChange={(e) => {
             setEmail(e.target.value.trim());
             if (!showSocialProof) setShowSocialProof(true);

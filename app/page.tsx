@@ -13,7 +13,7 @@ export default async function Page() {
     "Early patterns that give you a real edge",
     "See patterns that repeat across live ads",
     "Stop guessing. Start seeing what scales",
-    "Find winning ad patterns before the next launch",
+    "Find winning ad patterns before they scale",
   ];
 
   const headline =
