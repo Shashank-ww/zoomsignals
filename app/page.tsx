@@ -10,10 +10,10 @@ export default async function Page() {
   const headlines = [
     "Ads that makes you stand out, first",
     "Make decisions before ads break your budget",
-    "Discover early patterns for a real edge",
-    "See patterns that repeat across live ads",
+    "Discover early patterns for a competitive edge",
+    "See patterns that repeat across live campaigns",
     "Stop guessing. Start seeing what scales",
-    "Find winning ad patterns before they scale",
+    "Find winning patterns before they scale",
   ];
 
   const headline =

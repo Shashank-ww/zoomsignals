@@ -6,7 +6,7 @@ import { HiOutlineSearch } from "react-icons/hi";
 export default function Footer() {
   return (
     <footer className="border-t mt-20 shadow-inner bg-linear-to-t from-green-50 via-white to-blue-50 border border-blue-200 dark:bg-neutral-950">
-      <div className="max-w-6xl mx-auto p-6 text-sm text-gray-500 dark:text-gray-400 mt-6">
+      <div className="max-w-7xl mx-auto p-6 text-sm text-gray-500 dark:text-gray-400 mt-6">
         
         {/* Top Row */}
         <div className="flex flex-col md:flex-row justify-between gap-6">
@@ -30,7 +30,7 @@ export default function Footer() {
             <p className="flex mt-4 py-6 border-t font-light items-end">
             <HiOutlineSearch className="text-lg"/>
               <span className="px-2 items-end justify-end">
-                www.adflite.com
+                www.myadbreak.com
               </span>
             </p>
 

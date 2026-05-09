@@ -2,7 +2,6 @@
 
 import {
   Activity,
-  Aperture,
   ArrowUpRight,
   BrainCircuit,
   Building2,
@@ -21,19 +20,7 @@ import DownloadGateway from "../components/DownloadGateway";
 export default function Explore() {
   return (
     <main
-      className="
-        mx-auto
-        max-w-7xl
-
-        px-4
-        md:px-8
-
-        py-16
-        md:py-24
-
-        space-y-24
-      "
-    >
+      className="max-w-7xl mx-auto px-6 py-20 md:py-24 space-y-24">
 
       {/* =================================================
           HERO
@@ -49,14 +36,14 @@ export default function Explore() {
 
         <div
           className="
-            relative
-            z-10
+          relative
+          z-10
 
-            grid
-            gap-12
+          grid
+          gap-14
 
-            lg:grid-cols-[1.1fr_0.9fr]
-            lg:items-center
+          lg:grid-cols-[1.05fr_0.95fr]
+          lg:items-center
           "
         >
 
@@ -100,14 +87,12 @@ export default function Explore() {
 
                 font-semibold
                 tracking-[-0.04em]
-                leading-[1.02]
+                leading-[1.05]
 
-                text-sky-500
+                text-amber-500
               "
             >
-              Repeating ad patterns.
-              <br />
-              Predict what&apos;s next.
+              Explore pacing intelligence to plan your next campaign
             </h1>
 
             <p
@@ -275,7 +260,7 @@ export default function Explore() {
   >
 
     <img
-      src="/two_cars.jpg"
+      src="/tesla.jpg"
       alt="Creative signal tracking"
       className="
         h-full
@@ -1212,8 +1197,7 @@ export default function Explore() {
           ACTUAL PACING ENGINE
       ================================================= */}
 
-      <section className="space-y-6">
-
+      <section id="pacing" className="space-y-6">
 
         <PacingTool />
 

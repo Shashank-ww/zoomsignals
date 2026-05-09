@@ -107,10 +107,10 @@ export default function SignalPreview({
                   group rounded-xl p-3 transition-all duration-700
                   ${
                     relativeIndex === 0
-                      ? "bg-linear-to-br from-green-50 via-white to-blue-50 border border-blue-200 scale-110 z-20 shadow-md"
+                      ? "bg-linear-to-br from-green-50 via-white to-amber-50 border border-blue-200 scale-110 z-20 shadow-md"
                       : relativeIndex === 1
                       ? "bg-gray-200 scale-90 opacity-40 border border-gray-300"
-                      : "bg-zinc-200/40 scale-95 opacity-60 border border-gray-300"
+                      : "bg-zinc-100/40 scale-95 opacity-60 border border-gray-300"
                   }
                 `}
               >
@@ -126,11 +126,11 @@ export default function SignalPreview({
 
                   <h3
                     className={`
-                      text-xs md:text-sm font-semibold leading-snug
+                      text-xs md:text-base font-semibold leading-snug
                       ${
                         relativeIndex === 0
                           ? "text-zinc-800"
-                          : "text-zinc-700"
+                          : "text-zinc-600"
                       }
                     `}
                   >

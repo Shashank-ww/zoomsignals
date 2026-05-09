@@ -7,116 +7,242 @@ import {
   Zap,
   Brain,
   Search,
-  Globe,
-  Target,
   Building2,
   LineChart,
   Palette,
   Megaphone,
 } from "lucide-react";
-import { ExpectationsTabs } from "../components/ExpectationsTabs";
 
 export default function About() {
   return (
-    <main className="mx-auto max-w-6xl px-6 py-24 space-y-24">
+    <main className="mx-auto max-w-7xl px-6 py-20 md:py-24 space-y-20">
 
-      {/* HERO */}
-      <section className="space-y-6 ">
-        <h1 className="
-        py-1
-        lg:text-6xl
-        text-3xl
-        md:text-5xl bg-linear-to-tr from-blue-500 to-sky-400 bg-clip-text text-transparent
-        tracking-[-0.02em]
-        leading-[1.05]
-        ">
-          Better ads, faster decisions
-        </h1>
+  {/* =================================================
+      HERO
+  ================================================= */}
 
-        <p className="flex text-gray-600 leading-relaxed dark:text-gray-300">
-          Media teams end up chasing trends that have already peaked. We noticed what they are after and when they need it. 
+  <section
+    className="
+      grid
+      gap-14
+
+      lg:grid-cols-[1fr_0.9fr]
+      lg:items-center
+    "
+  >
+
+    {/* LEFT */}
+
+    <div className="max-w-3xl">
+
+      {/* TAG */}
+
+      <div
+        className="
+          inline-flex
+            items-center
+            gap-2
+
+            rounded-full
+            border
+            border-blue-100
+
+            bg-blue-50
+
+            px-3
+            py-1.5
+
+            text-xs
+            font-medium
+            tracking-wide
+            text-blue-700
+        "
+      >
+        <Zap size={14} />
+        All about us
+      </div>
+
+      {/* HEADLINE */}
+
+      <h1
+        className="
+          mt-6
+
+          max-w-4xl
+
+          text-4xl
+          md:text-6xl
+
+          font-semibold
+          tracking-[-0.04em]
+          leading-[0.98]
+
+          text-amber-500
+        "
+      >
+        Faster decisions, even better ads
+      </h1>
+
+      {/* BODY */}
+
+      <div
+        className="
+          mt-6
+
+          space-y-5
+
+          text-base
+          leading-relaxed
+
+          text-gray-600
+        "
+      >
+
+        <p>
+          Most marketing teams are not short on resources.
+          They are short on time.
         </p>
 
-        <p className="flex text-gray-600 leading-relaxed dark:text-gray-300">
-          And that is how we came about to make it easier for them to keep track of early structure and creative patterns across social media platforms. 
-          We help performance marketing teams achieve better engagement and outreach.
+        <p>
+          By the time a creative format becomes a
+          “winning trend”, it has already been repeated,
+          optimized, and saturated across the market.
         </p>
 
-        <p className= "flex text-gray-600 leading-relaxed dark:text-gray-300">
-          By the time something is called a “winning format,” it has already been over-used, 
-          over-optimized, and stripped of its advantage.
+        <p>
+          MyAdBreak helps teams identify repeated hooks,
+          emerging creative structures, and advertiser
+          behavior patterns before they become obvious.
         </p>
 
-        <p className="text-gray-600 dark:text-gray-300 font-medium leading-relaxed">
-          <span className="font-bold">MyAdBreak</span>  exists to catch ad patterns earlier. Before they become obvious.
+        <p className="font-medium text-gray-900">
+          So media teams can move earlier,
+          spend smarter, and scale with more confidence.
         </p>
 
-      </section>
+      </div>
 
- {/* RTBs / VALUE CARDS */}
-<section className="mt-12">
+    </div>
 
-  <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
+    {/* RIGHT */}
 
-    {[
-      {
-        icon: TrendingUp,
-        text: "Spot ad patterns before they peak",
-      },
-      {
-        icon: Zap,
-        text: "Track velocity, not just trends",
-      },
-      {
-        icon: Search,
-        text: "Signals, not noise or dashboards",
-      },
-      {
-        icon: Brain,
-        text: "Built on real campaign experience",
-      },
-      {
-        icon: Globe,
-        text: "Cross-platform creative tracking",
-      },
-      {
-        icon: Target,
-        text: "Make better decisions, earlier",
-      },
-    ].map((item, i) => {
-      const Icon = item.icon;
+    <div className="relative">
 
-      return (
-        <div
-          key={i}
-          className="
-            group
-            rounded-2xl
-            border border-gray-200 dark:border-gray-800
-            bg-blue-200/20 dark:bg-zinc-900/50
-            backdrop-blur
-            p-5 md:p-6
-            min-h-30
-            flex flex-col justify-between
-            transition-all duration-300
-            hover:shadow-lg hover:-translate-y-1
-            cursor-default
-          "
-        >
-          <Icon
-            size={22}
-            className="text-blue-500 mb-3 group-hover:scale-110 transition-transform"
-          />
+      <div
+        className="
+          rounded-4xl
+          border
+          border-gray-200
 
-          <p className="text-sm md:text-[15px] text-gray-700 dark:text-gray-300 leading-snug">
-            {item.text}
-          </p>
+          bg-linear-to-br
+          from-orange-50
+          to-white
+
+          p-6
+          md:p-8
+        "
+      >
+
+        <div className="grid gap-4 sm:grid-cols-2">
+
+          {[
+            {
+              icon: TrendingUp,
+              title: "Early Pattern Detection",
+              text: "Spot creative repetition before it becomes industry-wide.",
+            },
+            {
+              icon: Zap,
+              title: "Track Signal Velocity",
+              text: "Understand when advertiser momentum begins accelerating.",
+            },
+            {
+              icon: Search,
+              title: "Less Noise, More Context",
+              text: "Focus on meaningful shifts instead of endless dashboards.",
+            },
+            {
+              icon: Brain,
+              title: "Built for Media Teams",
+              text: "Created around real campaign pacing and ad operations.",
+            },
+          ].map((item, i) => {
+
+            const Icon = item.icon;
+
+            return (
+              <div
+                key={i}
+                className="
+                  rounded-2xl
+                  border
+                  border-white/70
+
+                  bg-white/80
+                  backdrop-blur-xl
+
+                  p-5
+
+                  shadow-sm
+                "
+              >
+
+                <div
+                  className="
+                    flex
+                    h-11
+                    w-11
+                    items-center
+                    justify-center
+
+                    rounded-2xl
+
+                    bg-blue-50
+                    text-orange-500
+                  "
+                >
+                  <Icon size={18} />
+                </div>
+
+                <p
+                  className="
+                    mt-4
+
+                    text-sm
+                    font-semibold
+
+                    text-gray-900
+                  "
+                >
+                  {item.title}
+                </p>
+
+                <p
+                  className="
+                    mt-1.5
+
+                    text-xs
+                    leading-relaxed
+
+                    text-gray-500
+                  "
+                >
+                  {item.text}
+                </p>
+
+              </div>
+            );
+
+          })}
+
         </div>
-      );
-    })}
 
-  </div>
-</section>
+      </div>
+
+    </div>
+
+  </section>
+
 
 
 

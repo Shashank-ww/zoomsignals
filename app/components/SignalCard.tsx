@@ -163,7 +163,7 @@ setLoadingType(type); // VOTE STARTS LOADING HERE
   
   return (
     <article
-      className="rounded-2xl overflow-hidden cursor-default hover:shadow-xl transition-all duration-300 h-full bg-linear-to-br from-[#e2eeff] via-[#F8FAFC] to-[#ffffe5] border border-blue-200">
+      className="rounded-2xl overflow-hidden cursor-default hover:shadow-xl hover:border-amber-300 transition-all duration-300 h-full bg-linear-to-br from-[#e2eeff] via-[#F8FAFC] to-[#ffffe5] border border-blue-200">
       <div className="flex flex-col md:flex-row">
 
         {/* IMAGE */}
@@ -259,7 +259,7 @@ setLoadingType(type); // VOTE STARTS LOADING HERE
       {signal.insight}
     </p>
 
-    <p className="text-[11px] text-blue-600 font-medium">
+    <p className="text-[11px] text-amber-600 font-medium">
       Repeating across {signal.repetitionCount}+ ads.
     </p>
   </div>

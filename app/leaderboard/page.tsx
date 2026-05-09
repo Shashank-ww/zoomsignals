@@ -84,7 +84,7 @@ function getMetricStyle(value?: string) {
       </section>
 
       {/* TABS */}
-        <section className="flex gap-2 items-center justify-end">
+        <section className="flex flex-cols gap-2 items-center justify-end">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.key;
@@ -93,11 +93,11 @@ function getMetricStyle(value?: string) {
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key as any)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm border transition
+              className={`flex flex-cols items-center gap-2 px-4 py-2 rounded-full text-sm border transition-all cursor-pointer
                 ${
                   isActive
-                    ? "bg-black text-white"
-                    : "bg-white text-zinc-600 hover:bg-zinc-100"
+                    ? "bg-blue-500 text-white"
+                    : "bg-white text-zinc-600 hover:bg-orange-500 hover:text-white"
                 }
               `}
             >

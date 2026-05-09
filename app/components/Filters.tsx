@@ -179,7 +179,7 @@ export default function Filters({
           />
 
           <CompactFilter
-            label="Utility Resonance"
+            label="Signal Bias"
             options={["HIGH", "MED", "LOW"]}
             activeValue={resonanceFilter}
             setValue={setResonanceFilter}

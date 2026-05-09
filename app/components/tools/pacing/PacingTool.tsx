@@ -246,7 +246,7 @@ const pacingExplanation =
     <div
       className="
         w-full
-        max-w-6xl
+        max-w-7xl
         mx-auto
 
         grid

@@ -6,7 +6,7 @@ interface HeroHeadlineProps {
 
 export default function HeroHeadline({ headline }: HeroHeadlineProps) {
   return (
-    <div className="space-y-5 dark:text-gray-300 h-full max-w-2xl">
+    <div className="space-y-5 dark:text-gray-300 h-90vh max-w-3xl">
 
       {/* FIXED H1 (SEO + brand clarity) */}
             <h1
@@ -19,37 +19,37 @@ export default function HeroHeadline({ headline }: HeroHeadlineProps) {
                 border
                 border-blue-100
 
-                bg-blue-50/20
+                bg-blue-50
 
                 px-3
                 py-1.5
 
-                mb-1
-
                 text-xs
                 font-medium
                 tracking-wide
-                text-blue-600
+                text-blue-700
               "
             >
         Myadbreak, signals to scale before you spend
       </h1>
 
-      {/* // Myadbreak, see what scales, before you spend */}
+      {/* // Myadbreak, see what scales, before you spend - adflite.com */}
 
       {/* DYNAMIC HEADLINE */}
       <h2
         className="
-        max-w-2xl
-        py-1
-        lg:text-6xl
-        text-4xl
-        md:text-5xl 
-        bg-linear-to-tr from-blue-500 to-sky-400 bg-clip-text text-transparent
-        font-semibold
-        tracking-[-0.04em]
-        leading-[1.02]
+          py-1
 
+          max-w-prose
+
+          text-4xl
+          md:text-6xl
+
+          font-semibold
+          tracking-[-0.04em]
+          leading-[1.05]
+
+        bg-linear-to-tr from-orange-500 to-amber-400 bg-clip-text text-transparent
       "
       >
         {headline}
@@ -74,10 +74,10 @@ export default function HeroHeadline({ headline }: HeroHeadlineProps) {
             text-sm
             font-medium
             text-white
-            bg-gray-800
+            bg-gray-700
             border
-            border-blue-500
-            hover:bg-blue-500
+            border-amber-500
+            hover:bg-orange-500
             rounded-full
             shadow-sm
             transition-all
@@ -89,19 +89,11 @@ export default function HeroHeadline({ headline }: HeroHeadlineProps) {
         </a>
 
         <a
-          href="/explore"
-          className="text-sm text-gray-600 hover:text-amber-500 transition-all duration-300 underline underline-offset-4"
+          href="/explore#pacing"
+          className="text-sm text-gray-600 hover:text-orange-500 transition-all duration-300 underline underline-offset-4"
         >
           Explore Pacing
         </a>
-
-        {/* //------- some options for later 
-        Inside Myadbreak
-        Behind the system/signals/site
-        What powers this
-        Behind the engine
-        Beyond Ads
-         //------ */}
 
       </div>
 

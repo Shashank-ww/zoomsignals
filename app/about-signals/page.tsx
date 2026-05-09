@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import type { Signal } from "@/app/types/signal.types";
 import SignalCard from "@/app/components/SignalCard";
-import { Gauge, Loader2, Plus, Repeat, ShieldCheck, Zap } from "lucide-react";
+import { Activity, ArrowUpRight, Gauge, LineChart, Loader2, Plus, Radar, Repeat, Repeat2, ShieldCheck, Zap } from "lucide-react";
 import DownloadGateway from "@/app/components/DownloadGateway";
 import FaqSection from "../components/FaqSection";
 
@@ -67,34 +67,381 @@ useEffect(() => {
   loadSignal();
 }, []);
 
-  return (
-    <main className="max-w-6xl mx-auto px-6 py-24 space-y-32">
+  return (<main className="max-w-7xl mx-auto px-6 py-20 md:py-24 space-y-24">
 
-      {/* HERO */}
-      <section className="space-y-6">
-        <h1 className="
-        py-1
-        lg:text-6xl
-        text-3xl
-        md:text-5xl bg-linear-to-tr from-blue-500 to-sky-400 bg-clip-text text-transparent
-        tracking-[-0.02em]
-        leading-[1.05]
-        ">
-          Signals as structure
+  {/* =================================================
+      HERO
+  ================================================= */}
+
+  <section
+    className="
+      relative
+      overflow-hidden
+    "
+  >
+
+    <div
+      className="
+        relative
+        z-10
+
+        grid
+        gap-14
+
+        lg:grid-cols-[1.05fr_0.95fr]
+        lg:items-center
+      "
+    >
+
+      {/* LEFT */}
+
+      <div className="max-w-3xl">
+
+        {/* TAG */}
+
+        <div
+          className="
+            inline-flex
+            items-center
+            gap-2
+
+            rounded-full
+            border
+            border-blue-100
+
+            bg-blue-50
+
+            px-3
+            py-1.5
+
+            text-xs
+            font-medium
+            tracking-wide
+            text-blue-700
+          "
+        >
+          <Radar size={14} />
+          Signal Intelligence Framework
+        </div>
+
+        {/* HEADING */}
+
+        <h1
+          className="
+            mt-5
+
+            max-w-3xl
+
+            text-4xl
+            md:text-6xl
+
+            font-semibold
+            tracking-[-0.04em]
+            leading-[1.02]
+
+            text-amber-500
+          "
+        >
+          Emerging patterns appear before they become a signal
         </h1>
-      
 
-        <p className="text-lg text-gray-700 dark:text-gray-300">
-          MyAdBreak keep records of repeatable creative patterns forming across
-          short-form ecosystems. A signal emerges when independent brands
-          begin solving attention in structurally similar ways on social media platforms.
+        {/* BODY */}
+
+        <p
+          className="
+            mt-6
+
+            max-w-2xl
+
+            text-lg
+            leading-relaxed
+
+            text-gray-600
+          "
+        >
+          A structured creative pattern is spotted
+          across different platforms.
+          A signal emerges when independent advertisers
+          begin solving in similar ways.
         </p>
 
-        <p className="text-gray-600">
-          It is not a meme. Not a niche topic. Not one-off viral content.
-          It is a repeatable format gaining measurable momentum.
+        <p
+          className="
+            mt-4
+
+            max-w-2xl
+
+            text-base
+            leading-relaxed
+
+            text-gray-600
+          "
+        >
+          These are not isolated viral moments.
+          They are recurring creative decisions,
+          pacing shifts, and messaging patterns
+          that begin appearing before the market
+          recognizes them as trends.
         </p>
-      </section>
+
+        {/* SIGNAL TAGS */}
+
+        <div
+          className="
+            mt-8
+
+            flex
+            flex-wrap
+            gap-3
+          "
+        >
+
+          <div
+            className="
+              flex
+              items-center
+              gap-2
+
+              rounded-full
+              border
+              border-gray-200
+
+              bg-blue-50
+
+              px-4
+              py-3
+            "
+          >
+            <Repeat2
+              size={16}
+              className="text-blue-600"
+            />
+
+            <span
+              className="
+                text-sm
+                font-medium
+                text-gray-700
+              "
+            >
+              Repeating creative behavior
+            </span>
+
+          </div>
+
+          <div
+            className="
+              flex
+              items-center
+              gap-2
+
+              rounded-full
+              border
+              border-gray-200
+
+              bg-violet-50
+
+              px-4
+              py-3
+            "
+          >
+            <Activity
+              size={16}
+              className="text-violet-600"
+            />
+
+            <span
+              className="
+                text-sm
+                font-medium
+                text-gray-700
+              "
+            >
+              Emerging signal momentum
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      {/* RIGHT */}
+
+      {/* RIGHT IMAGE */}
+
+<div className="relative mb-16 md:mb-0">
+
+  {/* IMAGE */}
+
+  <div
+    className="
+      overflow-hidden
+
+      rounded-4xl
+      border
+      border-gray-200
+
+      bg-gray-50
+    "
+  >
+
+    <img
+      src="/two_cars.jpg"
+      alt="Creative signal tracking"
+      className="
+        h-full
+        w-full
+
+        object-cover
+
+        transition-transform
+        duration-700
+
+        hover:scale-[1.03]
+      "
+    />
+
+  </div>
+
+  {/* FLOATING SIGNAL CARD */}
+
+  <div
+    className="
+      absolute
+
+      left-1/2
+
+      bottom-0
+      md:bottom-5
+
+      w-[calc(100%-1.5rem)]
+      md:w-[calc(100%-2rem)]
+
+      max-w-md
+
+      -translate-x-1/2
+      translate-y-1/2
+      md:translate-y-0
+
+
+      rounded-3xl
+      border
+      border-white/30
+
+      bg-white/85
+      backdrop-blur-2xl
+
+      p-4
+      md:p-5
+
+      shadow-xl
+    "
+  >
+
+    <div
+      className="
+        flex
+        items-start
+        gap-3
+      "
+    >
+
+      {/* ICON */}
+
+      <div
+        className="
+          flex
+          h-10
+          w-10
+          shrink-0
+          items-center
+          justify-center
+
+          rounded-full
+
+          bg-emerald-100
+          text-emerald-600
+        "
+      >
+        <Repeat size={17} />
+      </div>
+
+      {/* CONTENT */}
+
+      <div className="min-w-0 flex-1">
+
+        <div
+          className="
+            flex
+            items-center
+            gap-2
+            flex-wrap
+          "
+        >
+
+          <p
+            className="
+              text-sm
+              font-semibold
+              leading-tight
+              text-gray-900
+            "
+          >
+            Signal pattern detected
+          </p>
+
+          <span
+            className="
+              rounded-full
+
+              border
+              border-blue-200
+
+              bg-blue-50
+
+              px-2
+              py-0.5
+
+              text-[9px]
+              font-medium
+              uppercase
+              tracking-[0.12em]
+
+              text-emerald-700
+            "
+          >
+            Emerging
+          </span>
+
+        </div>
+
+        <p
+          className="
+            mt-1.5
+
+            text-xs
+            leading-relaxed
+            text-gray-600
+          "
+        >
+          Similar structures
+          begin to repeat across
+          multiple advertisers and formats on social media.
+        </p>
+
+      </div>
+
+      </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
 
    {/* SIGNAL FRAMEWORK */}
 <section id="framework" className="space-y-12">

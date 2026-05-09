@@ -48,9 +48,10 @@ const content: Record<MarkerType, string> = {
 
   return (
     <>
-      <section className="relative flex items-center mx-auto overflow-hidden">
 
-        <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-16">
+    <section className="relative overflow-hidden">
+
+        <div className="relative z-10 grid gap-12 mx-auto lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           
           <div className="max-w-screen">
             <HeroHeadline headline={headline} />
@@ -201,8 +202,8 @@ const content: Record<MarkerType, string> = {
 
 
 {/* ================= LIVE FEED HEADER ================= */}
-<section id="feed-header" className="max-w-7xl mx-auto px-6 mt-12">
-  <div className="rounded-2xl p-9 md:p-9 bg-linear-to-br from-green-50 via-white to-blue-50 border border-blue-200">
+<section id="feed-header" className="max-w-7xl mx-auto mt-12">
+  <div className="rounded-2xl p-6 md:p-9 bg-linear-to-br from-green-50 via-white to-amber-50 border border-blue-200">
     <LiveFeedHeader
       approvedCount={approvedSignalsCount}
       totalCount={totalSignalsCount}
@@ -229,7 +230,7 @@ function LiveFeedHeader({
       {/* LEFT — Section Identity */}
       <div>
         <div className="mb-2 inline-block">
-          <p className="text-xs uppercase tracking-widest text-blue-600/80">
+          <p className="text-sm font-medium uppercase tracking-[0.18em] text-blue-600">
             Always-on Library
           </p>
           <span className="block w-6 h-2 border-b-[1.5px] border-blue-600 mt-1"></span>
@@ -248,7 +249,7 @@ function LiveFeedHeader({
       {/* RIGHT — Status Block */}
       <div className="hidden sm:flex flex-col justify-end items-end text-right">
 
-        <p className="text-sm text-gray-600">
+        <p className="text-base text-gray-600">
           <span className="text-gray-900 font-semibold">
             {approvedCount}
           </span>{" "}

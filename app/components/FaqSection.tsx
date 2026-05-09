@@ -85,7 +85,7 @@ export default function FaqSection() {
                 onClick={() => setOpenIndex(isOpen ? null : i)}
                 className="w-full flex justify-between items-center px-5 py-4 text-left dark:text-gray-700 text-sm font-bold"
                 >
-                <span className="pr-6">{faq.q}</span>
+                <span className="pr-6 w-full">{faq.q}</span>
 
                 <PlusIcon
                 className={`w-4 h-4 transition-transform duration-300 ${
