@@ -402,6 +402,7 @@ setLoadingType(type); // VOTE STARTS LOADING HERE
         onClick={() => handleFeedback("NOT_RELEVANT")}
         disabled={loadingType === "NOT_RELEVANT"}
         className="
+          group
           h-7 px-1 sm:px-2
           flex items-center gap-1
           rounded-md
@@ -413,12 +414,14 @@ setLoadingType(type); // VOTE STARTS LOADING HERE
           text-[10px] sm:text-[11px]
           whitespace-nowrap
           cursor-pointer
+          transition-all
+          duration-200
         "
       >
         {loadingType === "NOT_RELEVANT" ? (
           <span className="w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin" />
         ) : (
-          <ArrowBigDownIcon size={14} strokeWidth={2} />
+          <ArrowBigDownIcon size={14} strokeWidth={2} className="group-hover:fill-current" />
         )}
         <span className="opacity-80">{notRelevantCount}</span>
       </button>
@@ -427,6 +430,7 @@ setLoadingType(type); // VOTE STARTS LOADING HERE
         onClick={() => handleFeedback("RELEVANT")}
         disabled={loadingType === "RELEVANT"}
         className="
+          group
           h-7 px-1 sm:px-2
           flex items-center gap-1
           rounded-md
@@ -438,12 +442,14 @@ setLoadingType(type); // VOTE STARTS LOADING HERE
           text-[10px] sm:text-[11px]
           whitespace-nowrap
           cursor-pointer
+          transition-all
+          duration-200
         "
       >
           {loadingType === "RELEVANT" ? (
             <span className="w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin" />
           ) : (
-            <ArrowBigUpIcon size={14} strokeWidth={2} />
+            <ArrowBigUpIcon size={14} strokeWidth={2} className="group-hover:fill-current" />
           )}
           <span className="opacity-80">{relevantCount}</span>
       </button>

@@ -23,7 +23,7 @@ export function usePacing(inputs: Inputs) {
 
     return {
       ...inputs,
-      totalDays: Math.max(1, totalDays), // ✅ safety
+      totalDays: Math.max(1, totalDays), // for safety reasons
     };
 
   }, [

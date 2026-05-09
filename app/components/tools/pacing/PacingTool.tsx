@@ -299,7 +299,7 @@ const pacingExplanation =
               text-gray-900
             "
           >
-            Signal-Aware Ad Pacing
+            Signal-aware ad pacing
           </h2>
 
           <p

@@ -8,9 +8,9 @@ import type { Signal } from "@/app/types/signal.types";
 export default async function Page() {
 
   const headlines = [
-    "Ad break that makes you stand out, first",
+    "Ads that makes you stand out, first",
     "Make decisions before ads break your budget",
-    "Early patterns that give you a real edge",
+    "Discover early patterns for a real edge",
     "See patterns that repeat across live ads",
     "Stop guessing. Start seeing what scales",
     "Find winning ad patterns before they scale",
@@ -38,7 +38,7 @@ export default async function Page() {
   const signals: Signal[] = rawSignals as Signal[];
 
   return (
-    <main>
+    <main className="mx-auto max-w-7xl px-4 md:px-8 py-16 md:py-24 space-y-24">
       <HeroSection
         headline={headline}
         approvedSignalsCount={approvedSignalsCount}

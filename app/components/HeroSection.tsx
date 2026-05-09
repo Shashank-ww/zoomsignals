@@ -48,7 +48,7 @@ const content: Record<MarkerType, string> = {
 
   return (
     <>
-      <section className="relative min-h-[80vh] flex items-center max-w-7xl mx-auto px-6">
+      <section className="relative flex items-center mx-auto overflow-hidden">
 
         <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-16">
           
@@ -80,7 +80,7 @@ const content: Record<MarkerType, string> = {
         {/* ================= EXPLAINER SECTION ================= */}
         <section id="explainer" className="border-t border-gray-200 bg-gray-50 cursor-auto">
             <div
-            className={`max-w-6xl mx-auto px-6 transition-all duration-500 overflow-hidden ${
+            className={`max-w-7xl mx-auto px-6 transition-all duration-500 overflow-hidden ${
                 showExplainer ? "max-h-400 py-20 opacity-100" : "max-h-0 opacity-0"
             }`}
             >
@@ -201,7 +201,7 @@ const content: Record<MarkerType, string> = {
 
 
 {/* ================= LIVE FEED HEADER ================= */}
-<section id="feed-header" className="max-w-6xl mx-auto px-6 mt-12">
+<section id="feed-header" className="max-w-7xl mx-auto px-6 mt-12">
   <div className="rounded-2xl p-9 md:p-9 bg-linear-to-br from-green-50 via-white to-blue-50 border border-blue-200">
     <LiveFeedHeader
       approvedCount={approvedSignalsCount}

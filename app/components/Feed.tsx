@@ -245,7 +245,7 @@ const filteredSignals = useMemo<Signal[]>(() => {
    const [showDisclaimer, setShowDisclaimer] = useState(false);
 
   return (
-<main className="max-w-6xl mx-auto px-6 py-12">
+<main className="max-w-7xl mx-auto px-6 py-12">
   
   <div className="flex flex-col lg:flex-row gap-8">
 

@@ -72,7 +72,7 @@ export default function SignalPreview({
     -(index * (CARD_HEIGHT + GAP)) + CENTER_OFFSET;
 
   return (
-    <div className="relative w-72 mx-6 px-4 self-start ring-1 ring-inset ring-gray-200 dark:ring-gray-700">
+    <div className="relative w-80 mr-8 mx-auto px-4 self-start ring-1 ring-inset ring-gray-200 dark:ring-gray-700">
 
       {/* TOP FADE */}
       <div className="pointer-events-none absolute top-0 left-0 right-0 h-16 z-20 

@@ -17,7 +17,7 @@ export default function Footer() {
               href="/"
               className="font-bold text-blue-500 select-none">
               <span className="font-light tracking-tight transition-colors duration-200 group-hover:text-blue-500">
-               &copy; My<span className="font-bold">adbreak</span>&trade;
+               &copy; My<span className="font-bold">adbreak</span>.com&trade;
               </span>
             </Link>
 
@@ -30,7 +30,7 @@ export default function Footer() {
             <p className="flex mt-4 py-6 border-t font-light items-end">
             <HiOutlineSearch className="text-lg"/>
               <span className="px-2 items-end justify-end">
-                www.myadbreak.com
+                www.adflite.com
               </span>
             </p>
 

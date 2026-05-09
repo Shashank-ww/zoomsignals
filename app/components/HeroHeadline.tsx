@@ -19,7 +19,7 @@ export default function HeroHeadline({ headline }: HeroHeadlineProps) {
                 border
                 border-blue-100
 
-                bg-blue-50/40
+                bg-blue-50/20
 
                 px-3
                 py-1.5
@@ -46,9 +46,9 @@ export default function HeroHeadline({ headline }: HeroHeadlineProps) {
         text-4xl
         md:text-5xl 
         bg-linear-to-tr from-blue-500 to-sky-400 bg-clip-text text-transparent
-                font-semibold
-                tracking-[-0.04em]
-                leading-[1.02]
+        font-semibold
+        tracking-[-0.04em]
+        leading-[1.02]
 
       "
       >
@@ -92,7 +92,7 @@ export default function HeroHeadline({ headline }: HeroHeadlineProps) {
           href="/explore"
           className="text-sm text-gray-600 hover:text-amber-500 transition-all duration-300 underline underline-offset-4"
         >
-          Explore MAB
+          Explore Pacing
         </a>
 
         {/* //------- some options for later 

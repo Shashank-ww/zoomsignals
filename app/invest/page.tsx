@@ -8,7 +8,7 @@ import type { Signal } from "@/app/types/signal.types";
 import { useState, useEffect } from "react";
 
 
-export default function FundingPage() {
+export default function Invest() {
   
   const [liveSignal, setLiveSignal] = useState <Signal | null> (null);
   
