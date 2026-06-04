@@ -6,7 +6,7 @@ interface HeroHeadlineProps {
 
 export default function HeroHeadline({ headline }: HeroHeadlineProps) {
   return (
-    <div className="space-y-5 dark:text-gray-300 h-90vh max-w-3xl">
+    <div className="space-y-5 dark:text-gray-300 h-100vh max-w-3xl">
 
       {/* FIXED H1 (SEO + brand clarity) */}
             <h1

@@ -49,7 +49,7 @@ const content: Record<MarkerType, string> = {
   return (
     <>
 
-    <section className="relative overflow-hidden">
+    <section className="relative overflow-hidden p-4">
 
         <div className="relative z-10 grid gap-12 mx-auto lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           
@@ -203,7 +203,7 @@ const content: Record<MarkerType, string> = {
 
 {/* ================= LIVE FEED HEADER ================= */}
 <section id="feed-header" className="max-w-7xl mx-auto mt-12">
-  <div className="rounded-2xl p-6 md:p-9 bg-linear-to-br from-green-50 via-white to-amber-50 border border-blue-200">
+  <div className="rounded-2xl p-8 md:p-10 bg-linear-to-br from-green-50 via-white to-amber-50 border border-blue-200">
     <LiveFeedHeader
       approvedCount={approvedSignalsCount}
       totalCount={totalSignalsCount}

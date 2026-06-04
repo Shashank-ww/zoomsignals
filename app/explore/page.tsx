@@ -27,32 +27,15 @@ export default function Explore() {
       ================================================= */}
 
       <section
-        className="
-          relative
-          overflow-hidden
-        "
-      >
+        className="relative overflow-hidden">
 
-
-        <div
-          className="
-          relative
-          z-10
-
-          grid
-          gap-14
-
-          lg:grid-cols-[1.05fr_0.95fr]
-          lg:items-center
-          "
-        >
+        <div className="relative z-10 grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
 
           {/* LEFT */}
 
           <div className="max-w-3xl">
 
-            <div
-              className="
+            <div className="
                 inline-flex
                 items-center
                 gap-2
@@ -92,26 +75,8 @@ export default function Explore() {
                 text-amber-500
               "
             >
-              Explore pacing intelligence to plan your next campaign
+              Plan your next campaign with mab
             </h1>
-
-            <p
-              className="
-                mt-6
-
-                text-lg
-                leading-relaxed
-                text-gray-600
-
-                dark:text-white
-
-                max-w-prose 
-              "
-            >
-              Winning ads rarely arrive as trends.
-              They quietly repeat across categories before
-              the industry notices them.
-            </p>
 
             <p
               className="
@@ -133,7 +98,7 @@ export default function Explore() {
 
             <div
               className="
-                mt-8
+                mt-14
 
                 flex
                 flex-wrap
@@ -298,7 +263,7 @@ export default function Explore() {
       md:translate-y-0
 
 
-      rounded-3xl
+      rounded-xl
       border
       border-white/30
 
@@ -592,9 +557,9 @@ export default function Explore() {
       z-10
 
       grid
-      gap-12
+      gap-10
 
-      lg:grid-cols-[0.9fr_1.1fr]
+      lg:grid-cols-[1fr_0.9fr]
       lg:items-start
     "
   >
@@ -1261,7 +1226,7 @@ export default function Explore() {
 
     <h2
       className="
-        mt-5
+        mt-6
 
         text-3xl
         md:text-5xl
@@ -1273,13 +1238,13 @@ export default function Explore() {
         text-gray-950
       "
     >
-      Better campaign decisions, before you even plan them.
+      Make campaign decisions, before you even plan them.
     </h2>
 
     <p
       className="
         mx-auto
-        mt-5
+        mt-6
         max-w-2xl
 
         text-base
@@ -1288,8 +1253,8 @@ export default function Explore() {
         text-gray-600
       "
     >
-      Ad pacing is not just about spend speed.
-      It is about understanding whether delivery,
+      Ad execution is not just about spends.
+      It is to understand whether delivery,
       performance, and market signals are moving
       in the right direction before campaigns lose efficiency.
     </p>
@@ -1297,7 +1262,7 @@ export default function Explore() {
     <p
       className="
         mx-auto
-        mt-4
+        mt-6
         max-w-2xl
 
         text-sm
@@ -1307,13 +1272,13 @@ export default function Explore() {
       "
     >
       Explore the framework, simulate delivery scenarios,
-      and use the pacing tool to make clearer budget decisions
-      with stronger operational context.
+      and use our proprietory pacing tool to make clearer decisions
+      with stronger context.
     </p>
 
       {/* CTA */}
 
-      <div className="mt-5 pt-2">
+      <div className="mt-8 pt-2">
 
         <Link
           href="/about-signals"
@@ -1328,7 +1293,7 @@ export default function Explore() {
             border
             border-blue-200
 
-            bg-white
+            bg-slate-200
 
             px-6
             py-3

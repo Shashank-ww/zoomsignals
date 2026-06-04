@@ -38,7 +38,7 @@ export default async function Page() {
   const signals: Signal[] = rawSignals as Signal[];
 
   return (
-    <main className="mx-auto max-w-7xl px-4 md:px-8 py-16 md:py-24 space-y-24">
+    <main className="mx-auto max-w-7xl px-4 md:px-8 py-24 md:py-24">
       <HeroSection
         headline={headline}
         approvedSignalsCount={approvedSignalsCount}

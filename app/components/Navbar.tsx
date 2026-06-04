@@ -60,6 +60,9 @@ export default function Navbar() {
     transition-colors
     duration-300
 
+    fill-current
+    stroke-1
+
     group-hover:text-amber-500
     group-hover:animate-[planeFly_1.2s_linear_1]
   "

@@ -142,7 +142,7 @@ useEffect(() => {
             text-amber-500
           "
         >
-          Emerging patterns appear before they become a signal
+          Ad patterns before they become a signal
         </h1>
 
         {/* BODY */}
